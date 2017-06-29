@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 25
+        versionCode globalVersionCode
+        versionName globalVersionName
+    }
+
+    // only release variant
+    variantFilter { variant ->
+        if(variant.buildType.name.equals('debug')) {
+            variant.setIgnore(true);
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    compile libs.rxJava
+    compile(libs.rxAndroid) {
+        exclude module: 'rxjava'
+    }
+
+    compile(test.junit) {
+        exclude module: 'hamcrest-core'
+    }
+    compile(test.espresso) {
+        exclude module: 'hamcrest-library'
+        exclude module: 'rules'
+        exclude module: 'runner'
+        exclude module: 'javax.annotation-api'
+        exclude module: 'support-annotations'
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if(task.name == "connectedAndroidTest") {
+        tasks.remove(task)
+    }
+}
+
+apply from: 'publish.gradle'

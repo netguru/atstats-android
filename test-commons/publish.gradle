@@ -1,0 +1,31 @@
+ext {
+    bintrayRepo = 'maven'
+
+    // edit
+    bintrayName = 'test-commons'
+    artifact = 'test-commons'
+    artifactGroupName = '' // can be the same as artifact
+    packageName = 'co.netguru.android'
+    libraryVersion = globalVersionName // optionally hardcode with 'x.y.z' format
+    publishedGroupId = "$packageName"
+    libraryName = 'Test Commons'
+    libraryDescription = ''
+
+    // repo
+    siteUrl = 'https://github.com/netguru/netguru-android-template'
+    gitUrl = 'https://github.com/netguru/netguru-android-template.git'
+
+    // leave
+    developerId = 'netguru'
+    developerName = 'netguru'
+    developerEmail = 'android@netguru.pl'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: '../buildsystem/install.gradle'
+apply from: '../buildsystem/bintray.gradle'
+
+println "\n'$publishedGroupId:$artifact:$libraryVersion' ready to publish...\n"
