@@ -3,8 +3,6 @@ apply plugin: 'com.autoscout24.gradle.todo'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.frogermcs.androiddevmetrics'
 apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'org.sonarqube'
-apply from: '../buildsystem/sonarqube.gradle'
 apply from: '../buildsystem/jacocoTasks.gradle'
 
 ext {
