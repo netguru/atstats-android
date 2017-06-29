@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.autoscout24.gradle.todo'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.frogermcs.androiddevmetrics'
-apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'org.sonarqube'
 apply from: '../buildsystem/sonarqube.gradle'
@@ -54,8 +52,11 @@ android {
         }
     }
 
+    flavorDimensions "default"
+
     productFlavors {
         mock {
+            dimension "default"
             versionNameSuffix "-SNAPSHOT" // if plugin v. >= 2.2
             applicationIdSuffix ".mock"
 
@@ -63,6 +64,7 @@ android {
             // buildConfigField 'String', 'HOCKEY_APP_ID', "\"${secrets.hockeyAppId}\""
         }
         production {
+            dimension "default"
             // inherit
         }
     }
@@ -140,7 +142,6 @@ android {
                     '**/Dagger*Component.class',
                     '**/Dagger*Component$Builder.class',
                     '**/*Module_*Factory.class',
-                    '**/AutoValue_*.*',
                     '**/*JavascriptBridge.class',
                     '**/Lambda$*.class',
                     '**/Lambda.class',
@@ -152,10 +153,6 @@ android {
         abortOnError false
     }
 
-}
-
-kapt {
-    generateStubs = true
 }
 
 // note: use only kapt for annotation processing
@@ -177,10 +174,6 @@ configurations {
 }
 
 dependencies {
-    compile project(':commons')
-    testCompile project(':test-commons')
-    androidTestCompile project(':test-commons')
-    // put entries from dependencies.gradle, for example:
 
     // Support
     compile libs.appCompat
@@ -231,13 +224,6 @@ dependencies {
     // View
     compile libs.butterKnife
     annotationProcessor proc.butterKnife
-
-    // Auto
-    provided proc.autoValue
-    annotationProcessor proc.autoGson
-    annotationProcessor proc.autoParcel
-
-    annotationProcessor proc.retrolambda
 
     // Stetho
     compile libs.stetho
