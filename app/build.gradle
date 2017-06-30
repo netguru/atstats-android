@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.autoscout24.gradle.todo'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.frogermcs.androiddevmetrics'
@@ -276,4 +278,8 @@ dependencies {
         exclude module: 'espresso-core'
     }
     androidTestCompile test.jsr305
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+}
+repositories {
+    mavenCentral()
 }

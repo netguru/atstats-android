@@ -9,10 +9,8 @@ ext {
 }
 
 buildscript {
+    ext.kotlinVersion = '1.1.2-4'
 
-    ext {
-        kotlinVersion = '1.1.2-4'
-    }
     repositories {
         jcenter()
         maven { url "https://plugins.gradle.org/m2/" }
