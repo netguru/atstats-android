@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="co.netguru.android.template">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.slacksocial.android">
+
+    <application>
+        <activity android:name=".mock.debug.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+    </application>
 
 </manifest>

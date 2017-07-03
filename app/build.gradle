@@ -1,13 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.autoscout24.gradle.todo'
-apply plugin: 'com.getkeepsafe.dexcount'
-apply plugin: 'com.frogermcs.androiddevmetrics'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'org.sonarqube'
-apply from: '../buildsystem/sonarqube.gradle'
-apply from: '../buildsystem/jacocoTasks.gradle'
+apply plugin: 'kotlin-android-extensions'
 
 ext {
 
@@ -22,8 +15,8 @@ android {
     buildToolsVersion "25.0.3"
 
     defaultConfig {
-        applicationId "co.netguru.android.template"
-        minSdkVersion 18
+        applicationId "com.slacksocial.android"
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode globalVersionCode
         versionName globalVersionName
@@ -35,7 +28,6 @@ android {
         debug {
             versionNameSuffix "-DEBUG"
             applicationIdSuffix ".debug"
-            testCoverageEnabled true
             debuggable true
             minifyEnabled true
             shrinkResources false
@@ -54,8 +46,11 @@ android {
         }
     }
 
+    flavorDimensions "default"
+
     productFlavors {
         mock {
+            dimension "default"
             versionNameSuffix "-SNAPSHOT" // if plugin v. >= 2.2
             applicationIdSuffix ".mock"
 
@@ -63,6 +58,7 @@ android {
             // buildConfigField 'String', 'HOCKEY_APP_ID', "\"${secrets.hockeyAppId}\""
         }
         production {
+            dimension "default"
             // inherit
         }
     }
@@ -77,23 +73,6 @@ android {
                     if (flavorName.equals(it)) {
                         variant.setIgnore(true);
                     }
-                }
-            }
-        }
-    }
-
-    applicationVariants.all { variant ->
-        // remove unaligned apk files
-        variant.assemble.doLast {
-            variant.outputs.each { output ->
-                println "aligned " + output.outputFile
-                println "unaligned " + output.packageApplication.outputFile
-
-                File unaligned = output.packageApplication.outputFile;
-                File aligned = output.outputFile
-                if (!unaligned.getName().equalsIgnoreCase(aligned.getName())) {
-                    println "deleting " + unaligned.getName()
-                    unaligned.delete()
                 }
             }
         }
@@ -115,37 +94,11 @@ android {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
     }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    todo {
-        // configure
-    }
-
-    junitJacoco {
-        jacocoVersion = jacocoBuild
-        excludes = ['android/databinding/**/*.class',
-                    '**/android/databinding/*Binding.class',
-                    '**/BR.*',
-                    '**/R.class',
-                    '**/R$*.class',
-                    '**/BuildConfig.*',
-                    '**/Manifest*.*',
-                    '**/*$ViewInjector*.*',
-                    '**/*$ViewBinder*.*',
-                    '**/*_MembersInjector.class',
-                    '**/Dagger*Component.class',
-                    '**/Dagger*Component$Builder.class',
-                    '**/*Module_*Factory.class',
-                    '**/AutoValue_*.*',
-                    '**/*JavascriptBridge.class',
-                    '**/Lambda$*.class',
-                    '**/Lambda.class',
-                    '**/*Lambda.class',
-                    '**/*Lambda*.class']
     }
 
     lintOptions {
@@ -154,33 +107,7 @@ android {
 
 }
 
-kapt {
-    generateStubs = true
-}
-
-// note: use only kapt for annotation processing
-// (see https://github.com/realm/realm-java/issues/2491)
-
-configurations {
-    dependencyUpdates.resolutionStrategy = {
-        componentSelection { rules ->
-            rules.all { ComponentSelection selection ->
-                boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
-                    selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
-                }
-                if (rejected) {
-                    selection.reject('Release candidate')
-                }
-            }
-        }
-    }
-}
-
 dependencies {
-    compile project(':commons')
-    testCompile project(':test-commons')
-    androidTestCompile project(':test-commons')
-    // put entries from dependencies.gradle, for example:
 
     // Support
     compile libs.appCompat
@@ -197,29 +124,11 @@ dependencies {
     annotationProcessor proc.dagger
     provided proc.javaxAnnotation
 
-    compile libs.rxJava
-    compile(libs.rxAndroid) {
-        exclude module: 'rxjava'
-    }
-    compile(libs.rxBinding) {
-        exclude module: 'rxjava'
-        exclude module: 'rxandroid'
-        exclude module: 'support-annotations'
-    }
-    compile(libs.rxBindingAppCompat) {
-        exclude module: 'appcompat-v7'
-        exclude module: 'rxbinding'
-    }
-    compile(libs.rxLifeCycle) {
-        exclude module: 'rxjava'
-        exclude module: 'rxbinding'
-        exclude module: 'support-annotations'
-    }
-    compile(libs.rxLifeCycleComponent) {
-        exclude module: 'rxjava'
-        exclude module: 'rxlifecycle'
-        exclude module: 'appcompat-v7'
-    }
+    compile libs.rxJava2
+    compile libs.rxAndroid2
+
+    // kotlin
+    compile libs.kotlin
 
     // OkHttp + Retrofit
     compile libs.okHttp
@@ -231,13 +140,6 @@ dependencies {
     // View
     compile libs.butterKnife
     annotationProcessor proc.butterKnife
-
-    // Auto
-    provided proc.autoValue
-    annotationProcessor proc.autoGson
-    annotationProcessor proc.autoParcel
-
-    annotationProcessor proc.retrolambda
 
     // Stetho
     compile libs.stetho
@@ -257,7 +159,6 @@ dependencies {
     }
     testCompile test.hamcrest
     testCompile test.mockito
-    testCompile test.jsr305
 
     androidTestCompile test.hamcrest
     androidTestCompile libs.annotations
@@ -291,5 +192,7 @@ dependencies {
     androidTestCompile(test.espressoIdlingResource) {
         exclude module: 'espresso-core'
     }
-    androidTestCompile test.jsr305
+}
+repositories {
+    mavenCentral()
 }
