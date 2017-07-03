@@ -78,23 +78,6 @@ android {
         }
     }
 
-    applicationVariants.all { variant ->
-        // remove unaligned apk files
-        variant.assemble.doLast {
-            variant.outputs.each { output ->
-                println "aligned " + output.outputFile
-                println "unaligned " + output.packageApplication.outputFile
-
-                File unaligned = output.packageApplication.outputFile;
-                File aligned = output.outputFile
-                if (!unaligned.getName().equalsIgnoreCase(aligned.getName())) {
-                    println "deleting " + unaligned.getName()
-                    unaligned.delete()
-                }
-            }
-        }
-    }
-
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests.all {
         testLogging {
