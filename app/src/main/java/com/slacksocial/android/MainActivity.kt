@@ -1,4 +1,4 @@
-package co.netguru.android.template.mock.debug
+package com.slacksocial.android
 
 import android.app.Activity
 import android.os.Bundle

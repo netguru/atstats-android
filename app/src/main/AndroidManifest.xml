@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.netguru.android.template">
+    package="com.slacksocial.android">
 
     <application>
         <activity android:name=".mock.debug.MainActivity">
