@@ -101,15 +101,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-
     lintOptions {
         abortOnError false
     }
 
 }
-
-// note: use only kapt for annotation processing
-// (see https://github.com/realm/realm-java/issues/2491)
 
 dependencies {
 
@@ -132,7 +128,7 @@ dependencies {
     compile libs.rxAndroid2
 
     // kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    compile libs.kotlin
 
     // OkHttp + Retrofit
     compile libs.okHttp
