@@ -94,6 +94,7 @@ android {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
     }
 
     sourceSets {
@@ -126,96 +127,75 @@ dependencies {
     compile libs.dagger
     annotationProcessor proc.dagger
     provided proc.javaxAnnotation
-//
-//    compile libs.rxJava
-//    compile(libs.rxAndroid) {
-//        exclude module: 'rxjava'
-//    }
-//    compile(libs.rxBinding) {
-//        exclude module: 'rxjava'
-//        exclude module: 'rxandroid'
-//        exclude module: 'support-annotations'
-//    }
-//    compile(libs.rxBindingAppCompat) {
-//        exclude module: 'appcompat-v7'
-//        exclude module: 'rxbinding'
-//    }
-//    compile(libs.rxLifeCycle) {
-//        exclude module: 'rxjava'
-//        exclude module: 'rxbinding'
-//        exclude module: 'support-annotations'
-//    }
-//    compile(libs.rxLifeCycleComponent) {
-//        exclude module: 'rxjava'
-//        exclude module: 'rxlifecycle'
-//        exclude module: 'appcompat-v7'
-//    }
-//
-//    // OkHttp + Retrofit
-//    compile libs.okHttp
-//    compile libs.okHttpLoggingInterceptor
-//    compile libs.retrofit
-//    compile libs.retrofitGsonConverter
-//    compile libs.retrofitRxJavaAdapter
-//
-//    // View
-//    compile libs.butterKnife
-//    annotationProcessor proc.butterKnife
-//
-//    // Stetho
-//    compile libs.stetho
-//
-//    // LeakCanary
-//    compile libs.leakCanary
-//
-//    // BlockCanary
-//    compile libs.blockCanary
-//
-//    // StrictMode
-//    compile libs.strictmodeNotifier
-//
-//    // Unit testing
-//    testCompile(test.junit) {
-//        exclude module: 'hamcrest-core'
-//    }
-//    testCompile test.hamcrest
-//    testCompile test.mockito
-//    testCompile test.jsr305
-//
-//    androidTestCompile test.hamcrest
-//    androidTestCompile libs.annotations
-//    androidTestCompile(test.androidJUnitRunner) {
-//        exclude module: 'support-annotations'
-//    }
-//    androidTestCompile(test.androidJUnit4Rules) {
-//        exclude module: 'support-annotations'
-//        exclude module: 'hamcrest-core'
-//    }
-//    androidTestCompile(test.espresso) {
-//        exclude module: 'hamcrest-library'
-//        exclude module: 'rules'
-//        exclude module: 'runner'
-//        exclude module: 'javax.annotation-api'
-//        exclude module: 'support-annotations'
-//    }
-//    androidTestCompile(test.espressoContrib) {
-//        exclude module: 'espresso-core'
-//        exclude module: 'hamcrest-core'
-//        exclude module: 'support-v4'
-//        exclude module: 'appcompat-v7'
-//        exclude module: 'recyclerview-v7'
-//        exclude module: 'support-annotations'
-//        exclude module: 'design'
-//    }
-//    androidTestCompile(test.espressoIntents) {
-//        exclude module: 'espresso-core'
-//        exclude module: 'support-annotations'
-//    }
-//    androidTestCompile(test.espressoIdlingResource) {
-//        exclude module: 'espresso-core'
-//    }
-    androidTestCompile test.jsr305
+
+    compile libs.rxJava2
+    compile libs.rxAndroid2
+
+    // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+
+    // OkHttp + Retrofit
+    compile libs.okHttp
+    compile libs.okHttpLoggingInterceptor
+    compile libs.retrofit
+    compile libs.retrofitGsonConverter
+    compile libs.retrofitRxJavaAdapter
+
+    // View
+    compile libs.butterKnife
+    annotationProcessor proc.butterKnife
+
+    // Stetho
+    compile libs.stetho
+
+    // LeakCanary
+    compile libs.leakCanary
+
+    // BlockCanary
+    compile libs.blockCanary
+
+    // StrictMode
+    compile libs.strictmodeNotifier
+
+    // Unit testing
+    testCompile(test.junit) {
+        exclude module: 'hamcrest-core'
+    }
+    testCompile test.hamcrest
+    testCompile test.mockito
+
+    androidTestCompile test.hamcrest
+    androidTestCompile libs.annotations
+    androidTestCompile(test.androidJUnitRunner) {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile(test.androidJUnit4Rules) {
+        exclude module: 'support-annotations'
+        exclude module: 'hamcrest-core'
+    }
+    androidTestCompile(test.espresso) {
+        exclude module: 'hamcrest-library'
+        exclude module: 'rules'
+        exclude module: 'runner'
+        exclude module: 'javax.annotation-api'
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile(test.espressoContrib) {
+        exclude module: 'espresso-core'
+        exclude module: 'hamcrest-core'
+        exclude module: 'support-v4'
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-annotations'
+        exclude module: 'design'
+    }
+    androidTestCompile(test.espressoIntents) {
+        exclude module: 'espresso-core'
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile(test.espressoIdlingResource) {
+        exclude module: 'espresso-core'
+    }
 }
 repositories {
     mavenCentral()
