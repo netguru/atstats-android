@@ -20,15 +20,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
-        classpath "com.neenbedankt.gradle.plugins:android-apt:1.8"
-        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.6.4"
-        classpath "com.frogermcs.androiddevmetrics:androiddevmetrics-plugin:0.5"
-        classpath "com.autoscout24.gradle:gradle-todo-plugin:1.0"
-        classpath 'com.vanniktech:gradle-android-junit-jacoco-plugin:0.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
 
