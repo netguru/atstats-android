@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
 
 ext {
 
     secrets = [
             // define your app secrets, for example:
             // hockeyAppId: keyProperty("HOCKEY_APP_ID")
+            fabricApiKey: keyProperty("FABRIC_API_KEY")
     ]
 }
 
@@ -34,6 +36,7 @@ android {
             useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro', 'proguard-rules-test.pro'
+            manifestPlaceholders = [FABRIC_API_KEY : secrets.fabricApiKey]
         }
         release {
             debuggable false
@@ -43,6 +46,7 @@ android {
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard-rules.pro'
+            manifestPlaceholders = [FABRIC_API_KEY : secrets.fabricApiKey]
         }
     }
 
@@ -141,6 +145,11 @@ dependencies {
     compile libs.butterKnife
     annotationProcessor proc.butterKnife
 
+    // Crashlytics
+    compile(libs.fabric){
+        transitive = true
+    }
+
     // Stetho
     compile libs.stetho
 
@@ -195,4 +204,5 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }

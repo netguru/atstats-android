@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.slacksocial.android">
 
-    <application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".App" >
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -11,6 +14,9 @@
             </intent-filter>
 
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${FABRIC_API_KEY}" />
     </application>
 
 </manifest>
