@@ -15,7 +15,7 @@ android {
     buildToolsVersion "25.0.3"
 
     defaultConfig {
-        applicationId "com.slacksocial.android"
+        applicationId "co.netguru.android.slacksocial"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode globalVersionCode
@@ -71,7 +71,7 @@ android {
             if (buildName.equals(it)) {
                 ['mock'].each {
                     if (flavorName.equals(it)) {
-                        variant.setIgnore(true);
+                        variant.setIgnore(true)
                     }
                 }
             }
@@ -107,6 +107,10 @@ android {
 
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
 
     // Support
@@ -121,7 +125,7 @@ dependencies {
 
     // Dagger
     compile libs.dagger
-    annotationProcessor proc.dagger
+    kapt proc.dagger
     provided proc.javaxAnnotation
 
     compile libs.rxJava2
@@ -136,10 +140,6 @@ dependencies {
     compile libs.retrofit
     compile libs.retrofitGsonConverter
     compile libs.retrofitRxJavaAdapter
-
-    // View
-    compile libs.butterKnife
-    annotationProcessor proc.butterKnife
 
     // Stetho
     compile libs.stetho
