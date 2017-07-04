@@ -3,7 +3,7 @@
     package="com.slacksocial.android">
 
     <application>
-        <activity android:name=".mock.debug.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
