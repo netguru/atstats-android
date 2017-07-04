@@ -24,6 +24,8 @@ android {
         versionName globalVersionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [FABRIC_API_KEY : secrets.fabricApiKey]
     }
 
     buildTypes {
@@ -36,7 +38,6 @@ android {
             useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro', 'proguard-rules-test.pro'
-            manifestPlaceholders = [FABRIC_API_KEY : secrets.fabricApiKey]
         }
         release {
             debuggable false
@@ -46,7 +47,6 @@ android {
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard-rules.pro'
-            manifestPlaceholders = [FABRIC_API_KEY : secrets.fabricApiKey]
         }
     }
 
