@@ -1,4 +1,4 @@
-package co.netguru.android.slacksocial.app
+package co.netguru.android.socialslack.app
 
 import android.app.Application
 import android.content.Context

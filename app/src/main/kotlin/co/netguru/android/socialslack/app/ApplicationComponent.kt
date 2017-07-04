@@ -1,6 +1,6 @@
-package co.netguru.android.slacksocial.app
+package co.netguru.android.socialslack.app
 
-import co.netguru.android.slacksocial.feature.login.LoginComponent
+import co.netguru.android.socialslack.feature.login.LoginComponent
 import dagger.Component
 import javax.inject.Singleton
 

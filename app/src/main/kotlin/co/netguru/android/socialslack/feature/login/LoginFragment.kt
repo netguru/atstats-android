@@ -1,11 +1,11 @@
-package co.netguru.android.slacksocial.feature.login
+package co.netguru.android.socialslack.feature.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import co.netguru.android.slacksocial.R
-import co.netguru.android.slacksocial.app.App
+import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.App
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {

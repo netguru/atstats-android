@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_screen_background">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello world"/>
+        android:id="@+id/login_welcome_text"
+        style="@style/FontLarge.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_very_big"
+        android:text="@string/welcome_to" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/login_app_name_text"
+        style="@style/FontLarge.White"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/fragment_login_app_name_margin_top"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_welcome_text"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name" />
+
+    <ImageButton
+        android:id="@+id/login_sigin_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_logo_text"
+        android:layout_centerHorizontal="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/button_sigin_slack" />
+
+    <TextView
+        android:id="@+id/login_logo_text"
+        style="@style/FontSmall.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_very_big"
+        android:drawableEnd="@drawable/netguru_logo"
+        android:drawablePadding="@dimen/fragment_login_logo_padding"
+        android:text="@string/designed_with_love_by" />
+</RelativeLayout>

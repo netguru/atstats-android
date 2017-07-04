@@ -1,8 +1,8 @@
-package co.netguru.android.slacksocial.feature.login
+package co.netguru.android.socialslack.feature.login
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import co.netguru.android.slacksocial.R
+import co.netguru.android.socialslack.R
 
 class LoginActivity : AppCompatActivity() {
 

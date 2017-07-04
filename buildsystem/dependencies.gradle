@@ -2,7 +2,7 @@ ext {
     // Versions
     supportLibraryVersion = '25.3.1'
     multiDexVersion = '1.0.1'
-    constraintLayoutVersion = '+'
+    constraintLayoutVersion = '1.0.2'
     daggerVersion = '2.10'
     butterKnifeVersion = '8.6.0'
     okHttpVersion = '3.8.0'

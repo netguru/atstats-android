@@ -1,6 +1,6 @@
-package co.netguru.android.slacksocial.feature.login
+package co.netguru.android.socialslack.feature.login
 
-import co.netguru.android.slacksocial.app.scope.FragmentScope
+import co.netguru.android.socialslack.app.scope.FragmentScope
 import dagger.Subcomponent
 
 @FragmentScope

@@ -1,4 +1,4 @@
-package co.netguru.android.slacksocial.app.scope
+package co.netguru.android.socialslack.app.scope
 
 import javax.inject.Scope
 
