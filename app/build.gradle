@@ -25,7 +25,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = [FABRIC_API_KEY : secrets.fabricApiKey]
+        manifestPlaceholders = [FABRIC_API_KEY : "${secrets.fabricApiKey}"]
     }
 
     buildTypes {
