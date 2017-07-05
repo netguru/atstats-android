@@ -15,7 +15,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 @Module
 class NetworkModule {
 
-    companion object {
+    companion object API {
+        val URI_SCHEME = "https"
+        val URI_AUTHORITY = "slack.com"
         val SLACK_BASE_URL = "https://slack.com/api"
     }
 
@@ -24,7 +26,7 @@ class NetworkModule {
     fun provideRetorfit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .baseUrl(SLACK_BASE_URL)
+            .baseUrl(API.SLACK_BASE_URL)
             .client(okHttpClient)
             .build()
 

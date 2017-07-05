@@ -2,6 +2,8 @@ package co.netguru.android.socialslack.app
 
 import android.app.Application
 import android.content.Context
+import co.netguru.android.socialslack.BuildConfig
+import timber.log.Timber
 
 class App : Application() {
 
@@ -9,6 +11,13 @@ class App : Application() {
         DaggerApplicationComponent
                 .builder()
                 .build()
+    }
+
+    init {
+        //TODO 05.07.2017 Move to DebugMetricsHelper class
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
     companion object Factory {

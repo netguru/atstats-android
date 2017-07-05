@@ -5,8 +5,9 @@ apply plugin: 'kotlin-android-extensions'
 ext {
 
     secrets = [
-            // define your app secrets, for example:
-            // hockeyAppId: keyProperty("HOCKEY_APP_ID")
+            slackClientId         : keyProperty("SLACK_CLIENT_ID"),
+            slackClientSecret     : keyProperty("SLACK_CLIENT_SECRET"),
+            slackOauthRedirectUri : keyProperty("SLACK_OAUTH_REDIRECT_URI"),
     ]
 }
 
@@ -21,10 +22,16 @@ android {
         versionCode globalVersionCode
         versionName globalVersionName
 
+        buildConfigField 'String', 'SLACK_CLIENT_ID', '"' + secrets.slackClientId + '"'
+        buildConfigField 'String', 'SLACK_CLIENT_SECRET', '"' + secrets.slackClientSecret + '"'
+
+        manifestPlaceholders = [SLACK_OAUTH_REDIRECT_URI: secrets.slackOauthRedirectUri]
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+
         debug {
             versionNameSuffix "-DEBUG"
             applicationIdSuffix ".debug"
@@ -156,6 +163,9 @@ dependencies {
 
     // StrictMode
     compile libs.strictmodeNotifier
+
+    // Timber
+    compile libs.timber
 
     // Unit testing
     testCompile(test.junit) {
