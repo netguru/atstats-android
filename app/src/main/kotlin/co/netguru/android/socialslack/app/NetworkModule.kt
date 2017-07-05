@@ -30,8 +30,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideGson() = GsonBuilder()
-            .create()
+    fun provideGson() = GsonBuilder().create()
 
     @Singleton
     @Provides

@@ -5,20 +5,14 @@ import android.content.Context
 
 class App : Application() {
 
-    companion object {
-        fun getApplicationComponent(context : Context) : ApplicationComponent {
-            val app = context.applicationContext as App
-            return app.applicationComponent
-        }
-    }
-
-    private lateinit var applicationComponent: ApplicationComponent
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-
-        applicationComponent = DaggerApplicationComponent
+    private val applicationComponent: ApplicationComponent by lazy {
+        DaggerApplicationComponent
                 .builder()
                 .build()
+    }
+
+    companion object Factory {
+        fun getApplicationComponent(context: Context): ApplicationComponent =
+                (context.applicationContext as App).applicationComponent
     }
 }

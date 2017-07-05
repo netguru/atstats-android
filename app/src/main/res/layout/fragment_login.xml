@@ -5,7 +5,7 @@
     android:background="@drawable/splash_screen_background">
 
     <TextView
-        android:id="@+id/login_welcome_text"
+        android:id="@+id/loginWelcomeText"
         style="@style/FontLarge.White"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,26 +14,26 @@
         android:text="@string/welcome_to" />
 
     <TextView
-        android:id="@+id/login_app_name_text"
+        android:id="@+id/loginAppNameText"
         style="@style/FontLarge.White"
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/fragment_login_app_name_margin_top"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_welcome_text"
+        android:layout_below="@+id/loginWelcomeText"
         android:layout_centerHorizontal="true"
         android:text="@string/app_name" />
 
     <ImageButton
-        android:id="@+id/login_sigin_btn"
+        android:id="@+id/loginSigInBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/login_logo_text"
+        android:layout_above="@id/loginLogoText"
         android:layout_centerHorizontal="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/button_sigin_slack" />
 
     <TextView
-        android:id="@+id/login_logo_text"
+        android:id="@+id/loginLogoText"
         style="@style/FontSmall.Grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -132,7 +132,7 @@ dependencies {
     kapt proc.dagger
     provided proc.javaxAnnotation
 
-    compile libs.rxJava2
+    compile libs.rxKotlin2
     compile libs.rxAndroid2
 
     // kotlin

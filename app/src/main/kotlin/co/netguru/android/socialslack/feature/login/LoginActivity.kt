@@ -10,14 +10,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var fragment = supportFragmentManager.findFragmentById(R.id.login_fragment_container)
+        val fragment = supportFragmentManager.findFragmentById(R.id.login_fragment_container)
+                ?: LoginFragment.newInstance()
 
-        if (fragment == null) {
-            fragment = LoginFragment.newInstance()
-
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.login_fragment_container, fragment)
-                    .commit()
-        }
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.login_fragment_container, fragment)
+                .commit()
     }
 }

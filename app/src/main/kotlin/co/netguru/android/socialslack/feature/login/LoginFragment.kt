@@ -24,13 +24,13 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        login_sigin_btn.setOnClickListener { getPresenter().loginButtonClicked() }
+        loginSigInBtn.setOnClickListener { getPresenter().loginButtonClicked() }
     }
 
     override fun createPresenter(): LoginContract.Presenter  = component.getPresenter()
 
     private fun initComponent() {
-        component = App.Companion.getApplicationComponent(context)
+        component = App.Factory.getApplicationComponent(context)
                 .plusLoginComponent()
         component.inject(this)
     }
