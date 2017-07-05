@@ -11,5 +11,6 @@ interface LoginContract {
 
     interface Presenter : MvpPresenter<View> {
 
+        fun loginButtonClicked()
     }
 }
