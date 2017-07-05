@@ -24,7 +24,7 @@
         android:text="@string/app_name" />
 
     <ImageButton
-        android:id="@+id/loginSigInBtn"
+        android:id="@+id/loginSignInBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/loginLogoText"
