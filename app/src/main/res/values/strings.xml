@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="app_name">Social Slack</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="designed_with_love_by">Designed with love by</string>
 </resources>
