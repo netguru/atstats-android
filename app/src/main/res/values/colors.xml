@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">#6D5EB3</color>
+    <color name="primaryDark">#3d3483</color>
+    <!--TODO 04.07.2017 Need to be changed-->
+    <color name="accent">#000000</color>
 
+    <color name="white">#FFFFFF</color>
+
+    <color name="grey">#9B9AA5</color>
 </resources>

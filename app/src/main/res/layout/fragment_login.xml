@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_screen_background">
+
+    <TextView
+        android:id="@+id/loginWelcomeText"
+        style="@style/FontLarge.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_very_big"
+        android:text="@string/welcome_to" />
+
+    <TextView
+        android:id="@+id/loginAppNameText"
+        style="@style/FontLarge.White"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/fragment_login_app_name_margin_top"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginWelcomeText"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name" />
+
+    <ImageButton
+        android:id="@+id/loginSignInBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/loginLogoText"
+        android:layout_centerHorizontal="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/button_sigin_slack" />
+
+    <TextView
+        android:id="@+id/loginLogoText"
+        style="@style/FontSmall.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_very_big"
+        android:drawableEnd="@drawable/netguru_logo"
+        android:drawablePadding="@dimen/fragment_login_logo_padding"
+        android:text="@string/designed_with_love_by" />
+</RelativeLayout>
