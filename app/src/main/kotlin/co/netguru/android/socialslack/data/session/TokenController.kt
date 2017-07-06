@@ -6,27 +6,27 @@ import co.netguru.android.socialslack.BuildConfig
 import co.netguru.android.socialslack.app.NetworkModule
 import co.netguru.android.socialslack.data.session.model.SlackApiScope
 import co.netguru.android.socialslack.data.session.model.Token
+import co.netguru.android.socialslack.data.session.model.TokenCheck
 import io.reactivex.Completable
 import io.reactivex.Single
 
 import timber.log.Timber
 
 
-class TokenController @Inject constructor(val loginApi: LoginApi, val tokenRepository: TokenRepository) {
+class TokenController @Inject constructor(private val loginApi: LoginApi,
+                                          private val tokenRepository: TokenRepository) {
 
     fun getOauthAuthorizeUri(): Single<Uri> = Single.just(getAuthorizeUri())
 
     fun requestNewToken(code: String): Single<Token> =
             loginApi.requestToken(BuildConfig.SLACK_CLIENT_ID, BuildConfig.SLACK_CLIENT_SECRET, code)
 
-    fun isTokenValid(): Single<Boolean> {
-        TODO("Check with api and sharedpreferences")
-    }
+    fun isTokenValid(): Single<TokenCheck> = loginApi.checkToken(tokenRepository.getToken().accessToken)
 
     fun saveToken(token: Token): Completable = tokenRepository.saveToken(token)
             .doOnComplete({ Timber.d("Token saved in repository") })
 
-    fun getToken(): Single<Token> = tokenRepository.getToken()
+    fun getToken(): Single<Token> = Single.just(tokenRepository.getToken())
 
     fun removeToken(): Completable {
         TODO("Clear sharedpreferences and revoke token")

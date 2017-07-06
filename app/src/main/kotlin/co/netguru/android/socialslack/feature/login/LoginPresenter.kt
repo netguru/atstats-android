@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class LoginPresenter @Inject constructor(val tokenController: TokenController)
+class LoginPresenter @Inject constructor(private val tokenController: TokenController)
     : MvpNullObjectBasePresenter<LoginContract.View>(), LoginContract.Presenter {
 
     private val compositeDisposable = CompositeDisposable()

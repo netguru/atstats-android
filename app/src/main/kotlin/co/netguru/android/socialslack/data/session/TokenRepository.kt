@@ -5,14 +5,13 @@ import co.netguru.android.socialslack.app.LocalRepositoryModule
 import co.netguru.android.socialslack.data.session.model.Token
 import co.netguru.android.socialslack.common.extensions.edit
 import io.reactivex.Completable
-import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
 class TokenRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHARED_PREFERENCES_NAME)
-                                          val sharedPreferences: SharedPreferences) {
+                                          private val sharedPreferences: SharedPreferences) {
 
     fun saveToken(token: Token): Completable {
         return Completable.fromAction({
@@ -24,10 +23,10 @@ class TokenRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHA
         })
     }
 
-    fun getToken(): Single<Token> = Single.just(Token(
+    fun getToken(): Token = Token(
             sharedPreferences.getString(TOKEN_ACCESS_KEY, ""),
             sharedPreferences.getString(TOKEN_SCOPE, ""),
-            sharedPreferences.getString(TOKEN_TEAM_ID, "")))
+            sharedPreferences.getString(TOKEN_TEAM_ID, ""))
 
     companion object {
         private const val TOKEN_ACCESS_KEY = "token_access"
