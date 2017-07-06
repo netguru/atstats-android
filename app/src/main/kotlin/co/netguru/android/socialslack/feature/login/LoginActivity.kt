@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         Timber.e(intent.toString())
-        Timber.e(intent!!.data.toString())
+        Timber.e(intent!!.dataString)
+        Timber.e(intent.data.toString())
     }
 }

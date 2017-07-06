@@ -1,4 +1,4 @@
-package co.netguru.android.socialslack.data.session
+package co.netguru.android.socialslack.data.session.model
 
 enum class SlackApiScope constructor(val value: String) {
 
