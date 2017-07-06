@@ -1,4 +1,4 @@
-package session
+package co.netguru.android.socialslack.session
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
