@@ -123,6 +123,7 @@ dependencies {
     // Support
     compile libs.appCompat
     compile libs.recyclerView
+    compile libs.supportDesignLib
 
     // MVP
     compile(libs.mosby) {

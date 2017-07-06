@@ -10,6 +10,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import android.content.Intent
 import android.net.Uri
+import android.support.design.widget.Snackbar
 import co.netguru.android.socialslack.feature.main.MainActivity
 import co.netguru.android.socialslack.startActivity
 
@@ -33,6 +34,18 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
     override fun showOAuthBrowser(uri: Uri) {
         val browserIntent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(browserIntent)
+    }
+
+    override fun enableLoginButton() {
+        loginSignInBtn.isEnabled = true
+    }
+
+    override fun disableLoginButton() {
+        loginSignInBtn.isEnabled = false
+    }
+
+    override fun showErrorMessage() {
+        Snackbar.make(loginSignInBtn, R.string.login_error_msg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showMainActivity() {

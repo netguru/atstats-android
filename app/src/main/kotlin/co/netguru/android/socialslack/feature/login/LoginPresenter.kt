@@ -24,8 +24,10 @@ class LoginPresenter @Inject constructor(val tokenController: TokenController)
         compositeSubscription.add(
                 tokenController.getOauthAuthorizeUri()
                         .subscribeOn(Schedulers.io())
-                        .subscribe(view::showOAuthBrowser
-                        ) { Timber.e(it, "Error while getting OAuth URI") })
+                        .subscribe({
+                            view.showOAuthBrowser(it)
+                            view.disableLoginButton()
+                        }) { handleError(it, "Error while getting OAuth URI") })
     }
 
     override fun onAppAuthorizeCodeReceived(uri: Uri) {
@@ -34,11 +36,17 @@ class LoginPresenter @Inject constructor(val tokenController: TokenController)
                         .flatMapCompletable(tokenController::saveToken)
                         .subscribeOn(Schedulers.io())
                         .subscribe(view::showMainActivity)
-                        { Timber.e(it, "Error while requesting new Token") }
+                        { handleError(it, "Error while requesting new token") }
         )
     }
 
     private fun getCodeFromUri(uri: Uri): String = uri.getQueryParameter(SLACK_API_CODE)
+
+    private fun handleError(throwable: Throwable, message: String) {
+        Timber.e(throwable, message)
+        view.showErrorMessage()
+        view.enableLoginButton()
+    }
 
     companion object {
         private const val SLACK_API_CODE = "code"

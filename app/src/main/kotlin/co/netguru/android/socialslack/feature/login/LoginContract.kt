@@ -10,6 +10,12 @@ interface LoginContract {
         fun showOAuthBrowser(uri: Uri)
 
         fun showMainActivity()
+
+        fun enableLoginButton()
+
+        fun disableLoginButton()
+
+        fun showErrorMessage()
     }
 
     interface Presenter : MvpPresenter<View> {
