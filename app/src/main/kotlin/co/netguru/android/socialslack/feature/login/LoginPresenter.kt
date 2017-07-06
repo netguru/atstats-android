@@ -4,8 +4,9 @@ import android.net.Uri
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.data.session.TokenController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -13,17 +14,18 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor(val tokenController: TokenController)
     : MvpNullObjectBasePresenter<LoginContract.View>(), LoginContract.Presenter {
 
-    private val compositeSubscription = CompositeSubscription()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun detachView(retainInstance: Boolean) {
         super.detachView(retainInstance)
-        compositeSubscription.clear()
+        compositeDisposable.clear()
     }
 
     override fun loginButtonClicked() {
-        compositeSubscription.add(
+        compositeDisposable.add(
                 tokenController.getOauthAuthorizeUri()
                         .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             view.showOAuthBrowser(it)
                             view.disableLoginButton()
@@ -31,10 +33,11 @@ class LoginPresenter @Inject constructor(val tokenController: TokenController)
     }
 
     override fun onAppAuthorizeCodeReceived(uri: Uri) {
-        compositeSubscription.add(
+        compositeDisposable.add(
                 tokenController.requestNewToken(getCodeFromUri(uri))
                         .flatMapCompletable(tokenController::saveToken)
                         .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(view::showMainActivity)
                         { handleError(it, "Error while requesting new token") }
         )

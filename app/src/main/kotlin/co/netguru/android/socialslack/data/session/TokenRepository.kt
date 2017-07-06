@@ -3,9 +3,9 @@ package co.netguru.android.socialslack.data.session
 import android.content.SharedPreferences
 import co.netguru.android.socialslack.app.LocalRepositoryModule
 import co.netguru.android.socialslack.data.session.model.Token
-import co.netguru.android.socialslack.edit
-import rx.Completable
-import rx.Single
+import co.netguru.android.socialslack.common.extensions.edit
+import io.reactivex.Completable
+import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton

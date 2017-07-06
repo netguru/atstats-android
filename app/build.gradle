@@ -151,7 +151,7 @@ dependencies {
     compile libs.okHttpLoggingInterceptor
     compile libs.retrofit
     compile libs.retrofitGsonConverter
-    compile libs.retrofitRxJavaAdapter
+    compile libs.retrofitRxJava2Adapter
 
     // Stetho
     compile libs.stetho

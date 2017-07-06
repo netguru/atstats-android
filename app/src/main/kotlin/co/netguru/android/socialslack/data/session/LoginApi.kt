@@ -1,9 +1,9 @@
 package co.netguru.android.socialslack.data.session
 
 import co.netguru.android.socialslack.data.session.model.Token
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
-import rx.Single
 
 interface LoginApi {
 

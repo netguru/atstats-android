@@ -12,7 +12,7 @@ import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.Snackbar
 import co.netguru.android.socialslack.feature.main.MainActivity
-import co.netguru.android.socialslack.startActivity
+import co.netguru.android.socialslack.common.extensions.startActivity
 
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {

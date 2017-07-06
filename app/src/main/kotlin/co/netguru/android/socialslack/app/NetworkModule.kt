@@ -6,20 +6,19 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 import okhttp3.logging.HttpLoggingInterceptor
-
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 @Module
 class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetorfit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(API.SLACK_BASE_URL)
             .client(okHttpClient)
             .build()
