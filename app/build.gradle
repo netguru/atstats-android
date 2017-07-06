@@ -116,6 +116,7 @@ dependencies {
     // Support
     compile libs.appCompat
     compile libs.recyclerView
+    compile libs.design
 
     // MVP
     compile(libs.mosby) {
