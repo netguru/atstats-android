@@ -31,5 +31,7 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".feature.main.MainActivity" />
     </application>
 </manifest>

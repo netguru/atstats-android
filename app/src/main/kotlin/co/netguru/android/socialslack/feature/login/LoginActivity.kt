@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
-import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,8 +21,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        Timber.e(intent.toString())
-        Timber.e(intent!!.dataString)
-        Timber.e(intent.data.toString())
+        val loginFragment = supportFragmentManager
+                .findFragmentById(R.id.login_fragment_container) as LoginFragment
+        loginFragment.onAppAuthorizeCodeReceived(intent!!.data)
     }
 }

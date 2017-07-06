@@ -10,6 +10,8 @@ import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import android.content.Intent
 import android.net.Uri
+import co.netguru.android.socialslack.feature.main.MainActivity
+import co.netguru.android.socialslack.startActivity
 
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
@@ -26,10 +28,16 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
         loginSignInBtn.setOnClickListener { getPresenter().loginButtonClicked() }
     }
 
+    fun onAppAuthorizeCodeReceived(uri :Uri) = presenter.onAppAuthorizeCodeReceived(uri)
 
-    override fun showOathWebView(uri: String) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+    override fun showOAuthBrowser(uri: Uri) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(browserIntent)
+    }
+
+    override fun showMainActivity() {
+        activity.startActivity<MainActivity>()
+        activity.finish()
     }
 
     override fun createPresenter(): LoginContract.Presenter  = component.getPresenter()

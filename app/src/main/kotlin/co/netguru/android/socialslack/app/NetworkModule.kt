@@ -37,6 +37,6 @@ class NetworkModule {
     companion object API {
         const val URI_SCHEME = "https"
         const val URI_AUTHORITY = "slack.com"
-        const val SLACK_BASE_URL = "https://slack.com/api"
+        const val SLACK_BASE_URL = "https://slack.com/"
     }
 }

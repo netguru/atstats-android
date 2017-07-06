@@ -7,7 +7,7 @@ import rx.Single
 
 interface LoginApi {
 
-    @GET("/oauth.access")
+    @GET("/api/oauth.access")
     fun requestToken(@Query("client_id") clientId: String, @Query("client_secret") clientSecret: String,
                      @Query("code") code: String): Single<Token>
 }
