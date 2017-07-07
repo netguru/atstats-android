@@ -2,10 +2,16 @@ package co.netguru.android.socialslack.app
 
 import android.app.Application
 import android.content.Context
+
 import co.netguru.android.socialslack.BuildConfig
 import timber.log.Timber
 
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
+
+
 class App : Application() {
+
 
     private val applicationComponent: ApplicationComponent by lazy {
         DaggerApplicationComponent
@@ -19,6 +25,11 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        Fabric.with(this, Crashlytics())
     }
 
     companion object Factory {

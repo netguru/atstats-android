@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
 
 ext {
 
     secrets = [
-            slackClientId         : keyProperty("SLACK_CLIENT_ID"),
-            slackClientSecret     : keyProperty("SLACK_CLIENT_SECRET"),
-            slackOauthRedirectUri : keyProperty("SLACK_OAUTH_REDIRECT_URI"),
+            slackClientId        : keyProperty("SLACK_CLIENT_ID"),
+            slackClientSecret    : keyProperty("SLACK_CLIENT_SECRET"),
+            slackOauthRedirectUri: keyProperty("SLACK_OAUTH_REDIRECT_URI"),
+            fabricApiKey         : keyProperty("FABRIC_API_KEY")
     ]
 }
 
@@ -25,9 +27,10 @@ android {
         buildConfigField 'String', 'SLACK_CLIENT_ID', '"' + secrets.slackClientId + '"'
         buildConfigField 'String', 'SLACK_CLIENT_SECRET', '"' + secrets.slackClientSecret + '"'
 
-        manifestPlaceholders = [SLACK_OAUTH_REDIRECT_URI: secrets.slackOauthRedirectUri]
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [SLACK_OAUTH_REDIRECT_URI: secrets.slackOauthRedirectUri,
+                                FABRIC_API_KEY          : secrets.fabricApiKey]
     }
 
     buildTypes {
@@ -157,6 +160,11 @@ dependencies {
     compile libs.retrofitGsonConverter
     compile libs.retrofitRxJava2Adapter
 
+    // Crashlytics
+    compile(libs.fabric) {
+        transitive = true
+    }
+
     // Stetho
     compile libs.stetho
 
@@ -214,4 +222,5 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }
