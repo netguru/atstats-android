@@ -1,8 +1,7 @@
-package co.netguru.android.socialslack.session
+package co.netguru.android.socialslack.data.session
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import co.netguru.android.socialslack.data.session.TokenRepository
 import co.netguru.android.socialslack.data.session.model.Token
 import io.reactivex.observers.TestObserver
 import org.junit.Before

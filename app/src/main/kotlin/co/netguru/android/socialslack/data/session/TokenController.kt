@@ -21,15 +21,24 @@ class TokenController @Inject constructor(private val loginApi: LoginApi,
     fun requestNewToken(code: String): Single<Token> =
             loginApi.requestToken(BuildConfig.SLACK_CLIENT_ID, BuildConfig.SLACK_CLIENT_SECRET, code)
 
-    fun isTokenValid(): Single<TokenCheck> = loginApi.checkToken(tokenRepository.getToken().accessToken)
+    fun isTokenValid(): Single<TokenCheck> {
+        return tokenRepository.getToken()
+                .flatMap {
+                    if (it.accessToken == TokenRepository.EMPTY_TOKEN) {
+                        Single.just(TokenCheck(false))
+                    } else {
+                        loginApi.checkToken(it.accessToken)
+                    }
+                }
+    }
 
     fun saveToken(token: Token): Completable = tokenRepository.saveToken(token)
             .doOnComplete({ Timber.d("Token saved in repository") })
 
-    fun getToken(): Single<Token> = Single.just(tokenRepository.getToken())
+    fun getToken(): Single<Token> = tokenRepository.getToken()
 
     fun removeToken(): Completable {
-        TODO("Clear sharedpreferences and revoke token")
+        TODO("Clear SharedPreferences and revoke token")
     }
 
     private fun getAuthorizeUri(): Uri = Uri.Builder()
