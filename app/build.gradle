@@ -149,10 +149,6 @@ dependencies {
     compile libs.retrofitGsonConverter
     compile libs.retrofitRxJavaAdapter
 
-    // View
-    compile libs.butterKnife
-    annotationProcessor proc.butterKnife
-
     // Crashlytics
     compile(libs.fabric){
         transitive = true
