@@ -75,7 +75,8 @@ ext {
             hockeyApp               : "net.hockeyapp.android:HockeySDK:4.1.4",
             autoBundle              : "com.github.yatatsu:autobundle:$autoBundleVersion",
             greenDao                : "org.greenrobot:greendao:$greenDaoVersion",
-            greenDaoGenerator       : "org.greenrobot:greendao-generator:$greenDaoVersion"
+            greenDaoGenerator       : "org.greenrobot:greendao-generator:$greenDaoVersion",
+            fabric                  : "com.crashlytics.sdk.android:crashlytics:2.6.8@aar"
     ]
 
     proc = [
