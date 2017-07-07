@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         tools:context=".feature.main.MainActivity"
@@ -15,7 +16,25 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="?attr/actionBarSize"
+            android:titleTextColor="@color/white"
+            android:background="@color/primary"/>
+        
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_main_tab_height"
+            android:background="@color/tabBackground"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="@dimen/activity_main_tab_indicator_height"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabSelectedTextColor="@color/primary"/>
 
     </LinearLayout>
 
