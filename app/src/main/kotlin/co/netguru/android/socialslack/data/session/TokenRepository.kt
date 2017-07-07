@@ -14,6 +14,13 @@ import javax.inject.Singleton
 class TokenRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHARED_PREFERENCES_NAME)
                                           private val sharedPreferences: SharedPreferences) {
 
+    companion object {
+        const val EMPTY_TOKEN = ""
+        private const val TOKEN_ACCESS_KEY = "token_access"
+        private const val TOKEN_SCOPE = "token_scope"
+        private const val TOKEN_TEAM_ID = "token_team_id"
+    }
+
     fun saveToken(token: Token): Completable {
         return Completable.fromAction({
             sharedPreferences.edit {
@@ -28,11 +35,4 @@ class TokenRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHA
             sharedPreferences.getString(TOKEN_ACCESS_KEY, EMPTY_TOKEN),
             sharedPreferences.getString(TOKEN_SCOPE, EMPTY_TOKEN),
             sharedPreferences.getString(TOKEN_TEAM_ID, EMPTY_TOKEN)))
-
-    companion object {
-        const val EMPTY_TOKEN = ""
-        private const val TOKEN_ACCESS_KEY = "token_access"
-        private const val TOKEN_SCOPE = "token_scope"
-        private const val TOKEN_TEAM_ID = "token_team_id"
-    }
 }

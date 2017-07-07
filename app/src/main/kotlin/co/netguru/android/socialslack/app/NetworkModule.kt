@@ -14,6 +14,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 @Module
 class NetworkModule {
 
+    companion object API {
+        const val URI_SCHEME = "https"
+        const val URI_AUTHORITY = "slack.com"
+        const val SLACK_BASE_URL = "https://slack.com/"
+    }
+
     @Singleton
     @Provides
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
@@ -32,10 +38,4 @@ class NetworkModule {
     fun provideOkHttp() = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
-
-    companion object API {
-        const val URI_SCHEME = "https"
-        const val URI_AUTHORITY = "slack.com"
-        const val SLACK_BASE_URL = "https://slack.com/"
-    }
 }

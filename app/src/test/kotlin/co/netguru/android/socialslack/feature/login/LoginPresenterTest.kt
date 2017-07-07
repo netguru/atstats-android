@@ -1,7 +1,7 @@
 package co.netguru.android.socialslack.feature.login
 
 import android.net.Uri
-import co.netguru.android.socialslack.RxImmediateSchedulerRule
+import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestStatics
 import co.netguru.android.socialslack.data.session.TokenController
 import co.netguru.android.socialslack.data.session.model.Token
@@ -18,7 +18,7 @@ class LoginPresenterTest {
 
     @Rule
     @JvmField
-    val overrideSchedulersRule = RxImmediateSchedulerRule()
+    val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     val tokenController: TokenController = mock(TokenController::class.java)
     lateinit var view: LoginContract.View
@@ -50,6 +50,7 @@ class LoginPresenterTest {
         `when`(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
+
         //then
         verify(view).showOAuthBrowser(TestStatics.anyObject())
     }

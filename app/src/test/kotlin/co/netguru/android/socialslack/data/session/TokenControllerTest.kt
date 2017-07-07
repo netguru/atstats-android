@@ -1,6 +1,6 @@
 package co.netguru.android.socialslack.data.session
 
-import co.netguru.android.socialslack.RxImmediateSchedulerRule
+import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestStatics
 import co.netguru.android.socialslack.data.session.model.Token
 import co.netguru.android.socialslack.data.session.model.TokenCheck
@@ -17,7 +17,7 @@ class TokenControllerTest {
 
     @Rule
     @JvmField
-    val overrideSchedulersRule = RxImmediateSchedulerRule()
+    val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     val loginApi: LoginApi = mock(LoginApi::class.java)
     val tokenRepository: TokenRepository = mock(TokenRepository::class.java)

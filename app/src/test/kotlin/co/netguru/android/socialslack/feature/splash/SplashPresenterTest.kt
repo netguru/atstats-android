@@ -1,7 +1,6 @@
 package co.netguru.android.socialslack.feature.splash
 
-import co.netguru.android.socialslack.RxImmediateSchedulerRule
-
+import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.data.session.TokenController
 import co.netguru.android.socialslack.data.session.model.TokenCheck
 import io.reactivex.Single
@@ -15,7 +14,7 @@ class SplashPresenterTest {
 
     @Rule
     @JvmField
-    val overrideSchedulersRule = RxImmediateSchedulerRule()
+    val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     lateinit var tokenController: TokenController
     lateinit var view: SplashContract.View

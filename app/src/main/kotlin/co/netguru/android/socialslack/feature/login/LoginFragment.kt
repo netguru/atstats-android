@@ -17,6 +17,10 @@ import co.netguru.android.socialslack.common.extensions.startActivity
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
 
+    companion object {
+        fun newInstance(): LoginFragment = LoginFragment()
+    }
+
     private lateinit var component: LoginComponent
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,9 +63,5 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
         component = App.Factory.getApplicationComponent(context)
                 .plusLoginComponent()
         component.inject(this)
-    }
-
-    companion object {
-        fun newInstance(): LoginFragment = LoginFragment()
     }
 }

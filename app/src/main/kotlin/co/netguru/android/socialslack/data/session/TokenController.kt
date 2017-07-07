@@ -16,6 +16,12 @@ import timber.log.Timber
 class TokenController @Inject constructor(private val loginApi: LoginApi,
                                           private val tokenRepository: TokenRepository) {
 
+    companion object {
+        private val OAUTH_AUTHORIZE_ENDPOINT = "oauth/authorize"
+        private val CLIENT_ID_KEY = "client_id"
+        private val SCOPE = "scope"
+    }
+
     fun getOauthAuthorizeUri(): Single<Uri> = Single.just(getAuthorizeUri())
 
     fun requestNewToken(code: String): Single<Token> =
@@ -48,10 +54,4 @@ class TokenController @Inject constructor(private val loginApi: LoginApi,
             .appendQueryParameter(CLIENT_ID_KEY, BuildConfig.SLACK_CLIENT_ID)
             .appendQueryParameter(SCOPE, SlackApiScope.getSlackApiScope())
             .build()
-
-    companion object {
-        private val OAUTH_AUTHORIZE_ENDPOINT = "oauth/authorize"
-        private val CLIENT_ID_KEY = "client_id"
-        private val SCOPE = "scope"
-    }
 }
