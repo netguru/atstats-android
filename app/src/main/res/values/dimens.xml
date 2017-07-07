@@ -11,5 +11,6 @@
 
     <dimen name="activity_main_tab_height">50dp</dimen>
     <dimen name="activity_main_tab_indicator_height">0dp</dimen>
+    <dimen name="main_toolbar_icon_padding">25dp</dimen>
 
 </resources>

@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
     private val highlightColor by lazy { getColor(R.color.primary) }
-    private val normalColor by lazy { getColor(R.color.grey) }
 
     private var currentTabSelected = 0
 

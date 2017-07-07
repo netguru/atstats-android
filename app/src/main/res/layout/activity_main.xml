@@ -17,8 +17,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:titleTextColor="@color/white"
-            android:background="@color/primary"/>
+            android:theme="@style/MainToolbarTheme"
+            app:logo="@drawable/toolbar_icon_padding"/>
         
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
