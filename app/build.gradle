@@ -6,9 +6,10 @@ apply plugin: 'io.fabric'
 ext {
 
     secrets = [
-            // define your app secrets, for example:
-            // hockeyAppId: keyProperty("HOCKEY_APP_ID")
-            fabricApiKey: keyProperty("FABRIC_API_KEY")
+            slackClientId        : keyProperty("SLACK_CLIENT_ID"),
+            slackClientSecret    : keyProperty("SLACK_CLIENT_SECRET"),
+            slackOauthRedirectUri: keyProperty("SLACK_OAUTH_REDIRECT_URI"),
+            fabricApiKey         : keyProperty("FABRIC_API_KEY")
     ]
 }
 
@@ -23,12 +24,17 @@ android {
         versionCode globalVersionCode
         versionName globalVersionName
 
+        buildConfigField 'String', 'SLACK_CLIENT_ID', '"' + secrets.slackClientId + '"'
+        buildConfigField 'String', 'SLACK_CLIENT_SECRET', '"' + secrets.slackClientSecret + '"'
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = [FABRIC_API_KEY : "${secrets.fabricApiKey}"]
+        manifestPlaceholders = [SLACK_OAUTH_REDIRECT_URI: secrets.slackOauthRedirectUri,
+                                FABRIC_API_KEY          : secrets.fabricApiKey]
     }
 
     buildTypes {
+
         debug {
             versionNameSuffix "-DEBUG"
             applicationIdSuffix ".debug"
@@ -103,12 +109,16 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
 
     lintOptions {
         abortOnError false
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 kapt {
@@ -120,6 +130,7 @@ dependencies {
     // Support
     compile libs.appCompat
     compile libs.recyclerView
+    compile libs.supportDesignLib
 
     // MVP
     compile(libs.mosby) {
@@ -147,10 +158,10 @@ dependencies {
     compile libs.okHttpLoggingInterceptor
     compile libs.retrofit
     compile libs.retrofitGsonConverter
-    compile libs.retrofitRxJavaAdapter
+    compile libs.retrofitRxJava2Adapter
 
     // Crashlytics
-    compile(libs.fabric){
+    compile(libs.fabric) {
         transitive = true
     }
 
@@ -165,6 +176,9 @@ dependencies {
 
     // StrictMode
     compile libs.strictmodeNotifier
+
+    // Timber
+    compile libs.timber
 
     // Unit testing
     testCompile(test.junit) {

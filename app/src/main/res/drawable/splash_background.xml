@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/splash_screen_background" />
+    <item android:bottom="@dimen/splash_netguru_logo_bottom_margin">
+        <bitmap
+            android:gravity="bottom"
+            android:src="@drawable/netguru_logo" />
+    </item>
+</layer-list>
