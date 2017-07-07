@@ -1,4 +1,4 @@
-package co.netguru.android.socialslack
+package co.netguru.android.socialslack.common.extensions
 
 import android.app.Activity
 import android.content.Context

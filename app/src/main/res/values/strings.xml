@@ -10,4 +10,5 @@
     <string name="tab_users">Users</string>
     <string name="tab_profile">Profile</string>
 
+    <string name="login_error_msg">Authorization error</string>
 </resources>

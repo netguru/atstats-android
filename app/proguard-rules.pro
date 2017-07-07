@@ -127,3 +127,9 @@
 -keepclassmembers class * implements android.os.Parcelable {
     static ** CREATOR;
 }
+
+# Crashlytics
+-keep class com.crashlytics.** { *; }
+-keep class com.crashlytics.android.**
+-keepattributes SourceFile, LineNumberTable, *Annotation*
+-keep public class * extends java.lang.Exception

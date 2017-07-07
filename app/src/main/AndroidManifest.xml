@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -13,16 +12,37 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".feature.login.LoginActivity">
+        <activity
+            android:name=".feature.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".feature.main.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".feature.login.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="${SLACK_OAUTH_REDIRECT_URI}"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${FABRIC_API_KEY}" />
     </application>
 </manifest>
