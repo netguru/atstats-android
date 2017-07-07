@@ -2,9 +2,10 @@ package co.netguru.android.socialslack.feature.login
 
 import android.net.Uri
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
-import co.netguru.android.socialslack.TestStatics
 import co.netguru.android.socialslack.data.session.TokenController
 import co.netguru.android.socialslack.data.session.model.Token
+import co.netguru.android.socialslack.TestHelper.whenever
+import co.netguru.android.socialslack.TestHelper.anyObject
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.After
@@ -14,6 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.*
 
+@Suppress("IllegalIdentifier")
 class LoginPresenterTest {
 
     @Rule
@@ -33,10 +35,10 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun shouldGetOauthUriWhenLoginButtonClicked() {
+    fun `should get oauth uri when login button clicked`() {
         //given
         val uri: Uri = mock(Uri::class.java)
-        `when`(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
+        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
         //then
@@ -44,22 +46,22 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun shouldShowOauthBrowserWhenGettingUriSuccessful() {
+    fun `should show oauth browser when getting uri successful`() {
         //given
         val uri: Uri = mock(Uri::class.java)
-        `when`(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
+        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
 
         //then
-        verify(view).showOAuthBrowser(TestStatics.anyObject())
+        verify(view).showOAuthBrowser(anyObject())
     }
 
     @Test
-    fun shouldDisableLoginButtonWhenGettingUriSuccessful() {
+    fun `should disable login button when getting uri successful`() {
         //given
         val uri: Uri = mock(Uri::class.java)
-        `when`(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
+        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
         //then
@@ -67,12 +69,12 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun shouldRequestNewTokenWhenAppAuthorizeCodeReceived() {
+    fun `should request new token when app authorize code received`() {
         //given
         val uri: Uri = mock(Uri::class.java)
         val token: Token = mock(Token::class.java)
-        `when`(uri.getQueryParameter(anyString())).thenReturn("")
-        `when`(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
+        whenever(uri.getQueryParameter(anyString())).thenReturn("")
+        whenever(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
         //when
         loginPresenter.onAppAuthorizeCodeReceived(uri)
         //then
@@ -80,27 +82,27 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun shouldSaveTokenToRepositoryWhenRequestNewTokenSuccessful() {
+    fun `should save token to repository when request new token successful`() {
         //given
         val uri: Uri = mock(Uri::class.java)
         val token: Token = mock(Token::class.java)
-        `when`(uri.getQueryParameter(anyString())).thenReturn("")
-        `when`(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
-        `when`(tokenController.saveToken(TestStatics.anyObject())).thenReturn(Completable.complete())
+        whenever(uri.getQueryParameter(anyString())).thenReturn("")
+        whenever(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
+        whenever(tokenController.saveToken(anyObject())).thenReturn(Completable.complete())
         //when
         loginPresenter.onAppAuthorizeCodeReceived(uri)
         //then
-        verify(tokenController).saveToken(TestStatics.anyObject())
+        verify(tokenController).saveToken(anyObject())
     }
 
     @Test
-    fun shouldShowMainActivityWhenGettingTokenSuccessful() {
+    fun `should show main activity when getting token successful`() {
         //given
         val uri: Uri = mock(Uri::class.java)
         val token: Token = mock(Token::class.java)
-        `when`(uri.getQueryParameter(anyString())).thenReturn("")
-        `when`(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
-        `when`(tokenController.saveToken(TestStatics.anyObject())).thenReturn(Completable.complete())
+        whenever(uri.getQueryParameter(anyString())).thenReturn("")
+        whenever(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
+        whenever(tokenController.saveToken(anyObject())).thenReturn(Completable.complete())
         //when
         loginPresenter.onAppAuthorizeCodeReceived(uri)
         //then
@@ -108,9 +110,9 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun shouldEnableLoginButtonWhenErrorOccurs() {
+    fun `should enable login button when error occurs`() {
         //given
-        `when`(tokenController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
+        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
         //when
         loginPresenter.loginButtonClicked()
         //then
@@ -118,9 +120,9 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun shouldShowErrorMessageWhenErrorOccurs() {
+    fun `should show error message when error occurs`() {
         //given
-        `when`(tokenController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
+        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
         //when
         loginPresenter.loginButtonClicked()
         //then

@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import co.netguru.android.socialslack.data.session.model.Token
 import io.reactivex.observers.TestObserver
+import co.netguru.android.socialslack.TestHelper.whenever
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.*
 
+@Suppress("IllegalIdentifier")
 class TokenRepositoryTest {
 
     val sharedPreferences: SharedPreferences = mock(SharedPreferences::class.java)
@@ -20,9 +22,9 @@ class TokenRepositoryTest {
     }
 
     @Test
-    fun shouldGetTokenFromSharedPreferences() {
+    fun `should get token from SharedPreferences`() {
         //given
-        `when`(sharedPreferences.getString(anyString(), anyString())).thenReturn("")
+        whenever(sharedPreferences.getString(anyString(), anyString())).thenReturn("")
         //when
         tokenRepository.getToken()
         //then
@@ -32,12 +34,12 @@ class TokenRepositoryTest {
 
     @SuppressLint("CommitPrefEdits")
     @Test
-    fun shouldSaveTokenInSharedPreferences() {
+    fun `should save token in SharedPreferences`() {
         //given
         val testObserver = TestObserver<Boolean>()
         val editor = mock(SharedPreferences.Editor::class.java)
         val token = Token("", "", "")
-        `when`(sharedPreferences.edit()).thenReturn(editor)
+        whenever(sharedPreferences.edit()).thenReturn(editor)
         //when
         tokenRepository.saveToken(token)
                 .toObservable<Boolean>()
