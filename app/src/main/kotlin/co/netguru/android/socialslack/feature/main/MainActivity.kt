@@ -64,11 +64,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectTab(tab: TabLayout.Tab) {
+        currentTabSelected = tab.position
         if (tab.position != Constants.UNDEFINED) {
-            currentTabSelected = tab.position
-            tab.icon?.setColorFilter(highlightColor, PorterDuff.Mode.SRC_IN)
-            setToolbarForTab(currentTabSelected)
+            unselectedPreviousTab(currentTabSelected)
         }
+        tab.icon?.setColorFilter(highlightColor, PorterDuff.Mode.SRC_IN)
+        setToolbarForTab(currentTabSelected)
+    }
+
+    private fun unselectedPreviousTab(currentSelectedTab: Int) {
+        (0..tabLayout.tabCount)
+                .filter { currentSelectedTab != it }
+                .forEach { tabLayout.getTabAt(it)?.icon?.clearColorFilter()}
     }
 
     // TODO 07.07.2017 set the toolbar according to the selected tab
@@ -83,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                tab?.icon?.clearColorFilter()
+                // No-op
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {

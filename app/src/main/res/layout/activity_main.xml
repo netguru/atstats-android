@@ -20,7 +20,7 @@
             android:theme="@style/MainToolbarTheme"
             app:logo="@drawable/toolbar_icon_padding"/>
         
-        <android.support.v4.view.ViewPager
+        <co.netguru.android.socialslack.feature.shared.view.NonSwipeableViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
