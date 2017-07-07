@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val OFF_SCREEN_PAGE_LIMIT = 2;
+        const val OFF_SCREEN_PAGE_LIMIT = 2
     }
 
     private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
