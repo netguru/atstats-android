@@ -69,9 +69,12 @@
 ### Build properties
 <!-- List all build properties that have to be supplied, including secrets. Describe the method of supplying them, both on local builds and CI -->
 
-| Property         | External property name | Environment variable |
-|------------------|------------------------|----------------------|
-| HockeyApp App ID | HockeyAppId            | HOCKEY_APP_ID        |
+| Property         | External property name | Environment variable     |
+|------------------|------------------------|--------------------------|
+| HockeyApp App ID | HockeyAppId            | HOCKEY_APP_ID            |
+| Client ID        | SlackClientId          | SLACK_CLIENT_ID          |
+| Client Secret    | SlackClientSecret      | SLACK_CLIENT_SECRET      |
+| Redirect URI     | SlackOauthRedirectUri  | SLACK_OAUTH_REDIRECT_URI |
 
 #### Secrets
 Follow [this guide](https://netguru.atlassian.net/wiki/pages/viewpage.action?pageId=33030753) 
