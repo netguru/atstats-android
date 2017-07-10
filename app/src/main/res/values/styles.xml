@@ -30,4 +30,8 @@
     <style name="Font12.Grey" parent="FontSmall.Grey">
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textColor">@color/primaryDark</item>
+    </style>
 </resources>
