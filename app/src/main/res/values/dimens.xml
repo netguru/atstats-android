@@ -8,5 +8,10 @@
     <dimen name="fragment_login_logo_padding">12dp</dimen>
     <dimen name="fragment_login_text_logo_margin_bottom">32dp</dimen>
     <dimen name="fragment_login_app_name_margin_top">4dp</dimen>
+
+    <dimen name="activity_main_tab_height">50dp</dimen>
+    <dimen name="activity_main_tab_indicator_height">0dp</dimen>
+    <dimen name="main_toolbar_icon_padding">25dp</dimen>
+
     <dimen name="splash_netguru_logo_bottom_margin">80dp</dimen>
 </resources>

@@ -22,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".feature.main.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".feature.login.LoginActivity"
             android:launchMode="singleTask"
@@ -38,10 +40,6 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".feature.main.MainActivity"
-            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
