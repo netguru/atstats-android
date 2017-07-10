@@ -4,6 +4,9 @@
     <string name="welcome_to">Welcome to</string>
     <string name="designed_with_love_by">Designed with love by</string>
 
+    <string name="action_search">Search</string>
+    <string name="action_filter">Filter</string>
+
     // Menu tabs
     <string name="tab_home">Home</string>
     <string name="tab_channels">Channels</string>

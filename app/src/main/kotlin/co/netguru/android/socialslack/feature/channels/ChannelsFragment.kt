@@ -1,9 +1,8 @@
 package co.netguru.android.socialslack.feature.channels
 
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.channels.model.Channel
@@ -22,9 +21,19 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     private lateinit var component: ChannelsComponent
     private lateinit var adapter: ChannelsAdapter
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initComponent()
         return inflater?.inflate(R.layout.fragment_channels, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_channels_fragment, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
