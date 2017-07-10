@@ -4,4 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--TODO 10.07.2017 TextView should be replaced filter view-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/grey"
+        android:gravity="center"
+        android:text="TODO The most active channel" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default"
+        android:weightSum="3">
+
+        <TextView
+            style="@style/Font12.Grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/place"
+            android:textAllCaps="true" />
+
+        <TextView
+            style="@style/Font12.Grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/number_of_messages"
+            android:textAllCaps="true" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/channelsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default" />
 </LinearLayout>
