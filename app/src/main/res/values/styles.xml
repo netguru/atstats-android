@@ -4,6 +4,9 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
+    </style>
+
+    <style name="AppTheme.TranslucentStatus" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
@@ -22,5 +25,13 @@
 
     <style name="FontSmall.Grey" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="Font12.Grey" parent="FontSmall.Grey">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textColor">@color/primaryDark</item>
     </style>
 </resources>

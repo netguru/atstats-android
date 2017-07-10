@@ -28,7 +28,8 @@
         <activity
             android:name=".feature.login.LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentStatus">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

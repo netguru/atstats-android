@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/channels_item_height"
+    android:padding="@dimen/margin_small">
+
+    <TextView
+        android:id="@+id/itemChannelsPlaceNrTextView"
+        style="@style/FontSmall.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        tools:text="1." />
+
+    <ImageView
+        android:id="@+id/itemChannelsRankImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_toEndOf="@id/itemChannelsPlaceNrTextView"
+        android:src="@drawable/rank_profile"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/itemChannelsNameTextView"
+        style="@style/FontMedium.PrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_toEndOf="@id/itemChannelsRankImageView"
+        android:textStyle="bold"
+        tools:text="tradeguru-desingn" />
+
+    <TextView
+        android:id="@+id/itemChannelsMessagesNrTextView"
+        style="@style/FontMedium.PrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="325 325" />
+</RelativeLayout>

@@ -33,7 +33,7 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
         loginSignInBtn.setOnClickListener { getPresenter().loginButtonClicked() }
     }
 
-    fun onAppAuthorizeCodeReceived(uri :Uri) = presenter.onAppAuthorizeCodeReceived(uri)
+    fun onAppAuthorizeCodeReceived(uri: Uri) = presenter.onAppAuthorizeCodeReceived(uri)
 
     override fun showOAuthBrowser(uri: Uri) {
         val browserIntent = Intent(Intent.ACTION_VIEW, uri)
@@ -57,7 +57,7 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
         activity.finish()
     }
 
-    override fun createPresenter(): LoginContract.Presenter  = component.getPresenter()
+    override fun createPresenter(): LoginContract.Presenter = component.getPresenter()
 
     private fun initComponent() {
         component = App.Factory.getApplicationComponent(context)
