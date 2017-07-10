@@ -8,6 +8,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
+import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_channels.*
 
@@ -36,6 +37,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     private fun initRecyclerView() {
         adapter = ChannelsAdapter()
         channelsRecyclerView.setHasFixedSize(true)
+        channelsRecyclerView.addItemDecoration(DividerItemDecorator(context,
+                DividerItemDecorator.Orientation.VERTICAL_LIST, false))
         channelsRecyclerView.adapter = adapter
         adapter.channelsList = createMockData()
     }
