@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         initializeToolbar()
         initializePager()
-
     }
 
     // Suppress RestrictedApi warning because of this bug https://issuetracker.google.com/issues/37130193
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             tab?.let {
                 tab.setIcon(item.icon)
                 tab.text = getString(TabItemType.getTabItemByPosition(tab.position).title)
-                if (item.position == 0) {
+                if (item.position == currentTabSelected) {
                     selectTab(tab)
                 }
             }
@@ -66,13 +65,13 @@ class MainActivity : AppCompatActivity() {
     private fun selectTab(tab: TabLayout.Tab) {
         currentTabSelected = tab.position
         if (tab.position != Constants.UNDEFINED) {
-            unselectedPreviousTab(currentTabSelected)
+            unselectPreviousTab(currentTabSelected)
         }
         tab.icon?.setColorFilter(highlightColor, PorterDuff.Mode.SRC_IN)
         setToolbarForTab(currentTabSelected)
     }
 
-    private fun unselectedPreviousTab(currentSelectedTab: Int) {
+    private fun unselectPreviousTab(currentSelectedTab: Int) {
         (0..tabLayout.tabCount)
                 .filter { currentSelectedTab != it }
                 .forEach { tabLayout.getTabAt(it)?.icon?.clearColorFilter()}

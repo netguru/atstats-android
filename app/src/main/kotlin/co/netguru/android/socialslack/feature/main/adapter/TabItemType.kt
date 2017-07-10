@@ -17,7 +17,7 @@ enum class TabItemType (val position: Int, val icon: Int, val title: Int){
                        }
                      }
 
-            throw IllegalArgumentException(String.format("There is no element with position %d", position))
+            throw IllegalArgumentException("There is no element with position $position")
         }
     }
 
