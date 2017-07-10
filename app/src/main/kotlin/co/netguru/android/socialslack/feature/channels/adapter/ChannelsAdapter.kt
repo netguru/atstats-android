@@ -9,23 +9,24 @@ import co.netguru.android.socialslack.data.channels.model.Channel
 class ChannelsAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
 
     //TODO 10.07.2017 Should be refactored while integrating channels API
-    var currentChannelPosition: Int = 1
+    val currentChannelPosition: Int = 1
 
-    var channelsList: MutableList<Channel> = mutableListOf()
-        set(value) {
-            field.clear()
-            field.addAll(value)
-            notifyDataSetChanged()
-        }
+    val channelsList: MutableList<Channel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ChannelsViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_channels, parent, false)
         return ChannelsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ChannelsViewHolder?, position: Int) {
-        holder?.bind(currentChannelPosition, channelsList[position])
+    override fun onBindViewHolder(holder: ChannelsViewHolder, position: Int) {
+        holder.bind(currentChannelPosition, channelsList[position])
     }
 
     override fun getItemCount() = channelsList.size
+
+    fun addChannels(channelsList: List<Channel>) {
+        this.channelsList.clear()
+        this.channelsList.addAll(channelsList)
+        notifyDataSetChanged()
+    }
 }

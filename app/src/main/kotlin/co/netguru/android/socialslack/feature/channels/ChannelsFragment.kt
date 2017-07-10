@@ -49,7 +49,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelsRecyclerView.addItemDecoration(DividerItemDecorator(context,
                 DividerItemDecorator.Orientation.VERTICAL_LIST, false))
         channelsRecyclerView.adapter = adapter
-        adapter.channelsList = createMockData()
+        adapter.addChannels(createMockData())
     }
 
     //TODO 10.07.2017 Remove while integrating API
