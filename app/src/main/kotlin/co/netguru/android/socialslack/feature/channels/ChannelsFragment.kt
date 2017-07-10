@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_channels.*
@@ -36,6 +37,15 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         adapter = ChannelsAdapter()
         channelsRecyclerView.setHasFixedSize(true)
         channelsRecyclerView.adapter = adapter
+        adapter.channelsList = createMockData()
+    }
+
+    //TODO 10.07.2017 Remove while integrating API
+    private fun createMockData(): MutableList<Channel> {
+        val list: MutableList<Channel> = mutableListOf()
+        (0..50).mapTo(list) { Channel("netguru-channel-$it", it + 500) }
+
+        return list
     }
 
     private fun initComponent() {

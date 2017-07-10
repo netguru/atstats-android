@@ -19,10 +19,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:visibility="gone"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_toEndOf="@id/itemChannelsPlaceNrTextView"
-        android:src="@drawable/rank_profile" />
+        android:src="@drawable/rank_profile"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/itemChannelsNameTextView"
@@ -36,11 +36,13 @@
         tools:text="tradeguru-desingn" />
 
     <TextView
-        android:id="@+id/itemChannelsNoMessagesTextView"
+        android:id="@+id/itemChannelsMessagesNrTextView"
         style="@style/FontMedium.PrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:lines="1"
         tools:text="325 325" />
 </RelativeLayout>
