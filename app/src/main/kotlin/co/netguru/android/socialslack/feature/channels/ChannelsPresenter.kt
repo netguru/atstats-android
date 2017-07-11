@@ -22,6 +22,7 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
     }
 
     override fun getChannelsFromServer() {
+        //TODO 11.07.2017 Channels list should be sorted after adding sorting component
         compositeDisposable += channelsController.getChannelsList()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(

@@ -8,7 +8,7 @@ import co.netguru.android.socialslack.data.channels.model.Channel
 
 class ChannelsAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
 
-    //TODO 10.07.2017 Should be refactored while integrating channels API
+    //TODO 10.07.2017 Should be refactored while integrating sorting component
     val currentChannelPosition: Int = 1
 
     val channelsList: MutableList<Channel> = mutableListOf()
