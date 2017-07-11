@@ -141,15 +141,19 @@ dependencies {
     compile(libs.mosbyNullObject) {
         exclude module: 'support-annotations'
     }
+    compile 'com.github.castorflex.verticalviewpager:library:19.0.1'
 
     // Dagger
     compile libs.dagger
     kapt proc.dagger
     provided proc.javaxAnnotation
 
+    compile libs.gridLayout
+
     compile libs.rxKotlin2
     compile libs.rxAndroid2
 
+    compile libs.cardView
     // kotlin
     compile libs.kotlin
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TODO change this icon to orange color -->
+    <TextView
+        style="@style/TextMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/users_active"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="Users" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Osoba do której najwięcej piszemy"
+        android:textAllCaps="true"
+        android:textColor="@color/violet2"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/usersRecycler1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Osoba która najwięcej do nas pisze"
+        android:textAllCaps="true"
+        android:textColor="@color/violet2"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/usersRecycler2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Osoba z którą najwięcej rozmawiamy"
+        android:textAllCaps="true"
+        android:textColor="@color/violet2"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/usersRecycler3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2" />
+
+</LinearLayout>

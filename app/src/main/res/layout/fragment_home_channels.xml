@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TODO change this icon to orange color -->
+    <TextView
+        style="@style/TextMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/channels_active"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="Channels" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Najbardziej aktywny kanał"
+        android:textAllCaps="true"
+        android:textColor="@color/violet2"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/channelsRecycler1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Kanał na którym najwięcej piszemy"
+        android:textAllCaps="true"
+        android:textColor="@color/violet2"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/channelsRecycler2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Jesteśmy najczęściej mentionowani"
+        android:textAllCaps="true"
+        android:textColor="@color/violet2"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/channelsRecycler3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <!-- This view serves as a space for shadows from recycler items -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2" />
+
+</LinearLayout>
