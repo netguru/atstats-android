@@ -29,12 +29,12 @@ class TokenController @Inject constructor(private val loginApi: LoginApi,
             loginApi.requestToken(BuildConfig.SLACK_CLIENT_ID, BuildConfig.SLACK_CLIENT_SECRET, code)
 
     fun isTokenValid(): Single<TokenCheck> {
-        return tokenRepository.getToken()
+        return Single.just(tokenRepository.getToken())
                 .flatMap {
                     if (it.accessToken == TokenRepository.EMPTY_TOKEN) {
                         Single.just(TokenCheck(false))
                     } else {
-                        loginApi.checkToken(it.accessToken)
+                        loginApi.checkToken()
                     }
                 }
     }
@@ -42,7 +42,7 @@ class TokenController @Inject constructor(private val loginApi: LoginApi,
     fun saveToken(token: Token): Completable = tokenRepository.saveToken(token)
             .doOnComplete({ Timber.d("Token saved in repository") })
 
-    fun getToken(): Single<Token> = tokenRepository.getToken()
+    fun getToken(): Single<Token> = Single.just(tokenRepository.getToken())
 
     fun removeToken(): Completable {
         TODO("Clear SharedPreferences and revoke token")

@@ -14,9 +14,9 @@ interface LoginApi {
                      @Query("code") code: String): Single<Token>
 
     @GET("api/auth.test")
-    fun checkToken(@Query("token") token: String): Single<TokenCheck>
+    fun checkToken(): Single<TokenCheck>
 
     //TODO 06.07.2017 Should be called when user wants to logout
     @GET("api/auth.revoke")
-    fun revokeToken(@Query("token") token: String) : Completable
+    fun revokeToken() : Completable
 }

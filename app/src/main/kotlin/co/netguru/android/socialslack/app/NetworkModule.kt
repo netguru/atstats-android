@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.app
 
+import co.netguru.android.socialslack.data.session.RequestInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -35,7 +36,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp() = OkHttpClient.Builder()
+    fun provideOkHttp(requestInterceptor: RequestInterceptor) = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(requestInterceptor)
             .build()
 }

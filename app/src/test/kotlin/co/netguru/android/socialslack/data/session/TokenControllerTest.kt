@@ -49,7 +49,7 @@ class TokenControllerTest {
         //given
         val testObserver = TestObserver<Token>()
         val token: Token = mock(Token::class.java)
-        whenever(tokenRepository.getToken()).thenReturn(Single.just(token))
+        whenever(tokenRepository.getToken()).thenReturn(token)
         //when
         tokenController.getToken().subscribe(testObserver)
         //then
@@ -75,7 +75,7 @@ class TokenControllerTest {
         //given
         val testObserver = TestObserver<TokenCheck>()
         val token: Token = Token("", "", "")
-        whenever(tokenRepository.getToken()).thenReturn(Single.just(token))
+        whenever(tokenRepository.getToken()).thenReturn(token)
         //when
         tokenController.isTokenValid().subscribe(testObserver)
         //then
@@ -88,11 +88,11 @@ class TokenControllerTest {
         //given
         val testObserver = TestObserver<TokenCheck>()
         val token: Token = Token(TokenRepository.EMPTY_TOKEN, "", "")
-        whenever(tokenRepository.getToken()).thenReturn(Single.just(token))
+        whenever(tokenRepository.getToken()).thenReturn(token)
         //when
         tokenController.isTokenValid().subscribe(testObserver)
         //then
-        verify(loginApi, never()).checkToken(anyString())
+        verify(loginApi, never()).checkToken()
         testObserver.assertNoErrors()
     }
 
@@ -101,12 +101,12 @@ class TokenControllerTest {
         //given
         val testObserver = TestObserver<TokenCheck>()
         val token: Token = Token("test_token", "", "")
-        whenever(tokenRepository.getToken()).thenReturn(Single.just(token))
-        whenever(loginApi.checkToken(anyObject())).thenReturn(Single.just(TokenCheck(true)))
+        whenever(tokenRepository.getToken()).thenReturn(token)
+        whenever(loginApi.checkToken()).thenReturn(Single.just(TokenCheck(true)))
         //when
         tokenController.isTokenValid().subscribe(testObserver)
         //then
-        verify(loginApi).checkToken(anyString())
+        verify(loginApi).checkToken()
         testObserver.assertNoErrors()
     }
 }
