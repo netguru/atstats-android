@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.feature.channels
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
@@ -39,6 +40,15 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+        presenter.getChannelsFromServer()
+    }
+
+    override fun showChannels(channelList: List<Channel>) {
+        adapter.addChannels(channelList)
+    }
+
+    override fun showError() {
+        Snackbar.make(channelsRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
@@ -49,15 +59,6 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelsRecyclerView.addItemDecoration(DividerItemDecorator(context,
                 DividerItemDecorator.Orientation.VERTICAL_LIST, false))
         channelsRecyclerView.adapter = adapter
-        adapter.addChannels(createMockData())
-    }
-
-    //TODO 10.07.2017 Remove while integrating API
-    private fun createMockData(): MutableList<Channel> {
-        val list: MutableList<Channel> = mutableListOf()
-        (0..50).mapTo(list) { Channel("netguru-channel-$it", it + 500) }
-
-        return list
     }
 
     private fun initComponent() {

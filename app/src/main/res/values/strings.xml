@@ -14,6 +14,9 @@
     <string name="tab_profile">Profile</string>
 
     <string name="login_error_msg">Authorization error</string>
+
+    <string name="error_msg">Server error</string>
+
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
 </resources>

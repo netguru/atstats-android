@@ -11,8 +11,9 @@ import io.reactivex.Completable
 import io.reactivex.Single
 
 import timber.log.Timber
+import javax.inject.Singleton
 
-
+@Singleton
 class TokenController @Inject constructor(private val loginApi: LoginApi,
                                           private val tokenRepository: TokenRepository) {
 

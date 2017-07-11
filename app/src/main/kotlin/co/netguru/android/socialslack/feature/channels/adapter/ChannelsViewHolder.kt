@@ -11,7 +11,9 @@ class ChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         with(channel) {
             itemView.itemChannelsPlaceNrTextView.text = (channelPosition.toString() + '.')
             itemView.itemChannelsNameTextView.text = name
-            itemView.itemChannelsMessagesNrTextView.text = messagesNumber.toString()
+
+            //TODO 10.07.2017 Change to messages number when it will be possible (according to SLACK API)
+            itemView.itemChannelsMessagesNrTextView.text = membersNumber.toString()
         }
     }
 }
