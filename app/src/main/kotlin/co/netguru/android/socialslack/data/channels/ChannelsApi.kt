@@ -7,5 +7,5 @@ import retrofit2.http.*
 interface ChannelsApi {
 
     @GET("/api/channels.list")
-    fun getChannelsList(@Query("token") token : String): Single<ChannelList>
+    fun getChannelsList(): Single<ChannelList>
 }

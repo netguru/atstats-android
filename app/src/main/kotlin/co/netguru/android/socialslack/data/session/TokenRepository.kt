@@ -5,7 +5,6 @@ import co.netguru.android.socialslack.app.LocalRepositoryModule
 import co.netguru.android.socialslack.data.session.model.Token
 import co.netguru.android.socialslack.common.extensions.edit
 import io.reactivex.Completable
-import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -31,8 +30,7 @@ class TokenRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHA
         })
     }
 
-    fun getToken(): Single<Token> = Single.just(Token(
-            sharedPreferences.getString(TOKEN_ACCESS_KEY, EMPTY_TOKEN),
+    fun getToken(): Token = Token(sharedPreferences.getString(TOKEN_ACCESS_KEY, EMPTY_TOKEN),
             sharedPreferences.getString(TOKEN_SCOPE, EMPTY_TOKEN),
-            sharedPreferences.getString(TOKEN_TEAM_ID, EMPTY_TOKEN)))
+            sharedPreferences.getString(TOKEN_TEAM_ID, EMPTY_TOKEN))
 }
