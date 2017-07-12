@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.Channel
-import co.netguru.android.socialslack.data.user.User
-import co.netguru.android.socialslack.feature.home.users.HomeUsersViewHolder
 
-class HomeChannelsAdapter(): RecyclerView.Adapter<HomeChannelsViewHolder>() {
+class HomeChannelsAdapter() : RecyclerView.Adapter<HomeChannelsViewHolder>() {
 
     val channels: MutableList<Channel> = mutableListOf()
 

@@ -57,287 +57,60 @@
             app:columnCount="2"
             app:rowCount="3">
 
-            <android.support.v7.widget.CardView
+            <include
+                android:id="@+id/statistic1"
+                layout="@layout/dashboard_statistics_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="12dp"
-                android:orientation="vertical"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                app:layout_rowWeight="1" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/profile_messages" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/dashboardStatistic1Text"
-                        android:layout_alignParentRight="true"
-                        android:text="35"
-                        android:textColor="@color/orange"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic1Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="4dp"
-                        android:layout_alignParentRight="true"
-                        android:gravity="right"
-                        android:text="messages sent by you on channels"
-                        android:textColor="@color/grey"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <include
+                android:id="@+id/statistic2"
+                layout="@layout/dashboard_statistics_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="12dp"
-                android:orientation="vertical"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                app:layout_rowWeight="1" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/profile_mentions" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_above="@+id/dashboardStatistic2Text"
-                        android:text="35"
-                        android:textColor="@color/orange"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic2Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="4dp"
-                        android:gravity="right"
-                        android:text="mentions on channels"
-                        android:textColor="@color/grey"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <include
+                android:id="@+id/statistic3"
+                layout="@layout/dashboard_statistics_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="12dp"
-                android:orientation="vertical"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                app:layout_rowWeight="1" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/profile_priv_msg" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_above="@+id/dashboardStatistic3Text"
-                        android:text="35"
-                        android:textColor="@color/orange"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic3Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="right"
-                        android:text="total number of private messages"
-                        android:textColor="@color/grey"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <include
+                android:id="@+id/statistic4"
+                layout="@layout/dashboard_statistics_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="12dp"
-                android:orientation="vertical"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                app:layout_rowWeight="1" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/profile_sent_privs" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@id/dashboardStatistic4Text"
-                        android:layout_alignParentRight="true"
-                        android:text="35"
-                        android:textColor="@color/orange"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic4Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="right"
-                        android:text="sent private messages"
-                        android:textColor="@color/grey"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <include
+                android:id="@+id/statistic5"
+                layout="@layout/dashboard_statistics_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="12dp"
-                android:orientation="vertical"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                app:layout_rowWeight="1" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/profile_read_msg" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_above="@+id/dashboardStatistic5Text"
-                        android:text="35"
-                        android:textColor="@color/orange"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic5Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="right"
-                        android:text="total number of read messages"
-                        android:textColor="@color/grey"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <include
+                android:id="@+id/statistic6"
+                layout="@layout/dashboard_statistics_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="12dp"
-                android:orientation="vertical"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/profile_received_priv_msgs" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_above="@+id/dashboardStatistic6Text"
-                        android:text="35"
-                        android:textColor="@color/orange"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/dashboardStatistic6Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="right"
-                        android:text="received private messages"
-                        android:textColor="@color/grey"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
+                app:layout_rowWeight="1" />
         </android.support.v7.widget.GridLayout>
+
     </LinearLayout>
 </FrameLayout>

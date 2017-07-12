@@ -22,11 +22,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecycler()
+        initViewPager()
     }
 
-    private fun initRecycler() {
+    private fun initViewPager() {
         homeViewPager.adapter = homePagerAdapter
-
     }
 }

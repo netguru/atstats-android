@@ -20,4 +20,10 @@
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
     <string name="messages">messages</string>
+    <string name="statistic_messages_sent">messages sent by you on channels</string>
+    <string name="statistic_mentions">mentions on channels</string>
+    <string name="statistic_private_messages">total number of private messages</string>
+    <string name="statistic_sent_private_messages">sent private messages</string>
+    <string name="statistic_total_read_messages">total number of read messages</string>
+    <string name="statistic_received_private_messages">received private messages</string>
 </resources>

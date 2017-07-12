@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.user.User
 
-class HomeUsersAdapter(): RecyclerView.Adapter<HomeUsersViewHolder>() {
+class HomeUsersAdapter() : RecyclerView.Adapter<HomeUsersViewHolder>() {
 
     val users: MutableList<User> = mutableListOf()
 
