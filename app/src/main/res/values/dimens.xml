@@ -15,4 +15,6 @@
 
     <dimen name="splash_netguru_logo_bottom_margin">80dp</dimen>
     <dimen name="channels_item_height">60dp</dimen>
+
+    <dimen name="rounded_corners_radius">8dp</dimen>
 </resources>

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
+import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 
 class HomeDashboardFragment : Fragment() {
 
@@ -19,5 +21,6 @@ class HomeDashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userAvatar.roundImageView()
     }
 }
