@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:layout_height="match_parent"
-    android:paddingTop="6dp"
-    >
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/tab_paddingTop">
 
     <ImageView
         android:id="@+id/tabIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:src="@drawable/toolbar_icon_padding"
-        android:layout_marginBottom="4dp"
-        />
+        android:layout_marginBottom="@dimen/tab_text_icon_distance"
+        tools:src="@drawable/slack_icon" />
 
     <TextView
         android:id="@+id/tabText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Home"
         android:textColor="@color/grey"
         android:textSize="14sp"
-        />
+        tools:text="Home" />
 </LinearLayout>

@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:cardCornerRadius="6dp"
-    app:cardElevation="14dp">
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="@dimen/card_padding">
 
         <ImageView
             android:id="@+id/dashboardStatisticIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/dashboard_icon_margin"
             tools:src="@drawable/profile_read_msg" />
 
         <TextView
@@ -25,8 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/dashboardStatisticText"
-            android:layout_marginBottom="-6dp"
-            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/card_subtitle_margin"
+            android:layout_alignParentEnd="true"
             android:textColor="@color/orange"
             android:textSize="30sp"
             tools:text="35" />
@@ -36,9 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:gravity="right"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/dashboard_statistic_text_marginBottom"
+            android:gravity="end"
             android:textColor="@color/grey"
             android:textSize="14sp"
             tools:text="total number of read messages" />

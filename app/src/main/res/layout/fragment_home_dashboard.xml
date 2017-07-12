@@ -17,17 +17,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/common_zero"
+            android:layout_marginTop="@dimen/dashboard_top_marginTop"
             android:layout_weight="1.25"
             android:gravity="center_horizontal"
-            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/userAvatar"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_gravity="right|center"
+                android:layout_width="@dimen/user_avatar_size"
+                android:layout_height="@dimen/user_avatar_size"
+                android:layout_gravity="end|center"
                 android:src="@drawable/this_is_totally_a_person" />
 
             <TextView
@@ -35,84 +35,84 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="Welcome back\n@amarok" />
+                android:layout_marginStart="@dimen/dashboard_welcometext_marginLeft"
+                android:text="@string/welcome_back_mock" />
 
         </LinearLayout>
 
         <TextView
             style="@style/TextMedium"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginLeft="24dp"
+            android:layout_height="@dimen/common_zero"
+            android:layout_marginStart="@dimen/home_marginLeft"
             android:layout_weight="0.5"
-            android:drawableLeft="@drawable/statistics_orange"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
+            android:drawableStart="@drawable/statistics_orange"
             android:gravity="center"
-            android:text="Statistics" />
+            android:text="@string/statistics" />
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/common_zero"
             android:layout_weight="5"
             android:clipToPadding="false"
-            android:paddingBottom="14dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingBottom="@dimen/home_dashboard_grid_paddingBottom"
+            android:paddingEnd="@dimen/home_dashboard_grid_paddingRight"
+            android:paddingStart="@dimen/home_dashboard_grid_paddingLeft"
             app:columnCount="2"
             app:rowCount="3">
 
             <include
                 android:id="@+id/statistic1"
                 layout="@layout/dashboard_statistics_card"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/common_zero"
+                android:layout_height="@dimen/common_zero"
+                android:layout_margin="@dimen/home_dashboard_grid_card_padding"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
 
             <include
                 android:id="@+id/statistic2"
                 layout="@layout/dashboard_statistics_card"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/common_zero"
+                android:layout_height="@dimen/common_zero"
+                android:layout_margin="@dimen/home_dashboard_grid_card_padding"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
 
             <include
                 android:id="@+id/statistic3"
                 layout="@layout/dashboard_statistics_card"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/common_zero"
+                android:layout_height="@dimen/common_zero"
+                android:layout_margin="@dimen/home_dashboard_grid_card_padding"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
 
             <include
                 android:id="@+id/statistic4"
                 layout="@layout/dashboard_statistics_card"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/common_zero"
+                android:layout_height="@dimen/common_zero"
+                android:layout_margin="@dimen/home_dashboard_grid_card_padding"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
 
             <include
                 android:id="@+id/statistic5"
                 layout="@layout/dashboard_statistics_card"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/common_zero"
+                android:layout_height="@dimen/common_zero"
+                android:layout_margin="@dimen/home_dashboard_grid_card_padding"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
 
             <include
                 android:id="@+id/statistic6"
                 layout="@layout/dashboard_statistics_card"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/common_zero"
+                android:layout_height="@dimen/common_zero"
+                android:layout_margin="@dimen/home_dashboard_grid_card_padding"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
         </android.support.v7.widget.GridLayout>

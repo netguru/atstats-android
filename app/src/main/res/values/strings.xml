@@ -26,4 +26,14 @@
     <string name="statistic_sent_private_messages">sent\nprivate messages</string>
     <string name="statistic_total_read_messages">total number\nof read messages</string>
     <string name="statistic_received_private_messages">received\nprivate messages</string>
+    <string name="most_active_channel">Najbardziej aktywny kanał</string>
+    <string name="channels">Channels</string>
+    <string name="channel_we_write_most">Kanał na którym najwięcej piszemy</string>
+    <string name="mentioned_most">Jesteśmy najczęściej mentionowani</string>
+    <string name="welcome_back_mock">Welcome back\n@amarok</string>
+    <string name="statistics">Statistics</string>
+    <string name="users">Users</string>
+    <string name="person_we_write_most">Osoba do której najwięcej piszemy</string>
+    <string name="person_writes_to_us_most">Osoba która najwięcej do nas pisze</string>
+    <string name="person_we_talk_most">Osoba z którą najwięcej rozmawiamy</string>
 </resources>
