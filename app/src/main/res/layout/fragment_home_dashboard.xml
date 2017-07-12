@@ -18,8 +18,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.25"
             android:gravity="center_horizontal"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
-                android:text="Welcome back\n @amarok" />
+                android:text="Welcome back\n@amarok" />
 
         </LinearLayout>
 
@@ -43,7 +44,7 @@
             style="@style/TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginLeft="24dp"
             android:layout_weight="0.5"
             android:drawableLeft="@drawable/statistics_orange"
             android:drawablePadding="8dp"
@@ -54,6 +55,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
+            android:clipToPadding="false"
+            android:paddingBottom="14dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             app:columnCount="2"
             app:rowCount="3">
 

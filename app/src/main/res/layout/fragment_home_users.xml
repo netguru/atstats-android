@@ -9,8 +9,8 @@
         style="@style/TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_weight="1"
+        android:layout_marginLeft="24dp"
+        android:layout_weight="1.3"
         android:drawableLeft="@drawable/users_active"
         android:drawablePadding="8dp"
         android:gravity="center"
@@ -19,8 +19,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_weight="1"
+        android:layout_marginLeft="24dp"
+        android:layout_weight="0.4"
         android:gravity="center"
         android:text="Osoba do której najwięcej piszemy"
         android:textAllCaps="true"
@@ -31,13 +31,17 @@
         android:id="@+id/usersRecycler1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        android:paddingLeft="24dp"
+        android:paddingTop="12dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_weight="1"
+        android:layout_marginLeft="24dp"
+        android:layout_weight="0.4"
         android:gravity="center"
         android:text="Osoba która najwięcej do nas pisze"
         android:textAllCaps="true"
@@ -48,13 +52,17 @@
         android:id="@+id/usersRecycler2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        android:paddingLeft="24dp"
+        android:paddingTop="12dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_weight="1"
+        android:layout_marginLeft="24dp"
+        android:layout_weight="0.4"
         android:gravity="center"
         android:text="Osoba z którą najwięcej rozmawiamy"
         android:textAllCaps="true"
@@ -65,11 +73,10 @@
         android:id="@+id/usersRecycler3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2" />
+        android:layout_weight="3"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        android:paddingLeft="24dp"
+        android:paddingTop="12dp" />
 
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:cardCornerRadius="6dp"
-    app:cardElevation="8dp">
+    app:cardElevation="14dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/dashboardStatisticText"
+            android:layout_marginBottom="-6dp"
             android:layout_alignParentRight="true"
             android:textColor="@color/orange"
             android:textSize="30sp"
@@ -39,7 +40,7 @@
             android:layout_marginBottom="4dp"
             android:gravity="right"
             android:textColor="@color/grey"
-            android:textSize="16sp"
+            android:textSize="14sp"
             tools:text="total number of read messages" />
 
     </RelativeLayout>
