@@ -5,13 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--TODO 10.07.2017 TextView should be replaced filter view-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/grey"
-        android:gravity="center"
-        android:text="TODO The most active channel" />
+    <include layout="@layout/filter_view" />
+
+    <include layout="@layout/divider_vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"

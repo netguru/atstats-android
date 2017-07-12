@@ -9,6 +9,8 @@
     <color name="black">#000000</color>
 
     <color name="grey">#9B9AA5</color>
+    <color name="lightGrey">#E8E8EE</color>
+    <color name="materialDivider">#1f000000</color>
 
     <color name="tabBackground">@color/white</color>
 </resources>
