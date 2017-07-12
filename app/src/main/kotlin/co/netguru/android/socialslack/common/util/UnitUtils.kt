@@ -7,5 +7,4 @@ object UnitUtils {
     fun Int.dp(): Float {
         return this * Resources.getSystem().displayMetrics.density
     }
-
 }
