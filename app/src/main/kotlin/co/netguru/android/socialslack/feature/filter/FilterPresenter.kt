@@ -6,6 +6,7 @@ import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -44,7 +45,7 @@ class FilterPresenter @Inject constructor(private val filterController: FilterCo
     }
 
     private fun initViewWithChannelsFilterFragment() {
-        compositeDisposable += filterController.getChannelsFilterOption()
+        compositeDisposable += Single.just(filterController.getChannelsFilterOption())
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {

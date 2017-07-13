@@ -49,11 +49,6 @@ class FilterActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
-            R.id.actionApply -> {
-                MainActivity.startActivityWithRequest(this, MainActivity.REQUEST_SORT_CHANNELS)
-                finish()
-                return true
-            }
             else -> return super.onOptionsItemSelected(item)
         }
     }

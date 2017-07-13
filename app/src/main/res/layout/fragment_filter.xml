@@ -43,23 +43,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:layout_marginTop="@dimen/margin_small"
             android:layoutDirection="rtl"
-            android:textAlignment="textStart" />
+
+            android:textAlignment="textStart"
+            android:textColor="@drawable/filter_option_text_color_selector"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/filterOption2RadioBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:layout_marginTop="@dimen/margin_small"
             android:layoutDirection="rtl"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textColor="@drawable/filter_option_text_color_selector"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/filterOption3RadioBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:layout_marginTop="@dimen/margin_small"
             android:layoutDirection="rtl"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textColor="@drawable/filter_option_text_color_selector"
+            android:textSize="16sp" />
     </RadioGroup>
 </LinearLayout>

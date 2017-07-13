@@ -4,6 +4,8 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.data.channels.ChannelsController
+import co.netguru.android.socialslack.data.filter.FilterController
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
@@ -19,14 +21,17 @@ class ChannelsPresenterTest {
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     val channelsController: ChannelsController = mock(ChannelsController::class.java)
+    val filterController: FilterController = mock(FilterController::class.java)
     lateinit var view: ChannelsContract.View
 
     lateinit var channelsPresenter: ChannelsPresenter
 
     @Before
     fun setUp() {
+        whenever(filterController.getChannelsFilterOption()).thenReturn(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
+
         view = mock(ChannelsContract.View::class.java)
-        channelsPresenter = ChannelsPresenter(channelsController)
+        channelsPresenter = ChannelsPresenter(channelsController, filterController)
         channelsPresenter.attachView(view)
     }
 

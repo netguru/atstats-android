@@ -1,11 +1,13 @@
 package co.netguru.android.socialslack.feature.filter
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
+import co.netguru.android.socialslack.feature.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_filter.*
 
@@ -27,6 +29,11 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
 
     private lateinit var component: FilterComponent
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initComponent()
         return inflater?.inflate(R.layout.fragment_filter, container, false)
@@ -35,19 +42,24 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.filterObjectTypeReceived(arguments.getSerializable(FILTER_OBJECT_TYPE) as FilterObjectType)
-        filterRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                filterOption1RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
-                filterOption2RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
-                filterOption3RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionApply -> {
+                saveCurrentFilterOption()
+                MainActivity.startActivityWithRequest(context, MainActivity.REQUEST_SORT_CHANNELS)
+                activity.finish()
+                return true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 
     override fun initChannelsFilterFragment() {
-        filterOption1RadioBtn.text = ChannelsFilterOption.MOST_ACTIVE_CHANNEL.value
-        filterOption2RadioBtn.text = ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST.value
-        filterOption3RadioBtn.text = ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE.value
+        filterOption1RadioBtn.setText(ChannelsFilterOption.MOST_ACTIVE_CHANNEL.textResId)
+        filterOption2RadioBtn.setText(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST.textResId)
+        filterOption3RadioBtn.setText(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE.textResId)
     }
 
     override fun selectCurrentChannelFilter(currentChannelsFilterOption: ChannelsFilterOption) {
@@ -59,6 +71,14 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
     }
 
     override fun createPresenter() = component.getPresenter()
+
+    private fun saveCurrentFilterOption() {
+        when (filterRadioGroup.checkedRadioButtonId) {
+            filterOption1RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
+            filterOption2RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
+            filterOption3RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
+        }
+    }
 
     private fun initComponent() {
         component = App.getApplicationComponent(context)

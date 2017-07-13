@@ -8,9 +8,6 @@ import co.netguru.android.socialslack.data.channels.model.Channel
 
 class ChannelsAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
 
-    //TODO 10.07.2017 Should be refactored while integrating sorting component
-    val currentChannelPosition: Int = 1
-
     val channelsList: MutableList<Channel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ChannelsViewHolder {
@@ -19,7 +16,7 @@ class ChannelsAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ChannelsViewHolder, position: Int) {
-        holder.bind(currentChannelPosition, channelsList[position])
+        holder.bind(channelsList[position])
     }
 
     override fun getItemCount() = channelsList.size
