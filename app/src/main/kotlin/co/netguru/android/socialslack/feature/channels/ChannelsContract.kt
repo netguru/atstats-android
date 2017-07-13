@@ -18,5 +18,7 @@ interface ChannelsContract {
         fun getChannelsFromServer()
 
         fun filterButtonClicked()
+
+        fun sortRequestReceived(channelList: List<Channel>)
     }
 }

@@ -6,8 +6,8 @@ import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
-import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
@@ -64,10 +64,14 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     }
 
     override fun showFilterView() {
-        context.startActivity<FilterActivity>()
+        FilterActivity.startActivity(context, FilterObjectType.CHANNELS)
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
+
+    fun sortData() {
+        presenter.sortRequestReceived(adapter.channelsList)
+    }
 
     private fun initRecyclerView() {
         adapter = ChannelsAdapter()

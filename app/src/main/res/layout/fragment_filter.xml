@@ -32,13 +32,14 @@
     <include layout="@layout/divider_vertical" />
 
     <RadioGroup
+        android:id="@+id/filterRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingEnd="@dimen/margin_default"
         android:paddingStart="@dimen/margin_default">
 
         <RadioButton
-            android:id="@+id/filter_option1_radio_group"
+            android:id="@+id/filterOption1RadioBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -46,7 +47,7 @@
             android:textAlignment="textStart" />
 
         <RadioButton
-            android:id="@+id/filter_option2_radio_group"
+            android:id="@+id/filterOption2RadioBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -54,7 +55,7 @@
             android:textAlignment="textStart" />
 
         <RadioButton
-            android:id="@+id/filter_option3_radio_group"
+            android:id="@+id/filterOption3RadioBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
