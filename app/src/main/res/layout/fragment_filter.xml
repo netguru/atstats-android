@@ -5,10 +5,60 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello World" />
+        android:layout_height="@dimen/filter_view_height"
+        android:background="@color/lightGrey"
+        android:weightSum="1">
 
+        <TextView
+            style="@style/FontSmall.PrimaryDark"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_default"
+            android:text="@string/filter_by"
+            android:textStyle="bold" />
+
+        <!--TODO 10.07.2017 Icon should be changed -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:src="@android:drawable/ic_menu_sort_by_size" />
+    </LinearLayout>
+
+    <include layout="@layout/divider_vertical" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/margin_default"
+        android:paddingStart="@dimen/margin_default">
+
+        <RadioButton
+            android:id="@+id/filter_option1_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart" />
+
+        <RadioButton
+            android:id="@+id/filter_option2_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart" />
+
+        <RadioButton
+            android:id="@+id/filter_option3_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart" />
+    </RadioGroup>
 </LinearLayout>

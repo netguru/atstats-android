@@ -6,6 +6,7 @@
 
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
+    <string name="action_apply">Apply</string>
 
     // Menu tabs
     <string name="tab_home">Home</string>
@@ -19,4 +20,6 @@
 
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
+    <string name="filter_by">Filter by</string>
+
 </resources>
