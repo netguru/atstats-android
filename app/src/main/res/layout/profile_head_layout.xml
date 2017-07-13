@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/FontMedium.PrimaryDark"
+        android:layout_marginBottom="@dimen/margin_default"
+        android:gravity="center"
+        tool:text="Osoba ktora najwiecej do nas pisze"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/messageLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_very_big"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/messagesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FontLarge.PrimaryDark"
+                tool:text="123 456" />
+
+            <TextView
+                android:id="@+id/messagesDetailTextTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FontSmall.Capital.Grey"
+                tool:text="Total messages" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/messageLayout"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/rankTextView"
+                    style="@style/FontLarge.Orange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_small"
+                    tool:text="123" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/rankTextView"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/rank_profile" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FontSmall.Capital.Grey"
+                android:text="@string/rank" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

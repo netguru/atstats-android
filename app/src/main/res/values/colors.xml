@@ -10,5 +10,7 @@
 
     <color name="grey">#9B9AA5</color>
 
+    <color name="orange">#FD5B24</color>
+
     <color name="tabBackground">@color/white</color>
 </resources>

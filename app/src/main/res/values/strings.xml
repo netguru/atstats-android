@@ -19,4 +19,7 @@
 
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
+
+    <string name="total_messages">Total messages</string>
+    <string name="rank">Rank</string>
 </resources>
