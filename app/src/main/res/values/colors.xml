@@ -13,4 +13,6 @@
     <color name="orange">#FD5B24</color>
 
     <color name="tabBackground">@color/white</color>
+
+    <color name="profile_background">#EFF1F5</color>
 </resources>

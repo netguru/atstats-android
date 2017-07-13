@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tool="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/titleTextView"
+        style="@style/FontMedium.PrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/FontMedium.PrimaryDark"
         android:layout_marginBottom="@dimen/margin_default"
         android:gravity="center"
-        tool:text="Osoba ktora najwiecej do nas pisze"/>
+        tool:text="Osoba ktora najwiecej do nas pisze" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,16 +29,16 @@
 
             <TextView
                 android:id="@+id/messagesTextView"
+                style="@style/FontLarge.PrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/FontLarge.PrimaryDark"
                 tool:text="123 456" />
 
             <TextView
                 android:id="@+id/messagesDetailTextTextView"
+                style="@style/FontSmall.Capital.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/FontSmall.Capital.Grey"
                 tool:text="Total messages" />
 
         </LinearLayout>
@@ -46,8 +46,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_toRightOf="@+id/messageLayout"
+            android:gravity="center"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -65,16 +65,16 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/rankTextView"
                     android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/rankTextView"
                     android:src="@drawable/rank_profile" />
 
             </RelativeLayout>
 
             <TextView
+                style="@style/FontSmall.Capital.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/FontSmall.Capital.Grey"
                 android:text="@string/rank" />
 
         </LinearLayout>
