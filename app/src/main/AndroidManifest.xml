@@ -44,8 +44,7 @@
         </activity>
 
         <activity
-            android:name=".feature.filter.FilterActivity"
-            android:parentActivityName=".feature.main.MainActivity" />
+            android:name=".feature.filter.FilterActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

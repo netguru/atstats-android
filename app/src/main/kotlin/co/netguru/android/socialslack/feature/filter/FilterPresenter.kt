@@ -3,6 +3,7 @@ package co.netguru.android.socialslack.feature.filter
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.filter.FilterController
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
@@ -24,9 +25,22 @@ class FilterPresenter @Inject constructor(private val filterController: FilterCo
 
     override fun filterObjectTypeReceived(filterObjectType: FilterObjectType) {
         when (filterObjectType) {
-            FilterObjectType.CHANNELS ->initViewWithChannelsFilterFragment()
+            FilterObjectType.CHANNELS -> initViewWithChannelsFilterFragment()
             else -> TODO("Not implemented yet")
         }
+    }
+
+    override fun filterOptionChanged(channelsFilterOption: ChannelsFilterOption) {
+        compositeDisposable += filterController.saveChannelsFilterOption(channelsFilterOption)
+                .compose(RxTransformers.applyCompletableIoSchedulers())
+                .subscribeBy(
+                        onComplete = {
+                            Timber.d("Filter option changed to $channelsFilterOption")
+                        },
+                        onError = {
+                            Timber.e(it, "Error while changing filter option")
+                        }
+                )
     }
 
     private fun initViewWithChannelsFilterFragment() {

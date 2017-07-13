@@ -45,6 +45,10 @@ class FilterActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
             R.id.actionApply -> {
                 MainActivity.startActivityWithRequest(this, MainActivity.REQUEST_SORT_CHANNELS)
                 finish()

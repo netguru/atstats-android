@@ -16,5 +16,7 @@ interface FilterContract {
     interface Presenter : MvpPresenter<View> {
 
         fun filterObjectTypeReceived(filterObjectType: FilterObjectType)
+
+        fun filterOptionChanged(channelsFilterOption: ChannelsFilterOption)
     }
 }

@@ -35,6 +35,13 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.filterObjectTypeReceived(arguments.getSerializable(FILTER_OBJECT_TYPE) as FilterObjectType)
+        filterRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                filterOption1RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
+                filterOption2RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
+                filterOption3RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
+            }
+        }
     }
 
     override fun initChannelsFilterFragment() {
