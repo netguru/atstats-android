@@ -28,7 +28,7 @@
             android:layout_marginBottom="@dimen/card_subtitle_margin"
             android:layout_alignParentEnd="true"
             android:textColor="@color/orange"
-            android:textSize="30sp"
+            android:textSize="@dimen/header_textSize"
             tools:text="35" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginBottom="@dimen/dashboard_statistic_text_marginBottom"
             android:gravity="end"
             android:textColor="@color/grey"
-            android:textSize="14sp"
+            android:textSize="@dimen/subtitle_textSize"
             tools:text="total number of read messages" />
 
     </RelativeLayout>

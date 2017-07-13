@@ -24,12 +24,12 @@ class HomeUsersFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO 11.07.17 download data from API
         initRecyclerWithMockData(usersRecycler1)
         initRecyclerWithMockData(usersRecycler2)
         initRecyclerWithMockData(usersRecycler3)
     }
 
+    // TODO 13.07.17 remove mock data when connected to API
     private fun initRecyclerWithMockData(recyclerView: RecyclerView) {
         val user1 = User("Ala Janosz")
         val user2 = User("Jyn Erso")

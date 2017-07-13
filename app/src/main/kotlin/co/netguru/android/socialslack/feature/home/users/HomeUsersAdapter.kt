@@ -28,5 +28,4 @@ class HomeUsersAdapter() : RecyclerView.Adapter<HomeUsersViewHolder>() {
         this.users.addAll(users)
         notifyDataSetChanged()
     }
-
 }

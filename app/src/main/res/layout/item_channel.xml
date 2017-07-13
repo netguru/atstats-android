@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:textColor="@color/orange"
-            android:textSize="28sp"
+            android:textSize="@dimen/header_textSize"
             tools:text="35" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_marginTop="@dimen/card_subtitle_margin"
             android:text="@string/messages"
             android:textColor="@color/grey"
-            android:textSize="14sp" />
+            android:textSize="@dimen/subtitle_textSize" />
 
         <TextView
             android:id="@+id/channelName"

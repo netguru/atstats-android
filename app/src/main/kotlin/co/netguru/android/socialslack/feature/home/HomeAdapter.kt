@@ -11,5 +11,4 @@ class HomeAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     override fun getCount(): Int {
         return HomeScreen.values().size
     }
-
 }

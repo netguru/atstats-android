@@ -12,7 +12,7 @@ enum class HomeScreen(val position: Int, val newInstance: () -> Fragment) {
 
     companion object {
         fun getScreenAtPosition(position: Int): HomeScreen {
-            HomeScreen.values().forEach { item ->
+            values().forEach { item ->
                 if (item.position == position) {
                     return item
                 }
