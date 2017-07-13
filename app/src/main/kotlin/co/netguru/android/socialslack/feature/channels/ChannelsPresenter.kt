@@ -32,4 +32,8 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
                             view.showError()
                         })
     }
+
+    override fun filterButtonClicked() {
+        view.showFilterView()
+    }
 }

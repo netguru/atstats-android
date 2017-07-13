@@ -10,9 +10,13 @@ interface ChannelsContract {
         fun showChannels(channelList: List<Channel>)
 
         fun showError()
+
+        fun showFilterView()
     }
 
     interface Presenter : MvpPresenter<View> {
         fun getChannelsFromServer()
+
+        fun filterButtonClicked()
     }
 }

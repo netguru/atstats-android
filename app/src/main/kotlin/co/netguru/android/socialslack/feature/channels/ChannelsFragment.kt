@@ -43,12 +43,30 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         presenter.getChannelsFromServer()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionFilter -> {
+                presenter.filterButtonClicked()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun showChannels(channelList: List<Channel>) {
         adapter.addChannels(channelList)
     }
 
     override fun showError() {
         Snackbar.make(channelsRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showFilterView() {
+        //TODO 13.07.2017 Show filter fragment
+//        fragmentManager.beginTransaction()
+//                .add(R.id., FilterFragment.newInstance())
+//                .addToBackStack(null)
+//                .commit()
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
