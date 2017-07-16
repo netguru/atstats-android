@@ -34,35 +34,26 @@ class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun setUsersWeTalkTheMost(users: List<UserStatistic>) {
-        val usersAdapter = HomeUsersAdapter()
-        usersAdapter.addUsers(users)
-
-        usersRecycler3.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        usersRecycler3.adapter = usersAdapter
-    }
-
     override fun setUsersWeWriteMost(users: List<UserStatistic>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        initRecyclerWithData(usersRecycler1, users)
     }
 
     override fun setUsersThatWriteToUsTheMost(users: List<UserStatistic>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        initRecyclerWithData(usersRecycler2, users)
+    }
+
+    override fun setUsersWeTalkTheMost(users: List<UserStatistic>) {
+        initRecyclerWithData(usersRecycler3, users)
     }
 
     fun initComponent() {
         component = App.getApplicationComponent(context).plusHomeUsersComponent()
     }
 
-    // TODO 13.07.17 remove mock data when connected to API
-    private fun initRecyclerWithMockData(recyclerView: RecyclerView) {
-//        val user1 = User("Ala Janosz")
-//        val user2 = User("Jyn Erso")
-//        val user3 = User("John Rambo")
-//        val usersAdapter = HomeUsersAdapter()
-//        usersAdapter.addUsers(listOf(user1, user2, user3))
-
-//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//        recyclerView.adapter = usersAdapter
+    private fun initRecyclerWithData(recyclerView: RecyclerView, userStatisticList: List<UserStatistic>) {
+        val usersAdapter = HomeUsersAdapter()
+        usersAdapter.addUsers(userStatisticList)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = usersAdapter
     }
 }
