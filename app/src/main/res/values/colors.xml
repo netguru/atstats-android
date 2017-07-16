@@ -9,6 +9,10 @@
     <color name="black">#000000</color>
 
     <color name="grey">#9B9AA5</color>
+    <color name="violet">#524B75</color>
+    <color name="violet2">#817C9A</color>
+
+    <color name="orange">#FF722E</color>
 
     <color name="tabBackground">@color/white</color>
 </resources>

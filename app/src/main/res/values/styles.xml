@@ -34,4 +34,9 @@
     <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium" >
         <item name="android:textColor">@color/primaryDark</item>
     </style>
+
+    <style name="TextMedium" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textColor">@color/violet</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
