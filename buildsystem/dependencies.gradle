@@ -78,7 +78,8 @@ ext {
             autoBundle              : "com.github.yatatsu:autobundle:$autoBundleVersion",
             greenDao                : "org.greenrobot:greendao:$greenDaoVersion",
             greenDaoGenerator       : "org.greenrobot:greendao-generator:$greenDaoVersion",
-            fabric                  : "com.crashlytics.sdk.android:crashlytics:2.6.8@aar"
+            fabric                  : "com.crashlytics.sdk.android:crashlytics:2.6.8@aar",
+            verticalViewPager       : "com.github.castorflex.verticalviewpager:library:19.0.1"
     ]
 
     proc = [

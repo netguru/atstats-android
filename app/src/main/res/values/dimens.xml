@@ -9,7 +9,7 @@
     <dimen name="fragment_login_text_logo_margin_bottom">32dp</dimen>
     <dimen name="fragment_login_app_name_margin_top">4dp</dimen>
 
-    <dimen name="activity_main_tab_height">50dp</dimen>
+    <dimen name="activity_main_tab_height">64dp</dimen>
     <dimen name="activity_main_tab_indicator_height">0dp</dimen>
     <dimen name="main_toolbar_icon_padding">25dp</dimen>
 
@@ -17,4 +17,32 @@
     <dimen name="channels_item_height">60dp</dimen>
     <dimen name="filter_view_height">60dp</dimen>
     <dimen name="divider_height">1dp</dimen>
+    <dimen name="rounded_corners_radius">8dp</dimen>
+    <dimen name="card_corner_radius">6dp</dimen>
+    <dimen name="card_elevation">13dp</dimen>
+    <dimen name="card_padding">10dp</dimen>
+    <dimen name="dashboard_icon_margin">4dp</dimen>
+    <dimen name="dashboard_statistic_text_marginBottom">4dp</dimen>
+    <dimen name="card_subtitle_margin">-6dp</dimen>
+    <dimen name="user_avatar_size">96dp</dimen>
+    <dimen name="dashboard_top_marginTop">24dp</dimen>
+    <dimen name="dashboard_welcometext_marginLeft">16dp</dimen>
+    <dimen name="home_marginLeft">24dp</dimen>
+    <dimen name="channel_icon_size">28dp</dimen>
+    <dimen name="channel_icon_margin">8dp</dimen>
+    <dimen name="card_marginRight">16dp</dimen>
+    <dimen name="card_width">274dp</dimen>
+    <dimen name="home_screenTitle_drawablePadding">8dp</dimen>
+    <dimen name="home_screen_cardsRecycler_paddingBottom">24dp</dimen>
+    <dimen name="home_screen_cardsRecycler_paddingTop">12dp</dimen>
+    <dimen name="common_zero">0dp</dimen>
+    <dimen name="home_dashboard_grid_paddingBottom">14dp</dimen>
+    <dimen name="home_dashboard_grid_paddingLeft">8dp</dimen>
+    <dimen name="home_dashboard_grid_paddingRight">8dp</dimen>
+    <dimen name="home_dashboard_grid_card_padding">12dp</dimen>
+    <dimen name="tab_paddingTop">6dp</dimen>
+    <dimen name="tab_text_icon_distance">4dp</dimen>
+    <dimen name="tabLayout_elevation">4dp</dimen>
+    <dimen name="subtitle_textSize">14sp</dimen>
+    <dimen name="header_textSize">28sp</dimen>
 </resources>
