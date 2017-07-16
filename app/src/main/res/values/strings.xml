@@ -6,6 +6,7 @@
 
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
+    <string name="action_apply">Apply</string>
 
     // Menu tabs
     <string name="tab_home">Home</string>
@@ -19,6 +20,14 @@
 
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
+
+    // Filter view
+    <string name="filter_by">Filter by</string>
+    <!-- TODO 13.07.2017 Update strings when filtering logic will be working correctly -->
+    <string name="channel_we_are_mentioned_the_most">TODO - Members number DESC</string> <!--Channel We Are Mentioned The Most -->
+    <string name="channel_we_are_most_active">TODO - Members number DESC</string>
+    <string name="categories">Categories</string> <!--Channel We Are Most Active -->
+
     <string name="messages">messages</string>
     <string name="statistic_messages_sent">messages sent by you\non channels</string>
     <string name="statistic_mentions">mentions\non channels</string>

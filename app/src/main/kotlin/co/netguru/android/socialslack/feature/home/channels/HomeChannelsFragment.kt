@@ -31,9 +31,12 @@ class HomeChannelsFragment : Fragment() {
     }
 
     private fun initRecyclerWithMockData(recyclerView: RecyclerView) {
-        val channel1 = Channel("0", "#tradeguru-design", "0", false, false, 420)
-        val channel2 = Channel("0", "#tradeguru-design", "0", false, false, 420)
-        val channel3 = Channel("0", "#tradeguru-design", "0", false, false, 420)
+        val channel1 = Channel("0", "#tradeguru-design", "0", false,
+                false, 420, 0)
+        val channel2 = Channel("0", "#tradeguru-design", "0", false,
+                false, 420, 0)
+        val channel3 = Channel("0", "#tradeguru-design", "0", false,
+                false, 420, 0)
         val channelsAdapter = HomeChannelsAdapter()
         channelsAdapter.addUsers(listOf(channel1, channel2, channel3))
 

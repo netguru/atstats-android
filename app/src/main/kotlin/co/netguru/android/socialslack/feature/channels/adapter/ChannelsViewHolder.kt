@@ -7,9 +7,9 @@ import kotlinx.android.synthetic.main.item_channels.view.*
 
 class ChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(channelPosition: Int, channel: Channel) {
+    fun bind(channel: Channel) {
         with(channel) {
-            itemView.itemChannelsPlaceNrTextView.text = (channelPosition.toString() + '.')
+            itemView.itemChannelsPlaceNrTextView.text = channel.currentPositionInList.toString()
             itemView.itemChannelsNameTextView.text = name
 
             //TODO 10.07.2017 Change to messages number when it will be possible (according to SLACK API)
