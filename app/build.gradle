@@ -171,6 +171,9 @@ dependencies {
         transitive = true
     }
 
+    // Glide
+    compile libs.glide
+
     // Stetho
     compile libs.stetho
 
