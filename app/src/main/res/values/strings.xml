@@ -26,6 +26,7 @@
     <!-- TODO 13.07.2017 Update strings when filtering logic will be working correctly -->
     <string name="most_active_channel">TODO - Members number ASC</string> <!--Most Active Channel -->
     <string name="channel_we_are_mentioned_the_most">TODO - Members number DESC</string> <!--Channel We Are Mentioned The Most -->
-    <string name="channel_we_are_most_active">TODO - Members number DESC</string> <!--Channel We Are Most Active -->
+    <string name="channel_we_are_most_active">TODO - Members number DESC</string>
+    <string name="categories">Categories</string> <!--Channel We Are Most Active -->
 
 </resources>

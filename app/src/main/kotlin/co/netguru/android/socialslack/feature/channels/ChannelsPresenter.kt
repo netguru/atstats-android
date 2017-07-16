@@ -30,7 +30,7 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
     override fun getChannelsFromServer() {
         compositeDisposable += channelsController.getChannelsList()
                 .flatMap(this::sortChannelsList)
-                .compose(RxTransformers.applySingleIoSchedulers())
+                .compose(RxTransformers.applySingleComputationSchedulers())
                 .subscribeBy(
                         onSuccess = view::showChannels,
                         onError = {

@@ -39,7 +39,6 @@ class FilterActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_filter_activity, menu)
-
         return true
     }
 
@@ -56,6 +55,6 @@ class FilterActivity : AppCompatActivity() {
     private fun initializeToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Categories"
+        supportActionBar?.title = getString(R.string.categories)
     }
 }
