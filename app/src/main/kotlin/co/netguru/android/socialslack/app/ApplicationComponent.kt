@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.app
 
 import co.netguru.android.socialslack.feature.channels.ChannelsComponent
 import co.netguru.android.socialslack.feature.filter.FilterComponent
+import co.netguru.android.socialslack.feature.home.users.HomeUsersComponent
 import co.netguru.android.socialslack.feature.login.LoginComponent
 import co.netguru.android.socialslack.feature.splash.SplashComponent
 import dagger.Component
@@ -19,4 +20,6 @@ interface ApplicationComponent {
     fun plusChannelsComponent(): ChannelsComponent
 
     fun plusFilterComponent(): FilterComponent
+
+    fun plusHomeUsersComponent(): HomeUsersComponent
 }
