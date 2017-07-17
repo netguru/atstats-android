@@ -27,6 +27,10 @@
         <item name="android:textColor">@color/grey</item>
     </style>
 
+    <style name="FontSmall.PrimaryDark" parent="TextAppearance.AppCompat.Small" >
+        <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
     <style name="Font12.Grey" parent="FontSmall.Grey">
         <item name="android:textSize">12sp</item>
     </style>
@@ -50,5 +54,10 @@
     <style name="FontSmall.Capital.Grey" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/grey</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextMedium" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textColor">@color/violet</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

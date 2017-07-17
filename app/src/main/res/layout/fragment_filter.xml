@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filter_view_height"
+        android:background="@color/lightGrey"
+        android:weightSum="1">
+
+        <TextView
+            style="@style/FontSmall.PrimaryDark"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_default"
+            android:text="@string/filter_by"
+            android:textStyle="bold" />
+
+        <!--TODO 10.07.2017 Icon should be changed -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:src="@android:drawable/ic_menu_sort_by_size" />
+    </LinearLayout>
+
+    <include layout="@layout/divider_vertical" />
+
+    <RadioGroup
+        android:id="@+id/filterRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/margin_default"
+        android:paddingStart="@dimen/margin_default">
+
+        <RadioButton
+            android:id="@+id/filterOption1RadioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layoutDirection="rtl"
+
+            android:textAlignment="textStart"
+            android:textColor="@drawable/filter_option_text_color_selector"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/filterOption2RadioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:textColor="@drawable/filter_option_text_color_selector"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/filterOption3RadioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:textColor="@drawable/filter_option_text_color_selector"
+            android:textSize="16sp" />
+    </RadioGroup>
+</LinearLayout>

@@ -147,10 +147,12 @@ dependencies {
     kapt proc.dagger
     provided proc.javaxAnnotation
 
+
     compile libs.rxKotlin2
     compile libs.rxAndroid2
 
     // Views
+    compile libs.verticalViewPager
     compile libs.gridLayout
     compile libs.cardView
 

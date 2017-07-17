@@ -1,30 +1,38 @@
 package co.netguru.android.socialslack.feature.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
-import co.netguru.android.socialslack.Constants
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.main.adapter.MainPagerAdapter
-import co.netguru.android.socialslack.feature.main.adapter.TabItemType
 import kotlinx.android.synthetic.main.activity_main.*
-
+import android.content.Intent
+import co.netguru.android.socialslack.feature.channels.ChannelsFragment
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         const val OFF_SCREEN_PAGE_LIMIT = 2
+        const val REQUEST_SORT_CHANNELS = 101
+        const val REQUEST_EXTRA = "requestExtra"
+
+        private const val REQUEST_DEFAULT = 0
+
+        fun startActivityWithRequest(context: Context, requestCode: Int) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(MainActivity.REQUEST_EXTRA, requestCode)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
     }
 
     private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
-    private val highlightColor by lazy { getColor(R.color.primary) }
-
-    private var currentTabSelected = 0
+    private val tabManager by lazy { TabManager(tabLayout, viewPager, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +40,23 @@ class MainActivity : AppCompatActivity() {
 
         initializeToolbar()
         initializePager()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+
+        when (intent.getIntExtra(REQUEST_EXTRA, REQUEST_DEFAULT)) {
+            REQUEST_SORT_CHANNELS -> refreshDataOnChannelsFragment()
+            else -> throw IllegalStateException("Intent should contains REQUEST_EXTRA")
+        }
+    }
+
+    private fun refreshDataOnChannelsFragment() {
+        supportFragmentManager.fragments.forEach({
+            if (it is ChannelsFragment) {
+                it.sortData()
+            }
+        })
     }
 
     // Suppress RestrictedApi warning because of this bug https://issuetracker.google.com/issues/37130193
@@ -49,56 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun initializePager() {
         viewPager.offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
         viewPager.adapter = mainPagerAdapter
-        tabLayout.setupWithViewPager(viewPager)
-
-        TabItemType.values().forEach { item ->
-            var tab = tabLayout.getTabAt(item.position)
-            tab?.let {
-                tab.setIcon(item.icon)
-                tab.text = getString(TabItemType.getTabItemByPosition(tab.position).title)
-                if (item.position == currentTabSelected) {
-                    selectTab(tab)
-                }
-            }
-        }
-        tabLayout.addOnTabSelectedListener(createTabListener())
-    }
-
-    private fun selectTab(tab: TabLayout.Tab) {
-        currentTabSelected = tab.position
-        if (tab.position != Constants.UNDEFINED) {
-            unselectPreviousTab(currentTabSelected)
-        }
-        tab.icon?.setColorFilter(highlightColor, PorterDuff.Mode.SRC_IN)
-        setToolbarForTab(currentTabSelected)
-    }
-
-    private fun unselectPreviousTab(currentSelectedTab: Int) {
-        (0..tabLayout.tabCount)
-                .filter { currentSelectedTab != it }
-                .forEach { tabLayout.getTabAt(it)?.icon?.clearColorFilter()}
-    }
-
-    // TODO 07.07.2017 set the toolbar according to the selected tab
-    private fun setToolbarForTab(currentSelectedTab: Int) {
-
-    }
-
-    private fun createTabListener () : TabLayout.OnTabSelectedListener {
-        return object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                tab?.let { selectTab(tab) }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // No-op
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.let { selectTab(tab) }
-            }
-
-        }
+        tabManager.init()
     }
 
     fun showChannelProfile(channel: Channel) {

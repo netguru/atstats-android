@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_main_tab_height"
             android:background="@color/tabBackground"
+            android:elevation="@dimen/tabLayout_elevation"
             app:tabGravity="fill"
             app:tabIndicatorHeight="@dimen/activity_main_tab_indicator_height"
             app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"

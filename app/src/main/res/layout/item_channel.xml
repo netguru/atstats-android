@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/card_width"
+    android:layout_height="match_parent"
+    android:layout_marginRight="@dimen/card_marginRight"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/card_padding">
+
+        <ImageView
+            android:layout_width="@dimen/channel_icon_size"
+            android:layout_height="@dimen/channel_icon_size"
+            android:layout_margin="@dimen/channel_icon_margin"
+            android:src="@drawable/channels_inactive" />
+
+        <TextView
+            android:id="@+id/channelMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/header_textSize"
+            tools:text="35" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/channelMessages"
+            android:layout_marginTop="@dimen/card_subtitle_margin"
+            android:text="@string/messages"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/subtitle_textSize" />
+
+        <TextView
+            android:id="@+id/channelName"
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            tools:text="#tradeguru-design" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

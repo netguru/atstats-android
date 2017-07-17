@@ -12,6 +12,12 @@ object RxTransformers {
         }
     }
 
+    fun <T> applySingleComputationSchedulers(): SingleTransformer<T, T> {
+        return SingleTransformer {
+            it.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread())
+        }
+    }
+
     fun applyCompletableIoSchedulers(): CompletableTransformer {
         return CompletableTransformer {
             it.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
