@@ -35,7 +35,11 @@
         <item name="android:textColor">@color/primaryDark</item>
     </style>
 
-    <style name="FontLarge.PrimaryDark" parent="FontLarge.White">
+    <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
+    <style name="FontDisplay2.PrimaryDark" parent="TextAppearance.AppCompat.Display2">
         <item name="android:textColor">@color/primaryDark</item>
     </style>
 

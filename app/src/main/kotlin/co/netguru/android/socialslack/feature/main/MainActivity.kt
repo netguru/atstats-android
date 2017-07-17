@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.Constants
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.main.adapter.MainPagerAdapter
 import co.netguru.android.socialslack.feature.main.adapter.TabItemType
 import kotlinx.android.synthetic.main.activity_main.*
@@ -97,5 +99,13 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    fun showChannelProfile(channel: Channel) {
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, ChannelProfileFragment.newInstance())
+                .addToBackStack(null)
+                .commit()
     }
 }

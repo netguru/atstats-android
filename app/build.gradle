@@ -150,6 +150,10 @@ dependencies {
     compile libs.rxKotlin2
     compile libs.rxAndroid2
 
+    // Views
+    compile libs.gridLayout
+    compile libs.cardView
+
     // kotlin
     compile libs.kotlin
 
