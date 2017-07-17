@@ -14,6 +14,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
@@ -56,12 +57,13 @@ class HomeUsersPresenter @Inject constructor(
             var messagesFromOtherUser: Int = 0
 
             for (message in channel.messages) {
-                if (message.user == null || message.user == channel.directChannel.user) {
+                if (message.user == channel.directChannel.userId) {
                     messagesFromOtherUser++
                 } else {
                     messagesFromUs++
                 }
             }
+
             val channelStatistic = ChannelStatistic(channel.directChannel,
                     messagesFromUs, messagesFromOtherUser)
             channelsWithStatistics.add(channelStatistic)
@@ -79,7 +81,7 @@ class HomeUsersPresenter @Inject constructor(
         })
 
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserInfo(sortedChannels[it].channel.user).toFlowable() },
+                .flatMap({ usersController.getUserProfile(sortedChannels[it].channel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromUs) })
                 .compose(RxTransformers.applyFlowableIoSchedulers())
                 .toList()
@@ -94,7 +96,7 @@ class HomeUsersPresenter @Inject constructor(
         })
 
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserInfo(sortedChannels[it].channel.user).toFlowable() },
+                .flatMap({ usersController.getUserProfile(sortedChannels[it].channel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromOtherUser) })
                 .compose(RxTransformers.applyFlowableIoSchedulers())
                 .toList()
@@ -109,7 +111,7 @@ class HomeUsersPresenter @Inject constructor(
         })
 
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserInfo(sortedChannels[it].directChannel.user).toFlowable() },
+                .flatMap({ usersController.getUserProfile(sortedChannels[it].directChannel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messages.size) })
                 .compose(RxTransformers.applyFlowableIoSchedulers())
                 .toList()
@@ -145,5 +147,4 @@ class HomeUsersPresenter @Inject constructor(
         super.detachView(retainInstance)
         compositeDisposable.clear()
     }
-
 }

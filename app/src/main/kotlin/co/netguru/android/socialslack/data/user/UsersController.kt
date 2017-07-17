@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.data.user
 
 import co.netguru.android.socialslack.data.user.model.User
+import co.netguru.android.socialslack.data.user.model.UserProfile
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -8,8 +9,8 @@ import javax.inject.Singleton
 @Singleton
 class UsersController @Inject constructor(val usersApi: UsersApi) {
 
-    fun getUserInfo(userId: String): Single<User> {
-        return usersApi.getUserInfo(userId)
-                .map { it.user }
+    fun getUserProfile(userId: String): Single<UserProfile> {
+        return usersApi.getUserProfile(userId)
+                .map { it.userProfile }
     }
 }

@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.data.direct
 
+import co.netguru.android.socialslack.data.cache.AppCacheStrategy
 import co.netguru.android.socialslack.data.direct.model.DirectChannel
 import co.netguru.android.socialslack.data.direct.model.Message
 import io.reactivex.Flowable
@@ -18,7 +19,7 @@ class DirectMessagesController @Inject constructor(private val directMessagesApi
             return directMessagesApi.getDirectMessagesWithUser(channel, count)
                     .map { it.messages }
         } else {
-            return directMessagesApi.getDirectMessagesWithUser(channel, count, latest, 0)
+            return directMessagesApi.getDirectMessagesWithUser(channel, count, latest, 0, AppCacheStrategy.cache())
                     .map { it.messages }
         }
     }

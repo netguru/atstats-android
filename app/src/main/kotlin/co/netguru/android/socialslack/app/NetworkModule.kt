@@ -1,16 +1,22 @@
 package co.netguru.android.socialslack.app
 
+import android.content.Context
+import co.netguru.android.socialslack.data.cache.CacheRequestInterceptor
+import co.netguru.android.socialslack.data.cache.CacheResponseInterceptor
 import co.netguru.android.socialslack.data.session.RequestInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import okhttp3.Cache
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
+import javax.inject.Singleton
+
 
 @Module
 class NetworkModule {
@@ -19,6 +25,8 @@ class NetworkModule {
         const val URI_SCHEME = "https"
         const val URI_AUTHORITY = "slack.com"
         const val SLACK_BASE_URL = "https://slack.com/"
+        const val HTTP_CACHE_SIZE: Long = 1024 * 1024 * 20
+        const val HTTP_CACHE_DIRECTORY = "cache"
     }
 
     @Singleton
@@ -36,8 +44,32 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp(requestInterceptor: RequestInterceptor) = OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+    fun provideOkHttp(requestInterceptor: RequestInterceptor, cache: Cache,
+                      cacheRequestInterceptor: CacheRequestInterceptor,
+                      cacheResponseInterceptor: CacheResponseInterceptor) = OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
             .addInterceptor(requestInterceptor)
+            .addInterceptor(cacheRequestInterceptor)
+            .addNetworkInterceptor(cacheResponseInterceptor)
+            .cache(cache)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideHttpCache(context: Context): Cache {
+        val cacheDirectory = File(context.getCacheDir(), HTTP_CACHE_DIRECTORY)
+        return Cache(cacheDirectory, HTTP_CACHE_SIZE)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCacheRequestInterceptor(): CacheRequestInterceptor {
+        return CacheRequestInterceptor()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCacheResponseInterceptor(): CacheResponseInterceptor {
+        return CacheResponseInterceptor()
+    }
 }

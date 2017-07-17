@@ -1,3 +1,7 @@
 package co.netguru.android.socialslack.data.direct.model
 
-data class DirectChannel(val id: String, val user: String, val created: Long)
+import com.google.gson.annotations.SerializedName
+
+data class DirectChannel(@SerializedName("id") val id: String,
+                         @SerializedName("user") val userId: String,
+                         @SerializedName("created") val created: Long)
