@@ -23,7 +23,7 @@
             android:id="@+id/messageLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_very_big"
+            android:layout_marginEnd="@dimen/margin_very_big"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -46,7 +46,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/messageLayout"
+            android:layout_toEndOf="@+id/messageLayout"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -59,14 +59,14 @@
                     style="@style/FontLarge.Orange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_small"
                     tool:text="123" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/rankTextView"
+                    android:layout_toEndOf="@+id/rankTextView"
                     android:src="@drawable/rank_profile" />
 
             </RelativeLayout>

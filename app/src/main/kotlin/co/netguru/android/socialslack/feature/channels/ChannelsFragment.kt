@@ -10,6 +10,7 @@ import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
+import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.main.MainActivity
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
@@ -84,8 +85,11 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     }
 
     override fun onChannelClick(channel: Channel) {
-        // TODO call to presenter to do this
-        (activity as MainActivity).showChannelProfile(channel)
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance())
+                .addToBackStack(ChannelProfileFragment.TAG)
+                .commit()
     }
 
     private fun initComponent() {

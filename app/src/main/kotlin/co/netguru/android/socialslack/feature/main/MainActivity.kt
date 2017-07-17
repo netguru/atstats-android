@@ -76,12 +76,4 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = mainPagerAdapter
         tabManager.init()
     }
-
-    fun showChannelProfile(channel: Channel) {
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, ChannelProfileFragment.newInstance())
-                .addToBackStack(null)
-                .commit()
-    }
 }

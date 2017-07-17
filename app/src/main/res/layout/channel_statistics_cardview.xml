@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:elevation="13dp"
+    android:elevation="@dimen/channel_card_view_elevation"
     android:orientation="vertical"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="@dimen/channel_card_view_card_corner_radius"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,36 +17,43 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:elevation="@dimen/channel_card_view_title_elevation"
+            android:layout_height="@dimen/common_zero"
+            android:layout_weight="1.2"
+            android:paddingBottom="@dimen/channel_card_view_title_bottom_padding"
             android:clipToPadding="false">
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitEnd"
-                android:src="@drawable/hashtag_title" />
+                android:background="@color/white"
+                android:elevation="@dimen/channel_card_view_title_elevation">
 
-            <TextView
-                android:id="@+id/channelName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                style="@style/FontLarge.PrimaryDark"
-                tool:text="#project-slack-social" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/hashtag_title" />
+
+                <TextView
+                    android:id="@+id/channelName"
+                    style="@style/FontLarge.PrimaryDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    tool:text="#project-slack-social" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/common_zero"
             android:layout_weight="1"
-            android:layout_marginTop="@dimen/margin_default"
             android:gravity="center_horizontal">
 
             <RelativeLayout
-                android:id="@+id/relativeLayout3"
+                android:id="@+id/channelStatisticsRelativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -66,7 +74,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_toEndOf="@+id/totalHereIcon"
-                    android:text="Total of @here"
+                    android:text="@string/channel_statistics_total_of_here"
                     android:textAllCaps="true" />
             </RelativeLayout>
 
@@ -75,7 +83,7 @@
                 style="@style/FontDisplay2.PrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout3"
+                android:layout_below="@+id/channelStatisticsRelativeLayout"
                 android:layout_centerHorizontal="true"
                 tool:text="17" />
 
@@ -85,7 +93,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/common_zero"
             android:layout_weight="1">
 
             <LinearLayout
@@ -100,14 +108,14 @@
                     android:gravity="center_horizontal">
 
                     <RelativeLayout
-                        android:id="@+id/relativeLayout4"
+                        android:id="@+id/mentionsTitleRelativeLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
 
-                        <android.support.v7.widget.AppCompatImageView
+                        <ImageView
                             android:id="@+id/yourMentionsIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -121,7 +129,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/margin_small"
                             android:layout_toEndOf="@+id/yourMentionsIcon"
-                            android:text="Your mentions"
+                            android:text="@string/channel_statistics_your_mentions"
                             android:textAllCaps="true" />
                     </RelativeLayout>
 
@@ -130,7 +138,7 @@
                         style="@style/FontDisplay2.PrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/relativeLayout4"
+                        android:layout_below="@+id/mentionsTitleRelativeLayout"
                         android:layout_centerHorizontal="true"
                         tool:text="34" />
 
@@ -150,14 +158,14 @@
                     android:gravity="center_horizontal">
 
                     <RelativeLayout
-                        android:id="@+id/relativeLayout5"
+                        android:id="@+id/secondHereTitleRelativeLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
 
-                        <android.support.v7.widget.AppCompatImageView
+                        <ImageView
                             android:id="@+id/secondTotalHereIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -171,7 +179,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/margin_small"
                             android:layout_toEndOf="@+id/secondTotalHereIcon"
-                            android:text="Total of @here"
+                            android:text="@string/channel_statistics_total_of_here"
                             android:textAllCaps="true" />
                     </RelativeLayout>
 
@@ -180,7 +188,7 @@
                         style="@style/FontDisplay2.PrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/relativeLayout5"
+                        android:layout_below="@+id/secondHereTitleRelativeLayout"
                         android:layout_centerHorizontal="true"
                         tool:text="17" />
 
@@ -192,18 +200,19 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/common_zero"
             android:layout_weight="1">
 
-            <android.support.v7.widget.AppCompatButton
+            <Button
                 android:id="@+id/shareWithUserButton"
-                android:text="Share with channel"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_big"
-                android:background="@drawable/shape_rounded_button_corners_gradient_gray"/>
+                android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+                android:text="@string/channel_statistics_share_with_channel"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
 
 
         </RelativeLayout>
