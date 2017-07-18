@@ -10,7 +10,6 @@ interface ChannelProfile {
         fun showChannelInfo(messageNumber: Int, here: String, mentions: String)
 
         fun showError()
-
     }
 
     interface Presenter : MvpPresenter<View> {
