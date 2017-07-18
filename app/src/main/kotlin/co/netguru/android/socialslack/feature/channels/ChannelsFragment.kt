@@ -86,7 +86,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onChannelClick(channel: Channel) {
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(mockChannel()))
+                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }
@@ -94,10 +94,5 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     private fun initComponent() {
         component = App.getApplicationComponent(context)
                 .plusChannelsComponent()
-    }
-
-    //TODO 17.07.2017 remove mock
-    private fun mockChannel(): Channel {
-        return Channel("123", "projekt-slack-social", "ID123", false, true, 123, 2)
     }
 }
