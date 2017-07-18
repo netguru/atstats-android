@@ -225,7 +225,7 @@ dependencies {
     androidTestCompile(test.espressoIdlingResource) {
         exclude module: 'espresso-core'
     }
-    implementation 'com.android.support:support-v4:25.4.0'
+
 }
 repositories {
     mavenCentral()
