@@ -28,14 +28,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/messagesTextView"
+                android:id="@+id/messagesNumber"
                 style="@style/FontLarge.PrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tool:text="123 456" />
 
             <TextView
-                android:id="@+id/messagesDetailTextTextView"
+                android:id="@+id/messagesDetailText"
                 style="@style/FontSmall.Capital.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

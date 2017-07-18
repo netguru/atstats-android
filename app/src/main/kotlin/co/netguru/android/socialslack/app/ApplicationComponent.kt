@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.app
 
 import co.netguru.android.socialslack.feature.channels.ChannelsComponent
+import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileComponent
 import co.netguru.android.socialslack.feature.filter.FilterComponent
 import co.netguru.android.socialslack.feature.login.LoginComponent
 import co.netguru.android.socialslack.feature.splash.SplashComponent
@@ -17,6 +18,8 @@ interface ApplicationComponent {
     fun plusSplashComponent(): SplashComponent
 
     fun plusChannelsComponent(): ChannelsComponent
+
+    fun plusChannelProfileComponent(): ChannelProfileComponent
 
     fun plusFilterComponent(): FilterComponent
 }

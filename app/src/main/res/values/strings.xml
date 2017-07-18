@@ -51,4 +51,5 @@
     <string name="person_we_write_most">Osoba do której najwięcej piszemy</string>
     <string name="person_writes_to_us_most">Osoba która najwięcej do nas pisze</string>
     <string name="person_we_talk_most">Osoba z którą najwięcej rozmawiamy</string>
+    <string name="hashtag">#</string>
 </resources>

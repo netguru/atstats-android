@@ -11,7 +11,6 @@ import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
-import co.netguru.android.socialslack.feature.main.MainActivity
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
@@ -87,7 +86,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onChannelClick(channel: Channel) {
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance())
+                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(mockChannel()))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }
@@ -95,5 +94,10 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     private fun initComponent() {
         component = App.getApplicationComponent(context)
                 .plusChannelsComponent()
+    }
+
+    //TODO 17.07.2017 remove mock
+    private fun mockChannel(): Channel {
+        return Channel("123", "projekt-slack-social", "ID123", false, true, 123, 2)
     }
 }
