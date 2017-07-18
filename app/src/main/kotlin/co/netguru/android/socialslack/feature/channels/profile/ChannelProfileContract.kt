@@ -18,4 +18,3 @@ interface ChannelProfile {
         fun getChannelInfo()
     }
 }
-

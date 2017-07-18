@@ -1,6 +1,5 @@
 package co.netguru.android.socialslack.feature.channels.root
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -27,5 +26,4 @@ class ChannelsRootFragment : Fragment() {
 
         return view
     }
-
 }

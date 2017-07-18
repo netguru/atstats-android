@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.channel_statistics_cardview.*
 import kotlinx.android.synthetic.main.fragment_channel_profile.*
 import kotlinx.android.synthetic.main.profile_head_layout.*
 
-
 class ChannelProfileFragment(val channel: Channel) : MvpFragment<ChannelProfile.View, ChannelProfile.Presenter>(), ChannelProfile.View {
 
     companion object {
@@ -53,7 +52,6 @@ class ChannelProfileFragment(val channel: Channel) : MvpFragment<ChannelProfile.
         Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
-
     override fun createPresenter(): ChannelProfile.Presenter {
         return component.getPresenter()
     }
@@ -62,5 +60,4 @@ class ChannelProfileFragment(val channel: Channel) : MvpFragment<ChannelProfile.
         component = App.getApplicationComponent(context)
                 .plusChannelProfileComponent()
     }
-
 }
