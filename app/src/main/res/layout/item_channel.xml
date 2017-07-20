@@ -21,7 +21,7 @@
             android:src="@drawable/channels_inactive" />
 
         <TextView
-            android:id="@+id/channelMessages"
+            android:id="@+id/channelMessagesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -33,14 +33,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/channelMessages"
+            android:layout_below="@id/channelMessagesTextView"
             android:layout_marginTop="@dimen/card_subtitle_margin"
             android:text="@string/messages"
             android:textColor="@color/grey"
             android:textSize="@dimen/subtitle_textSize" />
 
         <TextView
-            android:id="@+id/channelName"
+            android:id="@+id/channelNameTextView"
             style="@style/TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

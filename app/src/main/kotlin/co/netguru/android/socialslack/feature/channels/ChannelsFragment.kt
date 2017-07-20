@@ -86,7 +86,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onChannelClick(channel: Channel) {
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel))
+                // TODO replace name for id
+                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel.name, channel.currentPositionInList))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }

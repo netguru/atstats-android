@@ -7,44 +7,59 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
-import co.netguru.android.socialslack.data.channels.model.Channel
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
 import kotlinx.android.synthetic.main.fragment_channel_profile.*
-import kotlinx.android.synthetic.main.profile_head_layout.*
+import kotlinx.android.synthetic.main.profile_header_layout.*
 
-class ChannelProfileFragment(val channel: Channel) : MvpFragment<ChannelProfile.View, ChannelProfile.Presenter>(), ChannelProfile.View {
+class ChannelProfileFragment : MvpFragment<ChannelProfile.View, ChannelProfile.Presenter>(), ChannelProfile.View {
 
     companion object {
-        fun newInstance (channel: Channel) = ChannelProfileFragment(channel)
-        val TAG:String = ChannelProfileFragment::class.java.canonicalName
+        fun newInstance(channelId: String, currentPosition: Int): ChannelProfileFragment {
+            val bundle = Bundle()
+            bundle.putString(KEY_CHANNEL_ID, channelId)
+            bundle.putInt(KEY_CHANNEL_CURRENT_POSITION, currentPosition)
+
+            val channelProfileFragment = ChannelProfileFragment()
+            channelProfileFragment.arguments = bundle
+
+            return channelProfileFragment
+        }
+
+        val KEY_CHANNEL_ID = "key:channel_id"
+        val KEY_CHANNEL_CURRENT_POSITION = "key:channel_current_position"
+        val TAG: String = ChannelProfileFragment::class.java.simpleName
     }
 
     private lateinit var component: ChannelProfileComponent
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         initComponent()
-        return inflater?.inflate(R.layout.fragment_channel_profile, container, false)
+        return inflater.inflate(R.layout.fragment_channel_profile, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpFields(channel)
+        setUpFields()
         getPresenter().getChannelInfo()
     }
 
-    override fun showChannelInfo(numberMessage: Int, here: String, mentions: String) {
-        totalOfHere.text = here
-        yourMentions.text = mentions
-        secondTotalHere.text = here
-        messagesNumber.text = numberMessage.toString()
+    override fun showChannelInfo(totalMessages: Int, here: String, mentions: String) {
+        totalOfHereTextView.text = here
+        yourMentionsTextView.text = mentions
+        secondTotalHereTextView.text = here
+        totalMessagesTextView.text = totalMessages.toString()
     }
 
-    private fun setUpFields(channel: Channel) {
-        messagesDetailText.text = resources.getString(R.string.total_messages)
-        channelName.text = resources.getString(R.string.hashtag).plus(channel.name)
-        rankTextView.text = channel.currentPositionInList.toString()
+    private fun setUpFields() {
+        // The text in the header's fields will be change depending in which fragment inflate it
+        messagesDetailTextView.text = resources.getString(R.string.total_messages)
+        // TODO 20.07.2017 the presenter will get the name here only set the position in the list
+        val channelId = arguments.getString(KEY_CHANNEL_ID)
+        val channelPosition = arguments.getInt(KEY_CHANNEL_CURRENT_POSITION)
+        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelId)
+        rankTextView.text = channelPosition.toString()
 
     }
 
