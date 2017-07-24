@@ -21,6 +21,9 @@
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
 
+    <string name="total_messages">Total messages</string>
+    <string name="rank">Rank</string>
+
     // Filter view
     <string name="filter_by">Filter by</string>
     <!-- TODO 13.07.2017 Update strings when filtering logic will be working correctly -->
@@ -35,6 +38,12 @@
     <string name="statistic_sent_private_messages">sent\nprivate messages</string>
     <string name="statistic_total_read_messages">total number\nof read messages</string>
     <string name="statistic_received_private_messages">received\nprivate messages</string>
+
+    // Channel statistics
+    <string name="channel_statistics_total_of_here">Total of @here</string>
+    <string name="channel_statistics_your_mentions">Your mentions</string>
+    <string name="channel_statistics_share_with_channel">Share with channel</string>
+
     <string name="most_active_channel">Najbardziej aktywny kanał</string>
     <string name="channels">Channels</string>
     <string name="channel_we_write_most">Kanał na którym najwięcej piszemy</string>
@@ -45,4 +54,5 @@
     <string name="person_we_write_most">Osoba do której najwięcej piszemy</string>
     <string name="person_writes_to_us_most">Osoba która najwięcej do nas pisze</string>
     <string name="person_we_talk_most">Osoba z którą najwięcej rozmawiamy</string>
+    <string name="hashtag">#</string>
 </resources>

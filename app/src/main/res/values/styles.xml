@@ -39,6 +39,23 @@
         <item name="android:textColor">@color/primaryDark</item>
     </style>
 
+    <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
+    <style name="FontDisplay2.PrimaryDark" parent="TextAppearance.AppCompat.Display2">
+        <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
+    <style name="FontLarge.Orange" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+    
+    <style name="FontSmall.Capital.Grey" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="TextMedium" parent="TextAppearance.AppCompat.Medium" >
         <item name="android:textColor">@color/violet</item>
         <item name="android:textStyle">bold</item>

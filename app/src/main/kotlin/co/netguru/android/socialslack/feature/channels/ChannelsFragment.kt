@@ -9,13 +9,15 @@ import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
+import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
+import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_channels.*
 
 class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Presenter>(),
-        ChannelsContract.View {
+        ChannelsContract.View, ChannelsViewHolder.ChannelClickListener {
 
     companion object {
         fun newInstance() = ChannelsFragment()
@@ -74,11 +76,20 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     }
 
     private fun initRecyclerView() {
-        adapter = ChannelsAdapter()
+        adapter = ChannelsAdapter(this)
         channelsRecyclerView.setHasFixedSize(true)
         channelsRecyclerView.addItemDecoration(DividerItemDecorator(context,
                 DividerItemDecorator.Orientation.VERTICAL_LIST, false))
         channelsRecyclerView.adapter = adapter
+    }
+
+    override fun onChannelClick(channel: Channel) {
+        fragmentManager
+                .beginTransaction()
+                // TODO replace name for id
+                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel.name, channel.currentPositionInList))
+                .addToBackStack(ChannelProfileFragment.TAG)
+                .commit()
     }
 
     private fun initComponent() {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO 20.07.2017 this header will be inflated by fragments -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        style="@style/FontMedium.PrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_default"
+        android:gravity="center"
+        tool:text="Osoba ktora najwiecej do nas pisze" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/messageLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_very_big"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalMessagesTextView"
+                style="@style/FontLarge.PrimaryDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tool:text="123 456" />
+
+            <TextView
+                android:id="@+id/messagesDetailTextView"
+                style="@style/FontSmall.Capital.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tool:text="Total messages" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/messageLayout"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/rankTextView"
+                    style="@style/FontLarge.Orange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    tool:text="123" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/rankTextView"
+                    android:src="@drawable/rank_profile" />
+
+            </RelativeLayout>
+
+            <TextView
+                style="@style/FontSmall.Capital.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rank" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
