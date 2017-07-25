@@ -7,7 +7,7 @@
     tools:showIn="@layout/fragment_channels">
 
     <TextView
-        android:id="@+id/filter_view_text_view"
+        android:id="@+id/filterViewTextView"
         style="@style/FontSmall.PrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

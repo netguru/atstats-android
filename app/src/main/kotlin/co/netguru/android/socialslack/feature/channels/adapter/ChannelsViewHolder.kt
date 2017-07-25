@@ -7,14 +7,32 @@ import kotlinx.android.synthetic.main.item_channels.view.*
 
 class ChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(channelPosition: Int, channel: Channel, onChannelClickListener: ChannelClickListener) {
+    companion object {
+        private const val POSITION_FIRST = 1
+    }
+
+    private val channelsPlaceNrTextView = itemView.itemChannelsPlaceNrTextView
+    private val channelsNameTextView = itemView.itemChannelsNameTextView
+    private val channelsMessagesNrTextView = itemView.itemChannelsMessagesNrTextView
+    private val channelsRankImageView = itemView.itemChannelsRankImageView
+
+    fun bind(channel: Channel, onChannelClickListener: ChannelClickListener) {
         with(channel) {
             itemView.setOnClickListener { onChannelClickListener.onChannelClick(this) }
-            itemView.itemChannelsPlaceNrTextView.text = (channelPosition.toString() + '.')
-            itemView.itemChannelsNameTextView.text = name
+            channelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
+            channelsNameTextView.text = name
 
             //TODO 10.07.2017 Change to messages number when it will be possible (according to SLACK API)
-            itemView.itemChannelsMessagesNrTextView.text = membersNumber.toString()
+            channelsMessagesNrTextView.text = membersNumber.toString()
+            changeRankViewVisibility(currentPositionInList)
+        }
+    }
+
+    private fun changeRankViewVisibility(channelsPositionInList: Int) {
+        if (channelsPositionInList == POSITION_FIRST) {
+            channelsRankImageView.visibility = View.VISIBLE
+        } else {
+            channelsRankImageView.visibility = View.GONE
         }
     }
 
