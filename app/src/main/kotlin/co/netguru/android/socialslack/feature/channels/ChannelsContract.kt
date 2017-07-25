@@ -15,6 +15,10 @@ interface ChannelsContract {
         fun showFilterView()
 
         fun setCurrentFilterOptionText(@StringRes stringResId: Int)
+
+        fun showLoadingView()
+
+        fun hideLoadingView()
     }
 
     interface Presenter : MvpPresenter<View> {

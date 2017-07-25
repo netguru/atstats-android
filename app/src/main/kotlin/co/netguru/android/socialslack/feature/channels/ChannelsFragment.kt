@@ -75,6 +75,16 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         FilterActivity.startActivity(context, FilterObjectType.CHANNELS)
     }
 
+    override fun showLoadingView() {
+        channelsRecyclerView.visibility = View.GONE
+        channelLoadingView.visibility = View.VISIBLE
+    }
+
+    override fun hideLoadingView() {
+        channelsRecyclerView.visibility = View.VISIBLE
+        channelLoadingView.visibility = View.GONE
+    }
+
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
 
     fun sortData() {
