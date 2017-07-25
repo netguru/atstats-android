@@ -35,7 +35,7 @@
                     android:src="@drawable/hashtag_title" />
 
                 <TextView
-                    android:id="@+id/channelName"
+                    android:id="@+id/channelNameTextView"
                     style="@style/FontLarge.PrimaryDark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -68,7 +68,7 @@
                     android:src="@drawable/messages_icon" />
 
                 <TextView
-                    android:id="@+id/totalHereTitle"
+                    android:id="@+id/totalHereTitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -79,7 +79,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/totalOfHere"
+                android:id="@+id/totalOfHereTextView"
                 style="@style/FontDisplay2.PrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,9 +87,7 @@
                 android:layout_centerHorizontal="true"
                 tool:text="17" />
 
-
         </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -123,7 +121,7 @@
                             android:src="@drawable/mentions_icon" />
 
                         <TextView
-                            android:id="@+id/yourMentionsTitle"
+                            android:id="@+id/yourMentionsTitleTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -134,14 +132,13 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/yourMentions"
+                        android:id="@+id/yourMentionsTextView"
                         style="@style/FontDisplay2.PrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mentionsTitleRelativeLayout"
                         android:layout_centerHorizontal="true"
                         tool:text="34" />
-
 
                 </RelativeLayout>
 
@@ -173,7 +170,7 @@
                             android:src="@drawable/here_icon" />
 
                         <TextView
-                            android:id="@+id/secondTotalHereTitle"
+                            android:id="@+id/secondTotalHereTitleTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -184,7 +181,7 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/secondTotalHere"
+                        android:id="@+id/secondTotalHereTextView"
                         style="@style/FontDisplay2.PrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -214,11 +211,8 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
-
         </RelativeLayout>
 
-
     </LinearLayout>
-
 
 </android.support.v7.widget.CardView>

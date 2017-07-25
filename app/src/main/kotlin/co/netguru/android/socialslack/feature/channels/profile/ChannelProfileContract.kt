@@ -8,13 +8,13 @@ interface ChannelProfile {
 
     interface View : MvpView {
 
-        fun showChannelInfo(channel: Channel, messageNumber: Int, here: String, mentions: String)
+        fun showChannelInfo(channelName: String, totalMessages: Int, totalHere: Int, totalMentions: Int)
 
         fun showError()
     }
 
     interface Presenter : MvpPresenter<View> {
 
-        fun getChannelInfo()
+        fun getChannelInfo(channelId: String)
     }
 }

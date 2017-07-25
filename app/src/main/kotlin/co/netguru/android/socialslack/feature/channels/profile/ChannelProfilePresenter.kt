@@ -9,8 +9,8 @@ import javax.inject.Inject
 class ChannelProfilePresenter @Inject constructor() :
         MvpNullObjectBasePresenter<ChannelProfile.View>(), Presenter {
 
-    override fun getChannelInfo() {
+    override fun getChannelInfo(ChannelId: String) {
         // TODO get the actual numbers
-        view.showChannelInfo(1234, "17", "34")
+        view.showChannelInfo("Project-social-slack",1234, 17, 34)
     }
 }

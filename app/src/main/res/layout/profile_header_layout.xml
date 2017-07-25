@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO 20.07.2017 this header will be inflated by fragments -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,14 +29,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/messagesNumber"
+                android:id="@+id/totalMessagesTextView"
                 style="@style/FontLarge.PrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tool:text="123 456" />
 
             <TextView
-                android:id="@+id/messagesDetailText"
+                android:id="@+id/messagesDetailTextView"
                 style="@style/FontSmall.Capital.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
