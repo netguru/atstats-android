@@ -67,6 +67,10 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         Snackbar.make(channelsRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
+    override fun showFilterOptionError() {
+        Snackbar.make(channelsRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
+    }
+
     override fun setCurrentFilterOptionText(stringResId: Int) {
         filterViewTextView.setText(stringResId)
     }

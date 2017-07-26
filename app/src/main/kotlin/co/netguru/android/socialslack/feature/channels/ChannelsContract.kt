@@ -12,6 +12,8 @@ interface ChannelsContract {
 
         fun showError()
 
+        fun showFilterOptionError()
+
         fun showFilterView()
 
         fun setCurrentFilterOptionText(@StringRes stringResId: Int)

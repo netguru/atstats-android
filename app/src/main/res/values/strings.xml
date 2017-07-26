@@ -31,6 +31,7 @@
     <string name="channel_we_are_most_active">TODO - Members number DESC</string> <!--Channel We Are Most Active -->
     <string name="most_active_channel_filter">TODO - Members number ASC</string> <!-- Most Active channel -->
     <string name="categories">Categories</string>
+    <string name="error_filter_option">Error while changing filter option</string>
 
     <string name="messages">messages</string>
     <string name="statistic_messages_sent">messages sent by you\non channels</string>

@@ -38,6 +38,7 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
                         },
                         onError = {
                             Timber.e(it, "Error while getting current filter option")
+                            view.showFilterOptionError()
                         }
                 )
     }
@@ -74,10 +75,10 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
                         onSuccess = {
                             view.showChannels(it.first)
                             view.setCurrentFilterOptionText(it.second.textResId)
-
                         },
                         onError = {
                             Timber.e(it, "Error while changing channels order")
+                            view.showFilterOptionError()
                         })
     }
 
