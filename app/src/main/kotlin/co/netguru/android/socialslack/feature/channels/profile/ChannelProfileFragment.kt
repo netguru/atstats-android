@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.feature.channels.share.ChannelShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
 import kotlinx.android.synthetic.main.fragment_channel_profile.*
@@ -43,6 +44,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfile.View, ChannelProfile.P
         super.onViewCreated(view, savedInstanceState)
         setUpFields()
         getPresenter().getChannelInfo()
+        shareWithUserButton.setOnClickListener { presenter.onShareButtonClick()}
     }
 
     override fun showChannelInfo(totalMessages: Int, here: String, mentions: String) {
@@ -50,6 +52,10 @@ class ChannelProfileFragment : MvpFragment<ChannelProfile.View, ChannelProfile.P
         yourMentionsTextView.text = mentions
         secondTotalHereTextView.text = here
         totalMessagesTextView.text = totalMessages.toString()
+    }
+
+    override fun showShareDialogFragment() {
+        ChannelShareDialogFragment.newInstance().show(fragmentManager, ChannelShareDialogFragment.TAG)
     }
 
     private fun setUpFields() {

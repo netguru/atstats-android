@@ -10,10 +10,14 @@ interface ChannelProfile {
         fun showChannelInfo(messageNumber: Int, here: String, mentions: String)
 
         fun showError()
+
+        fun showShareDialogFragment()
     }
 
     interface Presenter : MvpPresenter<View> {
 
         fun getChannelInfo()
+
+        fun onShareButtonClick()
     }
 }
