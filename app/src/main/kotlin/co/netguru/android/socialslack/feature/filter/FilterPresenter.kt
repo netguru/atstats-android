@@ -30,7 +30,7 @@ class FilterPresenter @Inject constructor(private val filterController: FilterCo
         }
     }
 
-    override fun filterOptionChanged(channelsFilterOption: ChannelsFilterOption) {
+    override fun channelsFilterOptionChanged(channelsFilterOption: ChannelsFilterOption) {
         compositeDisposable += filterController.saveChannelsFilterOption(channelsFilterOption)
                 .compose(RxTransformers.applyCompletableIoSchedulers())
                 .subscribeBy(

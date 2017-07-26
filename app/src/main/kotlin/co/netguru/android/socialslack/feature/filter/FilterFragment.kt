@@ -74,9 +74,9 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
 
     private fun saveCurrentFilterOption() {
         when (filterRadioGroup.checkedRadioButtonId) {
-            filterOption1RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
-            filterOption2RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
-            filterOption3RadioBtn.id -> presenter.filterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
+            filterOption1RadioBtn.id -> presenter.channelsFilterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
+            filterOption2RadioBtn.id -> presenter.channelsFilterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
+            filterOption3RadioBtn.id -> presenter.channelsFilterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
         }
     }
 
