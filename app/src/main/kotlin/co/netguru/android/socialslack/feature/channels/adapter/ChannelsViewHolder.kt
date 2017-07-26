@@ -29,11 +29,8 @@ class ChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     private fun changeRankViewVisibility(channelsPositionInList: Int) {
-        if (channelsPositionInList == POSITION_FIRST) {
-            channelsRankImageView.visibility = View.VISIBLE
-        } else {
-            channelsRankImageView.visibility = View.GONE
-        }
+        channelsRankImageView.visibility = if (channelsPositionInList == POSITION_FIRST)
+            View.VISIBLE else View.GONE
     }
 
     interface ChannelClickListener {

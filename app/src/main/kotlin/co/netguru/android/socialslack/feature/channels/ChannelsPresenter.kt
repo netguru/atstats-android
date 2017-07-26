@@ -46,7 +46,8 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
     override fun getChannelsFromServer() {
         view.showLoadingView()
         compositeDisposable += channelsController.getChannelsList()
-                .zipWith(filterController.getChannelsFilterOption()) { channelsList, filterOption -> Pair(channelsList, filterOption) }
+                .zipWith(filterController.getChannelsFilterOption())
+                { channelsList, filterOption -> Pair(channelsList, filterOption) }
                 .flatMap { sortChannelsList(it.first, it.second) }
                 .compose(RxTransformers.applySingleComputationSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
@@ -67,7 +68,8 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
     override fun sortRequestReceived(channelList: List<Channel>) {
         view.showLoadingView()
         compositeDisposable += Single.just(channelList)
-                .zipWith(filterController.getChannelsFilterOption()) { channelsList, filterOption -> Pair(channelsList, filterOption) }
+                .zipWith(filterController.getChannelsFilterOption())
+                { channelsList, filterOption -> Pair(channelsList, filterOption) }
                 .flatMap { sortChannelsList(it.first, it.second) }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
