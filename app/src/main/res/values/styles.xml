@@ -47,8 +47,16 @@
         <item name="android:textColor">@color/primaryDark</item>
     </style>
 
+    <style name="FontMedium.Orange" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
     <style name="FontLarge.Orange" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="FontLarge.LightGrey" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/lightGrey</item>
     </style>
     
     <style name="FontSmall.Capital.Grey" parent="TextAppearance.AppCompat.Small">

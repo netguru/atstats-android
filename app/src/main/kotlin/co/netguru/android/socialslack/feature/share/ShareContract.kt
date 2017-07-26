@@ -1,9 +1,9 @@
-package co.netguru.android.socialslack.feature.channels.share
+package co.netguru.android.socialslack.feature.share
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
-interface ChannelShareContract {
+interface ShareContract {
 
     interface View : MvpView
 

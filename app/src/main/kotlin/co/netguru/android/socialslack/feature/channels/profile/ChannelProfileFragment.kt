@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
-import co.netguru.android.socialslack.feature.channels.share.ChannelShareDialogFragment
+import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
 import kotlinx.android.synthetic.main.fragment_channel_profile.*
@@ -55,7 +55,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfile.View, ChannelProfile.P
     }
 
     override fun showShareDialogFragment() {
-        ChannelShareDialogFragment.newInstance().show(fragmentManager, ChannelShareDialogFragment.TAG)
+        ShareDialogFragment.newInstance().show(fragmentManager, ShareDialogFragment.TAG)
     }
 
     private fun setUpFields() {
