@@ -64,22 +64,32 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     }
 
     private fun setUpFields(channelName: String, totalMessage: Int, rank: Int) {
-            messagesDetailTextView.text = resources.getString(R.string.total_messages)
-            channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelName)
-            rankTextView.text = rank.toString()
-            totalMessagesTextView.text = totalMessage.toString()
-        }
-
-        override fun showError() {
-            Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
-        }
-
-        override fun createPresenter(): ChannelProfileContract.Presenter {
-            return component.getPresenter()
-        }
-
-        private fun initComponent() {
-            component = App.getApplicationComponent(context)
-                    .plusChannelProfileComponent()
-        }
+        messagesDetailTextView.text = resources.getString(R.string.total_messages)
+        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelName)
+        rankTextView.text = rank.toString()
+        totalMessagesTextView.text = totalMessage.toString()
     }
+
+    override fun showError() {
+        Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun createPresenter(): ChannelProfileContract.Presenter {
+        return component.getPresenter()
+    }
+
+    private fun initComponent() {
+        component = App.getApplicationComponent(context)
+                .plusChannelProfileComponent()
+    }
+
+    override fun showLoadingView() {
+        progressBar.visibility = View.VISIBLE
+        channelCardView.visibility = View.INVISIBLE
+    }
+
+    override fun hideLoadingView() {
+        progressBar.visibility = View.INVISIBLE
+        channelCardView.visibility = View.VISIBLE
+    }
+}

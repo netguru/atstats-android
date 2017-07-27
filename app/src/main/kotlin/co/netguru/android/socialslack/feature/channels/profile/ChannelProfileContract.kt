@@ -13,6 +13,10 @@ interface ChannelProfileContract {
         fun showError()
 
         fun showShareDialogFragment()
+
+        fun showLoadingView()
+
+        fun hideLoadingView()
     }
 
     interface Presenter : MvpPresenter<View> {

@@ -23,6 +23,9 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
     private val compositeDisposable = CompositeDisposable()
 
     override fun getChannelInfo(ChannelId: String) {
+
+        view.showLoadingView()
+
         val messageStream = channelHistoryProvider.getMessagesForChannel(ChannelId)
                 .observeOn(Schedulers.io())
                 .filter { (type) -> type == ChannelMessages.MESSAGE_TYPE }
@@ -33,6 +36,7 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
                 countStringAppearance(messageStream, userId))
                 .compose(RxTransformers.applyFlowableComputationSchedulers<Pair<String, Long>>())
                 .toList()
+                .doAfterTerminate{view.hideLoadingView()}
                 .subscribeBy(
                         onSuccess = this::showCount,
                         onError = {
