@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
@@ -40,7 +41,10 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        sendButton.setOnClickListener { presenter.onSendButtonClick() }
+        sendButton.setOnClickListener {
+            presenter.onSendButtonClick(
+                    ScreenShotUtils.takeScreenShotByteArray(shareRootView))
+        }
     }
 
     override fun createPresenter() = component.getPresenter()

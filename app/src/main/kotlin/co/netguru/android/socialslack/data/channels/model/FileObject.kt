@@ -1,7 +1,3 @@
 package co.netguru.android.socialslack.data.channels.model
 
-/**
- * Created by r.adasiewicz on 27.07.2017.
- */
-class FileObject {
-}
+data class FileObject(val id: String, val name: String, val title: String, val filetype: String)

@@ -12,6 +12,6 @@ interface ShareContract {
 
     interface Presenter : MvpPresenter<View> {
 
-        fun onSendButtonClick()
+        fun onSendButtonClick(screenShotByteArray: ByteArray)
     }
 }
