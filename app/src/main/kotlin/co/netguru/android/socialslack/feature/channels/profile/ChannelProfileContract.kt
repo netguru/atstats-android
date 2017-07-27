@@ -1,20 +1,20 @@
 package co.netguru.android.socialslack.feature.channels.profile
 
-import co.netguru.android.socialslack.data.channels.model.Channel
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
-interface ChannelProfile {
 
-    interface View : MvpView {
+interface ChannelProfileContract {
 
-        fun showChannelInfo(channelName: String, totalMessages: Int, totalHere: Int, totalMentions: Int)
+    interface View: MvpView {
+
+        fun showChannelInfo(totalHere: Int, totalMentions: Int)
 
         fun showError()
     }
 
-    interface Presenter : MvpPresenter<View> {
+    interface Presenter: MvpPresenter<View> {
 
-        fun getChannelInfo(channelId: String)
+        fun getChannelInfo(ChannelId: String)
     }
 }

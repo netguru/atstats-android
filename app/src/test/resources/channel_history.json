@@ -1,0 +1,1853 @@
+{
+  "ok": true,
+  "messages": [
+    {
+      "type": "message",
+      "user": "U0251HTQ4",
+      "text": "a w nim o <@U03AJTQSB> <@U4EQ37ULE> , <@U1QSS4SCR> , <@U055C3Y9N> , <@U02J5CQCR>",
+      "thread_ts": "1501072306.506517",
+      "ts": "1501072392.537541",
+      "reactions": [
+        {
+          "name": "eyes",
+          "users": [
+            "U03AJTQSB"
+          ],
+          "count": 1
+        },
+        {
+          "name": "alien_parrot",
+          "users": [
+            "U1QSS4SCR"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "Leaders - bd monthly Blog post created by Kuba Filipowski: <https://netguru.atlassian.net/wiki/x/1FaXBw>",
+          "text": " Chcemy raz w miesiącu opowiadać Wam więcej o tym co robi nasz zespół i kto nam pomaga, żeby było dobrze. Mamy nadzieję, że będzie to dla Was...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/LEADERS|Leaders>",
+          "title": "bd monthly",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/1FaXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~kuba|Kuba Filipowski>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "thread_ts": "1501072306.506517",
+      "reply_count": 1,
+      "replies": [
+        {
+          "user": "U0251HTQ4",
+          "ts": "1501072392.537541"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 1,
+      "ts": "1501072306.506517"
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "Team - Do zobaczenia Blog post created by Marta Stachecka: <https://netguru.atlassian.net/wiki/x/tVaXBw>",
+          "text": " Hej ho, Dziś jest mój ostatni dzień w Netguru. Zadecydowałam, że chciałabym coś zmienić, stąd moja decyzja o przerwaniu współpracy. Dziękuję...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/TEAM|Team>",
+          "title": "Do zobaczenia",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/tVaXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~marta.stachecka|Marta Stachecka>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501072033.405982",
+      "reactions": [
+        {
+          "name": "disappointed",
+          "users": [
+            "U0FMT9N5V",
+            "U27JNSJ9E",
+            "U08KT3R6E",
+            "U04V0R66W",
+            "U1WUXS58X",
+            "U02AYK1Q7",
+            "U4TF0GUD8"
+          ],
+          "count": 7
+        },
+        {
+          "name": "sadparrot",
+          "users": [
+            "U1WUXS58X",
+            "U02AYK1Q7"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "text": "Kamil Puk just gave a prop to *Anna Krzyminiewska*: _ Za cudowne zastępstwo :cake: :cookie: :bread: dziękuję! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501071777.316683"
+    },
+    {
+      "type": "message",
+      "user": "U055C3Y9N",
+      "text": "nie ma za co :trolley_bus:",
+      "thread_ts": "1501070688.954395",
+      "ts": "1501071749.307528",
+      "reactions": [
+        {
+          "name": "trollface",
+          "users": [
+            "U1QSS4SCR"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "Dorota Mierzwa just gave a prop to *Tobiasz Jankowski*: _ it’s dun :alpaca:  :high_five: _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501071684.285563",
+      "reactions": [
+        {
+          "name": "heart",
+          "users": [
+            "U4L0D1Z3J"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U0251EZGC",
+      "text": "lepiej ESET zainstaluj!",
+      "thread_ts": "1501071528.231737",
+      "parent_user_id": "U3P0SR6UV",
+      "ts": "1501071560.242198",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U2Z7XAWCU",
+            "U1QSS4SCR",
+            "U48D0MD54",
+            "U0Q2HPUR5",
+            "U0F66T78S",
+            "U5A0S3BU3",
+            "U2JHT4VUP",
+            "U02GZLLCY"
+          ],
+          "count": 8
+        },
+        {
+          "name": "eset",
+          "users": [
+            "U4E55MK6G"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U077M5XNX",
+      "text": ":+1:",
+      "ts": "1501071545.237271"
+    },
+    {
+      "type": "message",
+      "user": "U3P0SR6UV",
+      "text": "<!here|@here> stawiam wóde! :wodka:",
+      "thread_ts": "1501071528.231737",
+      "reply_count": 1,
+      "replies": [
+        {
+          "user": "U0251EZGC",
+          "ts": "1501071560.242198"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 1,
+      "ts": "1501071528.231737",
+      "reactions": [
+        {
+          "name": "piguly",
+          "users": [
+            "U2JG0TKAP",
+            "U6691NDJ8",
+            "U4EQ37ULE",
+            "U0C180DQC",
+            "U02GZLLCY",
+            "U48D0MD54",
+            "U41ETGWDS"
+          ],
+          "count": 7
+        },
+        {
+          "name": "wodka",
+          "users": [
+            "U4L0D1Z3J",
+            "U1D68CPRR",
+            "U3P0SNTLM",
+            "U67257KCN",
+            "U4EQ37ULE",
+            "U02EJ97U3",
+            "U606WDSCW",
+            "U0BS3VD0R",
+            "U48D0MD54",
+            "U41ETGWDS"
+          ],
+          "count": 10
+        },
+        {
+          "name": "iksde",
+          "users": [
+            "U4L0D1Z3J",
+            "U4EQ37ULE",
+            "U4E55MK6G"
+          ],
+          "count": 3
+        },
+        {
+          "name": "xd",
+          "users": [
+            "U4L0D1Z3J",
+            "U4LNA6W12",
+            "U4EQ37ULE",
+            "U0BS3VD0R",
+            "U1QSS4SCR"
+          ],
+          "count": 5
+        },
+        {
+          "name": "rotfl2",
+          "users": [
+            "U4EQ37ULE",
+            "U67257KCN"
+          ],
+          "count": 2
+        },
+        {
+          "name": "tada",
+          "users": [
+            "U4L0D1Z3J"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "Sebastian Olko just gave a prop to *Kacper Matuszewski, Szymon Sobecki, Dorota Badzian*: _ dzieki za super BB!!! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "thread_ts": "1501070688.954395",
+      "reply_count": 1,
+      "replies": [
+        {
+          "user": "U055C3Y9N",
+          "ts": "1501071749.307528"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 1,
+      "ts": "1501070688.954395"
+    },
+    {
+      "type": "message",
+      "user": "U0BEESNHK",
+      "text": "Siema",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501068893.412820"
+    },
+    {
+      "text": "Marcin Siepetowski just gave a prop to *Dominik Filip*: _ bo pokazał jakie super jest fzf _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501067018.867720"
+    },
+    {
+      "text": "Kamil Puk just gave a prop to *Piotr Radtke*: _ Za cudowne zastępstwo! :runner: :flag-in: :medal: dziękuję! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501064133.007560"
+    },
+    {
+      "text": "Kamil Puk just gave a prop to *Ania Pinderak*: _ Za cudowne zastępstwo! :cash: :cake: :wunszkredit: :trophy: dziękuję! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501064062.984798"
+    },
+    {
+      "type": "message",
+      "user": "U6CKBCUGK",
+      "text": "W sumie mogłam zostać przy Cze - zrobiło furrorę. I tylko dopisać \"skąd klikasz?\".",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501062991.622731",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U66AHU6P7",
+            "U0BDPQ6LR"
+          ],
+          "count": 2
+        },
+        {
+          "name": "hat_up_cat",
+          "users": [
+            "U67257KCN"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U0BDPQ6LR",
+      "text": "juz poprawione! czytajcie! :slightly_smiling_face:",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501062496.447590"
+    },
+    {
+      "type": "message",
+      "user": "U4SQHB4N5",
+      "text": "sehwus",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501062278.370795",
+      "reactions": [
+        {
+          "name": "rotfl2",
+          "users": [
+            "U67257KCN"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U1D68CPRR",
+      "text": "yooo",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501062036.285159"
+    },
+    {
+      "type": "message",
+      "user": "U5N0SR3EU",
+      "text": "cze! :smile:",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061957.257667"
+    },
+    {
+      "type": "message",
+      "user": "U5N0SR3EU",
+      "text": "widzę że sporo osób idzie w moje ślady :smile:",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061948.254569"
+    },
+    {
+      "type": "message",
+      "user": "U1ECNBLAH",
+      "text": "<@U5N0SR3EU>",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061860.224274"
+    },
+    {
+      "type": "message",
+      "user": "U66AHU6P7",
+      "text": "cze!",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061816.209149"
+    },
+    {
+      "type": "message",
+      "user": "U04V0R66W",
+      "text": ":smile:",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061810.206884"
+    },
+    {
+      "type": "message",
+      "user": "U04V0R66W",
+      "text": "kutko i na temat bec",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061808.206088",
+      "reactions": [
+        {
+          "name": "heart",
+          "users": [
+            "U1WUXH4CX"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U67257KCN",
+      "text": "no szee",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061798.202792"
+    },
+    {
+      "type": "message",
+      "user": "U02EJ97U3",
+      "text": "cze",
+      "thread_ts": "1501061711.171067",
+      "ts": "1501061792.200615"
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "Main Board - Cze Blog post created by Anna Warchoł: <https://netguru.atlassian.net/wiki/x/T06XBw>",
+          "text": " ",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/WB2015|Main Board>",
+          "title": "Cze",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/T06XBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~anna.warchol|Anna Warchoł>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "thread_ts": "1501061711.171067",
+      "reply_count": 13,
+      "replies": [
+        {
+          "user": "U02EJ97U3",
+          "ts": "1501061792.200615"
+        },
+        {
+          "user": "U67257KCN",
+          "ts": "1501061798.202792"
+        },
+        {
+          "user": "U04V0R66W",
+          "ts": "1501061808.206088"
+        },
+        {
+          "user": "U04V0R66W",
+          "ts": "1501061810.206884"
+        },
+        {
+          "user": "U66AHU6P7",
+          "ts": "1501061816.209149"
+        },
+        {
+          "user": "U1ECNBLAH",
+          "ts": "1501061860.224274"
+        },
+        {
+          "user": "U5N0SR3EU",
+          "ts": "1501061948.254569"
+        },
+        {
+          "user": "U5N0SR3EU",
+          "ts": "1501061957.257667"
+        },
+        {
+          "user": "U1D68CPRR",
+          "ts": "1501062036.285159"
+        },
+        {
+          "user": "U4SQHB4N5",
+          "ts": "1501062278.370795"
+        },
+        {
+          "user": "U0BDPQ6LR",
+          "ts": "1501062496.447590"
+        },
+        {
+          "user": "U6CKBCUGK",
+          "ts": "1501062991.622731"
+        },
+        {
+          "user": "U0BEESNHK",
+          "ts": "1501068893.412820"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 13,
+      "ts": "1501061711.171067",
+      "reactions": [
+        {
+          "name": "wave",
+          "users": [
+            "U5A0S3BU3",
+            "U0F66T78S",
+            "U02EJ97U3",
+            "U2ZRV89E3",
+            "U66AHU6P7",
+            "U67257KCN",
+            "U3P0SNTLM",
+            "U5N0SR3EU",
+            "U4L0D1Z3J"
+          ],
+          "count": 9
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U275J5FB5",
+      "text": "hehe, taki Borat :smile:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061661.153283",
+      "reactions": [
+        {
+          "name": "aww_yeah",
+          "users": [
+            "U5A0S3BU3"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U5A0S3BU3",
+      "text": "btw. chciałbym mieć klienta, który wymyśla słowa swoje :piguly:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061629.141368"
+    },
+    {
+      "type": "message",
+      "user": "U275J5FB5",
+      "text": "ale nie wiem, bo jeszcze mnie nikt nie poprosił żebym się pochwaliła :stuck_out_tongue: siedzę i czuwam",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061532.106432"
+    },
+    {
+      "type": "message",
+      "user": "U5A0S3BU3",
+      "text": "OMG WHAT A SHAME :rotfl2:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061507.096925",
+      "reactions": [
+        {
+          "name": "rotfl2",
+          "users": [
+            "U02AYK1Q7"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U275J5FB5",
+      "text": "nie no, klient chyba jednak bien sur en francais",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061466.081843"
+    },
+    {
+      "type": "message",
+      "user": "U275J5FB5",
+      "text": "hahah :smile:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061457.078655",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U5A0S3BU3"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "Bartosz Suchodolski just gave a prop to *Marta Ciesielska, Marcin Jakubowski, Norbert Nytko ⌁, Maria Grzelak, Kamil Behnke, Tymoteusz Kupcewicz*: _ za bugbasha w reason2be :trump: wizy do Stanów już załatwione _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501061426.067152"
+    },
+    {
+      "type": "message",
+      "user": "U04KTEC27",
+      "text": "a, Lech...ja o kliencie mówiłem :wink:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061416.062958"
+    },
+    {
+      "type": "message",
+      "user": "U04KTEC27",
+      "text": "kto, klient?",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061389.052662"
+    },
+    {
+      "type": "message",
+      "user": "U5A0S3BU3",
+      "text": "Warto nadmienić, że to ani francuski ani polski. On wymyśla te słowa. :rotfl2:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061324.028629"
+    },
+    {
+      "text": "Aleksandra Pyta just gave a prop to *Svetlana Wojciechowska*: _ Zawsze czuwa i pomaga! Mentor/Anioł Stróż _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501061265.007027"
+    },
+    {
+      "type": "message",
+      "user": "U04KTEC27",
+      "text": "no wiem :slightly_smiling_face:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061211.987165"
+    },
+    {
+      "type": "message",
+      "user": "U02AYK1Q7",
+      "text": "w sumie przypadku Francuzów działa inna zasada `skoro chcą ze mną rozmawiać to niech uczą się francuskiego` :rotfl2:",
+      "thread_ts": "1501060987.905313",
+      "parent_user_id": "U04KTEC27",
+      "ts": "1501061197.982333"
+    },
+    {
+      "text": "Marta Ciesielska just gave a prop to *Karolina Rosół*: _ Negocjuje jak szalona! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501061077.937587"
+    },
+    {
+      "type": "message",
+      "user": "U04KTEC27",
+      "text": "hmmm...jak jest w Polsce, to niech się polskiego nauczy!",
+      "thread_ts": "1501060987.905313",
+      "reply_count": 11,
+      "replies": [
+        {
+          "user": "U02AYK1Q7",
+          "ts": "1501061197.982333"
+        },
+        {
+          "user": "U04KTEC27",
+          "ts": "1501061211.987165"
+        },
+        {
+          "user": "U5A0S3BU3",
+          "ts": "1501061324.028629"
+        },
+        {
+          "user": "U04KTEC27",
+          "ts": "1501061389.052662"
+        },
+        {
+          "user": "U04KTEC27",
+          "ts": "1501061416.062958"
+        },
+        {
+          "user": "U275J5FB5",
+          "ts": "1501061457.078655"
+        },
+        {
+          "user": "U275J5FB5",
+          "ts": "1501061466.081843"
+        },
+        {
+          "user": "U5A0S3BU3",
+          "ts": "1501061507.096925"
+        },
+        {
+          "user": "U275J5FB5",
+          "ts": "1501061532.106432"
+        },
+        {
+          "user": "U5A0S3BU3",
+          "ts": "1501061629.141368"
+        },
+        {
+          "user": "U275J5FB5",
+          "ts": "1501061661.153283"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 11,
+      "ts": "1501060987.905313",
+      "reactions": [
+        {
+          "name": "trolleybus",
+          "users": [
+            "U02AYK1Q7",
+            "U02RUMC8C"
+          ],
+          "count": 2
+        },
+        {
+          "name": "trollface",
+          "users": [
+            "U02AYK1Q7",
+            "U02RUMC8C"
+          ],
+          "count": 2
+        },
+        {
+          "name": "trolley_bus",
+          "users": [
+            "U02AYK1Q7",
+            "U02RUMC8C"
+          ],
+          "count": 2
+        },
+        {
+          "name": "trollfox",
+          "users": [
+            "U02AYK1Q7",
+            "U3GC3UK6F",
+            "U02RUMC8C"
+          ],
+          "count": 3
+        },
+        {
+          "name": "trollu",
+          "users": [
+            "U02AYK1Q7",
+            "U02RUMC8C"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U3UCDE5B3",
+      "text": "ej to Kasia pisała sama :stuck_out_tongue: ja tylko wykresy wybierałam :smile:",
+      "thread_ts": "1501056052.160712",
+      "ts": "1501060975.900719"
+    },
+    {
+      "type": "message",
+      "user": "U1DH5PK4Y",
+      "text": "o kurde ale petardowy dinner! :smile:",
+      "thread_ts": "1501059118.230666",
+      "ts": "1501060256.641403",
+      "reactions": [
+        {
+          "name": "heart",
+          "users": [
+            "U07JNS18W",
+            "U66AHU6P7"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U0BEESNHK",
+      "text": "tak, dokladnie, to zasluga <@U3UCDE5B3> , nie Twoja",
+      "thread_ts": "1501056052.160712",
+      "ts": "1501060248.638626",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U03AJTQSB"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U1QSZKRDG",
+      "text": "<https://www.youtube.com/watch?v=7ZiyuhWQxt0>",
+      "attachments": [
+        {
+          "service_name": "YouTube",
+          "service_url": "https://www.youtube.com/",
+          "title": "Lech Roch Pawlak clip (Żeli papą)",
+          "title_link": "https://www.youtube.com/watch?v=7ZiyuhWQxt0",
+          "author_name": "Kuba S.",
+          "author_link": "https://www.youtube.com/user/niewasko",
+          "thumb_url": "https://i.ytimg.com/vi/7ZiyuhWQxt0/hqdefault.jpg",
+          "thumb_width": 480,
+          "thumb_height": 360,
+          "fallback": "YouTube Video: Lech Roch Pawlak clip (Żeli papą)",
+          "video_html": "<iframe width=\"400\" height=\"300\" src=\"https://www.youtube.com/embed/7ZiyuhWQxt0?feature=oembed&autoplay=1&iv_load_policy=3\" frameborder=\"0\" allowfullscreen></iframe>",
+          "video_html_width": 400,
+          "video_html_height": 300,
+          "from_url": "https://www.youtube.com/watch?v=7ZiyuhWQxt0",
+          "service_icon": "https://a.slack-edge.com/2089/img/unfurl_icons/youtube.png",
+          "id": 1
+        }
+      ],
+      "ts": "1501059151.242544",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U275J5FB5",
+            "U13NVCMC6"
+          ],
+          "count": 2
+        },
+        {
+          "name": "heart",
+          "users": [
+            "U5A0S3BU3",
+            "U27JNSJ9E",
+            "U1WUXH4CX",
+            "U67257KCN",
+            "U13NVCMC6",
+            "U02AYK1Q7"
+          ],
+          "count": 6
+        },
+        {
+          "name": "parrot",
+          "users": [
+            "U2JHD7QLU"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "Community - Idziemy do Lunaparku - czyli dinner odsłona sierpniowa [18/08] ! Blog post created by Greta Gryz: <https://netguru.atlassian.net/wiki/x/pUuXBw>",
+          "text": " Hejeczka! Już 18 sierpnia spotykamy się na kolejnym odlotowym dinnerze, który odbędzie się na terenie MaltaSki w Poznaniu! Tematem przewodni...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/COM|Community>",
+          "title": "Idziemy do Lunaparku - czyli dinner odsłona sierpniowa [18/08] !",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/pUuXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~greta.gryz|Greta Gryz>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "thread_ts": "1501059118.230666",
+      "reply_count": 1,
+      "replies": [
+        {
+          "user": "U1DH5PK4Y",
+          "ts": "1501060256.641403"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 1,
+      "ts": "1501059118.230666",
+      "reactions": [
+        {
+          "name": "heart",
+          "users": [
+            "U07JNS18W",
+            "U1EAACY4T",
+            "U1QSZKRDG",
+            "U13NVCMC6",
+            "U2Q56MHMW",
+            "U02AYK1Q7",
+            "U0BDPQ6LR"
+          ],
+          "count": 7
+        },
+        {
+          "name": "alpaca",
+          "users": [
+            "U1EAACY4T",
+            "U07JNS18W",
+            "U1QSZKRDG",
+            "U13NVCMC6",
+            "U02RUMC8C",
+            "U02AYK1Q7"
+          ],
+          "count": 6
+        },
+        {
+          "name": "tada",
+          "users": [
+            "U07JNS18W",
+            "U1QSZKRDG",
+            "U1WUQE0M6",
+            "U13NVCMC6",
+            "U0F66T78S",
+            "U3P0SNTLM",
+            "U1EAACY4T",
+            "U4LNA6W12",
+            "U02AYK1Q7",
+            "U0BDPQ6LR"
+          ],
+          "count": 10
+        },
+        {
+          "name": "heart_eyes",
+          "users": [
+            "U07JNS18W",
+            "U1QSZKRDG",
+            "U02AYK1Q7",
+            "U0BDPQ6LR"
+          ],
+          "count": 4
+        },
+        {
+          "name": "zimna_plyta",
+          "users": [
+            "U07JNS18W",
+            "U1QSZKRDG",
+            "U02AYK1Q7"
+          ],
+          "count": 3
+        },
+        {
+          "name": "fingers_crossed",
+          "users": [
+            "U07JNS18W",
+            "U1QSZKRDG",
+            "U02AYK1Q7"
+          ],
+          "count": 3
+        },
+        {
+          "name": "wodka",
+          "users": [
+            "U02AYK1Q7"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "Anna Warchol just gave a prop to *Natalia Chrzanowska*: _ za mega cierpliwość przy onboardingu! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501058969.175803"
+    },
+    {
+      "text": "Natalia Chrzanowska just gave a prop to *Anna Warchol*: _ za super szybkie wdrażanie :rocket: _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501058929.161402"
+    },
+    {
+      "type": "message",
+      "user": "U02GYUFCM",
+      "text": "<https://www.youtube.com/watch?v=X5hrUGFhsXo>",
+      "attachments": [
+        {
+          "service_name": "YouTube",
+          "service_url": "https://www.youtube.com/",
+          "title": "Flight of the Conchords Ep 8 'Foux Da Fa Fa'",
+          "title_link": "https://www.youtube.com/watch?v=X5hrUGFhsXo",
+          "author_name": "r8dkid",
+          "author_link": "https://www.youtube.com/user/r8dkid",
+          "thumb_url": "https://i.ytimg.com/vi/X5hrUGFhsXo/hqdefault.jpg",
+          "thumb_width": 480,
+          "thumb_height": 360,
+          "fallback": "YouTube Video: Flight of the Conchords Ep 8 'Foux Da Fa Fa'",
+          "video_html": "<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/X5hrUGFhsXo?feature=oembed&autoplay=1&iv_load_policy=3\" frameborder=\"0\" allowfullscreen></iframe>",
+          "video_html_width": 400,
+          "video_html_height": 225,
+          "from_url": "https://www.youtube.com/watch?v=X5hrUGFhsXo",
+          "service_icon": "https://a.slack-edge.com/2089/img/unfurl_icons/youtube.png",
+          "id": 1
+        }
+      ],
+      "ts": "1501058802.115961"
+    },
+    {
+      "type": "message",
+      "user": "U075PSD26",
+      "text": "Ja mogę jak Dexter :smile:",
+      "ts": "1501058777.106726"
+    },
+    {
+      "type": "message",
+      "user": "U02GWC0L5",
+      "text": "Ja moge jak Joey",
+      "ts": "1501058422.978215",
+      "reactions": [
+        {
+          "name": "friends",
+          "users": [
+            "U275J5FB5",
+            "U02GWC0L5",
+            "U3P0SR6UV",
+            "U4TF0GUD8",
+            "U5NLDMUSE",
+            "U02GY637J",
+            "U2YF893H7",
+            "U3V5J2XNH",
+            "U02AYK1Q7",
+            "U1QSS4SCR"
+          ],
+          "count": 10
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U275J5FB5",
+      "text": ":sweat_smile: ja mogę się pochwalić :flag-fr:",
+      "ts": "1501058403.971449"
+    },
+    {
+      "type": "message",
+      "user": "U65LMNT41",
+      "text": "<@U275J5FB5> ? :stuck_out_tongue:",
+      "ts": "1501058182.894956"
+    },
+    {
+      "type": "message",
+      "user": "U3P0SR6UV",
+      "text": "hello! mamy klienta z Francji w biurze - czy mamy ludzi którzy gadają po francusku? Nie mamy żadnych problem z komunikacją ale jestem ciekawa czy możemy się pochwalić że ogólnie mamy ludzi developerzy, PMi QA którzy mówią po francusku i ile:)",
+      "ts": "1501058158.886285"
+    },
+    {
+      "type": "message",
+      "user": "U3V5J2XNH",
+      "text": "to, że on jest ciekawy dla zwykłych ludzi, to zasługa <@U3UCDE5B3>, nie moja!",
+      "thread_ts": "1501056052.160712",
+      "ts": "1501057689.720864"
+    },
+    {
+      "text": "Anita Migacz just gave a prop to *Pola Karwat*: _ za dokładność! _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501057541.667915"
+    },
+    {
+      "text": "Radek Zaleski just gave a prop to *Kasia Iwańska*: _ wzorowy post techniczny,  ktory jest ciekawy dla zwyklych ludzi: <https://www.netguru.co/blog/data-visualisation-with-d3.js-in-your-application> _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "thread_ts": "1501056052.160712",
+      "reply_count": 3,
+      "replies": [
+        {
+          "user": "U3V5J2XNH",
+          "ts": "1501057689.720864"
+        },
+        {
+          "user": "U0BEESNHK",
+          "ts": "1501060248.638626"
+        },
+        {
+          "user": "U3UCDE5B3",
+          "ts": "1501060975.900719"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 3,
+      "ts": "1501056052.160712",
+      "reactions": [
+        {
+          "name": "clap::skin-tone-2",
+          "users": [
+            "U27JNSJ9E",
+            "U2D3X3C8P",
+            "U02JRV5K8",
+            "U02EJ97U3",
+            "U0BS3VD0R",
+            "U0BDPQ6LR",
+            "U02GY637J",
+            "U02RUMC8C",
+            "U40MWULTT",
+            "U67257KCN",
+            "U1WUXH4CX",
+            "U3P0SNTLM",
+            "U3UCDE5B3"
+          ],
+          "count": 13
+        }
+      ]
+    },
+    {
+      "text": "Miłosz Filimowski just gave a prop to *Martyna Nowakowska*: _ Za błyskawiczną pomoc z urlopem! Dzięki :tada: _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501055947.124567",
+      "reactions": [
+        {
+          "name": "rocket",
+          "users": [
+            "U2YF893H7"
+          ],
+          "count": 1
+        },
+        {
+          "name": "palm_tree",
+          "users": [
+            "U2YF893H7"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "Tomasz Jaśkiewicz just gave a prop to *Pola Karwat*: _ Świetnie ogarnia! :parrot-thumbs-up: _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501054870.786124"
+    },
+    {
+      "type": "message",
+      "user": "U033QA1PV",
+      "text": ":hat_up_cat:",
+      "ts": "1501054083.561726"
+    },
+    {
+      "type": "message",
+      "user": "U02EJ97U3",
+      "text": "Dzień dobry",
+      "ts": "1501051632.937920"
+    },
+    {
+      "type": "message",
+      "user": "U2778TRPT",
+      "text": "Security nie ogranicza się do kompa, so…",
+      "ts": "1501050199.639575",
+      "reactions": [
+        {
+          "name": "point_up::skin-tone-4",
+          "users": [
+            "U033QA1PV",
+            "U2JHT4VUP",
+            "U1TPR03J8"
+          ],
+          "count": 3
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": "<@U02KGTADL> nic nie stawiam, wzielas mi telefon",
+      "ts": "1501049920.585476"
+    },
+    {
+      "type": "message",
+      "user": "U2Q56MHMW",
+      "text": ":hat_up_cat:",
+      "ts": "1501049857.573696"
+    },
+    {
+      "type": "message",
+      "user": "U02K20YNT",
+      "text": "te klapy powinny być wolnoopadające po prostu :smile:",
+      "thread_ts": "1501020416.625757",
+      "parent_user_id": "USLACKBOT",
+      "ts": "1501048972.406416",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U4LNA6W12",
+            "U033QA1PV"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U4THNPD53",
+      "text": "A może taki bot, który sam zamyka klapę gdy nie ma Cię przy biurku? #staysafe",
+      "thread_ts": "1501020416.625757",
+      "parent_user_id": "USLACKBOT",
+      "ts": "1501047820.212348"
+    },
+    {
+      "type": "message",
+      "user": "U0C1A558R",
+      "text": ":hat_up_cat:",
+      "ts": "1501044944.761921"
+    },
+    {
+      "type": "message",
+      "user": "U05608XHZ",
+      "text": ":hat_up_cat:",
+      "ts": "1501039928.964362",
+      "reactions": [
+        {
+          "name": "grimacing",
+          "users": [
+            "U3V5J2XNH"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U02KGTADL",
+      "text": "<@U02RUMC8C> w sumie zamiast wódy może być :ramen: jutro, Ty stawiasz :diluj: ",
+      "ts": "1501021219.898191"
+    },
+    {
+      "type": "message",
+      "user": "U0251EZGC",
+      "text": ":ok_hand:",
+      "ts": "1501020487.651327"
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": "Tia",
+      "ts": "1501020481.648938"
+    },
+    {
+      "type": "message",
+      "user": "U0251EZGC",
+      "text": "zdepowane?",
+      "ts": "1501020474.646315"
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": "No ok, na drugi raz zamknę",
+      "ts": "1501020453.638940",
+      "reactions": [
+        {
+          "name": "+1",
+          "users": [
+            "U0251EZGC"
+          ],
+          "count": 1
+        },
+        {
+          "name": "iksde",
+          "users": [
+            "U0C1A558R"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "text": "Na drugi raz po prostu zamknij komputer i #staysafe! <https://netguru.slack.com/archives/C0251EZGG/p1500894102938391>",
+      "attachments": [
+        {
+          "from_url": "https://netguru.slack.com/archives/C0251EZGG/p1500894102938391",
+          "fallback": "[July 24th, 2017 4:01 AM] szycha: chcialbym, zeby to sie stalo standardem. widzisz otwarty komputer? zamknij go. #staysafe",
+          "ts": "1500894102.938391",
+          "author_subname": "szycha",
+          "channel_id": "C0251EZGG",
+          "channel_name": "ng-team",
+          "is_msg_unfurl": true,
+          "text": "chcialbym, zeby to sie stalo standardem. widzisz otwarty komputer? zamknij go. #staysafe",
+          "author_name": "Radek Zaleski",
+          "author_link": "https://netguru.slack.com/team/szycha",
+          "author_icon": "https://avatars.slack-edge.com/2015-10-29/13466350069_59ddb74ea80e7b6f5f36_48.jpg",
+          "mrkdwn_in": [
+            "text"
+          ],
+          "id": 1
+        }
+      ],
+      "type": "message",
+      "subtype": "slackbot_response",
+      "user": "USLACKBOT",
+      "thread_ts": "1501020416.625757",
+      "reply_count": 2,
+      "replies": [
+        {
+          "user": "U4THNPD53",
+          "ts": "1501047820.212348"
+        },
+        {
+          "user": "U02K20YNT",
+          "ts": "1501048972.406416"
+        }
+      ],
+      "subscribed": false,
+      "unread_count": 2,
+      "ts": "1501020416.625757"
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": "<!here> stawiam wódę na dinnerze! :parrot-thumbs-up: ",
+      "ts": "1501020415.625638",
+      "reactions": [
+        {
+          "name": "laughing",
+          "users": [
+            "U1D68CPRR",
+            "U1TPR03J8",
+            "U1QSZKRDG",
+            "U3GC3UK6F",
+            "U02GZLLCY"
+          ],
+          "count": 5
+        },
+        {
+          "name": "flag-de",
+          "users": [
+            "U0251EZGC",
+            "U1QSZKRDG",
+            "U3GC3UK6F"
+          ],
+          "count": 3
+        },
+        {
+          "name": "clap",
+          "users": [
+            "U1WUXH4CX",
+            "U5NLDMUSE",
+            "U3GC3UK6F"
+          ],
+          "count": 3
+        },
+        {
+          "name": "wodka",
+          "users": [
+            "U5NLDMUSE",
+            "U3P0SNTLM",
+            "U0C1A558R",
+            "U3GC3UK6F"
+          ],
+          "count": 4
+        },
+        {
+          "name": "czarny-kciuk-zgody",
+          "users": [
+            "U04KTEC27",
+            "U3GC3UK6F"
+          ],
+          "count": 2
+        },
+        {
+          "name": "anguished",
+          "users": [
+            "U1QSS4SCR",
+            "U1QSZKRDG",
+            "U3GC3UK6F"
+          ],
+          "count": 3
+        },
+        {
+          "name": "piguly",
+          "users": [
+            "U1QSZKRDG",
+            "U3GC3UK6F",
+            "U02GZLLCY"
+          ],
+          "count": 3
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "subtype": "file_comment",
+      "text": "<@U04KTEC27|czuczu> commented on <@U02RUMC8C|anks>’s file <https://netguru.slack.com/files/anks/F6CRPTQ56/image_uploaded_from_ios.jpg|Image uploaded from iOS>: Niezablokowany komputer!",
+      "file": {
+        "id": "F6CRPTQ56",
+        "created": 1501009166,
+        "timestamp": 1501009166,
+        "name": "Image uploaded from iOS.jpg",
+        "title": "Image uploaded from iOS",
+        "mimetype": "image/jpeg",
+        "filetype": "jpg",
+        "pretty_type": "JPEG",
+        "user": "U02RUMC8C",
+        "editable": false,
+        "size": 6270579,
+        "mode": "hosted",
+        "is_external": false,
+        "external_type": "",
+        "is_public": true,
+        "public_url_shared": false,
+        "display_as_bot": false,
+        "username": "",
+        "url_private": "https://files.slack.com/files-pri/T0251EZGA-F6CRPTQ56/image_uploaded_from_ios.jpg",
+        "url_private_download": "https://files.slack.com/files-pri/T0251EZGA-F6CRPTQ56/download/image_uploaded_from_ios.jpg",
+        "thumb_64": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_64.jpg",
+        "thumb_80": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_80.jpg",
+        "thumb_360": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_360.jpg",
+        "thumb_360_w": 360,
+        "thumb_360_h": 270,
+        "thumb_480": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_480.jpg",
+        "thumb_480_w": 480,
+        "thumb_480_h": 360,
+        "thumb_160": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_160.jpg",
+        "thumb_720": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_720.jpg",
+        "thumb_720_w": 720,
+        "thumb_720_h": 540,
+        "thumb_800": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_800.jpg",
+        "thumb_800_w": 800,
+        "thumb_800_h": 600,
+        "thumb_960": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_960.jpg",
+        "thumb_960_w": 960,
+        "thumb_960_h": 720,
+        "thumb_1024": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_1024.jpg",
+        "thumb_1024_w": 1024,
+        "thumb_1024_h": 768,
+        "image_exif_rotation": 1,
+        "original_w": 4032,
+        "original_h": 3024,
+        "permalink": "https://netguru.slack.com/files/anks/F6CRPTQ56/image_uploaded_from_ios.jpg",
+        "permalink_public": "https://slack-files.com/T0251EZGA-F6CRPTQ56-af7d81fb67",
+        "channels": [
+          "C0251EZGG"
+        ],
+        "groups": [],
+        "ims": [],
+        "comments_count": 1
+      },
+      "comment": {
+        "id": "Fc6DJ2H2CS",
+        "created": 1501019133,
+        "timestamp": 1501019133,
+        "user": "U04KTEC27",
+        "is_intro": false,
+        "comment": "Niezablokowany komputer!"
+      },
+      "is_intro": false,
+      "ts": "1501019132.129456"
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "iOS - iOS Team Meeting 14.07.2017 Blog post created by Piotr Torczynski: <https://netguru.atlassian.net/wiki/x/wzSXBw>",
+          "text": " Przebieg spotkania Subject Description Brainstorming Actions Follow up z poprzedniego spotkania :warning: Zmiany w People - skille developerów nie ...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/IOS|iOS>",
+          "title": "iOS Team Meeting 14.07.2017",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/wzSXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~piotr.torczynski|Piotr Torczynski>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1501011459.378790"
+    },
+    {
+      "type": "message",
+      "user": "U0BEESNHK",
+      "text": ":)",
+      "ts": "1501010657.966241"
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": ":joy:",
+      "ts": "1501009966.620929"
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": "jest tak zahardkodowane, że musi",
+      "ts": "1501009958.616561",
+      "reactions": [
+        {
+          "name": "joy",
+          "users": [
+            "U3P0SUA2Z"
+          ],
+          "count": 1
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U0BEESNHK",
+      "text": "Dziala?",
+      "ts": "1501009581.424681",
+      "reactions": [
+        {
+          "name": "rotfl2",
+          "users": [
+            "U40MWULTT",
+            "U02KGTADL"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "subtype": "file_share",
+      "text": "<@U02RUMC8C|anks> uploaded a file: <https://netguru.slack.com/files/anks/F6CRPTQ56/image_uploaded_from_ios.jpg|Image uploaded from iOS>",
+      "file": {
+        "id": "F6CRPTQ56",
+        "created": 1501009166,
+        "timestamp": 1501009166,
+        "name": "Image uploaded from iOS.jpg",
+        "title": "Image uploaded from iOS",
+        "mimetype": "image/jpeg",
+        "filetype": "jpg",
+        "pretty_type": "JPEG",
+        "user": "U02RUMC8C",
+        "editable": false,
+        "size": 6270579,
+        "mode": "hosted",
+        "is_external": false,
+        "external_type": "",
+        "is_public": true,
+        "public_url_shared": false,
+        "display_as_bot": false,
+        "username": "",
+        "url_private": "https://files.slack.com/files-pri/T0251EZGA-F6CRPTQ56/image_uploaded_from_ios.jpg",
+        "url_private_download": "https://files.slack.com/files-pri/T0251EZGA-F6CRPTQ56/download/image_uploaded_from_ios.jpg",
+        "thumb_64": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_64.jpg",
+        "thumb_80": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_80.jpg",
+        "thumb_360": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_360.jpg",
+        "thumb_360_w": 360,
+        "thumb_360_h": 270,
+        "thumb_480": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_480.jpg",
+        "thumb_480_w": 480,
+        "thumb_480_h": 360,
+        "thumb_160": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_160.jpg",
+        "thumb_720": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_720.jpg",
+        "thumb_720_w": 720,
+        "thumb_720_h": 540,
+        "thumb_800": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_800.jpg",
+        "thumb_800_w": 800,
+        "thumb_800_h": 600,
+        "thumb_960": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_960.jpg",
+        "thumb_960_w": 960,
+        "thumb_960_h": 720,
+        "thumb_1024": "https://files.slack.com/files-tmb/T0251EZGA-F6CRPTQ56-e53900a9b1/image_uploaded_from_ios_1024.jpg",
+        "thumb_1024_w": 1024,
+        "thumb_1024_h": 768,
+        "image_exif_rotation": 1,
+        "original_w": 4032,
+        "original_h": 3024,
+        "permalink": "https://netguru.slack.com/files/anks/F6CRPTQ56/image_uploaded_from_ios.jpg",
+        "permalink_public": "https://slack-files.com/T0251EZGA-F6CRPTQ56-af7d81fb67",
+        "channels": [
+          "C0251EZGG"
+        ],
+        "groups": [],
+        "ims": [],
+        "comments_count": 1
+      },
+      "user": "U02RUMC8C",
+      "upload": true,
+      "display_as_bot": false,
+      "username": "anks",
+      "bot_id": null,
+      "upload_reply_to": "C8914BF2-1384-468D-A2BE-EE694F457B39",
+      "ts": "1501009175.199698"
+    },
+    {
+      "type": "message",
+      "user": "U02RUMC8C",
+      "text": "Inventorum pozdrawia z releasu",
+      "ts": "1501009160.190952"
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "DevOps - ELK stack dla Stagingów Blog post created by Jacek Jakubik: <https://netguru.atlassian.net/wiki/x/myyXBw>",
+          "text": " Hej, Nasz logmatic jest dość mocno obciążony przez duże ilości spływających logów ze stagingów.  Zdecydowaliśmy się wdrożyć ELK stack dla st...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/DEVOPS|DevOps>",
+          "title": "ELK stack dla Stagingów",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/myyXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~jacek.jakubik|Jacek Jakubik>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500995121.924109",
+      "reactions": [
+        {
+          "name": "ok_hand",
+          "users": [
+            "U1WUXH4CX",
+            "U033QA1PV",
+            "U02EJ97U3"
+          ],
+          "count": 3
+        },
+        {
+          "name": "clap",
+          "users": [
+            "U1WUXH4CX",
+            "U033QA1PV"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "Research and Development - RnD Update [WorkWeek 29 - 17-21.07.2017] Blog post created by Michał Poczwardowski: <https://netguru.atlassian.net/wiki/x/sSuXBw>",
+          "text": " WW 29 COMPLETED JIRA TASKS People within RnD last week: RoR: 11 (-2) Frontend: 5 (-1) Node: 2 (+1) React Native: 1 (0) Designer: 0 (0) iOS: ...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/RnD|Research and Development>",
+          "title": "RnD Update [WorkWeek 29 - 17-21.07.2017]",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/sSuXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~michal.poczwardowski|Michał Poczwardowski>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500993602.960980",
+      "reactions": [
+        {
+          "name": "tada",
+          "users": [
+            "U2JHNT6H3",
+            "U2YF893H7"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "text": "Tobiasz Jankowski just gave a prop to *Dorota Mierzwa*: _ skilled mathematician :chart_with_upwards_trend: :signal_strength: :symbols: :heavy_plus_sign: :heavy_minus_sign: :analyst: _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500993054.621411"
+    },
+    {
+      "text": "",
+      "username": "Confluence Updater",
+      "bot_id": "B3DCV33NF",
+      "attachments": [
+        {
+          "fallback": "DevOps - App script - aktualizacja dla docker-compose! Blog post created by Jacek Jakubik: <https://netguru.atlassian.net/wiki/x/ZCqXBw>",
+          "text": " Hej, Wiem, że wiele osób używało \"app\" script w naszym setupie Dockerowym, niestety odkąd wdrożyliśmy deploymenty za pomocą docker-compose'a...",
+          "pretext": "Blog post created in Space <https://netguru.atlassian.net/wiki/spaces/DEVOPS|DevOps>",
+          "title": "App script - aktualizacja dla docker-compose!",
+          "id": 1,
+          "title_link": "https://netguru.atlassian.net/wiki/x/ZCqXBw",
+          "color": "205081",
+          "fields": [
+            {
+              "title": "By",
+              "value": "<https://netguru.atlassian.net/wiki/display/~jacek.jakubik|Jacek Jakubik>",
+              "short": true
+            }
+          ]
+        }
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500992532.297624"
+    },
+    {
+      "text": "Michał Hartwich just gave a prop to *Błażej Pankowiak*: _ zawsze pomoże ;) _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500992526.294606"
+    },
+    {
+      "text": "Michał Hartwich just gave a prop to *Błażej Pankowiak*: _ zawsze pomoże ;) _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500992486.270174"
+    },
+    {
+      "type": "message",
+      "user": "U0X64S127",
+      "text": "oh well :confused: zupełnie inne bebechy :disappointed:",
+      "thread_ts": "1500985284.761289",
+      "parent_user_id": "U03V4ELR1",
+      "ts": "1500991308.562727"
+    },
+    {
+      "type": "message",
+      "user": "U03V4ELR1",
+      "text": "nie ma mnie w biurze <@U0X64S127> i mam A5",
+      "thread_ts": "1500985284.761289",
+      "parent_user_id": "U03V4ELR1",
+      "ts": "1500991030.398227"
+    },
+    {
+      "type": "message",
+      "user": "U0L27524C",
+      "text": "dzięki za pomoc :+1:",
+      "thread_ts": "1500984757.587218",
+      "parent_user_id": "U0L27524C",
+      "ts": "1500990672.197006"
+    },
+    {
+      "type": "message",
+      "user": "U0L27524C",
+      "text": ":smile:",
+      "thread_ts": "1500985284.761289",
+      "parent_user_id": "U03V4ELR1",
+      "ts": "1500990643.180512"
+    },
+    {
+      "type": "message",
+      "user": "U0L27524C",
+      "text": "<@U03V4ELR1> - znajdzie cię <@U0X64S127> :slightly_smiling_face: dzięki!",
+      "thread_ts": "1500985284.761289",
+      "parent_user_id": "U03V4ELR1",
+      "ts": "1500990637.177683"
+    },
+    {
+      "type": "message",
+      "user": "U0X64S127",
+      "text": "<@U03V4ELR1> a masz A3 i złapie cię gdzieś w biurze?",
+      "thread_ts": "1500985284.761289",
+      "parent_user_id": "U03V4ELR1",
+      "ts": "1500990637.177642"
+    },
+    {
+      "text": "Joanna Falkowska just gave a prop to *Radek Szeja*: _ Szybki jak szybkowar, rach ciach daje dostępy. Dziękuję :) _ - <https://props.devguru.co/|Check it out!>",
+      "username": "Kudos App",
+      "bot_id": "B5J5JA9L6",
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1500989515.583807"
+    },
+    {
+      "type": "message",
+      "user": "U13NVCMC6",
+      "text": "<@U1QSS4SCR> tą farmę device’ów trzebaby najpierw przestestować najlepiej na jakimś internalowym projekcie, bo nie wiemy za bardzo jeszcze na ile to jest bezpieczne, szczególnie jeśli projekt ma nda itp. <#C03DA23AD|security> :wink:",
+      "thread_ts": "1500984757.587218",
+      "parent_user_id": "U0L27524C",
+      "ts": "1500986214.094727",
+      "reactions": [
+        {
+          "name": "+1",
+          "users": [
+            "U02JQJ3GM",
+            "U0L27524C",
+            "U1QSS4SCR"
+          ],
+          "count": 3
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "user": "U02JQJ3GM",
+      "text": "chyba nie ma A3 :disappointed:",
+      "thread_ts": "1500984757.587218",
+      "parent_user_id": "U0L27524C",
+      "ts": "1500986171.079265"
+    },
+    {
+      "type": "message",
+      "user": "U02JQJ3GM",
+      "text": "a co z browerstackiem i mozlwioscia testowania natywnych apek na urzadzeniach? : &gt;",
+      "thread_ts": "1500984757.587218",
+      "parent_user_id": "U0L27524C",
+      "ts": "1500986112.057408"
+    }
+  ],
+  "has_more": true
+}

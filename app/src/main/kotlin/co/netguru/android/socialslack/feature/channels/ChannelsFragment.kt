@@ -86,12 +86,9 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onChannelClick(channel: Channel) {
         fragmentManager
                 .beginTransaction()
-<<<<<<< HEAD
-                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel.id))
-=======
-                // TODO replace name for id
-                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel.name, channel.currentPositionInList))
->>>>>>> task/ADR-144
+                // TODO get the number of messages
+                .replace(R.id.fragmentChannelRootContainer,
+                        ChannelProfileFragment.newInstance(channel.id, channel.name, 120, channel.currentPositionInList))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }

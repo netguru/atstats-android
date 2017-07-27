@@ -5,5 +5,6 @@ data class ChannelMessages(val type: String, val ts: Float, val user: String, va
 
     companion object {
         val MESSAGE_TYPE = "message"
+        val HERE_TAG = "<!here>"
     }
 }
