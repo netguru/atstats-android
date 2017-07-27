@@ -23,6 +23,7 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
     }
 
     override fun onSendButtonClick(screenShotByteArray: ByteArray) {
+        view.showLoadingView()
         compositeDisposable += channelsController.uploadFileToChannel(
                 "slack-social-test", screenShotByteArray)
                 .compose(RxTransformers.applyCompletableIoSchedulers())
@@ -33,6 +34,12 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
                         },
                         onError = {
                             Timber.e(it, "Error while uploading screenshot to server")
+                            view.hideLoadingView()
+                            view.showError()
                         })
+    }
+
+    override fun onCloseButtonClick() {
+        view.dismissView()
     }
 }

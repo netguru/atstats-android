@@ -22,6 +22,7 @@
             android:text="#ng-team" />
 
         <ImageButton
+            android:id="@+id/shareConfirmationCloseBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -47,6 +48,7 @@
         android:text="@string/thanks_for_sending_statistics" />
 
     <Button
+        android:id="@+id/shareConfirmationThankYouBtn"
         style="@style/FontMedium.White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

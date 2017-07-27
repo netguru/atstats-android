@@ -3,7 +3,6 @@ package co.netguru.android.socialslack.data.channels
 import co.netguru.android.socialslack.data.channels.model.ChannelList
 import co.netguru.android.socialslack.data.channels.model.FileUploadResponse
 
-import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import retrofit2.http.*

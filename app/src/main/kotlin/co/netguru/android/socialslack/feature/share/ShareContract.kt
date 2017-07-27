@@ -8,10 +8,20 @@ interface ShareContract {
     interface View : MvpView {
 
         fun showShareConfirmationDialog()
+
+        fun showLoadingView()
+
+        fun hideLoadingView()
+
+        fun dismissView()
+
+        fun showError()
     }
 
     interface Presenter : MvpPresenter<View> {
 
         fun onSendButtonClick(screenShotByteArray: ByteArray)
+
+        fun onCloseButtonClick()
     }
 }

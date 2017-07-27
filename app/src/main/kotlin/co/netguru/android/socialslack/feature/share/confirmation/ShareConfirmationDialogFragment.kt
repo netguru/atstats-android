@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import kotlinx.android.synthetic.main.fragment_share_confirmation.*
 
 class ShareConfirmationDialogFragment : DialogFragment() {
 
@@ -17,5 +18,11 @@ class ShareConfirmationDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_share_confirmation, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        shareConfirmationCloseBtn.setOnClickListener { dismiss() }
+        shareConfirmationCloseBtn.setOnClickListener { dismiss() }
     }
 }

@@ -1,3 +1,6 @@
 package co.netguru.android.socialslack.data.channels.model
 
-data class FileObject(val id: String, val name: String, val title: String, val filetype: String)
+import com.google.gson.annotations.SerializedName
+
+data class FileObject(val id: String, val name: String, val title: String,
+                      @SerializedName("filetype") val fileType: String)

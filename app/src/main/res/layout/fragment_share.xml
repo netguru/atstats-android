@@ -21,6 +21,7 @@
             android:text="@string/share_love" />
 
         <ImageButton
+            android:id="@+id/shareCloseBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -120,14 +121,27 @@
             android:lines="2"
             android:text="@string/send_statistics_to" />
 
-        <Button
-            android:id="@+id/sendButton"
-            style="@style/FontMedium.White"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default"
-            android:background="@drawable/shape_rounded_button_corners_gradient_gray"
-            android:text="@string/action_send"
-            android:textAllCaps="false" />
+            android:layout_margin="@dimen/margin_default">
+
+            <Button
+                android:id="@+id/shareSendButton"
+                style="@style/FontMedium.White"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+                android:text="@string/action_send"
+                android:textAllCaps="false" />
+
+            <ProgressBar
+                android:id="@+id/shareLoadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>

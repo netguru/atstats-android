@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.share
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     private val adapter by lazy {
-        //TODO 26.07.2017 set proper adapter
+        //TODO 26.07.2017 set proper adapter (ShareChannel or ShareUser)
         ShareChannelAdapter()
     }
 
@@ -41,7 +42,8 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        sendButton.setOnClickListener {
+        shareCloseBtn.setOnClickListener { presenter.onCloseButtonClick() }
+        shareSendButton.setOnClickListener {
             presenter.onSendButtonClick(
                     ScreenShotUtils.takeScreenShotByteArray(shareRootView))
         }
@@ -53,6 +55,24 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         ShareConfirmationDialogFragment.newInstance().show(fragmentManager,
                 ShareConfirmationDialogFragment.TAG)
         dismiss()
+    }
+
+    override fun showLoadingView() {
+        shareSendButton.visibility = View.GONE
+        shareLoadingView.visibility = View.VISIBLE
+    }
+
+    override fun hideLoadingView() {
+        shareSendButton.visibility = View.VISIBLE
+        shareLoadingView.visibility = View.GONE
+    }
+
+    override fun dismissView() {
+        dismiss()
+    }
+
+    override fun showError() {
+        Snackbar.make(shareRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
     private fun initRecyclerView() {
