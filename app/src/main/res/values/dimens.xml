@@ -57,4 +57,5 @@
     <dimen name="tabLayout_elevation">4dp</dimen>
     <dimen name="subtitle_textSize">14sp</dimen>
     <dimen name="header_textSize">28sp</dimen>
+    <dimen name="share_confirmation_text_margin_top">80dp</dimen>
 </resources>

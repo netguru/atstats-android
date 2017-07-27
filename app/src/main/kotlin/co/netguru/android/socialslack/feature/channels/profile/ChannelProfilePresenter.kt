@@ -13,4 +13,8 @@ class ChannelProfilePresenter @Inject constructor() :
         // TODO get the actual numbers
         view.showChannelInfo(1234, "17", "34")
     }
+
+    override fun onShareButtonClick() {
+        view.showShareDialogFragment()
+    }
 }
