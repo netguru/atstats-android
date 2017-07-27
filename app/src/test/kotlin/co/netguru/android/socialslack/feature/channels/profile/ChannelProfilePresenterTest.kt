@@ -87,7 +87,7 @@ class ChannelProfilePresenterTest {
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
-        verify(view, times(1)).showLoadingView()
+        verify(view).showLoadingView()
     }
 
     @Test
@@ -98,7 +98,7 @@ class ChannelProfilePresenterTest {
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
-        verify(view, times(1)).hideLoadingView()
+        verify(view).hideLoadingView()
     }
 
     @Test
@@ -109,7 +109,7 @@ class ChannelProfilePresenterTest {
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
-        verify(view, times(1)).hideLoadingView()
+        verify(view).hideLoadingView()
     }
 
     @After

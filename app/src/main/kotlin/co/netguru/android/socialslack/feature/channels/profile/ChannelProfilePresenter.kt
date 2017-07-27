@@ -31,12 +31,14 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
                 .filter { (type) -> type == ChannelMessages.MESSAGE_TYPE }
 
         compositeDisposable += Single.merge(
-                countStringAppearance(messageStream, ChannelMessages.HERE_TAG),
+                countStringAppearance(messageStream, ChannelMessages.HERE_TAG)
+                        .subscribeOn(Schedulers.computation()),
                 // TODO 27.07.2017 should be change to the user id with the format @<userId>
-                countStringAppearance(messageStream, userId))
+                countStringAppearance(messageStream, userId)
+                        .subscribeOn(Schedulers.computation()))
                 .compose(RxTransformers.applyFlowableComputationSchedulers<Pair<String, Long>>())
-                .toList()
-                .doAfterTerminate{view.hideLoadingView()}
+                .toMap(Pair<String, Long>::first, Pair<String, Long>::second)
+                .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
                         onSuccess = this::showCount,
                         onError = {
@@ -54,19 +56,10 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
                 .map { t -> Pair(toCount, t) }
     }
 
-    private fun showCount(list: List<Pair<String, Long>>) {
-        var totalHere: Long = 0
-        var totalMentions: Long = 0
-        list.forEach {
-            (first, second) ->
-            run {
-                if (first == ChannelMessages.HERE_TAG) {
-                    totalHere = second
-                } else if (first == userId) {
-                    totalMentions = second
-                }
-            }
-        }
+    private fun showCount(map: Map<String, Long>) {
+        var totalHere = map[ChannelMessages.HERE_TAG] ?: 0
+        var totalMentions = map[userId] ?: 0
+
         view.showChannelInfo(totalHere.toInt(), totalMentions.toInt())
     }
 

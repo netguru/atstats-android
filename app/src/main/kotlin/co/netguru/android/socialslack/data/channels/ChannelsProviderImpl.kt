@@ -10,10 +10,15 @@ import javax.inject.Singleton
 @Singleton
 class ChannelsProviderImpl @Inject constructor(private val channelsApi: ChannelsApi) : ChannelsProvider {
 
+    // TODO 27.07.2017 REMOVE THIS MOCK
+    companion object {
+        val MOCK_COUNT = 1000
+    }
+
     // TODO 27.07.2017 this should be get from the database
     override fun getMessagesForChannel(channelId: String):
             Observable<ChannelMessages> = channelsApi
-            .getChannelsHistory(channelId, 1000, null, null, null, null)
+            .getChannelsHistory(channelId, MOCK_COUNT, null, null, null, null)
             .flatMapObservable { it -> Observable.fromIterable(it.messageList) }
 
     override fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
