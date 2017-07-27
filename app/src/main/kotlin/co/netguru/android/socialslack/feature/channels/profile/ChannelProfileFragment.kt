@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
 import kotlinx.android.synthetic.main.fragment_channel_profile.*
@@ -49,6 +50,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
             setUpFields(getString(KEY_CHANNEL_NAME), getInt(KEY_CHANNEL_TOTAL_MESSAGES), getInt(KEY_CHANNEL_CURRENT_POSITION))
         }
         getPresenter().getChannelInfo(arguments.getString(KEY_CHANNEL_ID))
+        shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
     }
 
     override fun showChannelInfo(totalHere: Int, totalMentions: Int) {
@@ -57,23 +59,27 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
         secondTotalHereTextView.text = totalHere.toString()
     }
 
+    override fun showShareDialogFragment() {
+        ShareDialogFragment.newInstance().show(fragmentManager, ShareDialogFragment.TAG)
+    }
+
     private fun setUpFields(channelName: String, totalMessage: Int, rank: Int) {
-        messagesDetailTextView.text = resources.getString(R.string.total_messages)
-        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelName)
-        rankTextView.text = rank.toString()
-        totalMessagesTextView.text = totalMessage.toString()
-    }
+            messagesDetailTextView.text = resources.getString(R.string.total_messages)
+            channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelName)
+            rankTextView.text = rank.toString()
+            totalMessagesTextView.text = totalMessage.toString()
+        }
 
-    override fun showError() {
-        Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
-    }
+        override fun showError() {
+            Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        }
 
-    override fun createPresenter(): ChannelProfileContract.Presenter {
-        return component.getPresenter()
-    }
+        override fun createPresenter(): ChannelProfileContract.Presenter {
+            return component.getPresenter()
+        }
 
-    private fun initComponent() {
-        component = App.getApplicationComponent(context)
-                .plusChannelProfileComponent()
+        private fun initComponent() {
+            component = App.getApplicationComponent(context)
+                    .plusChannelProfileComponent()
+        }
     }
-}

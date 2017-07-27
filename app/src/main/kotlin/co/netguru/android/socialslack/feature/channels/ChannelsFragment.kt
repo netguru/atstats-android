@@ -14,6 +14,7 @@ import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFra
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
+import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_channels.*
 
 class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Presenter>(),
@@ -45,6 +46,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         presenter.getChannelsFromServer()
+        presenter.getCurrentFilterOption()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -65,8 +67,26 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         Snackbar.make(channelsRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
+    override fun showFilterOptionError() {
+        Snackbar.make(channelsRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun setCurrentFilterOptionText(stringResId: Int) {
+        filterViewTextView.setText(stringResId)
+    }
+
     override fun showFilterView() {
         FilterActivity.startActivity(context, FilterObjectType.CHANNELS)
+    }
+
+    override fun showLoadingView() {
+        channelsRecyclerView.visibility = View.GONE
+        channelLoadingView.visibility = View.VISIBLE
+    }
+
+    override fun hideLoadingView() {
+        channelsRecyclerView.visibility = View.VISIBLE
+        channelLoadingView.visibility = View.GONE
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()

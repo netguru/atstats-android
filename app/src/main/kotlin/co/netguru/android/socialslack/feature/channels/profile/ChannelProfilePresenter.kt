@@ -65,4 +65,8 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
         }
         view.showChannelInfo(totalHere.toInt(), totalMentions.toInt())
     }
+
+    override fun onShareButtonClick() {
+        view.showShareDialogFragment()
+    }
 }

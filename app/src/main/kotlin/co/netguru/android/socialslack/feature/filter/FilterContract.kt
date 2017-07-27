@@ -17,6 +17,6 @@ interface FilterContract {
 
         fun filterObjectTypeReceived(filterObjectType: FilterObjectType)
 
-        fun filterOptionChanged(channelsFilterOption: ChannelsFilterOption)
+        fun channelsFilterOptionChanged(channelsFilterOption: ChannelsFilterOption)
     }
 }
