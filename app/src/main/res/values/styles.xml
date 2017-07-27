@@ -31,6 +31,10 @@
         <item name="android:textColor">@color/grey</item>
     </style>
 
+    <style name="Font16.Grey" parent="FontSmall.Grey">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="FontSmall.PrimaryDark" parent="TextAppearance.AppCompat.Small" >
         <item name="android:textColor">@color/primaryDark</item>
     </style>
@@ -45,6 +49,10 @@
 
     <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
+    <style name="Font28.PrimaryDark" parent="FontLarge.PrimaryDark">
+        <item name="android:textSize">28sp</item>
     </style>
 
     <style name="FontDisplay2.PrimaryDark" parent="TextAppearance.AppCompat.Display2">

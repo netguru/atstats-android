@@ -61,5 +61,8 @@
 
     // Share
     <string name="share_love">Share the love!</string>
-    <string name="send_statistics_to_channel">You are about to send this statistics\nto ng-team</string>
+    <string name="send_statistics_to">You are about to send this statistics to\nng-team</string>
+    <string name="thanks_for_sending_statistics">Thank you for sending statistics to\nng-team</string>
+    <string name="thank_you">Thank you!</string>
+    <string name="ta_da">Ta-da!</string>
 </resources>

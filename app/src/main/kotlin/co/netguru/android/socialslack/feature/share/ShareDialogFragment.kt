@@ -8,6 +8,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
+import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpDialogFragment
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import kotlinx.android.synthetic.main.fragment_share.*
@@ -39,9 +40,16 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+        sendButton.setOnClickListener { presenter.onSendButtonClick() }
     }
 
     override fun createPresenter() = component.getPresenter()
+
+    override fun showShareConfirmationDialog() {
+        ShareConfirmationDialogFragment.newInstance().show(fragmentManager,
+                ShareConfirmationDialogFragment.TAG)
+        dismiss()
+    }
 
     private fun initRecyclerView() {
         shareRecyclerView.setHasFixedSize(true)

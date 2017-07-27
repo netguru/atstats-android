@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGrey"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- TODO 27.07.2017 All Hardcoded Strings will be removed in task connected with API integration -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/modal_top2">
+
+        <TextView
+            style="@style/FontLarge.LightGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/share_confirmation_text_margin_top"
+            android:text="#ng-team" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/margin_default"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/close" />
+    </FrameLayout>
+
+    <TextView
+        style="@style/Font28.PrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ta_da" />
+
+    <TextView
+        style="@style/Font16.Grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:gravity="center"
+        android:lines="2"
+        android:text="@string/thanks_for_sending_statistics" />
+
+    <Button
+        style="@style/FontMedium.White"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default"
+        android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+        android:text="@string/thank_you"
+        android:textAllCaps="false" />
+</LinearLayout>

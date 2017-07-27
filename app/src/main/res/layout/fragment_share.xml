@@ -28,7 +28,7 @@
             android:src="@drawable/close" />
     </FrameLayout>
 
-    <!-- TODO 26.07.2017 All Hardcoded String will be removed in task connected with API integration -->
+    <!-- TODO 26.07.2017 All Hardcoded Strings will be removed in task connected with API integration -->
     <TextView
         android:id="@+id/shareChannelNameTextView"
         style="@style/FontMedium.PrimaryDark"
@@ -117,16 +117,14 @@
             android:layout_marginTop="@dimen/margin_small"
             android:gravity="center"
             android:lines="2"
-            android:text="@string/send_statistics_to_channel" />
+            android:text="@string/send_statistics_to" />
 
         <Button
+            android:id="@+id/sendButton"
             style="@style/FontMedium.White"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="@dimen/margin_default"
+            android:layout_margin="@dimen/margin_default"
             android:background="@drawable/shape_rounded_button_corners_gradient_gray"
             android:text="@string/action_send"
             android:textAllCaps="false" />

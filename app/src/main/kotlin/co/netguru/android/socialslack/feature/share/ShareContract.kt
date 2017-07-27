@@ -5,7 +5,13 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface ShareContract {
 
-    interface View : MvpView
+    interface View : MvpView {
 
-    interface Presenter : MvpPresenter<View>
+        fun showShareConfirmationDialog()
+    }
+
+    interface Presenter : MvpPresenter<View> {
+
+        fun onSendButtonClick()
+    }
 }

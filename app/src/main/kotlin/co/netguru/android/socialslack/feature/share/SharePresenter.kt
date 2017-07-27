@@ -7,4 +7,8 @@ import javax.inject.Inject
 @FragmentScope
 class SharePresenter @Inject constructor() : MvpNullObjectBasePresenter<ShareContract.View>(),
         ShareContract.Presenter {
+
+    override fun onSendButtonClick() {
+        view.showShareConfirmationDialog()
+    }
 }
