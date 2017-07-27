@@ -10,11 +10,8 @@ class ChannelsAdapter(private val onChannelClickListener: ChannelsViewHolder.Cha
 
     val channelsList: MutableList<Channel> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ChannelsViewHolder {
-        val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_channels, parent, false)
-        val holder = ChannelsViewHolder(view)
-        view.setOnClickListener { onChannelClickListener.onChannelClick(channelsList[holder.adapterPosition]) }
-        return holder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelsViewHolder {
+        return ChannelsViewHolder(parent, onChannelClickListener)
     }
 
     override fun onBindViewHolder(holder: ChannelsViewHolder, position: Int) {

@@ -12,8 +12,7 @@ class ShareChannelAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
     private val shareChannelList: MutableList<Channel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)
-        return ChannelsViewHolder(view)
+        return ChannelsViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: ChannelsViewHolder, position: Int) {
