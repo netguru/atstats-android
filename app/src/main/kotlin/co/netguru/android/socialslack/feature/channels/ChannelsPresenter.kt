@@ -2,7 +2,7 @@ package co.netguru.android.socialslack.feature.channels
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.channels.ChannelsController
+import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.filter.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
@@ -16,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class ChannelsPresenter @Inject constructor(private val channelsController: ChannelsController,
+class ChannelsPresenter @Inject constructor(private val channelsProvider: ChannelsProvider,
                                             private val filterController: FilterController)
     : MvpNullObjectBasePresenter<ChannelsContract.View>(), ChannelsContract.Presenter {
 
@@ -28,7 +28,7 @@ class ChannelsPresenter @Inject constructor(private val channelsController: Chan
     }
 
     override fun getChannelsFromServer() {
-        compositeDisposable += channelsController.getChannelsList()
+        compositeDisposable += channelsProvider.getChannelsList()
                 .flatMap(this::sortChannelsList)
                 .compose(RxTransformers.applySingleComputationSchedulers())
                 .subscribeBy(

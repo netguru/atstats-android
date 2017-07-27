@@ -1,7 +1,7 @@
 package co.netguru.android.socialslack.app
 
-import co.netguru.android.socialslack.data.channels.ChannelHistoryProvider
-import co.netguru.android.socialslack.data.channels.ChannelHistoryProviderImpl
+import co.netguru.android.socialslack.data.channels.ChannelsProvider
+import co.netguru.android.socialslack.data.channels.ChannelsProviderImpl
 import co.netguru.android.socialslack.data.channels.ChannelsApi
 import co.netguru.android.socialslack.data.session.LoginApi
 import dagger.Module
@@ -22,5 +22,5 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideChannelHistoryProvider(): ChannelHistoryProvider = ChannelHistoryProviderImpl()
+    fun provideChannelHistoryProvider(channelsApi: ChannelsApi): ChannelsProvider = ChannelsProviderImpl(channelsApi)
 }

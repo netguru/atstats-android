@@ -1,7 +1,8 @@
 package co.netguru.android.socialslack.feature.channels.profile
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
-import co.netguru.android.socialslack.data.channels.ChannelHistoryProvider
+import co.netguru.android.socialslack.common.util.RxTransformers
+import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import co.netguru.android.socialslack.data.channels.model.ChannelMessages
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.Observable
@@ -9,23 +10,28 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Named
 
 @FragmentScope
-class ChannelProfilePresenter @Inject constructor(private val channelHistoryProvider: ChannelHistoryProvider) :
+class ChannelProfilePresenter @Inject constructor(private val channelHistoryProvider: ChannelsProvider,
+                                                  @Named("UserId") private val userId: String) :
         MvpNullObjectBasePresenter<ChannelProfileContract.View>(), ChannelProfileContract.Presenter {
 
     private val compositeDisposable = CompositeDisposable()
 
     override fun getChannelInfo(ChannelId: String) {
-
         val messageStream = channelHistoryProvider.getMessagesForChannel(ChannelId)
+                .observeOn(Schedulers.io())
                 .filter { (type) -> type == ChannelMessages.MESSAGE_TYPE }
 
         compositeDisposable += Single.merge(
                 countStringAppearance(messageStream, ChannelMessages.HERE_TAG),
-                countStringAppearance(messageStream, "Anna"))
+                // TODO 27.07.2017 should be change to the user id with the format @<userId>
+                countStringAppearance(messageStream, userId))
+                .compose(RxTransformers.applyFlowableComputationSchedulers<Pair<String, Long>>())
                 .toList()
                 .subscribeBy(
                         onSuccess = this::showCount,
@@ -52,7 +58,7 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
             run {
                 if (first == ChannelMessages.HERE_TAG) {
                     totalHere = second
-                } else if (first == "Anna") {
+                } else if (first == userId) {
                     totalMentions = second
                 }
             }
