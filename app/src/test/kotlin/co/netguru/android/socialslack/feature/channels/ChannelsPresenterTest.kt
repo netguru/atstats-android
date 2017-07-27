@@ -11,8 +11,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import org.mockito.ArgumentMatchers
+import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class ChannelsPresenterTest {
@@ -91,7 +91,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.getCurrentFilterOption()
         //then
-        verify(view).setCurrentFilterOptionText(anyInt())
+        verify(view).setCurrentFilterOptionText(ArgumentMatchers.anyInt())
     }
 
     @Test
@@ -133,7 +133,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.sortRequestReceived(listOf())
         //then
-        verify(view).setCurrentFilterOptionText(anyInt())
+        verify(view).setCurrentFilterOptionText(ArgumentMatchers.anyInt())
     }
 
     @Test

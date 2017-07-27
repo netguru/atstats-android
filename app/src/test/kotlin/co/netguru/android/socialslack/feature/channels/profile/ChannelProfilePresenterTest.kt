@@ -10,18 +10,29 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class ChannelProfilePresenterTest {
 
+    companion object {
+        @JvmStatic
+        val TS: Float = 1000F
+        @JvmStatic
+        val USER_ID = "<@User>"
+        @JvmStatic
+        val CHANNEL = "channel"
+        @JvmStatic
+        val USER = "user"
+        @JvmStatic
+        val OTHER_TYPE = "otherType"
+        @JvmStatic
+        val OTHER_USER = "Other User"
+    }
+
     @Rule
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
-
-    val TS: Float = 1000F
-    val USER_ID = "<@User>"
 
     val messageList: MutableList<ChannelMessages> = mutableListOf()
 
@@ -42,17 +53,17 @@ class ChannelProfilePresenterTest {
     fun `should show correct number of heres and mentions when getting messages from channel`() {
         // given
         messageList.apply {
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, "user", ChannelMessages.HERE_TAG))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, "user", USER_ID))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, "user", ChannelMessages.HERE_TAG))
-            add(ChannelMessages("OtherType", TS, "user", "Other User"))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, "user", USER_ID))
-            add(ChannelMessages("OtherType", TS, "user", ChannelMessages.HERE_TAG))
+            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, ChannelMessages.HERE_TAG))
+            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, USER_ID))
+            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, ChannelMessages.HERE_TAG))
+            add(ChannelMessages(OTHER_TYPE, TS, USER, OTHER_USER))
+            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, USER_ID))
+            add(ChannelMessages(OTHER_TYPE, TS, USER, ChannelMessages.HERE_TAG))
         }
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
                 .thenReturn(Observable.fromIterable(messageList))
         // when
-        presenter.getChannelInfo("Channel")
+        presenter.getChannelInfo(CHANNEL)
         // then
         verify(view).showChannelInfo(2, 2)
     }
@@ -63,9 +74,42 @@ class ChannelProfilePresenterTest {
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
                 .thenReturn(Observable.error(Throwable()))
         // when
-        presenter.getChannelInfo("Channel")
+        presenter.getChannelInfo(CHANNEL)
         // then
         verify(view).showError()
+    }
+
+    @Test
+    fun `should show loading view when the channel message are request`() {
+        // given
+        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
+                .thenReturn(Observable.fromIterable(messageList))
+        // when
+        presenter.getChannelInfo(CHANNEL)
+        // then
+        verify(view, times(1)).showLoadingView()
+    }
+
+    @Test
+    fun `should show hide view when the channel messages call is successful`() {
+        // given
+        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
+                .thenReturn(Observable.fromIterable(messageList))
+        // when
+        presenter.getChannelInfo(CHANNEL)
+        // then
+        verify(view, times(1)).hideLoadingView()
+    }
+
+    @Test
+    fun `should show hide view when the channel messages call returns error`() {
+        // given
+        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
+                .thenReturn(Observable.error(Throwable()))
+        // when
+        presenter.getChannelInfo(CHANNEL)
+        // then
+        verify(view, times(1)).hideLoadingView()
     }
 
     @After
