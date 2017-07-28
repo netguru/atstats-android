@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.fragment_home_users.*
 
 class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.Presenter>(),
         HomeUsersContract.View {
-    private lateinit var component: HomeUsersComponent
+
+    private val component by lazy { App.getApplicationComponent(context).plusHomeUsersComponent() }
 
     override fun createPresenter(): HomeUsersContract.Presenter {
         return component.getPresenter()
@@ -26,7 +27,6 @@ class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        initComponent()
         return inflater?.inflate(R.layout.fragment_home_users, container, false)
     }
 
@@ -44,10 +44,6 @@ class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.
 
     override fun setUsersWeTalkTheMost(users: List<UserStatistic>) {
         initRecyclerWithData(usersRecycler3, users)
-    }
-
-    fun initComponent() {
-        component = App.getApplicationComponent(context).plusHomeUsersComponent()
     }
 
     private fun initRecyclerWithData(recyclerView: RecyclerView, userStatisticList: List<UserStatistic>) {

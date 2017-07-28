@@ -9,10 +9,11 @@ import kotlinx.android.synthetic.main.item_user.view.*
 class HomeUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(user: UserStatistic) {
-        itemView.userMessages.text = user.messages.toString()
-        itemView.userName.text = user.name
-        Glide.with(itemView.context).load(user.avatarUrl).into(itemView.userAvatar)
-
-        // TODO round image view with glide instead of itemView.userAvatar.roundImageView()
+        with(user) {
+            itemView.userMessages.text = user.messages.toString()
+            itemView.userName.text = user.name
+            Glide.with(itemView.context).load(user.avatarUrl).into(itemView.userAvatar)
+            // TODO round image view with glide instead of itemView.userAvatar.roundImageView()
+        }
     }
 }

@@ -10,17 +10,17 @@ import retrofit2.http.Query
 interface DirectMessagesApi {
 
     @GET("/api/im.list")
-    fun getDirectMessagesList(): Flowable<DirectChannelResponse>
+    fun getDirectMessagesList(): Single<DirectChannelResponse>
 
     @GET("/api/im.history")
     fun getDirectMessagesWithUser(
             @Query("channel") channel: String,
             @Query("count") count: Int,
             @Query("latest") latest: String,
-            @Query("inclusive") inclusive: Int): Flowable<MessageResponse>
+            @Query("inclusive") inclusive: Int): Single<MessageResponse>
 
     @GET("/api/im.history")
     fun getDirectMessagesWithUser(
             @Query("channel") channel: String,
-            @Query("count") count: Int): Flowable<MessageResponse>
+            @Query("count") count: Int): Single<MessageResponse>
 }

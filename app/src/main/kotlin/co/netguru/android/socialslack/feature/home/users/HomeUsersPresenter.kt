@@ -18,27 +18,32 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class HomeUsersPresenter @Inject constructor(
+internal class HomeUsersPresenter @Inject constructor(
         private val directMessagesController: DirectMessagesController,
         private val usersController: UsersController)
     : MvpNullObjectBasePresenter<HomeUsersContract.View>(), HomeUsersContract.Presenter {
 
-    private val compositeDisposable = CompositeDisposable()
-
-    companion object {
+    private companion object {
         val MAX_MESSAGES_PER_REQUEST = 1000
         val USERS_SHOWN_IN_STATISTICS = 3
     }
+
+    private val compositeDisposable = CompositeDisposable()
 
     override fun attachView(view: HomeUsersContract.View) {
         super.attachView(view)
         fetchMessages()
     }
 
+    override fun detachView(retainInstance: Boolean) {
+        super.detachView(retainInstance)
+        compositeDisposable.clear()
+    }
+
     private fun fetchMessages() {
         directMessagesController.getDirectMessagesList()
-                .compose(RxTransformers.applyFlowableIoSchedulers())
-                .flatMapIterable { x -> x }
+                .compose(RxTransformers.applySingleIoSchedulers())
+                .flattenAsFlowable { x -> x }
                 .flatMapSingle { fetchMessagesInConversation(it) }
                 .toList()
                 .subscribeBy(onSuccess = this::processUserData, onError = { it.printStackTrace() })
@@ -83,8 +88,8 @@ class HomeUsersPresenter @Inject constructor(
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
                 .flatMap({ usersController.getUserProfile(sortedChannels[it].channel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromUs) })
-                .compose(RxTransformers.applyFlowableIoSchedulers())
                 .toList()
+                .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(onSuccess = view::setUsersWeWriteMost, onError = { it.printStackTrace() })
     }
 
@@ -98,8 +103,8 @@ class HomeUsersPresenter @Inject constructor(
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
                 .flatMap({ usersController.getUserProfile(sortedChannels[it].channel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromOtherUser) })
-                .compose(RxTransformers.applyFlowableIoSchedulers())
                 .toList()
+                .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(onSuccess = view::setUsersThatWriteToUsTheMost, onError = { it.printStackTrace() })
     }
 
@@ -113,16 +118,16 @@ class HomeUsersPresenter @Inject constructor(
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
                 .flatMap({ usersController.getUserProfile(sortedChannels[it].directChannel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messages.size) })
-                .compose(RxTransformers.applyFlowableIoSchedulers())
                 .toList()
-                .subscribeBy(onSuccess = view::setUsersWeTalkTheMost, onError = { it.printStackTrace() })
+                .compose(RxTransformers.applySingleIoSchedulers())
+                .subscribeBy(onSuccess = view::setUsersWeTalkTheMost, onError = { Timber.e(it) })
     }
 
     private fun fetchMessagesInConversation(directChannel: DirectChannel): Single<DirectChannelWithMessages> {
         var latestTimestamp: String? = null
 
         return Flowable.range(0, Int.MAX_VALUE)
-                .concatMap { getMessagesOnIO(directChannel.id, latestTimestamp) }
+                .concatMap { getMessagesOnIO(directChannel.id, latestTimestamp).toFlowable() }
                 .doOnNext { if (it.isNotEmpty()) latestTimestamp = it.last().timeStamp }
                 .takeUntil { it.size != MAX_MESSAGES_PER_REQUEST }
                 .scan(this::addLists)
@@ -130,10 +135,10 @@ class HomeUsersPresenter @Inject constructor(
                 .map { DirectChannelWithMessages(directChannel, it) }
     }
 
-    private fun getMessagesOnIO(inChannel: String, latestTimestamp: String?): Flowable<List<Message>> {
+    private fun getMessagesOnIO(inChannel: String, latestTimestamp: String?): Single<List<Message>> {
         return directMessagesController.getMessagesInDirectChannel(inChannel,
                 latestTimestamp, MAX_MESSAGES_PER_REQUEST)
-                .compose(RxTransformers.applyFlowableIoSchedulers())
+                .compose(RxTransformers.applySingleIoSchedulers())
     }
 
     private fun addLists(a: List<Message>, b: List<Message>): List<Message> {
@@ -141,10 +146,5 @@ class HomeUsersPresenter @Inject constructor(
         list.addAll(a)
         list.addAll(b)
         return list.toList()
-    }
-
-    override fun detachView(retainInstance: Boolean) {
-        super.detachView(retainInstance)
-        compositeDisposable.clear()
     }
 }
