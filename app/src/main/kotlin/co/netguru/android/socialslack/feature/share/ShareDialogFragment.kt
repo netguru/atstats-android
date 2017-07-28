@@ -18,10 +18,6 @@ import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.android.synthetic.main.item_channels.view.*
 
-interface A {
-
-}
-
 class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContract.Presenter>(),
         ShareContract.View {
 
