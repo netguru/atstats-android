@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.Snackbar
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.feature.main.MainActivity
 import co.netguru.android.socialslack.common.extensions.startActivity
 
@@ -25,7 +26,7 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initComponent()
-        return inflater?.inflate(R.layout.fragment_login, container, false)
+        return container?.inflate(R.layout.fragment_login)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

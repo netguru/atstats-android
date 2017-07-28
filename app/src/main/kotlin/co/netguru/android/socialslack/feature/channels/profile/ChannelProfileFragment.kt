@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
@@ -41,7 +42,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         initComponent()
-        return inflater.inflate(R.layout.fragment_channel_profile, container, false)
+        return container?.inflate(R.layout.fragment_channel_profile)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

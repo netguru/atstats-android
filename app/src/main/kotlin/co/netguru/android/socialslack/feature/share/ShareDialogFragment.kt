@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
@@ -34,7 +35,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_share, container, false)
+        return container?.inflate(R.layout.fragment_share)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

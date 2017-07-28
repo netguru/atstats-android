@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.main.MainActivity
@@ -36,7 +37,7 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initComponent()
-        return inflater?.inflate(R.layout.fragment_filter, container, false)
+        return container?.inflate(R.layout.fragment_filter)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

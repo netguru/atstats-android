@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
@@ -35,7 +36,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initComponent()
-        return inflater?.inflate(R.layout.fragment_channels, container, false)
+        return container?.inflate(R.layout.fragment_channels)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

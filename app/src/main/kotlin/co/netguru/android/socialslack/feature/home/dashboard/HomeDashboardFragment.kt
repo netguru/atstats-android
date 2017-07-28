@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
 import kotlinx.android.synthetic.main.dashboard_statistics_card.view.*
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
@@ -17,7 +18,7 @@ class HomeDashboardFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_home_dashboard, container, false)
+        return container?.inflate(R.layout.fragment_home_dashboard)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
