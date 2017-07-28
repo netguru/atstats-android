@@ -20,7 +20,13 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         ShareContract.View {
 
     companion object {
-        fun newInstance() = ShareDialogFragment()
+        fun newInstance(): ShareDialogFragment {
+            val fragment = ShareDialogFragment()
+            val bundle = Bundle()
+
+            fragment.arguments = bundle
+            return fragment
+        }
 
         val TAG: String = ShareDialogFragment::class.java.simpleName
     }
