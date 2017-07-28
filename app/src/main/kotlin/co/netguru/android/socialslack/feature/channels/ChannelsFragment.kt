@@ -22,6 +22,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
 
     companion object {
         fun newInstance() = ChannelsFragment()
+        val MOCK_NUMBER_OF_MESSAGES = 120
     }
 
     private lateinit var component: ChannelsComponent
@@ -106,8 +107,9 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onChannelClick(channel: Channel) {
         fragmentManager
                 .beginTransaction()
-                // TODO replace name for id
-                .replace(R.id.fragmentChannelRootContainer, ChannelProfileFragment.newInstance(channel.name, channel.currentPositionInList))
+                // TODO get the number of messages
+                .replace(R.id.fragmentChannelRootContainer,
+                        ChannelProfileFragment.newInstance(channel.id, channel.name, MOCK_NUMBER_OF_MESSAGES, channel.currentPositionInList))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }

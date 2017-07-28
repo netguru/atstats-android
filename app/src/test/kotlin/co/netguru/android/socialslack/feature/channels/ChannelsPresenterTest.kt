@@ -1,17 +1,18 @@
 package co.netguru.android.socialslack.feature.channels
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
-import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.TestHelper.anyObject
-import co.netguru.android.socialslack.data.channels.ChannelsController
+import co.netguru.android.socialslack.TestHelper.whenever
+import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
-import org.mockito.Mockito.*
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.ArgumentMatchers
+import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class ChannelsPresenterTest {
@@ -20,7 +21,7 @@ class ChannelsPresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channelsController: ChannelsController = mock(ChannelsController::class.java)
+    val channelsController: ChannelsProvider = mock(ChannelsProvider::class.java)
     val filterController: FilterController = mock(FilterController::class.java)
     lateinit var view: ChannelsContract.View
 
@@ -90,7 +91,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.getCurrentFilterOption()
         //then
-        verify(view).setCurrentFilterOptionText(anyInt())
+        verify(view).setCurrentFilterOptionText(ArgumentMatchers.anyInt())
     }
 
     @Test
@@ -132,7 +133,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.sortRequestReceived(listOf())
         //then
-        verify(view).setCurrentFilterOptionText(anyInt())
+        verify(view).setCurrentFilterOptionText(ArgumentMatchers.anyInt())
     }
 
     @Test
