@@ -12,7 +12,6 @@ import io.fabric.sdk.android.Fabric
 
 class App : Application() {
 
-
     private val applicationComponent: ApplicationComponent by lazy {
         DaggerApplicationComponent
                 .builder()
@@ -33,7 +32,7 @@ class App : Application() {
     }
 
     companion object Factory {
-        fun getApplicationComponent(context: Context): ApplicationComponent =
+        internal fun getApplicationComponent(context: Context): ApplicationComponent =
                 (context.applicationContext as App).applicationComponent
     }
 }

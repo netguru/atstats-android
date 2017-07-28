@@ -2,16 +2,19 @@ package co.netguru.android.socialslack.feature.home.users
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
-import co.netguru.android.socialslack.data.user.User
+import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class HomeUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class HomeUsersViewHolder(itemView: View) : BaseViewHolder<UserStatistic>(itemView) {
 
-    fun bind(user: User) {
-        // TODO 11.07.17 remove mock data
-        itemView.userMessages.text = "32"
-        itemView.userName.text = user.name
-        itemView.userAvatar.roundImageView()
+    override fun bind(user: UserStatistic) {
+        with(user) {
+            itemView.userMessages.text = user.messages.toString()
+            itemView.userName.text = user.name
+            Glide.with(itemView.context).load(user.avatarUrl).into(itemView.userAvatar)
+            // TODO round image view with glide instead of itemView.userAvatar.roundImageView()
+        }
     }
 }
