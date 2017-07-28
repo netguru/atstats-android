@@ -30,6 +30,12 @@ object RxTransformers {
         }
     }
 
+    fun <T> applyFlowableComputationSchedulers(): FlowableTransformer<T, T> {
+        return FlowableTransformer {
+            it.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread())
+        }
+    }
+
     fun <T> applyObservableIoSchedulers(): ObservableTransformer<T, T> {
         return ObservableTransformer {
             it.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

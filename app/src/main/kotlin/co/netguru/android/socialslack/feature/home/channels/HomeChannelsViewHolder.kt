@@ -9,7 +9,7 @@ class HomeChannelsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) 
 
     fun bind(channel: Channel) {
         // TODO 11.07.17 remove mock data
-        itemView.channelName.text = channel.name
-        itemView.channelMessages.text = "234 532"
+        itemView.channelNameTextView.text = channel.name
+        itemView.channelMessagesTextView.text = "234 532"
     }
 }

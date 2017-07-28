@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:elevation="@dimen/channel_card_view_elevation"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/channel_card_view_card_corner_radius"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_zero"
+            android:layout_weight="1.2"
+            android:paddingBottom="@dimen/channel_card_view_title_bottom_padding"
+            android:clipToPadding="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:elevation="@dimen/channel_card_view_title_elevation">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/hashtag_title" />
+
+                <TextView
+                    android:id="@+id/channelNameTextView"
+                    style="@style/FontLarge.PrimaryDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    tool:text="#project-slack-social" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_zero"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <RelativeLayout
+                android:id="@+id/channelStatisticsRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center_horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/totalHereIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/messages_icon" />
+
+                <TextView
+                    android:id="@+id/totalHereTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_toEndOf="@+id/totalHereIcon"
+                    android:text="@string/channel_statistics_total_of_here"
+                    android:textAllCaps="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/totalOfHereTextView"
+                style="@style/FontDisplay2.PrimaryDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/channelStatisticsRelativeLayout"
+                android:layout_centerHorizontal="true"
+                tool:text="17" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_zero"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/mentionsTitleRelativeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/yourMentionsIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/mentions_icon" />
+
+                        <TextView
+                            android:id="@+id/yourMentionsTitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_toEndOf="@+id/yourMentionsIcon"
+                            android:text="@string/channel_statistics_your_mentions"
+                            android:textAllCaps="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/yourMentionsTextView"
+                        style="@style/FontDisplay2.PrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mentionsTitleRelativeLayout"
+                        android:layout_centerHorizontal="true"
+                        tool:text="34" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:background="@color/grey" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/secondHereTitleRelativeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/secondTotalHereIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/here_icon" />
+
+                        <TextView
+                            android:id="@+id/secondTotalHereTitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_toEndOf="@+id/secondTotalHereIcon"
+                            android:text="@string/channel_statistics_total_of_here"
+                            android:textAllCaps="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/secondTotalHereTextView"
+                        style="@style/FontDisplay2.PrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/secondHereTitleRelativeLayout"
+                        android:layout_centerHorizontal="true"
+                        tool:text="17" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_zero"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/shareWithUserButton"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_big"
+                android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+                android:text="@string/channel_statistics_share_with_channel"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -13,7 +13,7 @@ import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_users.*
 
-class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.Presenter>(),
+internal class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.Presenter>(),
         HomeUsersContract.View {
 
     private val component by lazy { App.getApplicationComponent(context).plusHomeUsersComponent() }

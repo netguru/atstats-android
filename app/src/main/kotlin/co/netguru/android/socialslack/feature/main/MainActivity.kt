@@ -2,15 +2,14 @@ package co.netguru.android.socialslack.feature.main
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.PorterDuff
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.feature.channels.ChannelsFragment
 import co.netguru.android.socialslack.feature.main.adapter.MainPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.Intent
-import co.netguru.android.socialslack.feature.channels.ChannelsFragment
 
 class MainActivity : AppCompatActivity() {
 
