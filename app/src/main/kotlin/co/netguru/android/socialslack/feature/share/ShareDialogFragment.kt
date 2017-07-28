@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.share
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
@@ -20,15 +21,20 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         ShareContract.View {
 
     companion object {
-        fun newInstance(): ShareDialogFragment {
+        fun <T : Parcelable> newInstance(selectedItem: T, mostActiveItemList: Array<T>): ShareDialogFragment {
             val fragment = ShareDialogFragment()
             val bundle = Bundle()
+            bundle.putParcelable(SELECTED_ITEM_KEY, selectedItem)
+            bundle.putParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY, mostActiveItemList)
 
             fragment.arguments = bundle
             return fragment
         }
 
         val TAG: String = ShareDialogFragment::class.java.simpleName
+
+        private const val SELECTED_ITEM_KEY = "key:selected_item"
+        private const val MOST_ACTIVE_ITEM_LIST_KEY = "key:most_active_item_list"
     }
 
     private val component by lazy {

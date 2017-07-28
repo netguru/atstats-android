@@ -90,12 +90,12 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelLoadingView.visibility = View.GONE
     }
 
-    override fun showChannelDetails(channel: Channel, channelList: List<Channel>) {
+    override fun showChannelDetails(channel: Channel, mostActiveChannelList: List<Channel>) {
         fragmentManager
                 .beginTransaction()
                 // TODO get the number of messages
                 .replace(R.id.fragmentChannelRootContainer,
-                        ChannelProfileFragment.newInstance(channel, channelList, MOCK_NUMBER_OF_MESSAGES))
+                        ChannelProfileFragment.newInstance(channel, mostActiveChannelList.toTypedArray(), MOCK_NUMBER_OF_MESSAGES))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }

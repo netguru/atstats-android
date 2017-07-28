@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.getParcelableCastedArray
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
@@ -17,10 +18,10 @@ import kotlinx.android.synthetic.main.profile_header_layout.*
 class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelProfileContract.Presenter>(), ChannelProfileContract.View {
 
     companion object {
-        fun newInstance(channel: Channel, channelList: List<Channel>, totalMessages: Int): ChannelProfileFragment {
+        fun newInstance(channel: Channel, mostActiveItemList: Array<Channel>, totalMessages: Int): ChannelProfileFragment {
             val bundle = Bundle()
             bundle.putParcelable(KEY_CHANNEL, channel)
-            bundle.putParcelableArray(KEY_CHANNEL_LIST, channelList.toTypedArray())
+            bundle.putParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST, mostActiveItemList)
             bundle.putInt(KEY_CHANNEL_TOTAL_MESSAGES, totalMessages)
 
             val channelProfileFragment = ChannelProfileFragment()
@@ -32,7 +33,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
         val TAG: String = ChannelProfileFragment::class.java.simpleName
 
         private const val KEY_CHANNEL = "key:channel"
-        private const val KEY_CHANNEL_LIST = "key:channel_list"
+        private const val KEY_CHANNEL_MOST_ACTIVE_LIST = "key:channel_list"
         private const val KEY_CHANNEL_TOTAL_MESSAGES = "key:channel_total_message"
     }
 
@@ -61,7 +62,9 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     }
 
     override fun showShareDialogFragment() {
-        ShareDialogFragment.newInstance().show(fragmentManager, ShareDialogFragment.TAG)
+        ShareDialogFragment.newInstance(arguments.getParcelable(KEY_CHANNEL),
+                arguments.getParcelableCastedArray<Channel>(KEY_CHANNEL_MOST_ACTIVE_LIST))
+                .show(fragmentManager, ShareDialogFragment.TAG)
     }
 
     private fun setUpFields(channel: Channel, totalMessage: Int) {
