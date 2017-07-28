@@ -94,8 +94,8 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
                         .flatMap { getProperStreamForCurrentFilterOption(it, channel, channelList) }
                         .compose(RxTransformers.applySingleComputationSchedulers())
                         .subscribeBy(
-                                onSuccess = {
-                                    view.showChannelDetails(it.first, it.second)
+                                onSuccess = { (channel, channelsList) ->
+                                    view.showChannelDetails(channel, channelsList)
                                 },
                                 onError = {
                                     Timber.e(it, "Error while getting three most active channels")
@@ -103,8 +103,8 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     }
 
     private fun getProperStreamForCurrentFilterOption(currentFilterOption: ChannelsFilterOption,
-                                                      channel: Channel, channelList: List<Channel>)
-            : Single<Pair<Channel, List<Channel>>> {
+                                                      channel: Channel, channelList: List<Channel>
+    ): Single<Pair<Channel, List<Channel>>> {
 
         return if (currentFilterOption == ChannelsFilterOption.MOST_ACTIVE_CHANNEL) {
             Single.just(Pair(channel, getMostActiveChannelsList(channelList, channel)))
@@ -118,8 +118,8 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
         }
     }
 
-    private fun getSelectedChannelFromUpdatedList(channelId: String, channelList: List<Channel>)
-            : Pair<Channel, List<Channel>> {
+    private fun getSelectedChannelFromUpdatedList(channelId: String, channelList: List<Channel>
+    ): Pair<Channel, List<Channel>> {
         channelList.filter { it.id == channelId }
                 .forEach { return Pair(it, getMostActiveChannelsList(channelList, it)) }
 
@@ -150,7 +150,7 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     }
 
     private fun addSelectedChannelToProperPlace(channel: Channel, channelList: MutableList<Channel>) {
-        for (i in 0..channelList.size - 1) {
+        for (i in 0.until(channelList.size)) {
             if (channelList[i].membersNumber == channel.membersNumber) {
                 channelList.add(i, channel)
                 break

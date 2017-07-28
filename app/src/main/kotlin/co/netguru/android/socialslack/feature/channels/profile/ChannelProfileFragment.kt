@@ -61,9 +61,11 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     }
 
     override fun showShareDialogFragment() {
-        ShareDialogFragment.newInstance(arguments.getParcelable(KEY_CHANNEL),
-                arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST))
-                .show(fragmentManager, ShareDialogFragment.TAG)
+        val channel: Channel = arguments.getParcelable(KEY_CHANNEL)
+        val channelArray: Array<Channel> = arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST)
+                .filterIsInstance(Channel::class.java).toTypedArray()
+
+        ShareDialogFragment.newInstance(channel, channelArray).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
     private fun setUpFields(channel: Channel, totalMessage: Int) {

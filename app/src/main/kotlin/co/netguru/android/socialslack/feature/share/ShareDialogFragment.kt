@@ -10,6 +10,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.share.Sharable
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpDialogFragment
@@ -17,11 +18,17 @@ import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.android.synthetic.main.item_channels.view.*
 
+interface A {
+
+}
+
 class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContract.Presenter>(),
         ShareContract.View {
 
     companion object {
-        fun <T : Parcelable> newInstance(selectedItem: T, mostActiveItemList: Array<T>): ShareDialogFragment {
+        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>
+        ): ShareDialogFragment  where T : Parcelable, T : Sharable {
+
             val fragment = ShareDialogFragment()
             val bundle = Bundle()
             bundle.putParcelable(SELECTED_ITEM_KEY, selectedItem)
@@ -124,7 +131,8 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
 
     private fun initRecyclerView() {
         shareRecyclerView.setHasFixedSize(true)
-        shareRecyclerView.addItemDecoration(DividerItemDecorator(context,
+        shareRecyclerView.addItemDecoration(DividerItemDecorator(
+                context,
                 DividerItemDecorator.Orientation.VERTICAL_LIST, false))
     }
 }

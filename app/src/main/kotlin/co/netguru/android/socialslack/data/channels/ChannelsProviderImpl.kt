@@ -32,9 +32,10 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
     override fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
             .map { it.channelList }
 
-    override fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable
-            = channelsApi.uploadFileToChannel(channelName, createMultipartBody(fileByteArray))
-            .flatMapCompletable(this::parseResponse)
+    override fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable {
+        return channelsApi.uploadFileToChannel(channelName, createMultipartBody(fileByteArray))
+                .flatMapCompletable(this::parseResponse)
+    }
 
     private fun createMultipartBody(fileByteArray: ByteArray): MultipartBody.Part {
         val requestFile = RequestBody.create(MediaType.parse(MEDIA_TYPE), fileByteArray)

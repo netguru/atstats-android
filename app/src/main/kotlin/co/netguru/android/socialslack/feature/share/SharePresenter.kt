@@ -39,9 +39,9 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
 
     override fun onSendButtonClick(screenShotByteArray: ByteArray) {
         view.showLoadingView()
-        compositeDisposable += channelsProvider.uploadFileToChannel(
-                currentChannelName, screenShotByteArray)
+        compositeDisposable += channelsProvider.uploadFileToChannel(currentChannelName, screenShotByteArray)
                 .compose(RxTransformers.applyCompletableIoSchedulers())
+                .doAfterTerminate(view::hideLoadingView)
                 .subscribeBy(
                         onComplete = {
                             Timber.d("Screenshot sent to $currentChannelName")
@@ -49,7 +49,6 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
                         },
                         onError = {
                             Timber.e(it, "Error while uploading screenshot to server")
-                            view.hideLoadingView()
                             view.showError()
                         })
     }
@@ -62,7 +61,9 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
         currentChannelName = selectedChannel.name
         view.initShareChannelView(selectedChannel, mostActiveChannelsList)
         view.showChannelName(CHANNEL_PREFIX + selectedChannel.name)
-        checkSelectedChannelPosition(selectedChannel, mostActiveChannelsList[NUMBER_OF_MOST_ACTIVE_ITEMS - 1].currentPositionInList)
+
+        val lastMostActiveItem = mostActiveChannelsList[NUMBER_OF_MOST_ACTIVE_ITEMS - 1]
+        checkSelectedChannelPosition(selectedChannel, lastMostActiveItem.currentPositionInList)
     }
 
     private fun checkSelectedChannelPosition(selectedChannel: Channel, lastMostActiveChannelPosition: Int) {
