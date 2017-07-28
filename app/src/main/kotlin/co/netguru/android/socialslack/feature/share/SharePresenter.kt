@@ -2,7 +2,7 @@ package co.netguru.android.socialslack.feature.share
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.channels.ChannelsController
+import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class SharePresenter @Inject constructor(private val channelsController: ChannelsController)
+class SharePresenter @Inject constructor(private val channelsProvider: ChannelsProvider)
     : MvpNullObjectBasePresenter<ShareContract.View>(),
         ShareContract.Presenter {
 
@@ -24,7 +24,7 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
 
     override fun onSendButtonClick(screenShotByteArray: ByteArray) {
         view.showLoadingView()
-        compositeDisposable += channelsController.uploadFileToChannel(
+        compositeDisposable += channelsProvider.uploadFileToChannel(
                 "slack-social-test", screenShotByteArray)
                 .compose(RxTransformers.applyCompletableIoSchedulers())
                 .subscribeBy(

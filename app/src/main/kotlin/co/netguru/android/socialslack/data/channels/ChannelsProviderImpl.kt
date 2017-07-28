@@ -1,28 +1,38 @@
 package co.netguru.android.socialslack.data.channels
 
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelMessages
 import co.netguru.android.socialslack.data.channels.model.FileUploadResponse
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.MediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 import javax.inject.Singleton
-import okhttp3.RequestBody
 
 @Singleton
-class ChannelsController @Inject constructor(private val channelsApi: ChannelsApi) {
+class ChannelsProviderImpl @Inject constructor(private val channelsApi: ChannelsApi) : ChannelsProvider {
 
+    // TODO 27.07.2017 REMOVE THIS MOCK
     companion object {
+        val MOCK_COUNT = 1000
         private const val FILE_PARAMETER_NAME = "file"
         private const val FILE_NAME = "channel_statistics.jpg"
         private const val MEDIA_TYPE = "image/jpeg"
     }
 
-    fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
+    // TODO 27.07.2017 this should be get from the database
+    override fun getMessagesForChannel(channelId: String):
+            Observable<ChannelMessages> = channelsApi
+            .getChannelsHistory(channelId, MOCK_COUNT, null, null, null, null)
+            .flatMapObservable { it -> Observable.fromIterable(it.messageList) }
+
+    override fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
             .map { it.channelList }
 
-    fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable
+    override fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable
             = channelsApi.uploadFileToChannel(channelName, createMultipartBody(fileByteArray))
             .flatMapCompletable(this::parseResponse)
 
