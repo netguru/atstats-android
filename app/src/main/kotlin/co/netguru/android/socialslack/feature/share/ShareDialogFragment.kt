@@ -22,8 +22,8 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         ShareContract.View {
 
     companion object {
-        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>
-        ): ShareDialogFragment  where T : Parcelable, T : Sharable {
+        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>): ShareDialogFragment
+                where T : Parcelable, T : Sharable {
 
             val fragment = ShareDialogFragment()
             val bundle = Bundle()
