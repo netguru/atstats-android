@@ -93,6 +93,7 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
         compositeDisposable += Observable.fromIterable(channelList)
                 .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
                 .map { it.subList(MOST_ACTIVE_CHANNEL_FIRST_POSITION, MOST_ACTIVE_CHANNEL_LAST_POSITION) }
+                .doOnSuccess(this::updateChannelPositionInList)
                 .doOnSuccess { Timber.d("Most active channels: $it") }
                 .compose(RxTransformers.applySingleComputationSchedulers())
                 .subscribeBy(

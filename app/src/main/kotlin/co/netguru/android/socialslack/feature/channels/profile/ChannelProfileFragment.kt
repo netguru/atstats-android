@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
-import co.netguru.android.socialslack.common.extensions.getParcelableCastedArray
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
@@ -63,7 +62,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
 
     override fun showShareDialogFragment() {
         ShareDialogFragment.newInstance(arguments.getParcelable(KEY_CHANNEL),
-                arguments.getParcelableCastedArray<Channel>(KEY_CHANNEL_MOST_ACTIVE_LIST))
+                arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST))
                 .show(fragmentManager, ShareDialogFragment.TAG)
     }
 

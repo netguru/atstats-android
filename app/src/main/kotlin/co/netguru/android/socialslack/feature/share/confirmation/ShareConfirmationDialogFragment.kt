@@ -11,9 +11,18 @@ import kotlinx.android.synthetic.main.fragment_share_confirmation.*
 class ShareConfirmationDialogFragment : DialogFragment() {
 
     companion object {
-        fun newInstance() = ShareConfirmationDialogFragment()
+        fun newInstance(itemName: String): ShareConfirmationDialogFragment {
+            val fragment = ShareConfirmationDialogFragment()
+            val bundle = Bundle()
+            bundle.putString(ITEM_NAME_KEY, itemName)
+
+            fragment.arguments = bundle
+            return fragment
+        }
 
         val TAG: String = ShareConfirmationDialogFragment::class.java.simpleName
+
+        private const val ITEM_NAME_KEY = "key:item_name"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,6 +32,8 @@ class ShareConfirmationDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         shareConfirmationCloseBtn.setOnClickListener { dismiss() }
-        shareConfirmationCloseBtn.setOnClickListener { dismiss() }
+        shareConfirmationThankYouBtn.setOnClickListener { dismiss() }
+        shareConfirmationThankYouText.text = resources
+                .getString(R.string.thanks_for_sending_statistics, arguments.getString(ITEM_NAME_KEY))
     }
 }

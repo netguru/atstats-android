@@ -36,8 +36,7 @@
         style="@style/FontMedium.PrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Hey #android-internals, recon this:" />
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/shareChannelStatusTextView"
@@ -45,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="talk with me more!"
+        android:text="@string/share_channel_talk_more"
         android:textStyle="bold" />
 
 
@@ -84,8 +83,10 @@
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     <FrameLayout
+        android:id="@+id/shareMoreVertImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -95,11 +96,13 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/shareLastItemContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginStart="@dimen/margin_default">
+        android:layout_marginStart="@dimen/margin_default"
+        android:visibility="gone">
 
         <include
             android:id="@+id/shareLastItem"
@@ -113,13 +116,13 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/shareAboutSendStatisticsTextView"
             style="@style/FontSmall.Grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
             android:gravity="center"
-            android:lines="2"
-            android:text="@string/send_statistics_to" />
+            android:lines="2" />
 
         <FrameLayout
             android:layout_width="match_parent"
