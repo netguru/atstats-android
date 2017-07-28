@@ -23,8 +23,7 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     : MvpNullObjectBasePresenter<ChannelsContract.View>(), ChannelsContract.Presenter {
 
     companion object {
-        private const val MOST_ACTIVE_CHANNEL_FIRST_POSITION = 0
-        private const val MOST_ACTIVE_CHANNEL_LAST_POSITION = 3
+        private const val MOST_ACTIVE_CHANNEL_NUMBER = 3
     }
 
     private val compositeDisposable = CompositeDisposable()
@@ -90,20 +89,73 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     }
 
     override fun onChannelClick(channel: Channel, channelList: List<Channel>) {
-        compositeDisposable += Observable.fromIterable(channelList)
-                .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
-                .map { it.subList(MOST_ACTIVE_CHANNEL_FIRST_POSITION, MOST_ACTIVE_CHANNEL_LAST_POSITION) }
-                .doOnSuccess(this::updateChannelPositionInList)
-                .doOnSuccess { Timber.d("Most active channels: $it") }
-                .compose(RxTransformers.applySingleComputationSchedulers())
-                .subscribeBy(
-                        onSuccess = {
-                            view.showChannelDetails(channel, it)
-                        },
-                        onError = {
-                            Timber.e(it, "Error while getting three most active channels")
-                        }
-                )
+        compositeDisposable +=
+                filterController.getChannelsFilterOption()
+                        .flatMap { getProperStreamForCurrentFilterOption(it, channel, channelList) }
+                        .compose(RxTransformers.applySingleComputationSchedulers())
+                        .subscribeBy(
+                                onSuccess = {
+                                    view.showChannelDetails(it.first, it.second)
+                                },
+                                onError = {
+                                    Timber.e(it, "Error while getting three most active channels")
+                                })
+    }
+
+    private fun getProperStreamForCurrentFilterOption(currentFilterOption: ChannelsFilterOption,
+                                                      channel: Channel, channelList: List<Channel>)
+            : Single<Pair<Channel, List<Channel>>> {
+
+        return if (currentFilterOption == ChannelsFilterOption.MOST_ACTIVE_CHANNEL) {
+            Single.just(Pair(channel, getMostActiveChannelsList(channelList, channel)))
+        } else {
+            //we should sort channels list if current filter option is different than most active channel
+            Observable.fromIterable(channelList)
+                    .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
+                    .doOnSuccess(this::updateChannelPositionInList)
+                    .map { getSelectedChannelFromUpdatedList(channel.id, it) }
+                    .doOnSuccess { Timber.d("Most active channels: ${it.second}") }
+        }
+    }
+
+    private fun getSelectedChannelFromUpdatedList(channelId: String, channelList: List<Channel>)
+            : Pair<Channel, List<Channel>> {
+        channelList.filter { it.id == channelId }
+                .forEach { return Pair(it, getMostActiveChannelsList(channelList, it)) }
+
+        throw IllegalStateException("There is no channel with id: $channelId in channels list")
+    }
+
+    private fun getMostActiveChannelsList(channelList: List<Channel>, channel: Channel): List<Channel> {
+        //TODO 28.07.2017 Replace membersNumber with messagesNumber!
+        if (channel.membersNumber > channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1].membersNumber) {
+            //if our channel has more messages than last in list then just take proper sublist
+            return channelList.take(MOST_ACTIVE_CHANNEL_NUMBER)
+        } else {
+            val mostActiveChannels = channelList.take(MOST_ACTIVE_CHANNEL_NUMBER).toMutableList()
+            //selected channel can be inside most active channels list, but it's position can be wrong
+            //so we have to remove it from list
+            removeSelectedChannelFromChannelList(channel.id, mostActiveChannels)
+            // and then add to proper place
+            addSelectedChannelToProperPlace(channel, mostActiveChannels)
+
+            //if we don't remove anything from list, it can contains more than MOST_ACTIVE_CHANNEL_NUMBER
+            return mostActiveChannels.take(MOST_ACTIVE_CHANNEL_NUMBER).toList()
+        }
+    }
+
+    private fun removeSelectedChannelFromChannelList(channelId: String, channelList: MutableList<Channel>) {
+        val channel = channelList.find { it.id == channelId }
+        channelList.remove(channel)
+    }
+
+    private fun addSelectedChannelToProperPlace(channel: Channel, channelList: MutableList<Channel>) {
+        for (i in 0..channelList.size - 1) {
+            if (channelList[i].membersNumber == channel.membersNumber) {
+                channelList.add(i, channel)
+                break
+            }
+        }
     }
 
     private fun sortChannelsList(channelList: List<Channel>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<Channel>, ChannelsFilterOption>> {
@@ -129,6 +181,5 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
                 channelList[i].currentPositionInList = ++currentPositionInList
             }
         }
-
     }
 }

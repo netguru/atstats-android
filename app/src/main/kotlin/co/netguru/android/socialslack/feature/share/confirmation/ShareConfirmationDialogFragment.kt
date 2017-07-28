@@ -33,7 +33,8 @@ class ShareConfirmationDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         shareConfirmationCloseBtn.setOnClickListener { dismiss() }
         shareConfirmationThankYouBtn.setOnClickListener { dismiss() }
-        shareConfirmationThankYouText.text = resources
-                .getString(R.string.thanks_for_sending_statistics, arguments.getString(ITEM_NAME_KEY))
+        val itemName = arguments.getString(ITEM_NAME_KEY)
+        shareConfirmationItemNameText.text = itemName
+        shareConfirmationThankYouText.text = resources.getString(R.string.thanks_for_sending_statistics, itemName)
     }
 }

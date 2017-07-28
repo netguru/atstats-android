@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGrey"
@@ -14,12 +15,13 @@
         android:background="@drawable/modal_top2">
 
         <TextView
+            android:id="@+id/shareConfirmationItemNameText"
             style="@style/FontLarge.LightGrey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/share_confirmation_text_margin_top"
-            android:text="#ng-team" />
+            tools:text="#android-internals" />
 
         <ImageButton
             android:id="@+id/shareConfirmationCloseBtn"
@@ -46,7 +48,7 @@
         android:layout_marginTop="@dimen/margin_default"
         android:gravity="center"
         android:lines="2"
-        android:text="@string/thanks_for_sending_statistics" />
+        tools:text="@string/thanks_for_sending_statistics" />
 
     <Button
         android:id="@+id/shareConfirmationThankYouBtn"

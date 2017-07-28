@@ -51,8 +51,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         initRecyclerView()
         shareCloseBtn.setOnClickListener { presenter.onCloseButtonClick() }
         shareSendButton.setOnClickListener {
-            presenter.onSendButtonClick(
-                    ScreenShotUtils.takeScreenShotByteArray(shareRootView))
+            presenter.onSendButtonClick(ScreenShotUtils.takeScreenShotByteArray(shareRootView))
         }
         presenter.prepareView(arguments.getParcelable(SELECTED_ITEM_KEY),
                 arguments.getParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY).toList())

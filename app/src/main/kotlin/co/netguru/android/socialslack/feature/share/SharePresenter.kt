@@ -45,7 +45,7 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
                 .subscribeBy(
                         onComplete = {
                             Timber.d("Screenshot sent to $currentChannelName")
-                            view.showShareConfirmationDialog(currentChannelName)
+                            view.showShareConfirmationDialog(CHANNEL_PREFIX + currentChannelName)
                         },
                         onError = {
                             Timber.e(it, "Error while uploading screenshot to server")
