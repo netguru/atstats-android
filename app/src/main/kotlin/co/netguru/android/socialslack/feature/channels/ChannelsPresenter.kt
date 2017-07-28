@@ -22,6 +22,11 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
                                             private val filterController: FilterController)
     : MvpNullObjectBasePresenter<ChannelsContract.View>(), ChannelsContract.Presenter {
 
+    companion object {
+        private const val MOST_ACTIVE_CHANNEL_FIRST_POSITION = 0
+        private const val MOST_ACTIVE_CHANNEL_LAST_POSITION = 3
+    }
+
     private val compositeDisposable = CompositeDisposable()
 
     override fun detachView(retainInstance: Boolean) {
@@ -82,6 +87,22 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
                             Timber.e(it, "Error while changing channels order")
                             view.showFilterOptionError()
                         })
+    }
+
+    override fun onChannelClick(channel: Channel, channelList: List<Channel>) {
+        compositeDisposable += Observable.fromIterable(channelList)
+                .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
+                .map { it.subList(MOST_ACTIVE_CHANNEL_FIRST_POSITION, MOST_ACTIVE_CHANNEL_LAST_POSITION) }
+                .doOnSuccess { Timber.d("Most active channels: $it") }
+                .compose(RxTransformers.applySingleComputationSchedulers())
+                .subscribeBy(
+                        onSuccess = {
+                            view.showChannelDetails(channel, it)
+                        },
+                        onError = {
+                            Timber.e(it, "Error while getting three most active channels")
+                        }
+                )
     }
 
     private fun sortChannelsList(channelList: List<Channel>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<Channel>, ChannelsFilterOption>> {
