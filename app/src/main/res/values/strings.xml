@@ -28,9 +28,9 @@
     // Filter view
     <string name="filter_by">Filter by</string>
     <!-- TODO 13.07.2017 Update strings when filtering logic will be working correctly.-->
-    <string name="channel_we_are_mentioned_the_most">TODO - Members number DESC</string> <!--Channel We Are Mentioned The Most -->
-    <string name="channel_we_are_most_active">TODO - Members number DESC</string> <!--Channel We Are Most Active -->
-    <string name="most_active_channel_filter">TODO - Members number ASC</string> <!-- Most Active channel -->
+    <string name="channel_we_are_mentioned_the_most">TODO - Members number ASC</string> <!--Channel We Are Mentioned The Most -->
+    <string name="channel_we_are_most_active">TODO - Members number ASC</string> <!--Channel We Are Most Active -->
+    <string name="most_active_channel_filter">TODO - Members number DESC</string> <!-- Most Active channel -->
     <string name="categories">Categories</string>
     <string name="error_filter_option">Error while changing filter option</string>
 
@@ -61,8 +61,11 @@
 
     // Share
     <string name="share_love">Share the love!</string>
-    <string name="send_statistics_to">You are about to send this statistics to\nng-team</string>
-    <string name="thanks_for_sending_statistics">Thank you for sending statistics to\nng-team</string>
+    <string name="share_recon_this">Hey %s, recon this:</string>
+    <string name="share_channel_talk_more">talk with me more!</string>
+    <string name="share_most_talkative_channel">we are the most talkative channel!</string>
+    <string name="share_send_statistics_to">You are about to send this statistics to\n%s</string>
+    <string name="thanks_for_sending_statistics">Thank you for sending statistics to\n%s</string>
     <string name="thank_you">Thank you!</string>
     <string name="ta_da">Ta-da!</string>
 </resources>

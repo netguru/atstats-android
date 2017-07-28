@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
@@ -16,12 +17,11 @@ import kotlinx.android.synthetic.main.profile_header_layout.*
 class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelProfileContract.Presenter>(), ChannelProfileContract.View {
 
     companion object {
-        fun newInstance(channelId: String, channelName: String, totalMessages: Int, currentPosition: Int): ChannelProfileFragment {
+        fun newInstance(channel: Channel, mostActiveItemList: Array<Channel>, totalMessages: Int): ChannelProfileFragment {
             val bundle = Bundle()
-            bundle.putString(KEY_CHANNEL_ID, channelId)
-            bundle.putString(KEY_CHANNEL_NAME, channelName)
+            bundle.putParcelable(KEY_CHANNEL, channel)
+            bundle.putParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST, mostActiveItemList)
             bundle.putInt(KEY_CHANNEL_TOTAL_MESSAGES, totalMessages)
-            bundle.putInt(KEY_CHANNEL_CURRENT_POSITION, currentPosition)
 
             val channelProfileFragment = ChannelProfileFragment()
             channelProfileFragment.arguments = bundle
@@ -29,11 +29,11 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
             return channelProfileFragment
         }
 
-        val KEY_CHANNEL_ID = "key:channel_id"
-        val KEY_CHANNEL_NAME = "key:channel_name"
-        val KEY_CHANNEL_TOTAL_MESSAGES = "key:channel_total_message"
-        val KEY_CHANNEL_CURRENT_POSITION = "key:channel_current_position"
         val TAG: String = ChannelProfileFragment::class.java.simpleName
+
+        private const val KEY_CHANNEL = "key:channel"
+        private const val KEY_CHANNEL_MOST_ACTIVE_LIST = "key:channel_list"
+        private const val KEY_CHANNEL_TOTAL_MESSAGES = "key:channel_total_message"
     }
 
     private lateinit var component: ChannelProfileComponent
@@ -47,9 +47,10 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments.apply {
-            setUpFields(getString(KEY_CHANNEL_NAME), getInt(KEY_CHANNEL_TOTAL_MESSAGES), getInt(KEY_CHANNEL_CURRENT_POSITION))
+            val channel: Channel = getParcelable(KEY_CHANNEL)
+            setUpFields(channel, getInt(KEY_CHANNEL_TOTAL_MESSAGES))
+            getPresenter().getChannelInfo(channel.id)
         }
-        getPresenter().getChannelInfo(arguments.getString(KEY_CHANNEL_ID))
         shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
     }
 
@@ -60,13 +61,17 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     }
 
     override fun showShareDialogFragment() {
-        ShareDialogFragment.newInstance().show(fragmentManager, ShareDialogFragment.TAG)
+        val channel: Channel = arguments.getParcelable(KEY_CHANNEL)
+        val channelArray: Array<Channel> = arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST)
+                .filterIsInstance(Channel::class.java).toTypedArray()
+
+        ShareDialogFragment.newInstance(channel, channelArray).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
-    private fun setUpFields(channelName: String, totalMessage: Int, rank: Int) {
+    private fun setUpFields(channel: Channel, totalMessage: Int) {
         messagesDetailTextView.text = resources.getString(R.string.total_messages)
-        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelName)
-        rankTextView.text = rank.toString()
+        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channel.name)
+        rankTextView.text = channel.currentPositionInList.toString()
         totalMessagesTextView.text = totalMessage.toString()
     }
 

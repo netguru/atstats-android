@@ -21,6 +21,7 @@ ext {
     greenDaoVersion = '3.2.2'
     mosbyVersion = '3.0.4'
     powerMockVersion = '1.6.2'
+    paperParcelVersion = '2.0.1'
 
     libs = [
             kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion",
@@ -78,6 +79,7 @@ ext {
             autoBundle              : "com.github.yatatsu:autobundle:$autoBundleVersion",
             greenDao                : "org.greenrobot:greendao:$greenDaoVersion",
             greenDaoGenerator       : "org.greenrobot:greendao-generator:$greenDaoVersion",
+            paperParcel             : "nz.bradcampbell:paperparcel:$paperParcelVersion",
             fabric                  : "com.crashlytics.sdk.android:crashlytics:2.6.8@aar",
             verticalViewPager       : "com.github.castorflex.verticalviewpager:library:19.0.1"
     ]
@@ -93,6 +95,7 @@ ext {
             onActivityResult: "com.vanniktech:onactivityresult-compiler:$onActivityResultVersion", // apt
             butterKnife     : "com.jakewharton:butterknife-compiler:$butterKnifeVersion", // apt
             dagger          : "com.google.dagger:dagger-compiler:$daggerVersion", // apt
+            paperParcel     : "nz.bradcampbell:paperparcel-compiler:$paperParcelVersion", //apt
             javaxAnnotation : "org.glassfish:javax.annotation:10.0-b28", // apt (provided)
     ]
 

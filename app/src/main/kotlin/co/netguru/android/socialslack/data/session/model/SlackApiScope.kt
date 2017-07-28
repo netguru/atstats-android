@@ -7,6 +7,7 @@ enum class SlackApiScope constructor(val value: String) {
     DO_NOT_DISTURB_READ("dnd:read"),
     EMOJI_READ("emoji:read"),
     FILES_READ("files:read"),
+    FILES_WRITE("files:write:user"),
     GROUPS_HISTORY("groups:history"),
     GROUPS_READ("groups:read"),
     MESSAGES_HISTORY("im:history"),

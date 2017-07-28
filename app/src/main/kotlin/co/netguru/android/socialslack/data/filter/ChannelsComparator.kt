@@ -10,8 +10,8 @@ object ChannelsComparator {
     //TODO  possibility to obtain all needed information about the channel from SLACK API
     fun getChannelsComparatorForFilterOption(filterOption: ChannelsFilterOption): Comparator<Channel> {
         when (filterOption) {
-            ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> return getAscComparator()
-            else -> return getDescComparator()
+            ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> return getDescComparator()
+            else -> return getAscComparator()
         }
     }
 

@@ -90,6 +90,20 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelLoadingView.visibility = View.GONE
     }
 
+    override fun showChannelDetails(channel: Channel, mostActiveChannelList: List<Channel>) {
+        fragmentManager
+                .beginTransaction()
+                // TODO get the number of messages
+                .replace(R.id.fragmentChannelRootContainer,
+                        ChannelProfileFragment.newInstance(channel, mostActiveChannelList.toTypedArray(), MOCK_NUMBER_OF_MESSAGES))
+                .addToBackStack(ChannelProfileFragment.TAG)
+                .commit()
+    }
+
+    override fun onChannelClick(channel: Channel) {
+        presenter.onChannelClick(channel, adapter.channelsList)
+    }
+
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
 
     fun sortData() {
@@ -102,16 +116,6 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelsRecyclerView.addItemDecoration(DividerItemDecorator(context,
                 DividerItemDecorator.Orientation.VERTICAL_LIST, false))
         channelsRecyclerView.adapter = adapter
-    }
-
-    override fun onChannelClick(channel: Channel) {
-        fragmentManager
-                .beginTransaction()
-                // TODO get the number of messages
-                .replace(R.id.fragmentChannelRootContainer,
-                        ChannelProfileFragment.newInstance(channel.id, channel.name, MOCK_NUMBER_OF_MESSAGES, channel.currentPositionInList))
-                .addToBackStack(ChannelProfileFragment.TAG)
-                .commit()
     }
 
     private fun initComponent() {

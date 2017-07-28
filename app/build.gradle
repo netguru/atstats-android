@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
 
 ext {
@@ -121,10 +122,6 @@ android {
     }
 }
 
-kapt {
-    generateStubs = true
-}
-
 dependencies {
 
     // Support
@@ -188,6 +185,10 @@ dependencies {
 
     // Timber
     compile libs.timber
+
+    //PaperParcel
+    compile libs.paperParcel
+    kapt proc.paperParcel
 
     // Unit testing
     testCompile(test.junit) {
