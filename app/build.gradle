@@ -159,6 +159,11 @@ dependencies {
     // kotlin
     compile libs.kotlin
 
+    // Room
+    compile libs.room
+    compile libs.roomRxJava2
+    kapt proc.room
+
     // OkHttp + Retrofit
     compile libs.okHttp
     compile libs.okHttpLoggingInterceptor
@@ -190,6 +195,7 @@ dependencies {
     testCompile(test.junit) {
         exclude module: 'hamcrest-core'
     }
+    testCompile test.room
     testCompile test.hamcrest
     testCompile test.mockito
 

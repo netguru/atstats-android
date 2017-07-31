@@ -5,7 +5,7 @@ import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.model.ChannelHistory
 import co.netguru.android.socialslack.data.channels.model.ChannelList
-import co.netguru.android.socialslack.data.channels.model.ChannelMessages
+import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import org.junit.Before
@@ -22,6 +22,8 @@ class ChannelsProviderImplTest {
         val LATEST = 1000F
         @JvmStatic
         val USER = "user"
+        @JvmStatic
+        val CHANNEL = "channel"
     }
 
     @Rule
@@ -35,7 +37,7 @@ class ChannelsProviderImplTest {
     @Before
     fun setUp() {
         val channelList = ChannelList(true, listOf())
-        val channelHistory = ChannelHistory(true, LATEST, listOf(ChannelMessages(ChannelMessages.MESSAGE_TYPE, LATEST, USER, USER)), false)
+        val channelHistory = ChannelHistory(true, LATEST, listOf(ChannelMessage(1, ChannelMessage.MESSAGE_TYPE, CHANNEL, LATEST, USER, USER)), false)
         whenever(channelsApi.getChannelsList()).thenReturn(Single.just(channelList))
         whenever(channelsApi.getChannelsHistory(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt(),
                 ArgumentMatchers.anyBoolean(), ArgumentMatchers.anyFloat(),

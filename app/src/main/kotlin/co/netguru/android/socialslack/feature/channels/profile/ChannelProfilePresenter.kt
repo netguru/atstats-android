@@ -3,7 +3,7 @@ package co.netguru.android.socialslack.feature.channels.profile
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.ChannelMessages
+import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -28,10 +28,10 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
 
         val messageStream = channelHistoryProvider.getMessagesForChannel(ChannelId)
                 .observeOn(Schedulers.io())
-                .filter { (type) -> type == ChannelMessages.MESSAGE_TYPE }
+                .filter { message -> message.type == ChannelMessage.MESSAGE_TYPE }
 
         compositeDisposable += Single.merge(
-                countStringAppearance(messageStream, ChannelMessages.HERE_TAG)
+                countStringAppearance(messageStream, ChannelMessage.HERE_TAG)
                         .subscribeOn(Schedulers.computation()),
                 // TODO 27.07.2017 should be change to the user id with the format @<userId>
                 countStringAppearance(messageStream, userId)
@@ -49,7 +49,7 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
         // TODO get the actual numbers
     }
 
-    private fun countStringAppearance(messageStream: Observable<ChannelMessages>, toCount: String): Single<Pair<String, Long>> {
+    private fun countStringAppearance(messageStream: Observable<ChannelMessage>, toCount: String): Single<Pair<String, Long>> {
         return messageStream
                 .filter { it.text.contains(toCount) }
                 .count()
@@ -57,7 +57,7 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
     }
 
     private fun showCount(map: Map<String, Long>) {
-        var totalHere = map[ChannelMessages.HERE_TAG] ?: 0
+        var totalHere = map[ChannelMessage.HERE_TAG] ?: 0
         var totalMentions = map[userId] ?: 0
 
         view.showChannelInfo(totalHere.toInt(), totalMentions.toInt())

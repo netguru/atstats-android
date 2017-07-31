@@ -3,7 +3,7 @@ package co.netguru.android.socialslack.feature.channels.profile
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.ChannelMessages
+import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import io.reactivex.Observable
 import org.junit.After
 import org.junit.Before
@@ -34,7 +34,7 @@ class ChannelProfilePresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val messageList: MutableList<ChannelMessages> = mutableListOf()
+    val messageList: MutableList<ChannelMessage> = mutableListOf()
 
     val channelHistoryProvider: ChannelsProvider = mock(ChannelsProvider::class.java)
     lateinit var view: ChannelProfileContract.View
@@ -53,12 +53,12 @@ class ChannelProfilePresenterTest {
     fun `should show correct number of heres and mentions when getting messages from channel`() {
         // given
         messageList.apply {
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, ChannelMessages.HERE_TAG))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, USER_ID))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, ChannelMessages.HERE_TAG))
-            add(ChannelMessages(OTHER_TYPE, TS, USER, OTHER_USER))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, USER_ID))
-            add(ChannelMessages(OTHER_TYPE, TS, USER, ChannelMessages.HERE_TAG))
+            add(ChannelMessage(1, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
+            add(ChannelMessage(2, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, USER_ID))
+            add(ChannelMessage(3, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
+            add(ChannelMessage(4, OTHER_TYPE, CHANNEL, TS, USER, OTHER_USER))
+            add(ChannelMessage(5, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, USER_ID))
+            add(ChannelMessage(6, OTHER_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
         }
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
                 .thenReturn(Observable.fromIterable(messageList))

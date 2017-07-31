@@ -1,6 +1,7 @@
 ext {
     // Versions
     supportLibraryVersion = '25.3.1'
+    roomVersion = "1.0.0-alpha1"
     multiDexVersion = '1.0.1'
     constraintLayoutVersion = '1.0.2'
     daggerVersion = '2.10'
@@ -35,6 +36,8 @@ ext {
             annotations             : "com.android.support:support-annotations:$supportLibraryVersion",
             multiDex                : "com.android.support:multidex:$multiDexVersion",
             constraintLayout        : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
+            room                    : "android.arch.persistence.room:runtime:$roomVersion",
+            roomRxJava2             :"android.arch.persistence.room:rxjava2:$roomVersion",
             safelyAndroid           : "com.github.piasy:safelyandroid:$safelyAndroidVersion",
             safelyAndroidLint       : "com.github.piasy:safelyandroid-lint:$safelyAndroidVersion",
             mosby                   : "com.hannesdorfmann.mosby3:mvp:$mosbyVersion",
@@ -94,6 +97,7 @@ ext {
             butterKnife     : "com.jakewharton:butterknife-compiler:$butterKnifeVersion", // apt
             dagger          : "com.google.dagger:dagger-compiler:$daggerVersion", // apt
             javaxAnnotation : "org.glassfish:javax.annotation:10.0-b28", // apt (provided)
+            room            : "android.arch.persistence.room:compiler:$roomVersion"
     ]
 
     test = [
@@ -118,5 +122,6 @@ ext {
             powerMockRule          : "org.powermock:powermock-module-junit4-rule:$powerMockVersion",
             powerMockMockito       : "org.powermock:powermock-api-mockito:$powerMockVersion",
             powerMockClassLoading  : "org.powermock:powermock-classloading-xstream:$powerMockVersion",
+            room                   : "android.arch.persistence.room:testing:$roomVersion"
     ]
 }

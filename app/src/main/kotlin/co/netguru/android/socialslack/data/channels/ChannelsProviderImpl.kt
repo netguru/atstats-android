@@ -1,7 +1,7 @@
 package co.netguru.android.socialslack.data.channels
 
 import co.netguru.android.socialslack.data.channels.model.Channel
-import co.netguru.android.socialslack.data.channels.model.ChannelMessages
+import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
 
     // TODO 27.07.2017 this should be get from the database
     override fun getMessagesForChannel(channelId: String):
-            Observable<ChannelMessages> = channelsApi
+            Observable<ChannelMessage> = channelsApi
             .getChannelsHistory(channelId, MOCK_COUNT, null, null, null, null)
             .flatMapObservable { it -> Observable.fromIterable(it.messageList) }
 
