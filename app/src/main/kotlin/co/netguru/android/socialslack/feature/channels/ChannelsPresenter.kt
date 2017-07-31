@@ -127,9 +127,9 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     }
 
     private fun getMostActiveChannelsList(channelList: List<Channel>, channel: Channel): List<Channel> {
-        //TODO 28.07.2017 Replace membersNumber with messagesNumber!
-        if (channel.membersNumber > channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1].membersNumber) {
-            //if our channel has more messages than last in list then just take proper sublist
+        val lastMostActiveChannel = channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1]
+        if (channel.currentPositionInList > lastMostActiveChannel.currentPositionInList) {
+            //if our channel current position is higher than last in list then just take proper sublist
             return channelList.take(MOST_ACTIVE_CHANNEL_NUMBER)
         } else {
             val mostActiveChannels = channelList.take(MOST_ACTIVE_CHANNEL_NUMBER).toMutableList()
@@ -151,7 +151,7 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
 
     private fun addSelectedChannelToProperPlace(channel: Channel, channelList: MutableList<Channel>) {
         for (i in 0.until(channelList.size)) {
-            if (channelList[i].membersNumber == channel.membersNumber) {
+            if (channelList[i].currentPositionInList >= channel.currentPositionInList) {
                 channelList.add(i, channel)
                 break
             }
