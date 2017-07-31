@@ -127,7 +127,8 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     }
 
     private fun getMostActiveChannelsList(channelList: List<Channel>, channel: Channel): List<Channel> {
-        if (channel.currentPositionInList > channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1].currentPositionInList) {
+        val lastMostActiveChannel = channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1]
+        if (channel.currentPositionInList > lastMostActiveChannel.currentPositionInList) {
             //if our channel current position is higher than last in list then just take proper sublist
             return channelList.take(MOST_ACTIVE_CHANNEL_NUMBER)
         } else {

@@ -5,7 +5,6 @@ import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.model.*
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.mockito.Mockito.*
 import org.junit.Rule
@@ -16,10 +15,8 @@ import org.mockito.ArgumentMatchers
 class ChannelsProviderImplTest {
 
     companion object {
-        @JvmStatic
-        private val LATEST = 1000F
-        @JvmStatic
-        private val USER = "user"
+        private const val LATEST = 1000F
+        private const val USER = "user"
 
         private val SUCCESSFUL_FILE_OBJECT = FileUploadResponse(true, "",
                 FileObject("" ,"", "", ""))
@@ -51,10 +48,8 @@ class ChannelsProviderImplTest {
 
     @Test
     fun `should get channels list from api when getting channels list`() {
-        //given
-        val testObserver = TestObserver<List<Channel>>()
         //when
-        channelsProvider.getChannelsList().subscribe(testObserver)
+        val testObserver =  channelsProvider.getChannelsList().test()
         //then
         verify(channelsApi).getChannelsList()
         testObserver.assertNoErrors()
@@ -63,10 +58,9 @@ class ChannelsProviderImplTest {
     @Test
     fun `should upload file to api when uploading file to channel`() {
         //given
-        val testObserver = TestObserver<Boolean>()
         whenever(channelsApi.uploadFileToChannel(anyString(), anyObject())).thenReturn(Single.just(SUCCESSFUL_FILE_OBJECT))
         //when
-        channelsProvider.uploadFileToChannel("channel", byteArrayOf()).subscribe(testObserver)
+        val testObserver = channelsProvider.uploadFileToChannel("channel", byteArrayOf()).test()
         //then
         verify(channelsApi).uploadFileToChannel(anyString(), anyObject())
         testObserver.assertNoErrors()
@@ -75,10 +69,9 @@ class ChannelsProviderImplTest {
     @Test
     fun `should return error when uploading file to channel not successful`() {
         //given
-        val testObserver = TestObserver<Boolean>()
         whenever(channelsApi.uploadFileToChannel(anyString(), anyObject())).thenReturn(Single.just(FAILED_FILE_OBJECT))
         //when
-        channelsProvider.uploadFileToChannel("channel", byteArrayOf()).subscribe(testObserver)
+        val testObserver =  channelsProvider.uploadFileToChannel("channel", byteArrayOf()).test()
         //then
         testObserver.assertError(Throwable::class.java)
     }
