@@ -6,7 +6,8 @@ import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 
-@Database(entities = arrayOf(Channel::class, ChannelMessage::class), version = 1)
+// TODO 31.07.2017 Do the schema for the db
+@Database(entities = arrayOf(Channel::class, ChannelMessage::class), version = 1, exportSchema = false)
 abstract class SlackSocialDatabase : RoomDatabase() {
 
     companion object {
