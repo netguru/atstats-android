@@ -4,11 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.data.user.User
+import co.netguru.android.socialslack.data.user.model.User
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 
 class HomeUsersAdapter() : RecyclerView.Adapter<HomeUsersViewHolder>() {
 
-    val users: MutableList<User> = mutableListOf()
+    val users: MutableList<UserStatistic> = mutableListOf()
 
     override fun getItemCount(): Int {
         return users.size
@@ -23,7 +24,7 @@ class HomeUsersAdapter() : RecyclerView.Adapter<HomeUsersViewHolder>() {
         return HomeUsersViewHolder(view)
     }
 
-    fun addUsers(users: List<User>) {
+    fun addUsers(users: List<UserStatistic>) {
         this.users.clear()
         this.users.addAll(users)
         notifyDataSetChanged()

@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
+import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import io.reactivex.Single
@@ -16,6 +17,15 @@ import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class ChannelsPresenterTest {
+
+    companion object {
+        private val CHANNEL_MOST_ACTIVE = Channel("1", "", "", false, false, 4, 1)
+        private val CHANNEL1 = Channel("11", "", "", false, false, 4, 1)
+        private val CHANNEL2 = Channel("2", "", "", false, false, 3, 2)
+        private val CHANNEL3 = Channel("3", "", "", false, false, 2, 3)
+        private val CHANNEL33 = Channel("33", "", "", false, false, 2, 3)
+        private val CHANNEL4 = Channel("4", "", "", false, false, 1, 4)
+    }
 
     @Rule
     @JvmField
@@ -170,6 +180,58 @@ class ChannelsPresenterTest {
         channelsPresenter.sortRequestReceived(listOf())
         //then
         verify(view).hideLoadingView()
+    }
+
+    @Test
+    fun `should get channels filter option when on channel click`() {
+        //when
+        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        //then
+        verify(filterController).getChannelsFilterOption()
+    }
+
+    @Test
+    fun `should show channel details when getting most active channels successful`() {
+        //when
+        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        //then
+        verify(view).showChannelDetails(anyObject(), anyObject())
+    }
+
+    @Test
+    fun `should show selected channel details with 3 top channels from list when current filter option is most active`() {
+        //when
+        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        //then
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+    }
+
+    @Test
+    fun `should sort most active channels list when current filter option is not most active`() {
+        //TODO 31.07.2017 Change membersNumber to messages number in mocks when available
+        //given
+        whenever(filterController.getChannelsFilterOption()).thenReturn(Single.just(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE))
+        //when
+        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL4, CHANNEL3, CHANNEL2, CHANNEL_MOST_ACTIVE))
+        //verify
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+    }
+
+    @Test
+    fun `should change selected channel position in most active list when other channel has the same messages number and it's position is higher`() {
+        //TODO 31.07.2017 Change membersNumber to messages number in mocks when available
+        //when
+        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL1, CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        //verify
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL1, CHANNEL2))
+    }
+
+    @Test
+    fun `should add selected channel to most active list when missing and last item from list has the same current position number`() {
+        //when
+        channelsPresenter.onChannelClick(CHANNEL33, listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4))
+        //verify
+        verify(view).showChannelDetails(CHANNEL33, listOf(CHANNEL1, CHANNEL2, CHANNEL33))
     }
 
     @After

@@ -11,7 +11,7 @@ import io.reactivex.Flowable
 @Dao
 interface ChannelsDao {
 
-    @Query("SELECT * FROM channel_message WHERE channel_id = :arg0 AND time_stamp >= :arg1 ORDER BY time_stamp ASC")
+    @Query("SELECT * FROM channel_message WHERE channel_id = :channelId AND time_stamp >= :afterTimeStamp ORDER BY time_stamp ASC")
     fun getLatestMessagesForChannel(channelId: String, afterTimeStamp: Float): Flowable<ChannelMessage>
 
     @Insert

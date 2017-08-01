@@ -21,6 +21,8 @@ interface ChannelsContract {
         fun showLoadingView()
 
         fun hideLoadingView()
+
+        fun showChannelDetails(channel: Channel, mostActiveChannelList: List<Channel>)
     }
 
     interface Presenter : MvpPresenter<View> {
@@ -29,6 +31,8 @@ interface ChannelsContract {
         fun getChannelsFromServer()
 
         fun filterButtonClicked()
+
+        fun onChannelClick(channel: Channel, channelList: List<Channel>)
 
         fun sortRequestReceived(channelList: List<Channel>)
     }

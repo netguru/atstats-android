@@ -16,7 +16,7 @@ interface LoginApi {
     @GET("api/auth.test")
     fun checkToken(): Single<TokenCheck>
 
-    //TODO 06.07.2017 Should be called when user wants to logout
+    //TODO 06.07.2017 Should be called when userId wants to logout
     @GET("api/auth.revoke")
     fun revokeToken() : Completable
 }
