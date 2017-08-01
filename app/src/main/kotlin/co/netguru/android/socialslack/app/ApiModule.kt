@@ -23,12 +23,4 @@ class ApiModule {
     @Singleton
     @Provides
     fun provideChannelsApi(retrofit: Retrofit): ChannelsApi = retrofit.create(ChannelsApi::class.java)
-
-    @Singleton
-    @Provides
-    fun provideDatabase(context: Application): SlackSocialDatabase = Room.databaseBuilder(context, SlackSocialDatabase::class.java, SlackSocialDatabase.DB_NAME).build()
-
-    @Singleton
-    @Provides
-    fun provideChannelHistoryProvider(channelsApi: ChannelsApi): ChannelsProvider = ChannelsProviderImpl(channelsApi)
 }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ChannelsProviderImpl @Inject constructor(private val channelsApi: ChannelsApi) : ChannelsProvider {
+class ChannelsProviderImpl @Inject constructor(private val channelsApi: ChannelsApi, private val channelsDao: ChannelsDao) : ChannelsProvider {
 
     // TODO 27.07.2017 REMOVE THIS MOCK
     companion object {

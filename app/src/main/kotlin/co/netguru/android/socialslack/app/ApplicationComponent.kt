@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.app
 
+import co.netguru.android.socialslack.data.room.DatabaseModule
 import co.netguru.android.socialslack.feature.channels.ChannelsComponent
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileComponent
 import co.netguru.android.socialslack.feature.share.ShareComponent
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class, NetworkModule::class, ApiModule::class,
-        LocalRepositoryModule::class))
+        LocalRepositoryModule::class, DatabaseModule::class))
 interface ApplicationComponent {
 
     fun plusLoginComponent(): LoginComponent
