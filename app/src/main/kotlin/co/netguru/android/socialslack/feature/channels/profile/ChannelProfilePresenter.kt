@@ -26,32 +26,21 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
 
         view.showLoadingView()
 
-        val messageStream = channelHistoryProvider.getMessagesForChannel(ChannelId)
-                .observeOn(Schedulers.io())
-                .filter { message -> message.type == ChannelMessage.MESSAGE_TYPE }
-
-        compositeDisposable += Single.merge(
-                countStringAppearance(messageStream, ChannelMessage.HERE_TAG)
-                        .subscribeOn(Schedulers.computation()),
-                // TODO 27.07.2017 should be change to the user id with the format @<userId>
-                countStringAppearance(messageStream, userId)
-                        .subscribeOn(Schedulers.computation()))
-                .compose(RxTransformers.applyFlowableComputationSchedulers<Pair<String, Long>>())
-                .toMap(Pair<String, Long>::first, Pair<String, Long>::second)
-                .doAfterTerminate { view.hideLoadingView() }
+        compositeDisposable += channelHistoryProvider.getMessagesForChannel(ChannelId)
+                .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
-                        onSuccess = this::showCount,
+                        onSuccess = this::processData,
                         onError = {
-                            Timber.e(it, "Error while getting the total number of @here and mentions")
                             view.showError()
+                            view.hideLoadingView()
+                            Timber.e(it, "Error while getting the total number of @here and mentions")
                         }
                 )
-        // TODO get the actual numbers
     }
 
-    private fun countStringAppearance(messageStream: Observable<ChannelMessage>, toCount: String): Single<Pair<String, Long>> {
-        return messageStream
-                .filter { it.text.contains(toCount) }
+    private fun countStringAppearance(messageStream: List<ChannelMessage>, toCount: String): Single<Pair<String, Long>> {
+        return Observable.fromIterable(messageStream)
+                .filter { it.type == ChannelMessage.MESSAGE_TYPE && (it.text?.contains(toCount) ?: false) }
                 .count()
                 .map { t -> Pair(toCount, t) }
     }
@@ -61,6 +50,25 @@ class ChannelProfilePresenter @Inject constructor(private val channelHistoryProv
         var totalMentions = map[userId] ?: 0
 
         view.showChannelInfo(totalHere.toInt(), totalMentions.toInt())
+    }
+
+    private fun processData(channelMessageList: List<ChannelMessage>) {
+        compositeDisposable += Single.merge(
+                countStringAppearance(channelMessageList, ChannelMessage.HERE_TAG)
+                        .subscribeOn(Schedulers.computation()),
+                // TODO 27.07.2017 should be change to the user id with the format @<userId>
+                countStringAppearance(channelMessageList, userId)
+                        .subscribeOn(Schedulers.computation()))
+                .compose(RxTransformers.applyFlowableComputationSchedulers<Pair<String, Long>>())
+                .toMap(Pair<String, Long>::first, Pair<String, Long>::second)
+                .doAfterTerminate { view.hideLoadingView() }
+                .subscribeBy(
+                        onSuccess = this::showCount,
+                        onError = {
+                            view.showError()
+                            Timber.e(it, "Error while getting the total number of @here and mentions")
+                        }
+                )
     }
 
     override fun onShareButtonClick() {

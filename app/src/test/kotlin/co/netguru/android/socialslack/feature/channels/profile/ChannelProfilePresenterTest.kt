@@ -4,20 +4,21 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import co.netguru.android.socialslack.data.channels.model.ChannelMessage
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @Suppress("IllegalIdentifier")
 class ChannelProfilePresenterTest {
 
     companion object {
         @JvmStatic
-        val TS: Float = 1000F
+        val TS: String = "1000"
         @JvmStatic
         val USER_ID = "<@User>"
         @JvmStatic
@@ -61,7 +62,7 @@ class ChannelProfilePresenterTest {
             add(ChannelMessage(6, OTHER_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
         }
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.fromIterable(messageList))
+                .thenReturn(Single.just(messageList))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -72,7 +73,7 @@ class ChannelProfilePresenterTest {
     fun `should show an error when error is returned`() {
         // given
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.error(Throwable()))
+                .thenReturn(Single.error(Throwable()))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -83,7 +84,7 @@ class ChannelProfilePresenterTest {
     fun `should show loading view when the channel message are request`() {
         // given
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.fromIterable(messageList))
+                .thenReturn(Single.just(messageList))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -94,7 +95,7 @@ class ChannelProfilePresenterTest {
     fun `should show hide view when the channel messages call is successful`() {
         // given
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.fromIterable(messageList))
+                .thenReturn(Single.just(messageList))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -105,7 +106,7 @@ class ChannelProfilePresenterTest {
     fun `should show hide view when the channel messages call returns error`() {
         // given
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.error(Throwable()))
+                .thenReturn(Single.error(Throwable()))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then

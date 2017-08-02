@@ -21,6 +21,6 @@ interface ChannelsApi {
 
     @GET("/api/channels.history")
     fun getChannelsHistory(@Query("channel") channelId: String, @Query("count") count: Int?,
-                           @Query("inclusive") inclusive: Boolean?, @Query("latest") latest: Long?,
-                           @Query("oldest") oldest: Long?, @Query("unread") unRead: Boolean?): Single<ChannelHistory>
+                           @Query("latest") latest: String?,
+                           @Query("oldest") oldest: String?): Single<ChannelHistory>
 }

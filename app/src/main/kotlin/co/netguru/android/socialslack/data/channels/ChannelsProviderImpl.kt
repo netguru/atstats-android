@@ -1,10 +1,12 @@
 package co.netguru.android.socialslack.data.channels
 
+import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelHistory
 import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import co.netguru.android.socialslack.data.channels.model.FileUploadResponse
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import io.reactivex.Single
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -17,17 +19,19 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
 
     // TODO 27.07.2017 REMOVE THIS MOCK
     companion object {
-        val MOCK_COUNT = 1000
+        private const val COUNT = 1000
         private const val FILE_PARAMETER_NAME = "file"
         private const val FILE_NAME = "channel_statistics.jpg"
         private const val MEDIA_TYPE = "image/jpeg"
+        private const val SINCE_TIME: Long = 60 * 60 * 24 * 30 // 30 days in seconds
+        val currentTime = System.currentTimeMillis() / 1000
     }
 
     // TODO 27.07.2017 this should be get from the database
     override fun getMessagesForChannel(channelId: String):
-            Observable<ChannelMessage> = channelsApi
-            .getChannelsHistory(channelId, MOCK_COUNT, null, null, null, null)
-            .flatMapObservable { it -> Observable.fromIterable(it.messageList) }
+            Single<List<ChannelMessage>> {
+        return getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
+    }
 
     override fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
             .map { it.channelList }
@@ -35,6 +39,26 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
     override fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable {
         return channelsApi.uploadFileToChannel(channelName, createMultipartBody(fileByteArray))
                 .flatMapCompletable(this::parseResponse)
+    }
+
+    private fun getMessagesFromApi(channelId: String, since_time: String): Single<List<ChannelMessage>> {
+        var lastTimestamp: String? = (currentTime).toString()
+
+        return Flowable.range(0, Int.MAX_VALUE)
+                .concatMap {
+                    getHistoryMessagesOnIOFromAPI(channelId, lastTimestamp, since_time)
+                            .toFlowable()
+                }
+                .doOnNext { if (it.messageList.isNotEmpty()) lastTimestamp = it.messageList.last().timeStamp }
+                .takeUntil { !it.hasMore }
+                .map { it.messageList }
+                .scan(this::addLists)
+                .lastOrError()
+    }
+
+    private fun getHistoryMessagesOnIOFromAPI(channelId: String, latestTimestamp: String?, oldestTimestamp: String?): Single<ChannelHistory> {
+        return channelsApi.getChannelsHistory(channelId, COUNT, latestTimestamp, oldestTimestamp)
+                .compose(RxTransformers.applySingleIoSchedulers())
     }
 
     private fun createMultipartBody(fileByteArray: ByteArray): MultipartBody.Part {
@@ -47,5 +71,11 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
         with(fileUploadResponse) {
             return if (isSuccessful) Completable.complete() else Completable.error(Throwable(error))
         }
+    }
+    private fun addLists(a: List<ChannelMessage>, b: List<ChannelMessage>): List<ChannelMessage> {
+        val list: MutableList<ChannelMessage> = mutableListOf()
+        list.addAll(a)
+        list.addAll(b)
+        return list.toList()
     }
 }
