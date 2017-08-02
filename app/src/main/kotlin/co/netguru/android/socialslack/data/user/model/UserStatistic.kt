@@ -2,11 +2,13 @@ package co.netguru.android.socialslack.data.user.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import co.netguru.android.socialslack.data.user.profile.Presence
 import paperparcel.PaperParcel
 
 //TODO 02.08.2017 Refactor this model when database will be ready
 @PaperParcel
-data class UserStatistic(val username: String,
+data class UserStatistic(val id: String,
+                         val username: String,
                          val name: String,
                          val messages: Int,
                          val sentMessages: Int,
@@ -15,19 +17,20 @@ data class UserStatistic(val username: String,
                          val currentDayStreak: Int,
                          val avatarUrl: String,
                          var currentPositionInList: Int = 1,
-                         var isActive: Boolean = false) : Parcelable {
+                         var presence: Presence = Presence.AWAY) : Parcelable {
 
     companion object {
         fun User.toStatisticsView(messages: Int, sentMessages: Int = 350, receivedMessages: Int = 100,
                                   currentDayStreak: Int = 1): UserStatistic {
-            return UserStatistic(this.username,
+            return UserStatistic(this.id,
+                    this.username,
                     this.realName,
                     messages,
                     sentMessages,
                     receivedMessages,
                     sentMessages + receivedMessages,
                     currentDayStreak,
-                    this.profile.image192)
+                    this.profile.image512)
         }
 
         @JvmField val CREATOR = PaperParcelUserStatistic.CREATOR

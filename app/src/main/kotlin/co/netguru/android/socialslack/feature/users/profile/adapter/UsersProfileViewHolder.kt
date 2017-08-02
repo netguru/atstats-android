@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.data.user.profile.Presence
 import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_users_profile.view.*
@@ -41,7 +42,7 @@ class UsersProfileViewHolder(parent: ViewGroup) : BaseViewHolder<UserStatistic>(
             sentRecvdTextView.text = (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
             msgStreakTextView.text = currentDayStreak.toString()
             rankTextView.text = currentPositionInList.toString()
-            userFirstLastNameTextView.isActivated = isActive
+            userFirstLastNameTextView.isActivated = presence == Presence.ACTIVE
 
             Glide.with(itemView.context).load(avatarUrl).into(userAvatar)
         }

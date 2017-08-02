@@ -1,7 +1,6 @@
 package co.netguru.android.socialslack.feature.users.profile
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,8 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         with(arguments) {
-            val userStatisticsList = getParcelableArray(USER_STATISTICS_LIST_KEY).filterIsInstance(UserStatistic::class.java).toList()
+            val userStatisticsList = getParcelableArray(USER_STATISTICS_LIST_KEY)
+                    .filterIsInstance(UserStatistic::class.java).toList()
             presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY))
         }
     }
@@ -58,7 +58,7 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
     }
 
     override fun scrollToUserPosition(userPosition: Int) {
-        usersProfileRecyclerView.smoothScrollToPosition(userPosition)
+        usersProfileRecyclerView.scrollToPosition(userPosition)
     }
 
     override fun showLoadingView() {
@@ -73,7 +73,6 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
 
     private fun initRecyclerView() {
         usersProfileRecyclerView.setHasFixedSize(true)
-        usersProfileRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         usersProfileRecyclerView.adapter = adapter
     }
 }

@@ -35,7 +35,8 @@ class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAda
     private fun getMockedUsersProfileList(): Array<UserStatistic> {
         val list = mutableListOf<UserStatistic>()
         for (i in 0..MOCKED_USER_PROFILE_COUNT) {
-            list += UserStatistic("rafal.adasiewicz",
+            list += UserStatistic("U2JHH3HAA",
+                    "rafal.adasiewicz",
                     "Rafal Adasiewicz",
                     350,
                     50,

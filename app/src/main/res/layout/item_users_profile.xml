@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_default"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/card_elevation">
@@ -46,6 +47,7 @@
                         android:id="@+id/userAvatar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/users_profile_image_height"
+                        android:adjustViewBounds="true"
                         android:scaleType="centerCrop" />
 
                     <LinearLayout
@@ -170,6 +172,7 @@
                     style="@style/FontMedium.White"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:layout_marginStart="@dimen/margin_small"
                     android:background="@drawable/shape_rounded_button_corners_gradient_gray"
