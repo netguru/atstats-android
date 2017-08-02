@@ -1,20 +1,9 @@
 package co.netguru.android.socialslack.data.channels.model
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.Ignore
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "channel_message",
-        indices = arrayOf(Index(value = "channel_id")),
-        foreignKeys = arrayOf(ForeignKey(entity = Channel::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf("channel_id"),
-        onDelete = ForeignKey.CASCADE)))
-data class ChannelMessage(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "message_id") var messageId: Int,
-                          var type: String = "",
-                          @ColumnInfo(name = "channel_id") var channelId: String = "",
-                          @SerializedName("ts") @ColumnInfo(name = "time_stamp") var timeStamp: String = "",
-                          var user: String? = "",
-                          var text: String? = "") {
+data class ChannelMessage(val type: String, @SerializedName("ts") val timeStamp: Float, val user: String, val text: String) {
 
     companion object {
         @Ignore val MESSAGE_TYPE = "message"
