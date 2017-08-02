@@ -1,20 +1,11 @@
 package co.netguru.android.socialslack.data.user.profile
 
-enum class Presence constructor(val value: String) {
+import com.google.gson.annotations.SerializedName
 
-    ACTIVE("active"),
-    AWAY("away");
+enum class Presence {
 
-    companion object {
-
-        fun getEnumForValue(value: String): Presence {
-            Presence.values().forEach {
-                if (it.value == value) {
-                    return it
-                }
-            }
-
-            throw IllegalArgumentException("There is no enum for $value")
-        }
-    }
+    @SerializedName("active")
+    ACTIVE,
+    @SerializedName("away")
+    AWAY;
 }

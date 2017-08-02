@@ -9,6 +9,7 @@ import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -26,7 +27,10 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
     override fun prepareView(userStatisticsList: List<UserStatistic>, currentUserPosition: Int) {
         view.showLoadingView()
         compositeDisposable += Flowable.fromIterable(userStatisticsList)
-                .flatMap { usersProfileController.getUserWithPresence(it) }
+                .flatMap {
+                    usersProfileController.getUserWithPresence(it)
+                            .subscribeOn(Schedulers.io())
+                }
                 .toList()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(

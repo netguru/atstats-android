@@ -20,6 +20,7 @@ data class UserStatistic(val id: String,
                          var presence: Presence = Presence.AWAY) : Parcelable {
 
     companion object {
+        //TODO 02.08.2017 Remove those mocked values when database will be ready
         fun User.toStatisticsView(messages: Int, sentMessages: Int = 350, receivedMessages: Int = 100,
                                   currentDayStreak: Int = 1): UserStatistic {
             return UserStatistic(this.id,
