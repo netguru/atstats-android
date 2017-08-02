@@ -1,7 +1,11 @@
 package co.netguru.android.socialslack.data.user.model
 
-//TODO 02.08.2017 Refactor this model when database will be ready
+import android.os.Parcel
+import android.os.Parcelable
+import paperparcel.PaperParcel
 
+//TODO 02.08.2017 Refactor this model when database will be ready
+@PaperParcel
 data class UserStatistic(val username: String,
                          val name: String,
                          val messages: Int,
@@ -10,7 +14,8 @@ data class UserStatistic(val username: String,
                          val totalMessages: Int,
                          val currentDayStreak: Int,
                          val avatarUrl: String,
-                         val isActive: Boolean = false) {
+                         var currentPositionInList: Int = 1,
+                         var isActive: Boolean = false) : Parcelable {
 
     companion object {
         fun User.toStatisticsView(messages: Int, sentMessages: Int = 350, receivedMessages: Int = 100,
@@ -24,5 +29,13 @@ data class UserStatistic(val username: String,
                     currentDayStreak,
                     this.profile.image192)
         }
+
+        @JvmField val CREATOR = PaperParcelUserStatistic.CREATOR
     }
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        PaperParcelUserStatistic.writeToParcel(this, dest, flags)
+    }
+
+    override fun describeContents() = 0
 }

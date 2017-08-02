@@ -16,7 +16,19 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
         UsersProfileContract.View {
 
     companion object {
-        fun newInstance() = UsersProfileFragment()
+        fun newInstance(userStatisticsList: Array<UserStatistic>, currentUserPosition: Int): UsersProfileFragment {
+            val fragment = UsersProfileFragment()
+            val bundle = Bundle()
+
+            bundle.putParcelableArray(USER_STATISTICS_LIST_KEY, userStatisticsList)
+            bundle.putInt(CURRENT_USER_POSITION_KEY, currentUserPosition)
+            fragment.arguments = bundle
+
+            return fragment
+        }
+
+        private const val USER_STATISTICS_LIST_KEY = "key:user_statistics_list"
+        private const val CURRENT_USER_POSITION_KEY = "key:current_user_position"
     }
 
     private val adapter by lazy { UsersProfileAdapter() }
@@ -30,22 +42,38 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
         return inflater.inflate(R.layout.fragment_users_profile, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+        with(arguments) {
+            val userStatisticsList = getParcelableArray(USER_STATISTICS_LIST_KEY).filterIsInstance(UserStatistic::class.java).toList()
+            presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY))
+        }
     }
 
     override fun createPresenter() = component.getPresenter()
+
+    override fun initView(userStatisticsList: List<UserStatistic>) {
+        adapter.addUsersStatistics(userStatisticsList)
+    }
+
+    override fun scrollToUserPosition(userPosition: Int) {
+        usersProfileRecyclerView.smoothScrollToPosition(userPosition)
+    }
+
+    override fun showLoadingView() {
+        usersProfileRecyclerView.visibility = View.GONE
+        usersProfileProgressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideLoadingView() {
+        usersProfileRecyclerView.visibility = View.VISIBLE
+        usersProfileProgressBar.visibility = View.GONE
+    }
 
     private fun initRecyclerView() {
         usersProfileRecyclerView.setHasFixedSize(true)
         usersProfileRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         usersProfileRecyclerView.adapter = adapter
-
-        val list = mutableListOf<UserStatistic>()
-        for (i in 0..10) {
-           // list += UserStatistic("", 10, "")
-        }
-        adapter.addUsersStatistics(list)
     }
 }

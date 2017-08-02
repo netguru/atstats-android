@@ -72,6 +72,7 @@
     <string name="thank_you">Thank you!</string>
     <string name="ta_da">Ta-da!</string>
     <string name="private_messages">Private messages</string>
+    <string name="received_messages">Received messages</string>
     <string name="total_sent_received">total (sent/received)</string>
     <string name="days_streak">days streak</string>
 </resources>
