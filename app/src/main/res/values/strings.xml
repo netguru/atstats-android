@@ -59,6 +59,9 @@
     <string name="person_we_talk_most">Osoba z którą najwięcej rozmawiamy</string>
     <string name="hashtag">#</string>
 
+    // User statistics
+    <string name="share_with_user">Share with user</string>
+
     // Share
     <string name="share_love">Share the love!</string>
     <string name="share_recon_this">Hey %s, recon this:</string>
@@ -68,4 +71,7 @@
     <string name="thanks_for_sending_statistics">Thank you for sending statistics to\n%s</string>
     <string name="thank_you">Thank you!</string>
     <string name="ta_da">Ta-da!</string>
+    <string name="private_messages">Private messages</string>
+    <string name="total_sent_received">total (sent/received)</string>
+    <string name="days_streak">days streak</string>
 </resources>

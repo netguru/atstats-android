@@ -1,3 +1,8 @@
 package co.netguru.android.socialslack.data.user.model
 
-data class User(val name: String, val profile: UserProfile)
+import com.google.gson.annotations.SerializedName
+
+data class User(val id: String,
+                @SerializedName("name") val username: String,
+                @SerializedName("real_name") val realName: String,
+                val profile: UserProfile)
