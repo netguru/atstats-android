@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/item_users_profile_width"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_default">
+
+        <include
+            layout="@layout/profile_header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/map">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_default"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/userAvatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/users_profile_image_height"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_margin="@dimen/margin_default"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/userFirstLastNameTextView"
+                            style="@style/FontMedium.White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/user_status_selector"
+                            android:drawablePadding="@dimen/margin_small"
+                            tools:text="Anna Rices" />
+
+                        <TextView
+                            android:id="@+id/usernameTextView"
+                            style="@style/FontSmall.White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="\@anna.rices" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Font12.Grey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/users_profile_small_margin"
+                            android:drawableStart="@drawable/profile_sent_privs"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="@string/private_messages"
+                            android:textAllCaps="true" />
+
+                        <TextView
+                            android:id="@+id/totalMsgTextView"
+                            style="@style/Font28.PrimaryDark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="340" />
+
+                        <TextView
+                            android:id="@+id/sentRecvdMsgTextView"
+                            style="@style/FontMedium.PrimaryDark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="40 / 300" />
+
+                        <TextView
+                            style="@style/Font12.Grey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:lines="1"
+                            android:text="@string/total_sent_received" />
+
+                    </LinearLayout>
+
+                    <include layout="@layout/divider_horizontal" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Font12.Grey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/users_profile_small_margin"
+                            android:drawableStart="@drawable/profile_received_priv_msgs"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="@string/private_messages"
+                            android:textAllCaps="true" />
+
+                        <TextView
+                            android:id="@+id/msgStreakTextView"
+                            style="@style/Font28.PrimaryDark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            tools:text="17" />
+
+                        <TextView
+                            style="@style/Font12.Grey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:lines="1"
+                            android:text="@string/days_streak" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/shareSendButton"
+                    style="@style/FontMedium.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+                    android:text="@string/share_with_user"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+</LinearLayout>
