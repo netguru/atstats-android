@@ -3,11 +3,10 @@ package co.netguru.android.socialslack.data.room
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import co.netguru.android.socialslack.data.channels.ChannelsDao
-import co.netguru.android.socialslack.data.channels.model.Channel
-import co.netguru.android.socialslack.data.channels.model.ChannelMessage
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 
 // TODO 31.07.2017 Do the schema for the db
-@Database(entities = arrayOf(Channel::class, ChannelMessage::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(ChannelStatistics::class), version = 1, exportSchema = false)
 abstract class SlackSocialDatabase : RoomDatabase() {
 
     companion object {

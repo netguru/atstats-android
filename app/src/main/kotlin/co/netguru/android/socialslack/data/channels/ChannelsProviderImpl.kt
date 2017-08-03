@@ -1,13 +1,12 @@
 package co.netguru.android.socialslack.data.channels
 
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.channels.model.Channel
-import co.netguru.android.socialslack.data.channels.model.ChannelHistory
-import co.netguru.android.socialslack.data.channels.model.ChannelMessage
-import co.netguru.android.socialslack.data.channels.model.FileUploadResponse
+import co.netguru.android.socialslack.data.channels.model.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -41,12 +40,12 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
                 .flatMapCompletable(this::parseResponse)
     }
 
-    private fun getMessagesFromApi(channelId: String, since_time: String): Single<List<ChannelMessage>> {
+    override fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
         var lastTimestamp: String? = (currentTime).toString()
 
         return Flowable.range(0, Int.MAX_VALUE)
                 .concatMap {
-                    getHistoryMessagesOnIOFromAPI(channelId, lastTimestamp, since_time)
+                    getHistoryMessagesOnIOFromAPI(channelId, lastTimestamp, sinceTime)
                             .toFlowable()
                 }
                 .doOnNext { if (it.messageList.isNotEmpty()) lastTimestamp = it.messageList.last().timeStamp }
@@ -72,10 +71,34 @@ class ChannelsProviderImpl @Inject constructor(private val channelsApi: Channels
             return if (isSuccessful) Completable.complete() else Completable.error(Throwable(error))
         }
     }
+
     private fun addLists(a: List<ChannelMessage>, b: List<ChannelMessage>): List<ChannelMessage> {
         val list: MutableList<ChannelMessage> = mutableListOf()
         list.addAll(a)
         list.addAll(b)
         return list.toList()
+    }
+
+    override fun countChannelStatistics(channelId: String, channelName: String, user: String): Single<ChannelStatistics> {
+
+        return getMessagesForChannel(channelId)
+                .subscribeOn(Schedulers.computation())
+                .flatMapObservable { Observable.fromIterable(it) }
+                .collect({ ChannelCount(user) }, { t1: ChannelCount, t2: ChannelMessage? -> t1.accept(t2) })
+                .flatMap { Single.just(ChannelStatistics(channelId, channelName, it.totalMessageCount, it.hereCount, it.mentionsCount, it.myMessageCount)) }
+                .doAfterSuccess { channelsDao.insertChannel(it) }
+    }
+
+    class ChannelCount(val user: String, var hereCount: Int = 0, var mentionsCount: Int = 0, var myMessageCount: Int = 0, var totalMessageCount: Int = 0) {
+
+        fun accept(channelMessage: ChannelMessage?): ChannelCount {
+            channelMessage?.let {
+                totalMessageCount++
+                if (channelMessage.text.contains(ChannelMessage.HERE_TAG)) hereCount++
+                if (channelMessage.text.contains(String.format(ChannelMessage.USER_MENTION, user))) mentionsCount++
+                if (channelMessage.user.contains(user)) myMessageCount++
+            }
+            return this
+        }
     }
 }

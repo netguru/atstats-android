@@ -54,12 +54,12 @@ class ChannelProfilePresenterTest {
     fun `should show correct number of heres and mentions when getting messages from channel`() {
         // given
         messageList.apply {
-            add(ChannelMessage(1, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
-            add(ChannelMessage(2, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, USER_ID))
-            add(ChannelMessage(3, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
-            add(ChannelMessage(4, OTHER_TYPE, CHANNEL, TS, USER, OTHER_USER))
-            add(ChannelMessage(5, ChannelMessage.MESSAGE_TYPE, CHANNEL, TS, USER, USER_ID))
-            add(ChannelMessage(6, OTHER_TYPE, CHANNEL, TS, USER, ChannelMessage.HERE_TAG))
+            add(ChannelMessage(ChannelMessage.MESSAGE_TYPE, TS, USER, ChannelMessage.HERE_TAG))
+            add(ChannelMessage(ChannelMessage.MESSAGE_TYPE, TS, USER, USER_ID))
+            add(ChannelMessage(ChannelMessage.MESSAGE_TYPE, TS, USER, ChannelMessage.HERE_TAG))
+            add(ChannelMessage(OTHER_TYPE, TS, USER, OTHER_USER))
+            add(ChannelMessage(ChannelMessage.MESSAGE_TYPE, TS, USER, USER_ID))
+            add(ChannelMessage(OTHER_TYPE, TS, USER, ChannelMessage.HERE_TAG))
         }
         whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
                 .thenReturn(Single.just(messageList))
