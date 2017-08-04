@@ -25,9 +25,9 @@ class ChannelsProviderImplTest {
     companion object {
         private const val CHANNEL = "channel"
         private const val LATEST = "1000"
-        private const val USER = "user"
+        private const val USER = "UU22233"
         val TS: String = "1000"
-        val USER_ID = "<@user>"
+        val USER_ID = "<@".plus(USER).plus(">")
         val OTHER_TYPE = "otherType"
         val OTHER_USER = "Other User"
         val MESSAGE_ONE = ChannelMessage(ChannelMessage.MESSAGE_TYPE, TS, USER, ChannelMessage.HERE_TAG)

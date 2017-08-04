@@ -88,16 +88,16 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
                     .observeOn(Schedulers.io())
                     .doAfterSuccess { channelsDao.insertChannel(it) }
 
-    data class ChannelCount(val user: String, var hereCount: Int = 0, var mentionsCount: Int = 0, var myMessageCount: Int = 0, var totalMessageCount: Int = 0) {
+    data class ChannelCount(val currentUser: String, var hereCount: Int = 0, var mentionsCount: Int = 0, var myMessageCount: Int = 0, var totalMessageCount: Int = 0) {
 
         fun accept(channelMessage: ChannelMessage?): ChannelCount {
             channelMessage?.let {
                 totalMessageCount++
                 channelMessage.text?.apply {
                     if (contains(ChannelMessage.HERE_TAG)) hereCount++
-                    if (contains(String.format(ChannelMessage.USER_MENTION, user))) mentionsCount++
-                    if (contains(user)) myMessageCount++
+                    if (contains(String.format(ChannelMessage.USER_MENTION, currentUser))) mentionsCount++
                 }
+                if (channelMessage.user.contains(currentUser)) myMessageCount++
             }
             return this
         }

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.extensions.inflate
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import kotlinx.android.synthetic.main.fragment_home_channels.*
 
 class HomeChannelsFragment : Fragment() {
@@ -32,12 +32,12 @@ class HomeChannelsFragment : Fragment() {
     }
 
     private fun initRecyclerWithMockData(recyclerView: RecyclerView) {
-        val channel1 = Channel("0", "#tradeguru-design", "0", false,
-                false, 420, 0)
-        val channel2 = Channel("0", "#tradeguru-design", "0", false,
-                false, 420, 0)
-        val channel3 = Channel("0", "#tradeguru-design", "0", false,
-                false, 420, 0)
+        val channel1 = ChannelStatistics("0", "#tradeguru-design", 420, 200,
+                200, 200)
+        val channel2 = ChannelStatistics("0", "#tradeguru-design", 420, 200,
+                200, 200)
+        val channel3 = ChannelStatistics("0", "#tradeguru-design", 420, 200,
+                200, 200)
         val channelsAdapter = HomeChannelsAdapter()
         channelsAdapter.addUsers(listOf(channel1, channel2, channel3))
 

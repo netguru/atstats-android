@@ -2,8 +2,10 @@ package co.netguru.android.socialslack.feature.channels
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
+import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
@@ -19,7 +21,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class ChannelsPresenter @Inject constructor(private val channelsProvider: ChannelsProvider,
+class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao,
                                             private val filterController: FilterController)
     : MvpNullObjectBasePresenter<ChannelsContract.View>(), ChannelsContract.Presenter {
 
@@ -48,9 +50,11 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
                 )
     }
 
-    override fun getChannelsFromServer() {
+    override fun getChannels() {
         view.showLoadingView()
-        compositeDisposable += channelsProvider.getChannelsList()
+        compositeDisposable += channelsDao.getAllChannels()
+                .take(1)
+                .singleOrError()
                 .zipWith(filterController.getChannelsFilterOption())
                 { channelsList, filterOption -> Pair(channelsList, filterOption) }
                 .flatMap { sortChannelsList(it.first, it.second) }
@@ -70,7 +74,7 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
         view.showFilterView()
     }
 
-    override fun sortRequestReceived(channelList: List<Channel>) {
+    override fun sortRequestReceived(channelList: List<ChannelStatistics>) {
         view.showLoadingView()
         compositeDisposable += Single.just(channelList)
                 .zipWith(filterController.getChannelsFilterOption())
@@ -89,10 +93,10 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
                         })
     }
 
-    override fun onChannelClick(channel: Channel, channelList: List<Channel>) {
+    override fun onChannelClick(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>) {
         compositeDisposable +=
                 filterController.getChannelsFilterOption()
-                        .flatMap { getProperStreamForCurrentFilterOption(it, channel, channelList) }
+                        .flatMap { getProperStreamForCurrentFilterOption(it, channelStatistics, channelList) }
                         .compose(RxTransformers.applySingleComputationSchedulers())
                         .subscribeBy(
                                 onSuccess = { (channel, channelsList) ->
@@ -104,62 +108,62 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     }
 
     private fun getProperStreamForCurrentFilterOption(currentFilterOption: ChannelsFilterOption,
-                                                      channel: Channel, channelList: List<Channel>
-    ): Single<Pair<Channel, List<Channel>>> {
+                                                      channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>
+    ): Single<Pair<ChannelStatistics, List<ChannelStatistics>>> {
 
         return if (currentFilterOption == ChannelsFilterOption.MOST_ACTIVE_CHANNEL) {
-            Single.just(Pair(channel, getMostActiveChannelsList(channelList, channel)))
+            Single.just(Pair(channelStatistics, getMostActiveChannelsList(channelList, channelStatistics)))
         } else {
             //we should sort channels list if current filter option is different than most active channel
             Observable.fromIterable(channelList)
                     .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
                     .doOnSuccess(this::updateChannelPositionInList)
-                    .map { getSelectedChannelFromUpdatedList(channel.id, it) }
+                    .map { getSelectedChannelFromUpdatedList(channelStatistics.channelId, it) }
                     .doOnSuccess { Timber.d("Most active channels: ${it.second}") }
         }
     }
 
-    private fun getSelectedChannelFromUpdatedList(channelId: String, channelList: List<Channel>
-    ): Pair<Channel, List<Channel>> {
-        channelList.filter { it.id == channelId }
+    private fun getSelectedChannelFromUpdatedList(channelId: String, channelList: List<ChannelStatistics>
+    ): Pair<ChannelStatistics, List<ChannelStatistics>> {
+        channelList.filter { it.channelId == channelId }
                 .forEach { return Pair(it, getMostActiveChannelsList(channelList, it)) }
 
         throw IllegalStateException("There is no channel with id: $channelId in channels list")
     }
 
-    private fun getMostActiveChannelsList(channelList: List<Channel>, channel: Channel): List<Channel> {
+    private fun getMostActiveChannelsList(channelList: List<ChannelStatistics>, channelStatistics: ChannelStatistics): List<ChannelStatistics> {
         val lastMostActiveChannel = channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1]
-        if (channel.currentPositionInList > lastMostActiveChannel.currentPositionInList) {
+        if (channelStatistics.currentPositionInList > lastMostActiveChannel.currentPositionInList) {
             //if our channel current position is higher than last in list then just take proper sublist
             return channelList.take(MOST_ACTIVE_CHANNEL_NUMBER)
         } else {
             val mostActiveChannels = channelList.take(MOST_ACTIVE_CHANNEL_NUMBER).toMutableList()
             //selected channel can be inside most active channels list, but it's position can be wrong
             //so we have to remove it from list
-            removeSelectedChannelFromChannelList(channel.id, mostActiveChannels)
+            removeSelectedChannelFromChannelList(channelStatistics.channelId, mostActiveChannels)
             // and then add to proper place
-            addSelectedChannelToProperPlace(channel, mostActiveChannels)
+            addSelectedChannelToProperPlace(channelStatistics, mostActiveChannels)
 
             //if we don't remove anything from list, it can contains more than MOST_ACTIVE_CHANNEL_NUMBER
             return mostActiveChannels.take(MOST_ACTIVE_CHANNEL_NUMBER).toList()
         }
     }
 
-    private fun removeSelectedChannelFromChannelList(channelId: String, channelList: MutableList<Channel>) {
-        val channel = channelList.find { it.id == channelId }
+    private fun removeSelectedChannelFromChannelList(channelId: String, channelList: MutableList<ChannelStatistics>) {
+        val channel = channelList.find { it.channelId == channelId }
         channelList.remove(channel)
     }
 
-    private fun addSelectedChannelToProperPlace(channel: Channel, channelList: MutableList<Channel>) {
+    private fun addSelectedChannelToProperPlace(channelStatistics: ChannelStatistics, channelList: MutableList<ChannelStatistics>) {
         for (i in 0.until(channelList.size)) {
-            if (channelList[i].currentPositionInList >= channel.currentPositionInList) {
-                channelList.add(i, channel)
+            if (channelList[i].currentPositionInList >= channelStatistics.currentPositionInList) {
+                channelList.add(i, channelStatistics)
                 break
             }
         }
     }
 
-    private fun sortChannelsList(channelList: List<Channel>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<Channel>, ChannelsFilterOption>> {
+    private fun sortChannelsList(channelList: List<ChannelStatistics>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<ChannelStatistics>, ChannelsFilterOption>> {
         return Observable.fromIterable(channelList)
                 .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(channelsFilterOption))
                 .doOnSuccess(this::updateChannelPositionInList)
@@ -169,14 +173,14 @@ class ChannelsPresenter @Inject constructor(private val channelsProvider: Channe
     //TODO 13.07.2017 Should be changed, when there will
     //TODO possibility to obtain all needed information about the channel from SLACK API. Position should be
     //TODO updated according to current position in the sorted list
-    private fun updateChannelPositionInList(channelList: List<Channel>) {
+    private fun updateChannelPositionInList(channelList: List<ChannelStatistics>) {
         if (channelList.isEmpty()) {
             return
         }
         var currentPositionInList = 1
         channelList[0].currentPositionInList = currentPositionInList
         for (i in 1..channelList.size - 1) {
-            if (channelList[i].membersNumber == channelList[i - 1].membersNumber) {
+            if (channelList[i].messageCount == channelList[i - 1].messageCount) {
                 channelList[i].currentPositionInList = currentPositionInList
             } else {
                 channelList[i].currentPositionInList = ++currentPositionInList

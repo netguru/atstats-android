@@ -1,14 +1,12 @@
 package co.netguru.android.socialslack.feature.channels.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 
 class ChannelsAdapter(private val onChannelClickListener: ChannelsViewHolder.ChannelClickListener) : RecyclerView.Adapter<ChannelsViewHolder>() {
 
-    val channelsList: MutableList<Channel> = mutableListOf()
+    val channelsList: MutableList<ChannelStatistics> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelsViewHolder {
         return ChannelsViewHolder(parent, onChannelClickListener)
@@ -20,7 +18,7 @@ class ChannelsAdapter(private val onChannelClickListener: ChannelsViewHolder.Cha
 
     override fun getItemCount() = channelsList.size
 
-    fun addChannels(channelsList: List<Channel>) {
+    fun addChannels(channelsList: List<ChannelStatistics>) {
         this.channelsList.clear()
         this.channelsList.addAll(channelsList)
         notifyDataSetChanged()

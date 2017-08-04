@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
@@ -18,9 +18,9 @@ import kotlinx.android.synthetic.main.profile_header_layout.*
 class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelProfileContract.Presenter>(), ChannelProfileContract.View {
 
     companion object {
-        fun newInstance(channel: Channel, mostActiveItemList: Array<Channel>): ChannelProfileFragment {
+        fun newInstance(channelStatistics: ChannelStatistics, mostActiveItemList: Array<ChannelStatistics>): ChannelProfileFragment {
             val bundle = Bundle()
-            bundle.putParcelable(KEY_CHANNEL, channel)
+            bundle.putParcelable(KEY_CHANNEL, channelStatistics)
             bundle.putParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST, mostActiveItemList)
 
             val channelProfileFragment = ChannelProfileFragment()
@@ -47,9 +47,9 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments.apply {
-            val channel: Channel = getParcelable(KEY_CHANNEL)
-            setUpFields(channel)
-            getPresenter().getChannelInfo(channel.id)
+            val channelStatistics: ChannelStatistics = getParcelable(KEY_CHANNEL)
+            setUpFields(channelStatistics)
+            getPresenter().getChannelInfo(channelStatistics.channelId)
         }
         shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
     }
@@ -62,17 +62,17 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
     }
 
     override fun showShareDialogFragment() {
-        val channel: Channel = arguments.getParcelable(KEY_CHANNEL)
-        val channelArray: Array<Channel> = arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST)
-                .filterIsInstance(Channel::class.java).toTypedArray()
+        val channelStatistics: ChannelStatistics = arguments.getParcelable(KEY_CHANNEL)
+        val channelArray: Array<ChannelStatistics> = arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST)
+                .filterIsInstance(ChannelStatistics::class.java).toTypedArray()
 
-        ShareDialogFragment.newInstance(channel, channelArray).show(fragmentManager, ShareDialogFragment.TAG)
+        ShareDialogFragment.newInstance(channelStatistics, channelArray).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
-    private fun setUpFields(channel: Channel) {
+    private fun setUpFields(channelStatistics: ChannelStatistics) {
         messagesDetailTextView.text = resources.getString(R.string.total_messages)
-        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channel.name)
-        rankTextView.text = channel.currentPositionInList.toString()
+        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelStatistics.channelName)
+        rankTextView.text = channelStatistics.currentPositionInList.toString()
     }
 
     override fun showError() {

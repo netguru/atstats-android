@@ -7,7 +7,7 @@ import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
@@ -46,7 +46,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        presenter.getChannelsFromServer()
+        presenter.getChannels()
         presenter.getCurrentFilterOption()
     }
 
@@ -60,7 +60,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         }
     }
 
-    override fun showChannels(channelList: List<Channel>) {
+    override fun showChannels(channelList: List<ChannelStatistics>) {
         adapter.addChannels(channelList)
     }
 
@@ -90,18 +90,18 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelLoadingView.visibility = View.GONE
     }
 
-    override fun showChannelDetails(channel: Channel, mostActiveChannelList: List<Channel>) {
+    override fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>) {
         fragmentManager
                 .beginTransaction()
                 // TODO get the number of messages
                 .replace(R.id.fragmentChannelRootContainer,
-                        ChannelProfileFragment.newInstance(channel, mostActiveChannelList.toTypedArray()))
+                        ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }
 
-    override fun onChannelClick(channel: Channel) {
-        presenter.onChannelClick(channel, adapter.channelsList)
+    override fun onChannelClick(channelStatistics: ChannelStatistics) {
+        presenter.onChannelClick(channelStatistics, adapter.channelsList)
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()

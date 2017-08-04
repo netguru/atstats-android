@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import kotlinx.android.synthetic.main.item_channels.view.*
 
 class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: ChannelClickListener? = null)
-    : BaseViewHolder<Channel>(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
+    : BaseViewHolder<ChannelStatistics>(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
 
     companion object {
         private const val POSITION_FIRST = 1
@@ -21,20 +21,20 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
     private val channelsMessagesNrTextView = itemView.itemChannelsMessagesNrTextView
     private val channelsRankImageView = itemView.itemChannelsRankImageView
 
-    private lateinit var item: Channel
+    private lateinit var item: ChannelStatistics
 
     init {
         itemView.setOnClickListener { onChannelClickListener?.onChannelClick(item) }
     }
 
-    override fun bind(item: Channel) {
+    override fun bind(item: ChannelStatistics) {
         this.item = item
         with(item) {
             channelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
-            channelsNameTextView.text = name
+            channelsNameTextView.text = channelName
 
             //TODO 10.07.2017 Change to messages number when it will be possible (according to SLACK API)
-            channelsMessagesNrTextView.text = membersNumber.toString()
+            channelsMessagesNrTextView.text = messageCount.toString()
             changeRankViewVisibility(currentPositionInList)
             changeMessagesNrTextColor(currentPositionInList)
         }
@@ -51,6 +51,6 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
     }
 
     interface ChannelClickListener {
-        fun onChannelClick(channel: Channel)
+        fun onChannelClick(channelStatistics: ChannelStatistics)
     }
 }

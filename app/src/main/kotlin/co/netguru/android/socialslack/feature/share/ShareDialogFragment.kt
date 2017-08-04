@@ -10,7 +10,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.share.Sharable
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
@@ -47,7 +47,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_share)
+        return inflater.inflate(R.layout.fragment_share, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,7 +63,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
 
     override fun createPresenter() = component.getPresenter()
 
-    override fun initShareChannelView(selectedChannel: Channel, mostActiveChannels: List<Channel>) {
+    override fun initShareChannelView(selectedChannel: ChannelStatistics, mostActiveChannels: List<ChannelStatistics>) {
         val adapter = ShareChannelAdapter()
         shareRecyclerView.adapter = adapter
         adapter.addChannels(mostActiveChannels)
@@ -86,10 +86,10 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         shareChannelStatusTextView.text = resources.getString(R.string.share_channel_talk_more)
     }
 
-    override fun showSelectedChannelOnLastPosition(channel: Channel) {
+    override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics) {
         shareMoreVertImage.visibility = View.VISIBLE
         shareLastItemContainer.visibility = View.VISIBLE
-        showLastChannelData(channel)
+        showLastChannelData(channelStatistics)
     }
 
     override fun showShareConfirmationDialog(itemName: String) {
@@ -116,13 +116,13 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         Snackbar.make(shareRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun showLastChannelData(channel: Channel) {
-        with(channel) {
+    private fun showLastChannelData(channelStatistics: ChannelStatistics) {
+        with(channelStatistics) {
             shareLastItem.itemChannelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
-            shareLastItem.itemChannelsNameTextView.text = name
+            shareLastItem.itemChannelsNameTextView.text = channelName
 
             //TODO 28.07.2017 Change to messages number when it will be possible (according to SLACK API)
-            shareLastItem.itemChannelsMessagesNrTextView.text = membersNumber.toString()
+            shareLastItem.itemChannelsMessagesNrTextView.text = messageCount.toString()
         }
     }
 

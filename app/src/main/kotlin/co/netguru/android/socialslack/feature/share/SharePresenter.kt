@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -32,8 +33,8 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
     }
 
     override fun <T> prepareView(selectedItem: T, mostActiveItemList: List<T>) {
-        if (selectedItem is Channel) {
-            prepareChannelView(selectedItem, mostActiveItemList.filterIsInstance(Channel::class.java))
+        if (selectedItem is ChannelStatistics) {
+            prepareChannelView(selectedItem, mostActiveItemList.filterIsInstance(ChannelStatistics::class.java))
         }
     }
 
@@ -57,16 +58,16 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
         view.dismissView()
     }
 
-    private fun prepareChannelView(selectedChannel: Channel, mostActiveChannelsList: List<Channel>) {
-        currentChannelName = selectedChannel.name
+    private fun prepareChannelView(selectedChannel: ChannelStatistics, mostActiveChannelsList: List<ChannelStatistics>) {
+        currentChannelName = selectedChannel.channelName
         view.initShareChannelView(selectedChannel, mostActiveChannelsList)
-        view.showChannelName(CHANNEL_PREFIX + selectedChannel.name)
+        view.showChannelName(CHANNEL_PREFIX + selectedChannel.channelName)
 
         val lastMostActiveItem = mostActiveChannelsList[NUMBER_OF_MOST_ACTIVE_ITEMS - 1]
         checkSelectedChannelPosition(selectedChannel, lastMostActiveItem.currentPositionInList)
     }
 
-    private fun checkSelectedChannelPosition(selectedChannel: Channel, lastMostActiveChannelPosition: Int) {
+    private fun checkSelectedChannelPosition(selectedChannel: ChannelStatistics, lastMostActiveChannelPosition: Int) {
         if (selectedChannel.currentPositionInList == MOST_ACTIVE_ITEM_POSITION) {
             view.showSelectedChannelMostActiveText()
         } else {
@@ -75,7 +76,7 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
         }
     }
 
-    private fun checkShouldShowExtraItem(selectedChannel: Channel, lastMostActiveChannelPosition: Int) {
+    private fun checkShouldShowExtraItem(selectedChannel: ChannelStatistics, lastMostActiveChannelPosition: Int) {
         if (selectedChannel.currentPositionInList > lastMostActiveChannelPosition) {
             view.showSelectedChannelOnLastPosition(selectedChannel)
         }
