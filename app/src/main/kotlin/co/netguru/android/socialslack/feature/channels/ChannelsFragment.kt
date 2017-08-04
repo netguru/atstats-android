@@ -46,6 +46,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+        filterViewIconImageView.setImageResource(R.drawable.hashtag_title)
         presenter.getChannelsFromServer()
         presenter.getCurrentFilterOption()
     }

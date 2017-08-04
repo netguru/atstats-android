@@ -55,6 +55,10 @@
         <item name="android:textColor">@color/primaryDark</item>
     </style>
 
+    <style name="Font22.PrimaryDark" parent="FontLarge.PrimaryDark">
+        <item name="android:textSize">22sp</item>
+    </style>
+
     <style name="Font28.PrimaryDark" parent="FontLarge.PrimaryDark">
         <item name="android:textSize">28sp</item>
     </style>

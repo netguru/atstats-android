@@ -20,8 +20,9 @@
         tools:text="Najbardziej aktywny kanał" />
 
     <ImageView
+        android:id="@+id/filterViewIconImageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/hashtag_title" />
+        android:layout_marginEnd="@dimen/margin_small" />
 </RelativeLayout>
