@@ -97,7 +97,7 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
                     if (contains(ChannelMessage.HERE_TAG)) hereCount++
                     if (contains(String.format(ChannelMessage.USER_MENTION, currentUser))) mentionsCount++
                 }
-                if (channelMessage.user.contains(currentUser)) myMessageCount++
+                if (channelMessage.user?.contains(currentUser) ?: false) myMessageCount++
             }
             return this
         }
