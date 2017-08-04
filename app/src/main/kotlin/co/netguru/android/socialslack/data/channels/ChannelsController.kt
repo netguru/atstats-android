@@ -24,10 +24,10 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
         private const val FILE_NAME = "channel_statistics.jpg"
         private const val MEDIA_TYPE = "image/jpeg"
         private const val SINCE_TIME: Long = 60 * 60 * 24 * 30 // 30 days in seconds
-        val currentTime = System.currentTimeMillis() / 1000
+        private val currentTime = System.currentTimeMillis() / 1000
     }
 
-    fun getMessagesForChannel(channelId: String) =
+    private fun getMessagesAllMessagesFromApi(channelId: String) =
             getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
 
@@ -40,7 +40,7 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
                 .flatMapCompletable(this::parseResponse)
     }
 
-    fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
+    private fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
         var lastTimestamp: String? = (currentTime).toString()
 
         return Flowable.range(0, Int.MAX_VALUE)
@@ -53,6 +53,13 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
                 .map { it.messageList }
                 .scan(this::addLists)
                 .lastOrError()
+    }
+
+    private fun addLists(a: List<ChannelMessage>, b: List<ChannelMessage>): List<ChannelMessage> {
+        val list: MutableList<ChannelMessage> = mutableListOf()
+        list.addAll(a)
+        list.addAll(b)
+        return list.toList()
     }
 
     private fun getHistoryMessagesOnIOFromAPI(channelId: String, latestTimestamp: String?, oldestTimestamp: String?) =
@@ -71,15 +78,8 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
         }
     }
 
-    private fun addLists(a: List<ChannelMessage>, b: List<ChannelMessage>): List<ChannelMessage> {
-        val list: MutableList<ChannelMessage> = mutableListOf()
-        list.addAll(a)
-        list.addAll(b)
-        return list.toList()
-    }
-
     fun countChannelStatistics(channelId: String, channelName: String, user: String) =
-            getMessagesForChannel(channelId)
+            getMessagesAllMessagesFromApi(channelId)
                     .observeOn(Schedulers.computation())
                     .flattenAsObservable { it }
                     .collect({ ChannelCount(user) }, { t1: ChannelCount?, t2: ChannelMessage? -> t1?.accept(t2) })
