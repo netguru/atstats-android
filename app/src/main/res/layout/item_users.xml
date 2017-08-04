@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/users_item_height"
+    android:padding="@dimen/margin_small">
+
+    <TextView
+        android:id="@+id/placeNrTextView"
+        style="@style/FontSmall.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        tools:text="1." />
+
+    <FrameLayout
+        android:id="@+id/userAvatarContainer"
+        android:layout_width="@dimen/item_user_avatar_container_size"
+        android:layout_height="@dimen/item_user_avatar_container_size"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@id/placeNrTextView">
+
+        <ImageView
+            android:id="@+id/userAvatarImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/item_user_avatar_margin" />
+
+        <ImageView
+            android:id="@+id/userMedalImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/medal" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@id/userAvatarContainer"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/userRealNameTextView"
+            style="@style/FontMedium.PrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            tools:text="Anna Rice" />
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            style="@style/FontSmall.PrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="\@anna.rice" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/messagesNrTextView"
+        style="@style/Font22.PrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textStyle="bold"
+        tools:text="325" />
+</RelativeLayout>

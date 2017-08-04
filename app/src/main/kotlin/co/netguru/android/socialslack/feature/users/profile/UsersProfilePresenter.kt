@@ -31,7 +31,7 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
                     usersProfileController.getUserWithPresence(it)
                             .subscribeOn(Schedulers.io())
                 }
-                .toList()
+                .toSortedList { o1, o2 -> o1.currentPositionInList.compareTo(o2.currentPositionInList) }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {
