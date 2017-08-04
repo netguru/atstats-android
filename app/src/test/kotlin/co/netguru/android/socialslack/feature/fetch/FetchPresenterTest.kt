@@ -62,18 +62,5 @@ class FetchPresenterTest {
         // then
         verify(view).showErrorMessage()
     }
-// TODO 04.08.2017 make this test work
-//    @Test
-//    fun `should show error when channel statistics returns error` () {
-//        // given
-//        whenever(channelsController.getChannelsList()).thenReturn(Single.just(listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4, CHANNEL5)))
-//        whenever(channelsController.countChannelStatistics(anyString(), anyString(), anyString())).thenReturn(Single.error(Throwable()))
-//
-//        // when
-//        fetchPresenter.attachView(view)
-//
-//        // then
-//        verify(view).showErrorMessage()
-//    }
 
 }

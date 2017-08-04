@@ -1,15 +1,9 @@
 package co.netguru.android.socialslack.feature.fetch
 
 import co.netguru.android.socialslack.app.scope.ActivityScope
-import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
-import io.reactivex.Flowable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.processors.PublishProcessor
-import io.reactivex.rxkotlin.Flowables
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
@@ -27,7 +21,6 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
                 .flatMapSingle {
                     channelsController.countChannelStatistics(it.id, it.name, "user")
                 }
-                // TODO 04.08.2017 propagate the error from the flat map
                 .toList()
                 .subscribeBy(
                         onSuccess = { view.showMainActivity() },
@@ -44,6 +37,5 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
     private fun handleError(throwable: Throwable, message: String) {
         Timber.e(throwable, message)
         view.showErrorMessage()
-        compositeDisposable.clear()
     }
 }
