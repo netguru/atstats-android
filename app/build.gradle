@@ -175,6 +175,7 @@ dependencies {
 
     // Glide
     compile libs.glide
+    compile libs.glideTransformations
 
     // Stetho
     compile libs.stetho

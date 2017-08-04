@@ -1,27 +1,22 @@
 package co.netguru.android.socialslack.feature.main.adapter
 
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import co.netguru.android.socialslack.feature.channels.ChannelsFragment
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
 import co.netguru.android.socialslack.feature.home.HomeFragment
 import co.netguru.android.socialslack.feature.main.BlankFragment
+import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 
 class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 
-    override fun getItem(position: Int): Fragment {
-        when (TabItemType.getTabItemByPosition(position)) {
-            TabItemType.HOME -> return HomeFragment.newInstance()
-            TabItemType.CHANNELS -> return ChannelsRootFragment.newInstance()
-            TabItemType.USERS -> return BlankFragment.newInstance()
-            TabItemType.PROFILE -> return BlankFragment.newInstance()
-            else -> throw IllegalArgumentException("There is no fragment for the position $position")
-        }
+    override fun getItem(position: Int) = when (TabItemType.getTabItemByPosition(position)) {
+        TabItemType.HOME -> HomeFragment.newInstance()
+        TabItemType.CHANNELS -> ChannelsRootFragment.newInstance()
+        TabItemType.USERS -> UsersRootFragment.newInstance()
+        TabItemType.PROFILE -> BlankFragment.newInstance()
     }
 
     override fun getCount(): Int {
         return TabItemType.values().size
     }
-
 }

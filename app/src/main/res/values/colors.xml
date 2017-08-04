@@ -18,4 +18,5 @@
     <color name="tabBackground">@color/white</color>
 
     <color name="profile_background">#EFF1F5</color>
+    <color name="activeGreen">#3EB890</color>
 </resources>

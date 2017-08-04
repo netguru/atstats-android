@@ -57,19 +57,19 @@ internal class HomeUsersPresenter @Inject constructor(
     private fun findOtherUsersStatistics(channels: List<DirectChannelWithMessages>) {
         val channelsWithStatistics: MutableList<ChannelStatistic> = mutableListOf()
 
-        for (channel in channels) {
+        for ((directChannel, messages) in channels) {
             var messagesFromUs: Int = 0
             var messagesFromOtherUser: Int = 0
 
-            for (message in channel.messages) {
-                if (message.user == channel.directChannel.userId) {
+            for ((user) in messages) {
+                if (user == directChannel.userId) {
                     messagesFromOtherUser++
                 } else {
                     messagesFromUs++
                 }
             }
 
-            val channelStatistic = ChannelStatistic(channel.directChannel,
+            val channelStatistic = ChannelStatistic(directChannel,
                     messagesFromUs, messagesFromOtherUser)
             channelsWithStatistics.add(channelStatistic)
         }
@@ -79,14 +79,11 @@ internal class HomeUsersPresenter @Inject constructor(
     }
 
     private fun findUserWeWriteMost(channelStatistics: List<ChannelStatistic>) {
-        val sortedChannels = channelStatistics.sortedWith(object : Comparator<ChannelStatistic> {
-            override fun compare(o1: ChannelStatistic, o2: ChannelStatistic): Int {
-                return o2.messagesFromUs.compareTo(o1.messagesFromUs)
-            }
-        })
+        val sortedChannels = channelStatistics.sortedWith(Comparator<ChannelStatistic> { o1, o2
+            -> o2.messagesFromUs.compareTo(o1.messagesFromUs) })
 
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserProfile(sortedChannels[it].channel.userId).toFlowable() },
+                .flatMap({ usersController.getUserInfo(sortedChannels[it].channel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromUs) })
                 .toList()
                 .compose(RxTransformers.applySingleIoSchedulers())
@@ -94,14 +91,12 @@ internal class HomeUsersPresenter @Inject constructor(
     }
 
     private fun findUserThatWritesToUsMost(channelStatistics: List<ChannelStatistic>) {
-        val sortedChannels = channelStatistics.sortedWith(object : Comparator<ChannelStatistic> {
-            override fun compare(o1: ChannelStatistic, o2: ChannelStatistic): Int {
-                return o2.messagesFromOtherUser.compareTo(o1.messagesFromOtherUser)
-            }
+        val sortedChannels = channelStatistics.sortedWith(Comparator<ChannelStatistic> { o1, o2 ->
+            o2.messagesFromOtherUser.compareTo(o1.messagesFromOtherUser)
         })
 
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserProfile(sortedChannels[it].channel.userId).toFlowable() },
+                .flatMap({ usersController.getUserInfo(sortedChannels[it].channel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromOtherUser) })
                 .toList()
                 .compose(RxTransformers.applySingleIoSchedulers())
@@ -109,14 +104,11 @@ internal class HomeUsersPresenter @Inject constructor(
     }
 
     private fun findUserWeTalkTheMost(channels: List<DirectChannelWithMessages>) {
-        val sortedChannels = channels.sortedWith(object : Comparator<DirectChannelWithMessages> {
-            override fun compare(o1: DirectChannelWithMessages, o2: DirectChannelWithMessages): Int {
-                return o2.messages.size.compareTo(o1.messages.size)
-            }
-        })
+        val sortedChannels = channels.sortedWith(Comparator<DirectChannelWithMessages> { o1, o2 ->
+            o2.messages.size.compareTo(o1.messages.size) })
 
         Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserProfile(sortedChannels[it].directChannel.userId).toFlowable() },
+                .flatMap({ usersController.getUserInfo(sortedChannels[it].directChannel.userId).toFlowable() },
                         { index, user -> user.toStatisticsView(sortedChannels[index].messages.size) })
                 .toList()
                 .compose(RxTransformers.applySingleIoSchedulers())

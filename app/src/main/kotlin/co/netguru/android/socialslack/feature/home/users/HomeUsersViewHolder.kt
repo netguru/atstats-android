@@ -8,12 +8,11 @@ import kotlinx.android.synthetic.main.item_user.view.*
 
 class HomeUsersViewHolder(itemView: View) : BaseViewHolder<UserStatistic>(itemView) {
 
-    override fun bind(user: UserStatistic) {
-        with(user) {
-            itemView.userMessages.text = user.messages.toString()
-            itemView.userName.text = user.name
-            Glide.with(itemView.context).load(user.avatarUrl).into(itemView.userAvatar)
-            // TODO round image view with glide instead of itemView.userAvatar.roundImageView()
+    override fun bind(item: UserStatistic) {
+        with(item) {
+            itemView.userMessages.text = messages.toString()
+            itemView.userName.text = name
+            Glide.with(itemView.context).load(avatarUrl).into(itemView.userAvatar)
         }
     }
 }

@@ -47,6 +47,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         presenter.getChannels()
+        filterViewIconImageView.setImageResource(R.drawable.hashtag_title)
         presenter.getCurrentFilterOption()
     }
 

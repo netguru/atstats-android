@@ -19,6 +19,10 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="FontSmall.White" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="FontMedium.White" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -49,6 +53,10 @@
 
     <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
+    <style name="Font22.PrimaryDark" parent="FontLarge.PrimaryDark">
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="Font28.PrimaryDark" parent="FontLarge.PrimaryDark">
