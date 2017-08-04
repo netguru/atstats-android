@@ -5,7 +5,7 @@ import android.content.Context
 import co.netguru.android.socialslack.data.channels.ChannelsApi
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.ChannelsProviderImpl
+import co.netguru.android.socialslack.data.channels.ChannelsController
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -26,5 +26,5 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideChannelHistoryProvider(channelsApi: ChannelsApi, channelsDao: ChannelsDao):
-            ChannelsProvider = ChannelsProviderImpl(channelsApi, channelsDao)
+            ChannelsProvider = ChannelsController(channelsApi, channelsDao)
 }

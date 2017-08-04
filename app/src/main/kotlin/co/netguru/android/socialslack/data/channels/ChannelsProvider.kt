@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 

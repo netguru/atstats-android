@@ -66,7 +66,7 @@ class ChannelsProviderImplTest {
                 ArgumentMatchers.anyString()))
                 .thenReturn(Single.just(channelHistory))
 
-        channelsProvider = ChannelsProviderImpl(channelsApi, channelsDao)
+        channelsProvider = ChannelsController(channelsApi, channelsDao)
     }
 
     @Test

@@ -13,6 +13,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.toSingle
 import io.reactivex.rxkotlin.zipWith
 import timber.log.Timber
 import javax.inject.Inject

@@ -10,8 +10,4 @@ import javax.inject.Named
 interface ChannelProfileComponent {
 
     fun getPresenter(): ChannelProfilePresenter
-
-    // TODO 27.07.2017 place this method in user component
-    @Named("UserId")
-    fun getUserId(): String
 }
