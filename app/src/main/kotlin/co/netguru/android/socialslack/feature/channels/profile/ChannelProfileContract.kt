@@ -8,7 +8,7 @@ interface ChannelProfileContract {
 
     interface View : MvpView {
 
-        fun showChannelInfo(totalHere: Int, totalMentions: Int)
+        fun showChannelInfo(totalMessages: Int, totalHere: Int, totalMentions: Int)
 
         fun showError()
 

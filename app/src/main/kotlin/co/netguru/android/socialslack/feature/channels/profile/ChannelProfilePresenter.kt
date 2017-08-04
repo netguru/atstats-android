@@ -44,7 +44,7 @@ class ChannelProfilePresenter @Inject constructor(private val channelsDao: Chann
     }
 
     private fun showCount(channelsStatistics: ChannelStatistics) {
-        view.showChannelInfo(channelsStatistics.hereCount, channelsStatistics.mentionsCount)
+        view.showChannelInfo(channelsStatistics.messageCount, channelsStatistics.hereCount, channelsStatistics.mentionsCount)
     }
 
     override fun onShareButtonClick() {

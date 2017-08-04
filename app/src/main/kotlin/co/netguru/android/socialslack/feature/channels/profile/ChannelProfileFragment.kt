@@ -18,11 +18,10 @@ import kotlinx.android.synthetic.main.profile_header_layout.*
 class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelProfileContract.Presenter>(), ChannelProfileContract.View {
 
     companion object {
-        fun newInstance(channel: Channel, mostActiveItemList: Array<Channel>, totalMessages: Int): ChannelProfileFragment {
+        fun newInstance(channel: Channel, mostActiveItemList: Array<Channel>): ChannelProfileFragment {
             val bundle = Bundle()
             bundle.putParcelable(KEY_CHANNEL, channel)
             bundle.putParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST, mostActiveItemList)
-            bundle.putInt(KEY_CHANNEL_TOTAL_MESSAGES, totalMessages)
 
             val channelProfileFragment = ChannelProfileFragment()
             channelProfileFragment.arguments = bundle
@@ -49,13 +48,14 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
         super.onViewCreated(view, savedInstanceState)
         arguments.apply {
             val channel: Channel = getParcelable(KEY_CHANNEL)
-            setUpFields(channel, getInt(KEY_CHANNEL_TOTAL_MESSAGES))
+            setUpFields(channel)
             getPresenter().getChannelInfo(channel.id)
         }
         shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
     }
 
-    override fun showChannelInfo(totalHere: Int, totalMentions: Int) {
+    override fun showChannelInfo(totalMessages: Int, totalHere: Int, totalMentions: Int) {
+        totalMessagesTextView.text = totalMessages.toString()
         totalOfHereTextView.text = totalHere.toString()
         yourMentionsTextView.text = totalMentions.toString()
         secondTotalHereTextView.text = totalHere.toString()
@@ -69,11 +69,10 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
         ShareDialogFragment.newInstance(channel, channelArray).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
-    private fun setUpFields(channel: Channel, totalMessage: Int) {
+    private fun setUpFields(channel: Channel) {
         messagesDetailTextView.text = resources.getString(R.string.total_messages)
         channelNameTextView.text = resources.getString(R.string.hashtag).plus(channel.name)
         rankTextView.text = channel.currentPositionInList.toString()
-        totalMessagesTextView.text = totalMessage.toString()
     }
 
     override fun showError() {

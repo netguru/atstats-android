@@ -6,7 +6,7 @@ import javax.inject.Named
 
 
 @FragmentScope
-@Subcomponent(modules = arrayOf(ChannelProfileModule::class))
+@Subcomponent
 interface ChannelProfileComponent {
 
     fun getPresenter(): ChannelProfilePresenter

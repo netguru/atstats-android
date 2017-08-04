@@ -7,7 +7,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
-
+// TODO remove this
 interface ChannelsProvider {
 
     fun getMessagesForChannel(channelId: String): Single<List<ChannelMessage>>
