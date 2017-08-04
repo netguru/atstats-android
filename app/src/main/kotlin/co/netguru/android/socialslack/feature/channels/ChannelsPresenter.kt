@@ -3,8 +3,6 @@ package co.netguru.android.socialslack.feature.channels
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsDao
-import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
@@ -15,7 +13,6 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.rxkotlin.toSingle
 import io.reactivex.rxkotlin.zipWith
 import timber.log.Timber
 import javax.inject.Inject

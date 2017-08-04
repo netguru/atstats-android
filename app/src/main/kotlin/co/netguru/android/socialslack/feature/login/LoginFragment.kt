@@ -14,6 +14,7 @@ import android.support.design.widget.Snackbar
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.feature.main.MainActivity
 import co.netguru.android.socialslack.common.extensions.startActivity
+import co.netguru.android.socialslack.feature.fetch.FetchActivity
 
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
@@ -54,7 +55,7 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
     }
 
     override fun showMainActivity() {
-        activity.startActivity<MainActivity>()
+        activity.startActivity<FetchActivity>()
         activity.finish()
     }
 

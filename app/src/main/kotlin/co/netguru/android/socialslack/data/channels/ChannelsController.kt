@@ -15,9 +15,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ChannelsController @Inject constructor(private val channelsApi: ChannelsApi, private val channelsDao: ChannelsDao) : ChannelsProvider {
+class ChannelsController @Inject constructor(private val channelsApi: ChannelsApi,
+                                             private val channelsDao: ChannelsDao) {
 
-    // TODO 27.07.2017 REMOVE THIS MOCK
     companion object {
         private const val COUNT = 1000
         private const val FILE_PARAMETER_NAME = "file"
@@ -27,21 +27,20 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
         val currentTime = System.currentTimeMillis() / 1000
     }
 
-    // TODO 27.07.2017 this should be get from the database
-    override fun getMessagesForChannel(channelId: String) =
+    fun getMessagesForChannel(channelId: String) =
             getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
 
-    override fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
+    fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
             .subscribeOn(Schedulers.io())
             .map { it.channelList }
 
-    override fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable {
+    fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable {
         return channelsApi.uploadFileToChannel(channelName, createMultipartBody(fileByteArray))
                 .flatMapCompletable(this::parseResponse)
     }
 
-    override fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
+    fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
         var lastTimestamp: String? = (currentTime).toString()
 
         return Flowable.range(0, Int.MAX_VALUE)
@@ -79,7 +78,7 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
         return list.toList()
     }
 
-    override fun countChannelStatistics(channelId: String, channelName: String, user: String) =
+    fun countChannelStatistics(channelId: String, channelName: String, user: String) =
             getMessagesForChannel(channelId)
                     .observeOn(Schedulers.computation())
                     .flattenAsObservable { it }

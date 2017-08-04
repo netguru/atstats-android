@@ -2,14 +2,13 @@ package co.netguru.android.socialslack.feature.share
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.anyObject
-import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import org.junit.After
 import org.junit.Before
-import org.mockito.Mockito.*
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class SharePresenterTest {
@@ -25,7 +24,7 @@ class SharePresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channelsProvider: ChannelsProvider = mock(ChannelsProvider::class.java)
+    val channelsController: ChannelsController = mock(ChannelsController::class.java)
     lateinit var view: ShareContract.View
 
     lateinit var sharePresenter: SharePresenter
@@ -33,7 +32,7 @@ class SharePresenterTest {
     @Before
     fun setUp() {
         view = mock(ShareContract.View::class.java)
-        sharePresenter = SharePresenter(channelsProvider)
+        sharePresenter = SharePresenter(channelsController)
         sharePresenter.attachView(view)
 
         CHANNEL_MOST_ACTIVE.currentPositionInList = 1

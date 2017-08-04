@@ -217,7 +217,6 @@ class ChannelsPresenterTest {
 
     @Test
     fun `should sort most active channels list when current filter option is not most active`() {
-        //TODO 31.07.2017 Change membersNumber to messages number in mocks when available
         //given
         whenever(filterController.getChannelsFilterOption()).thenReturn(Single.just(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE))
         //when

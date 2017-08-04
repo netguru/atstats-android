@@ -2,8 +2,7 @@ package co.netguru.android.socialslack.feature.share
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
@@ -13,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class SharePresenter @Inject constructor(private val channelsProvider: ChannelsProvider)
+class SharePresenter @Inject constructor(private val channelsController: ChannelsController)
     : MvpNullObjectBasePresenter<ShareContract.View>(),
         ShareContract.Presenter {
 
@@ -40,7 +39,7 @@ class SharePresenter @Inject constructor(private val channelsProvider: ChannelsP
 
     override fun onSendButtonClick(screenShotByteArray: ByteArray) {
         view.showLoadingView()
-        compositeDisposable += channelsProvider.uploadFileToChannel(currentChannelName, screenShotByteArray)
+        compositeDisposable += channelsController.uploadFileToChannel(currentChannelName, screenShotByteArray)
                 .compose(RxTransformers.applyCompletableIoSchedulers())
                 .doAfterTerminate(view::hideLoadingView)
                 .subscribeBy(

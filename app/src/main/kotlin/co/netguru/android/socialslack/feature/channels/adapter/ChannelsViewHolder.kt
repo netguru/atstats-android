@@ -32,8 +32,6 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
         with(item) {
             channelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
             channelsNameTextView.text = channelName
-
-            //TODO 10.07.2017 Change to messages number when it will be possible (according to SLACK API)
             channelsMessagesNrTextView.text = messageCount.toString()
             changeRankViewVisibility(currentPositionInList)
             changeMessagesNrTextColor(currentPositionInList)

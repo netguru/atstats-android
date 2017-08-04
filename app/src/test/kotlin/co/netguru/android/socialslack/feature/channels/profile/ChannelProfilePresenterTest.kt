@@ -3,11 +3,8 @@ package co.netguru.android.socialslack.feature.channels.profile
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsDao
-import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import io.reactivex.Flowable
-import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

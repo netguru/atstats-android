@@ -120,8 +120,6 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         with(channelStatistics) {
             shareLastItem.itemChannelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
             shareLastItem.itemChannelsNameTextView.text = channelName
-
-            //TODO 28.07.2017 Change to messages number when it will be possible (according to SLACK API)
             shareLastItem.itemChannelsMessagesNrTextView.text = messageCount.toString()
         }
     }

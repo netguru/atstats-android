@@ -20,7 +20,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.ArgumentMatchers
 
 @Suppress("IllegalIdentifier")
-class ChannelsProviderImplTest {
+class ChannelsControllerTest {
 
     companion object {
         private const val CHANNEL = "channel"
@@ -54,7 +54,7 @@ class ChannelsProviderImplTest {
 
     val messageList: MutableList<ChannelMessage> = mutableListOf()
 
-    lateinit var channelsProvider: ChannelsProvider
+    lateinit var channelsController: ChannelsController
 
     @Before
     fun setUp() {
@@ -66,13 +66,13 @@ class ChannelsProviderImplTest {
                 ArgumentMatchers.anyString()))
                 .thenReturn(Single.just(channelHistory))
 
-        channelsProvider = ChannelsController(channelsApi, channelsDao)
+        channelsController = ChannelsController(channelsApi, channelsDao)
     }
 
     @Test
     fun `should get channels list from api when getting channels list`() {
         //when
-        val testObserver = channelsProvider.getChannelsList().test()
+        val testObserver = channelsController.getChannelsList().test()
         //then
         verify(channelsApi).getChannelsList()
         testObserver.assertNoErrors()
@@ -83,7 +83,7 @@ class ChannelsProviderImplTest {
         //given
         whenever(channelsApi.uploadFileToChannel(anyString(), anyObject())).thenReturn(Single.just(SUCCESSFUL_FILE_OBJECT))
         //when
-        val testObserver = channelsProvider.uploadFileToChannel("channel", byteArrayOf()).test()
+        val testObserver = channelsController.uploadFileToChannel("channel", byteArrayOf()).test()
         //then
         verify(channelsApi).uploadFileToChannel(anyString(), anyObject())
         testObserver.assertNoErrors()
@@ -94,7 +94,7 @@ class ChannelsProviderImplTest {
         //given
         whenever(channelsApi.uploadFileToChannel(anyString(), anyObject())).thenReturn(Single.just(FAILED_FILE_OBJECT))
         //when
-        val testObserver = channelsProvider.uploadFileToChannel("channel", byteArrayOf()).test()
+        val testObserver = channelsController.uploadFileToChannel("channel", byteArrayOf()).test()
         //then
         testObserver.assertError(Throwable::class.java)
     }
@@ -114,7 +114,7 @@ class ChannelsProviderImplTest {
                 .thenReturn(Single.just(ChannelHistory(true, messageList, false)))
 
         // when
-        val testObserver = channelsProvider.countChannelStatistics(CHANNEL, CHANNEL, USER).test()
+        val testObserver = channelsController.countChannelStatistics(CHANNEL, CHANNEL, USER).test()
 
         // then
         var arg: ArgumentCaptor<ChannelStatistics> = ArgumentCaptor.forClass(ChannelStatistics::class.java)
