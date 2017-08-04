@@ -1,11 +1,14 @@
 package co.netguru.android.socialslack.feature.fetch
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.view.View
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.feature.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
+import kotlinx.android.synthetic.main.activity_fetch.*
 
 
 class FetchActivity : MvpActivity<FetchContract.View, FetchContract.Presenter>(), FetchContract.View {
@@ -16,7 +19,8 @@ class FetchActivity : MvpActivity<FetchContract.View, FetchContract.Presenter>()
     }
 
     override fun showErrorMessage() {
-
+        progressBar.visibility = View.INVISIBLE
+        Snackbar.make(mainLayout, R.string.error_msg, Snackbar.LENGTH_LONG)
     }
 
     private lateinit var component: FetchComponent
