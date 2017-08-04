@@ -29,7 +29,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
-    private val tabManager by lazy { TabManager(tabLayout, viewPager, this) }
+    private val tabManager by lazy {
+        TabManager(tabLayout, viewPager, this,
+                object : TabManager.OnTabSelectedListener {
+                    override fun onTabSelected() {
+                        supportFragmentManager.popBackStack()
+                    }
+                })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

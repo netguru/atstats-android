@@ -11,7 +11,8 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.feature.main.adapter.TabItemType
 import kotlinx.android.synthetic.main.tab_custom_view.view.*
 
-class TabManager(val tabLayout: TabLayout, val viewPager: ViewPager, val context: Context) {
+class TabManager(private val tabLayout: TabLayout, private val viewPager: ViewPager, private val context: Context,
+                 private val onTabSelectedListener: OnTabSelectedListener) {
 
     private var currentTabSelected = 0
     private val highlightColor by lazy { context.getColor(R.color.primary) }
@@ -69,18 +70,23 @@ class TabManager(val tabLayout: TabLayout, val viewPager: ViewPager, val context
 
     private fun createTabListener(): TabLayout.OnTabSelectedListener {
         return object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                tab?.let { selectTab(tab) }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                selectTab(tab)
+                onTabSelectedListener.onTabSelected()
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            override fun onTabUnselected(tab: TabLayout.Tab) {
                 // No-op
             }
 
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.let { selectTab(tab) }
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                selectTab(tab)
+                onTabSelectedListener.onTabSelected()
             }
-
         }
+    }
+
+    interface OnTabSelectedListener {
+        fun onTabSelected()
     }
 }
