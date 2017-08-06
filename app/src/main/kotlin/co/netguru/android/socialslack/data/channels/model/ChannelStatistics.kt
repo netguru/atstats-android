@@ -27,5 +27,4 @@ data class ChannelStatistics(@PrimaryKey @ColumnInfo(name = "channel_id") var ch
     }
 
     override fun describeContents() = 0
-
 }

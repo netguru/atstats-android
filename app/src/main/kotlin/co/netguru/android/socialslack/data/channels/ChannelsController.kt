@@ -27,18 +27,27 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
         private val currentTime = System.currentTimeMillis() / 1000
     }
 
-    private fun getMessagesAllMessagesFromApi(channelId: String) =
-            getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
-                    .subscribeOn(Schedulers.io())
-
     fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
             .subscribeOn(Schedulers.io())
             .map { it.channelList }
+
+    fun countChannelStatistics(channelId: String, channelName: String, user: String) =
+            getMessagesAllMessagesFromApi(channelId)
+                    .observeOn(Schedulers.computation())
+                    .flattenAsObservable { it }
+                    .collect({ ChannelCount(user) }, { t1: ChannelCount?, t2: ChannelMessage? -> t1?.accept(t2) })
+                    .map { ChannelStatistics(channelId, channelName, it.totalMessageCount, it.hereCount, it.mentionsCount, it.myMessageCount) }
+                    .observeOn(Schedulers.io())
+                    .doAfterSuccess { channelsDao.insertChannel(it) }
 
     fun uploadFileToChannel(channelName: String, fileByteArray: ByteArray): Completable {
         return channelsApi.uploadFileToChannel(channelName, createMultipartBody(fileByteArray))
                 .flatMapCompletable(this::parseResponse)
     }
+
+    private fun getMessagesAllMessagesFromApi(channelId: String) =
+            getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
+                    .subscribeOn(Schedulers.io())
 
     private fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
         var lastTimestamp: String? = (currentTime).toString()
@@ -77,15 +86,6 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
             return if (isSuccessful) Completable.complete() else Completable.error(Throwable(error))
         }
     }
-
-    fun countChannelStatistics(channelId: String, channelName: String, user: String) =
-            getMessagesAllMessagesFromApi(channelId)
-                    .observeOn(Schedulers.computation())
-                    .flattenAsObservable { it }
-                    .collect({ ChannelCount(user) }, { t1: ChannelCount?, t2: ChannelMessage? -> t1?.accept(t2) })
-                    .map { ChannelStatistics(channelId, channelName, it.totalMessageCount, it.hereCount, it.mentionsCount, it.myMessageCount) }
-                    .observeOn(Schedulers.io())
-                    .doAfterSuccess { channelsDao.insertChannel(it) }
 
     data class ChannelCount(val currentUser: String, var hereCount: Int = 0, var mentionsCount: Int = 0, var myMessageCount: Int = 0, var totalMessageCount: Int = 0) {
 

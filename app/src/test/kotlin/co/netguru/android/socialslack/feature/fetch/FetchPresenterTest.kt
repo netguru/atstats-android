@@ -62,5 +62,4 @@ class FetchPresenterTest {
         // then
         verify(view).showErrorMessage()
     }
-
 }

@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Flowable
 import org.junit.After
 import org.junit.Before
@@ -29,7 +30,7 @@ class ChannelProfilePresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channelsDao: ChannelsDao = mock(ChannelsDao::class.java)
+    val channelsDao = mock<ChannelsDao>()
     lateinit var view: ChannelProfileContract.View
 
     lateinit var presenter: ChannelProfileContract.Presenter

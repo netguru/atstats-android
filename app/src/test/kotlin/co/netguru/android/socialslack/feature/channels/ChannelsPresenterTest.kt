@@ -7,6 +7,7 @@ import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.After
@@ -33,8 +34,8 @@ class ChannelsPresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channeslDao: ChannelsDao = mock(ChannelsDao::class.java)
-    val filterController: FilterController = mock(FilterController::class.java)
+    val channeslDao = mock<ChannelsDao>()
+    val filterController = mock<FilterController>()
     lateinit var view: ChannelsContract.View
 
     lateinit var channelsPresenter: ChannelsPresenter

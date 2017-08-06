@@ -48,9 +48,9 @@ class ChannelsControllerTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channelsApi = mock(ChannelsApi::class.java)
+    val channelsApi = mock<ChannelsApi>()
 
-    val channelsDao: ChannelsDao = mock(ChannelsDao::class.java)
+    val channelsDao = mock<ChannelsDao>()
 
     val messageList: MutableList<ChannelMessage> = mutableListOf()
 
@@ -126,6 +126,5 @@ class ChannelsControllerTest {
             assertEquals(value.myMessageCount, 4)
         }
         testObserver.assertNoErrors()
-
     }
 }

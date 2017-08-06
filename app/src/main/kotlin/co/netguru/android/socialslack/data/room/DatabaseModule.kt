@@ -18,5 +18,4 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideChannelsDao(slackSocialDatabase: SlackSocialDatabase): ChannelsDao = slackSocialDatabase.channelsDao()
-
 }
