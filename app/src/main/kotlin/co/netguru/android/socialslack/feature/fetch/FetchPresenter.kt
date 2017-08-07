@@ -14,6 +14,7 @@ import javax.inject.Inject
 class FetchPresenter @Inject constructor(private val channelsController: ChannelsController) : MvpNullObjectBasePresenter<FetchContract.View>(), FetchContract.Presenter {
 
     companion object {
+        // TODO 11.08.2017 replace this with the user ID
         private const val MOCK_USER = "user"
     }
 

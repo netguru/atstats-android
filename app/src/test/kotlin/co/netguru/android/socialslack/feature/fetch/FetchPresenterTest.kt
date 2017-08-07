@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.feature.fetch
 
+import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
@@ -8,6 +9,7 @@ import co.netguru.android.socialslack.TestHelper.whenever
 import org.mockito.Mockito.*
 import io.reactivex.Single
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers
 
@@ -25,6 +27,10 @@ class FetchPresenterTest {
         private val CHANNEL_STATISTICS1 = ChannelStatistics("1", "", 10, 5, 5, 5)
 
     }
+
+    @Rule
+    @JvmField
+    val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     val channelsController = mock<ChannelsController>()
 
