@@ -22,12 +22,12 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
     override fun attachView(view: FetchContract.View) {
         super.attachView(view)
         compositeDisposable += channelsController.getChannelsList()
-                .compose(RxTransformers.applySingleIoSchedulers())
                 .flattenAsFlowable { it.filter { it.isCurrentUserMember } }
                 .flatMapSingle {
                     channelsController.countChannelStatistics(it.id, it.name, MOCK_USER)
                 }
                 .toList()
+                .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = { view.showMainActivity() },
                         onError = { handleError(it, "Error while fetching data") }
