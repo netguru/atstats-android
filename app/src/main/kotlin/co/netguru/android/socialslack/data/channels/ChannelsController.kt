@@ -1,9 +1,6 @@
 package co.netguru.android.socialslack.data.channels
 
-import co.netguru.android.socialslack.data.channels.model.Channel
-import co.netguru.android.socialslack.data.channels.model.ChannelMessage
-import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
-import co.netguru.android.socialslack.data.channels.model.FileUploadResponse
+import co.netguru.android.socialslack.data.channels.model.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -28,14 +25,13 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
     }
 
     fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
-            .subscribeOn(Schedulers.io())
             .map { it.channelList }
 
     fun countChannelStatistics(channelId: String, channelName: String, user: String) =
             getMessagesAllMessagesFromApi(channelId)
                     .observeOn(Schedulers.computation())
                     .flattenAsObservable { it }
-                    .collect({ ChannelCount(user) }, { t1: ChannelCount?, t2: ChannelMessage? -> t1?.accept(t2) })
+                    .collect({ ChannelStatisticsCount(user) }, { t1: ChannelStatisticsCount?, t2: ChannelMessage? -> t1?.accept(t2) })
                     .map { ChannelStatistics(channelId, channelName, it.totalMessageCount, it.hereCount, it.mentionsCount, it.myMessageCount) }
                     .observeOn(Schedulers.io())
                     .doAfterSuccess { channelsDao.insertChannel(it) }
@@ -84,21 +80,6 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
     private fun parseResponse(fileUploadResponse: FileUploadResponse): Completable {
         with(fileUploadResponse) {
             return if (isSuccessful) Completable.complete() else Completable.error(Throwable(error))
-        }
-    }
-
-    data class ChannelCount(val currentUser: String, var hereCount: Int = 0, var mentionsCount: Int = 0, var myMessageCount: Int = 0, var totalMessageCount: Int = 0) {
-
-        fun accept(channelMessage: ChannelMessage?): ChannelCount {
-            channelMessage?.let {
-                totalMessageCount++
-                channelMessage.text?.apply {
-                    if (contains(ChannelMessage.HERE_TAG)) hereCount++
-                    if (contains(String.format(ChannelMessage.USER_MENTION, currentUser))) mentionsCount++
-                }
-                if (channelMessage.user?.contains(currentUser) ?: false) myMessageCount++
-            }
-            return this
         }
     }
 }

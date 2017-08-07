@@ -2,7 +2,10 @@ package co.netguru.android.socialslack.data.channels.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ChannelMessage(val type: String, @SerializedName("ts") val timeStamp: String, val user: String?, val text: String?) {
+data class ChannelMessage(val type: String,
+                          @SerializedName("ts") val timeStamp: String,
+                          val user: String?,
+                          val text: String?) {
 
     companion object {
         const val MESSAGE_TYPE = "message"

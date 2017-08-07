@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_fetch.*
 
 class FetchActivity : MvpActivity<FetchContract.View, FetchContract.Presenter>(), FetchContract.View {
 
+    private val component by lazy { App.getApplicationComponent(this) .plusFetchComponent() }
+
     override fun showMainActivity() {
         startActivity<MainActivity>()
         finish()
@@ -23,18 +25,10 @@ class FetchActivity : MvpActivity<FetchContract.View, FetchContract.Presenter>()
         Snackbar.make(mainLayout, R.string.error_msg, Snackbar.LENGTH_LONG)
     }
 
-    private lateinit var component: FetchComponent
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        initComponent()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fetch)
     }
 
     override fun createPresenter(): FetchContract.Presenter = component.getPresenter()
-
-    fun initComponent() {
-        component = App.getApplicationComponent(this)
-                .plusFetchComponent()
-    }
 }
