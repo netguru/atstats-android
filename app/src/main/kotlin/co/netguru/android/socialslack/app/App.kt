@@ -11,6 +11,24 @@ import io.fabric.sdk.android.Fabric
 
 class App : Application() {
 
+    companion object Factory {
+
+        //TODO 07.08.2017 For now userId is mocked because we don't get current user profile from server
+        //TODO 07.08.2017 UserComponentRestorer should be implemented while implementing ProfileView
+        private const val MOCKED_USER_ID = "user"
+
+        internal fun getApplicationComponent(context: Context): ApplicationComponent =
+                (context.applicationContext as App).applicationComponent
+
+        internal fun getUserComponent(context: Context): UserComponent =
+                (context.applicationContext as App).getUserComponent()
+
+        //TODO 07.08.2017 Should be called when user logout
+        internal fun releaseUserComponent(context: Context) {
+            (context.applicationContext as App).userComponent = null
+        }
+    }
+
     private val applicationComponent: ApplicationComponent by lazy {
         DaggerApplicationComponent
                 .builder()
@@ -36,25 +54,10 @@ class App : Application() {
         if (userComponent == null) {
             this.userComponent = applicationComponent
                     .userComponentBuilder()
-                    //TODO 07.08.2017 For now userId is mocked because we don't get current user profile from server
-                    //TODO 07.08.2017 UserComponentRestorer should be implemented while implementing ProfileView
-                    .localRepositoryModule(LocalRepositoryModule("user"))
+                    .localRepositoryModule(LocalRepositoryModule(MOCKED_USER_ID))
                     .build()
         }
 
         return userComponent!!
-    }
-
-    companion object Factory {
-        internal fun getApplicationComponent(context: Context): ApplicationComponent =
-                (context.applicationContext as App).applicationComponent
-
-        internal fun getUserComponent(context: Context): UserComponent =
-                (context.applicationContext as App).getUserComponent()
-
-        //TODO 07.08.2017 Should be called when user logouts
-        internal fun releaseUserComponent(context: Context) {
-            (context.applicationContext as App).userComponent = null
-        }
     }
 }
