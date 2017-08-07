@@ -50,8 +50,6 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
     override fun getChannels() {
         view.showLoadingView()
         compositeDisposable += channelsDao.getAllChannels()
-                .take(1)
-                .singleOrError()
                 .zipWith(filterController.getChannelsFilterOption())
                 { channelsList, filterOption -> Pair(channelsList, filterOption) }
                 .flatMap { sortChannelsList(it.first, it.second) }

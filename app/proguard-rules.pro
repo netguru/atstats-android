@@ -133,3 +133,7 @@
 -keep class com.crashlytics.android.**
 -keepattributes SourceFile, LineNumberTable, *Annotation*
 -keep public class * extends java.lang.Exception
+
+#Room
+-dontwarn android.arch.util.paging.CountedDataSource
+-dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource

@@ -22,8 +22,6 @@ class ChannelProfilePresenter @Inject constructor(private val channelsDao: Chann
         view.showLoadingView()
 
         compositeDisposable += channelsDao.getChannelById(ChannelId)
-                .take(1)
-                .singleOrError()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(

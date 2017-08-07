@@ -8,7 +8,6 @@ import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import com.nhaarman.mockito_kotlin.mock
-import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
@@ -59,7 +58,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show channels list for user when getting channels successful`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Flowable.just(listOf()))
+        whenever(channeslDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -69,7 +68,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show error when getting channels from server failed`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Flowable.error(Throwable()))
+        whenever(channeslDao.getAllChannels()).thenReturn(Single.error(Throwable()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -79,7 +78,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show loading view when getting channels from server`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Flowable.just(listOf()))
+        whenever(channeslDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -89,7 +88,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should hide loading view when getting channels from server successful`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Flowable.just(listOf()))
+        whenever(channeslDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -99,7 +98,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should hide loading view when getting channels from server failed`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Flowable.error(Throwable()))
+        whenever(channeslDao.getAllChannels()).thenReturn(Single.error(Throwable()))
         //when
         channelsPresenter.getChannels()
         //then

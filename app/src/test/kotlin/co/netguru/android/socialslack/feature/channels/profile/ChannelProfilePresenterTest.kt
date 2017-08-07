@@ -5,7 +5,7 @@ import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import com.nhaarman.mockito_kotlin.mock
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -47,7 +47,7 @@ class ChannelProfilePresenterTest {
     fun `should show correct number of heres and mentions when getting messages from channel`() {
         // given
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
-                .thenReturn(Flowable.just(CHANNEL_STATISTICS))
+                .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -58,7 +58,7 @@ class ChannelProfilePresenterTest {
     fun `should show an error when error is returned`() {
         // given
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
-                .thenReturn(Flowable.error(Throwable()))
+                .thenReturn(Single.error(Throwable()))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -69,7 +69,7 @@ class ChannelProfilePresenterTest {
     fun `should show loading view when the channel message are request`() {
         // given
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
-                .thenReturn(Flowable.just(CHANNEL_STATISTICS))
+                .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -80,7 +80,7 @@ class ChannelProfilePresenterTest {
     fun `should show hide view when the channel messages call is successful`() {
         // given
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
-                .thenReturn(Flowable.just(CHANNEL_STATISTICS))
+                .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -91,7 +91,7 @@ class ChannelProfilePresenterTest {
     fun `should show hide view when the channel messages call returns error`() {
         // given
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
-                .thenReturn(Flowable.error(Throwable()))
+                .thenReturn(Single.error(Throwable()))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
