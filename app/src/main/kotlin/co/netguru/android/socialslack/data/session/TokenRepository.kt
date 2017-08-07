@@ -1,7 +1,7 @@
 package co.netguru.android.socialslack.data.session
 
 import android.content.SharedPreferences
-import co.netguru.android.socialslack.app.LocalRepositoryModule
+import co.netguru.android.socialslack.app.TokenRepositoryModule
 import co.netguru.android.socialslack.data.session.model.Token
 import co.netguru.android.socialslack.common.extensions.edit
 import io.reactivex.Completable
@@ -10,7 +10,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
-class TokenRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHARED_PREFERENCES_NAME)
+class TokenRepository @Inject constructor(@Named(TokenRepositoryModule.TOKEN_SHARED_PREFERENCES_NAME)
                                           private val sharedPreferences: SharedPreferences) {
 
     companion object {

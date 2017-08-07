@@ -33,14 +33,12 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
 
         private const val KEY_CHANNEL = "key:channel"
         private const val KEY_CHANNEL_MOST_ACTIVE_LIST = "key:channel_list"
-        private const val KEY_CHANNEL_TOTAL_MESSAGES = "key:channel_total_message"
     }
 
-    private lateinit var component: ChannelProfileComponent
+    private val component by lazy { App.getUserComponent(context).plusChannelProfileComponent() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        initComponent()
         return container?.inflate(R.layout.fragment_channel_profile)
     }
 
@@ -81,11 +79,6 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
 
     override fun createPresenter(): ChannelProfileContract.Presenter {
         return component.getPresenter()
-    }
-
-    private fun initComponent() {
-        component = App.getApplicationComponent(context)
-                .plusChannelProfileComponent()
     }
 
     override fun showLoadingView() {

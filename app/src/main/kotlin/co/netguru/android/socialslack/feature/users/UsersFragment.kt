@@ -29,8 +29,7 @@ class UsersFragment : MvpFragment<UsersContract.View, UsersContract.Presenter>()
     }
 
     private val component by lazy {
-        App.getApplicationComponent(context)
-                .plusUsersComponent()
+        App.getUserComponent(context).plusUsersComponent()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

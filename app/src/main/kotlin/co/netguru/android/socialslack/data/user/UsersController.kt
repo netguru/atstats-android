@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class UsersController @Inject constructor(val usersApi: UsersApi) {
+class UsersController @Inject constructor(val usersApi: UsersApi) {
 
     internal fun getUserInfo(userId: String): Single<User> {
         return usersApi.getUserInfo(userId)

@@ -33,8 +33,7 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
     private val adapter by lazy { UsersProfileAdapter() }
 
     private val component by lazy {
-        App.getApplicationComponent(context)
-                .plusUsersProfileComponent()
+        App.getUserComponent(context).plusUsersProfileComponent()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
