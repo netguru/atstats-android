@@ -2,15 +2,15 @@ package co.netguru.android.socialslack.data.filter
 
 import android.content.SharedPreferences
 import co.netguru.android.socialslack.app.LocalRepositoryModule
+import co.netguru.android.socialslack.app.scope.UserScope
 import co.netguru.android.socialslack.common.extensions.edit
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import io.reactivex.Completable
 import javax.inject.Inject
 import javax.inject.Named
-import javax.inject.Singleton
 
-@Singleton
-class FilterOptionRepository @Inject constructor(@Named(LocalRepositoryModule.TOKEN_SHARED_PREFERENCES_NAME)
+@UserScope
+class FilterOptionRepository @Inject constructor(@Named(LocalRepositoryModule.FILTER_OPTION_SHARED_PREFERENCES_NAME)
                                                  private val sharedPreferences: SharedPreferences) {
 
     companion object {

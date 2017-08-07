@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home_users.*
 internal class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.Presenter>(),
         HomeUsersContract.View {
 
-    private val component by lazy { App.getApplicationComponent(context).plusHomeUsersComponent() }
+    private val component by lazy { App.getUserComponent(context).plusHomeUsersComponent() }
 
     override fun createPresenter(): HomeUsersContract.Presenter {
         return component.getPresenter()

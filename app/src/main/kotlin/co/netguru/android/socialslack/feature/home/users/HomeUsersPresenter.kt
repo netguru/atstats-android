@@ -18,7 +18,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-internal class HomeUsersPresenter @Inject constructor(
+class HomeUsersPresenter @Inject constructor(
         private val directMessagesController: DirectMessagesController,
         private val usersController: UsersController)
     : MvpNullObjectBasePresenter<HomeUsersContract.View>(), HomeUsersContract.Presenter {

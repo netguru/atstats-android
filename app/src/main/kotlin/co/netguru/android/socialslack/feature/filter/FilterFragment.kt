@@ -28,7 +28,7 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
         }
     }
 
-    private lateinit var component: FilterComponent
+    private val component by lazy { App.getUserComponent(context).plusFilterComponent() }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -36,7 +36,6 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        initComponent()
         return container?.inflate(R.layout.fragment_filter)
     }
 
@@ -79,10 +78,5 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
             filterOption2RadioBtn.id -> presenter.channelsFilterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
             filterOption3RadioBtn.id -> presenter.channelsFilterOptionChanged(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
         }
-    }
-
-    private fun initComponent() {
-        component = App.getApplicationComponent(context)
-                .plusFilterComponent()
     }
 }

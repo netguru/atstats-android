@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
-import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.share.Sharable
@@ -42,7 +41,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     private val component by lazy {
-        App.getApplicationComponent(context)
+        App.getUserComponent(context)
                 .plusChannelShareComponent()
     }
 

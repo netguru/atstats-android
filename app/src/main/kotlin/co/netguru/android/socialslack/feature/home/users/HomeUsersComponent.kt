@@ -5,7 +5,7 @@ import dagger.Subcomponent
 
 @FragmentScope
 @Subcomponent
-internal interface HomeUsersComponent {
+interface HomeUsersComponent {
 
     fun getPresenter() : HomeUsersPresenter
 }

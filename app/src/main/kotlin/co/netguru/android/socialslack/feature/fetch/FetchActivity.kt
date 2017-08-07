@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_fetch.*
 
 class FetchActivity : MvpActivity<FetchContract.View, FetchContract.Presenter>(), FetchContract.View {
 
-    private val component by lazy { App.getApplicationComponent(this) .plusFetchComponent() }
+    private val component by lazy { App.getUserComponent(this).plusFetchComponent() }
 
     override fun showMainActivity() {
         startActivity<MainActivity>()

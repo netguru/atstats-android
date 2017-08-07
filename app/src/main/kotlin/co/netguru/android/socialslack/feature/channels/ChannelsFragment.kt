@@ -25,7 +25,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         fun newInstance() = ChannelsFragment()
     }
 
-    private lateinit var component: ChannelsComponent
+    private val component by lazy { App.getUserComponent(context).plusChannelsComponent() }
+
     private lateinit var adapter: ChannelsAdapter
 
     override fun onAttach(context: Context?) {
@@ -33,8 +34,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        initComponent()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_channels)
     }
 
@@ -117,10 +117,5 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelsRecyclerView.addItemDecoration(DividerItemDecorator(context,
                 DividerItemDecorator.Orientation.VERTICAL_LIST, false))
         channelsRecyclerView.adapter = adapter
-    }
-
-    private fun initComponent() {
-        component = App.getApplicationComponent(context)
-                .plusChannelsComponent()
     }
 }

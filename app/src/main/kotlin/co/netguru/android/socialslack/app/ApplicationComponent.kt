@@ -1,40 +1,20 @@
 package co.netguru.android.socialslack.app
 
 import co.netguru.android.socialslack.data.room.DatabaseModule
-import co.netguru.android.socialslack.feature.channels.ChannelsComponent
-import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileComponent
-import co.netguru.android.socialslack.feature.fetch.FetchComponent
-import co.netguru.android.socialslack.feature.share.ShareComponent
-import co.netguru.android.socialslack.feature.filter.FilterComponent
-import co.netguru.android.socialslack.feature.home.users.HomeUsersComponent
 import co.netguru.android.socialslack.feature.login.LoginComponent
 import co.netguru.android.socialslack.feature.splash.SplashComponent
-import co.netguru.android.socialslack.feature.users.UsersComponent
-import co.netguru.android.socialslack.feature.users.profile.UsersProfileComponent
+
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class, NetworkModule::class, ApiModule::class,
-        LocalRepositoryModule::class, DatabaseModule::class))
+        TokenRepositoryModule::class, DatabaseModule::class))
 internal interface ApplicationComponent {
+
+    fun userComponentBuilder(): UserComponent.Builder
+
     fun plusLoginComponent(): LoginComponent
 
     fun plusSplashComponent(): SplashComponent
-
-    fun plusFetchComponent(): FetchComponent
-
-    fun plusChannelsComponent(): ChannelsComponent
-
-    fun plusChannelProfileComponent(): ChannelProfileComponent
-
-    fun plusChannelShareComponent(): ShareComponent
-
-    fun plusFilterComponent(): FilterComponent
-
-    fun plusHomeUsersComponent(): HomeUsersComponent
-
-    fun plusUsersComponent(): UsersComponent
-
-    fun plusUsersProfileComponent(): UsersProfileComponent
 }
