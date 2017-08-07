@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.extensions.inflate
 
 // TODO 07.07.2017 remove this fragment and the layout
 class BlankFragment : Fragment() {
@@ -17,7 +18,7 @@ class BlankFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_blank, container, false)
+        return container?.inflate(R.layout.fragment_blank)
     }
 
 }

@@ -16,7 +16,7 @@ class HomeUsersAdapter() : RecyclerView.Adapter<HomeUsersViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: HomeUsersViewHolder, position: Int) {
-        holder.bind(users.get(position))
+        holder.bind(users[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeUsersViewHolder {

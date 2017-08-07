@@ -3,6 +3,7 @@ package co.netguru.android.socialslack.data.channels
 import co.netguru.android.socialslack.data.channels.model.ChannelHistory
 import co.netguru.android.socialslack.data.channels.model.ChannelList
 import co.netguru.android.socialslack.data.channels.model.FileUploadResponse
+import io.reactivex.Flowable
 
 import io.reactivex.Single
 
@@ -21,6 +22,6 @@ interface ChannelsApi {
 
     @GET("/api/channels.history")
     fun getChannelsHistory(@Query("channel") channelId: String, @Query("count") count: Int?,
-                           @Query("inclusive") inclusive: Boolean?, @Query("latest") latest: Float?,
-                           @Query("oldest") oldest: Float?, @Query("unread") unRead: Boolean?): Single<ChannelHistory>
+                           @Query("latest") latest: String?,
+                           @Query("oldest") oldest: String?): Single<ChannelHistory>
 }

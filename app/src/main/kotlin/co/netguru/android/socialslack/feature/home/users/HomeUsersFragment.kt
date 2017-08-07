@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_users.*
@@ -26,7 +27,7 @@ internal class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsers
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_home_users, container, false)
+        return container?.inflate(R.layout.fragment_home_users)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

@@ -2,41 +2,35 @@ package co.netguru.android.socialslack.feature.channels.profile
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
-import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.ChannelMessages
-import io.reactivex.Observable
+import co.netguru.android.socialslack.data.channels.ChannelsDao
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import com.nhaarman.mockito_kotlin.mock
+import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @Suppress("IllegalIdentifier")
 class ChannelProfilePresenterTest {
 
     companion object {
-        @JvmStatic
-        val TS: Float = 1000F
-        @JvmStatic
-        val USER_ID = "<@User>"
-        @JvmStatic
-        val CHANNEL = "channel"
-        @JvmStatic
-        val USER = "user"
-        @JvmStatic
-        val OTHER_TYPE = "otherType"
-        @JvmStatic
-        val OTHER_USER = "Other User"
+        private val CHANNEL_ID = "Channel_id"
+        private val CHANNEL = "channel"
+        private val HERE_COUNT = 2
+        private val MENTIONS_COUNT = 2
+        private val MESSAGE_COUNT = 4
+        private val CHANNEL_STATISTICS = ChannelStatistics(CHANNEL_ID, CHANNEL, MESSAGE_COUNT, HERE_COUNT, MENTIONS_COUNT, 0)
     }
 
     @Rule
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val messageList: MutableList<ChannelMessages> = mutableListOf()
-
-    val channelHistoryProvider: ChannelsProvider = mock(ChannelsProvider::class.java)
+    val channelsDao = mock<ChannelsDao>()
     lateinit var view: ChannelProfileContract.View
 
     lateinit var presenter: ChannelProfileContract.Presenter
@@ -45,34 +39,26 @@ class ChannelProfilePresenterTest {
     fun setUp() {
         view = mock(ChannelProfileContract.View::class.java)
 
-        presenter = ChannelProfilePresenter(channelHistoryProvider, USER_ID)
+        presenter = ChannelProfilePresenter(channelsDao)
         presenter.attachView(view)
     }
 
     @Test
     fun `should show correct number of heres and mentions when getting messages from channel`() {
         // given
-        messageList.apply {
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, ChannelMessages.HERE_TAG))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, USER_ID))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, ChannelMessages.HERE_TAG))
-            add(ChannelMessages(OTHER_TYPE, TS, USER, OTHER_USER))
-            add(ChannelMessages(ChannelMessages.MESSAGE_TYPE, TS, USER, USER_ID))
-            add(ChannelMessages(OTHER_TYPE, TS, USER, ChannelMessages.HERE_TAG))
-        }
-        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.fromIterable(messageList))
+        whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
+                .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
-        verify(view).showChannelInfo(2, 2)
+        verify(view).showChannelInfo(4, 2, 2)
     }
 
     @Test
     fun `should show an error when error is returned`() {
         // given
-        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.error(Throwable()))
+        whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
+                .thenReturn(Single.error(Throwable()))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -82,8 +68,8 @@ class ChannelProfilePresenterTest {
     @Test
     fun `should show loading view when the channel message are request`() {
         // given
-        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.fromIterable(messageList))
+        whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
+                .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -93,8 +79,8 @@ class ChannelProfilePresenterTest {
     @Test
     fun `should show hide view when the channel messages call is successful`() {
         // given
-        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.fromIterable(messageList))
+        whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
+                .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then
@@ -104,8 +90,8 @@ class ChannelProfilePresenterTest {
     @Test
     fun `should show hide view when the channel messages call returns error`() {
         // given
-        whenever(channelHistoryProvider.getMessagesForChannel(ArgumentMatchers.anyString()))
-                .thenReturn(Observable.error(Throwable()))
+        whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
+                .thenReturn(Single.error(Throwable()))
         // when
         presenter.getChannelInfo(CHANNEL)
         // then

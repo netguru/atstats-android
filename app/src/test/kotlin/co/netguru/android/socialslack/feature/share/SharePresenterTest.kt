@@ -2,29 +2,29 @@ package co.netguru.android.socialslack.feature.share
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.anyObject
-import co.netguru.android.socialslack.data.channels.ChannelsProvider
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.ChannelsController
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import org.junit.After
 import org.junit.Before
-import org.mockito.Mockito.*
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class SharePresenterTest {
 
     companion object {
-        private val CHANNEL_MOST_ACTIVE = Channel("1", "", "", false, false, 0, 1)
-        private val CHANNEL2 = Channel("2", "", "", false, false, 0, 2)
-        private val CHANNEL3 = Channel("3", "", "", false, false, 0, 3)
-        private val CHANNEL4 = Channel("4", "", "", false, false, 0, 4)
+        private val CHANNEL_MOST_ACTIVE = ChannelStatistics("1", "", 10, 3, 3, 3)
+        private val CHANNEL2 = ChannelStatistics("1", "", 5, 3, 3, 3)
+        private val CHANNEL3 = ChannelStatistics("1", "", 5, 3, 3, 3)
+        private val CHANNEL4 = ChannelStatistics("1", "", 5, 3, 3, 3)
     }
 
     @Rule
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channelsProvider: ChannelsProvider = mock(ChannelsProvider::class.java)
+    val channelsController: ChannelsController = mock(ChannelsController::class.java)
     lateinit var view: ShareContract.View
 
     lateinit var sharePresenter: SharePresenter
@@ -32,8 +32,13 @@ class SharePresenterTest {
     @Before
     fun setUp() {
         view = mock(ShareContract.View::class.java)
-        sharePresenter = SharePresenter(channelsProvider)
+        sharePresenter = SharePresenter(channelsController)
         sharePresenter.attachView(view)
+
+        CHANNEL_MOST_ACTIVE.currentPositionInList = 1
+        CHANNEL2.currentPositionInList = 2
+        CHANNEL3.currentPositionInList = 3
+        CHANNEL4.currentPositionInList = 4
     }
 
     @Test

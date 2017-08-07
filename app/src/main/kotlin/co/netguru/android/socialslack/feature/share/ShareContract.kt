@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.share
 
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
@@ -8,7 +9,7 @@ interface ShareContract {
 
     interface View : MvpView {
 
-        fun initShareChannelView(selectedChannel: Channel, mostActiveChannels: List<Channel>)
+        fun initShareChannelView(selectedChannel: ChannelStatistics, mostActiveChannels: List<ChannelStatistics>)
 
         fun initShareUserView()
 
@@ -20,7 +21,7 @@ interface ShareContract {
 
         fun showSelectedChannelTalkMoreText()
 
-        fun showSelectedChannelOnLastPosition(channel: Channel)
+        fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics)
 
         fun showLoadingView()
 

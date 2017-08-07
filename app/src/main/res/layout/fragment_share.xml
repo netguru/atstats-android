@@ -30,7 +30,6 @@
             android:src="@drawable/close" />
     </FrameLayout>
 
-    <!-- TODO 26.07.2017 All Hardcoded Strings will be removed in task connected with API integration -->
     <TextView
         android:id="@+id/shareChannelNameTextView"
         style="@style/FontMedium.PrimaryDark"

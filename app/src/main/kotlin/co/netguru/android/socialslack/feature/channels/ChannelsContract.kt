@@ -2,13 +2,14 @@ package co.netguru.android.socialslack.feature.channels
 
 import android.support.annotation.StringRes
 import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface ChannelsContract {
 
     interface View : MvpView {
-        fun showChannels(channelList: List<Channel>)
+        fun showChannels(channelList: List<ChannelStatistics>)
 
         fun showError()
 
@@ -22,18 +23,18 @@ interface ChannelsContract {
 
         fun hideLoadingView()
 
-        fun showChannelDetails(channel: Channel, mostActiveChannelList: List<Channel>)
+        fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>)
     }
 
     interface Presenter : MvpPresenter<View> {
         fun getCurrentFilterOption()
 
-        fun getChannelsFromServer()
+        fun getChannels()
 
         fun filterButtonClicked()
 
-        fun onChannelClick(channel: Channel, channelList: List<Channel>)
+        fun onChannelClick(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>)
 
-        fun sortRequestReceived(channelList: List<Channel>)
+        fun sortRequestReceived(channelList: List<ChannelStatistics>)
     }
 }

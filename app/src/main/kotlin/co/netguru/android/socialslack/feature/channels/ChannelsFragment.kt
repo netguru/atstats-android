@@ -6,7 +6,8 @@ import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
-import co.netguru.android.socialslack.data.channels.model.Channel
+import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
@@ -22,7 +23,6 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
 
     companion object {
         fun newInstance() = ChannelsFragment()
-        val MOCK_NUMBER_OF_MESSAGES = 120
     }
 
     private lateinit var component: ChannelsComponent
@@ -35,7 +35,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initComponent()
-        return inflater?.inflate(R.layout.fragment_channels, container, false)
+        return container?.inflate(R.layout.fragment_channels)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -47,7 +47,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         filterViewIconImageView.setImageResource(R.drawable.hashtag_title)
-        presenter.getChannelsFromServer()
+        presenter.getChannels()
         presenter.getCurrentFilterOption()
     }
 
@@ -61,7 +61,7 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         }
     }
 
-    override fun showChannels(channelList: List<Channel>) {
+    override fun showChannels(channelList: List<ChannelStatistics>) {
         adapter.addChannels(channelList)
     }
 
@@ -91,18 +91,18 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         channelLoadingView.visibility = View.GONE
     }
 
-    override fun showChannelDetails(channel: Channel, mostActiveChannelList: List<Channel>) {
+    override fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>) {
         fragmentManager
                 .beginTransaction()
                 // TODO get the number of messages
                 .replace(R.id.fragmentChannelRootContainer,
-                        ChannelProfileFragment.newInstance(channel, mostActiveChannelList.toTypedArray(), MOCK_NUMBER_OF_MESSAGES))
+                        ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
                 .addToBackStack(ChannelProfileFragment.TAG)
                 .commit()
     }
 
-    override fun onChannelClick(channel: Channel) {
-        presenter.onChannelClick(channel, adapter.channelsList)
+    override fun onChannelClick(channelStatistics: ChannelStatistics) {
+        presenter.onChannelClick(channelStatistics, adapter.channelsList)
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
