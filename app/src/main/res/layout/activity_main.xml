@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
     <LinearLayout
-        tools:context=".feature.main.MainActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".feature.main.MainActivity">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/MainToolbarTheme"
-            app:logo="@drawable/toolbar_icon_padding"/>
-        
-        <co.netguru.android.socialslack.feature.shared.view.NonSwipeableViewPager
-            android:id="@+id/viewPager"
+            app:logo="@drawable/toolbar_icon_padding" />
+
+        <FrameLayout
+            android:id="@+id/mainFragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/mainNavigationView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_main_tab_height"
-            android:background="@color/tabBackground"
-            android:elevation="@dimen/tabLayout_elevation"
-            app:tabGravity="fill"
-            app:tabIndicatorHeight="@dimen/activity_main_tab_indicator_height"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-            app:tabSelectedTextColor="@color/primary"/>
-
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:menu="@menu/menu_navigation" />
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"/>
-
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior" />
 </android.support.design.widget.CoordinatorLayout>

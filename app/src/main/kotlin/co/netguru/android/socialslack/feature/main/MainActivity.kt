@@ -4,11 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.feature.channels.ChannelsFragment
+import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
+import co.netguru.android.socialslack.feature.home.HomeFragment
 import co.netguru.android.socialslack.feature.main.adapter.MainPagerAdapter
+import co.netguru.android.socialslack.feature.users.UsersFragment
+import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,15 +33,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
-    private val tabManager by lazy {
-        TabManager(tabLayout, viewPager, this,
-                object : TabManager.OnTabSelectedListener {
-                    override fun onTabSelected() {
-                        supportFragmentManager.popBackStack()
-                    }
-                })
-    }
+//    private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
+//    private val tabManager by lazy {
+//        TabManager(tabLayout, viewPager, this,
+//                object : TabManager.OnTabSelectedListener {
+//                    override fun onTabSelected() {
+//                        supportFragmentManager.popBackStack()
+//                    }
+//                })
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,18 @@ class MainActivity : AppCompatActivity() {
 
         initializeToolbar()
         initializePager()
+        showFragment(HomeFragment.newInstance())
+
+        mainNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_home -> showFragment(HomeFragment.newInstance())
+                R.id.menu_channels -> showFragment(ChannelsRootFragment.newInstance())
+                R.id.menu_users -> showFragment(UsersRootFragment.newInstance())
+                R.id.menu_profile -> showFragment(BlankFragment.newInstance())
+            }
+
+            true
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -53,6 +70,12 @@ class MainActivity : AppCompatActivity() {
             REQUEST_SORT_CHANNELS -> refreshDataOnChannelsFragment()
             else -> throw IllegalStateException("Intent should contains REQUEST_EXTRA")
         }
+    }
+
+    private fun showFragment(fragment : Fragment) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFragmentContainer, fragment)
+                .commit()
     }
 
     private fun refreshDataOnChannelsFragment() {
@@ -76,8 +99,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializePager() {
-        viewPager.offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
-        viewPager.adapter = mainPagerAdapter
-        tabManager.init()
+//        viewPager.offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
+//        viewPager.adapter = mainPagerAdapter
+//        tabManager.init()
     }
 }
