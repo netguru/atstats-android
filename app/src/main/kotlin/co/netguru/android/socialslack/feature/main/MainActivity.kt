@@ -48,12 +48,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragmentInMainContainer(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFragmentContainer, fragment)
-                .commit()
-    }
-
     private fun refreshDataOnChannelsFragment() {
         supportFragmentManager.fragments.forEach({
             if (it is ChannelsFragment) {
@@ -69,9 +63,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_channels -> replaceFragmentInMainContainer(ChannelsRootFragment.newInstance())
                 R.id.menu_users -> replaceFragmentInMainContainer(UsersRootFragment.newInstance())
                 R.id.menu_profile -> replaceFragmentInMainContainer(BlankFragment.newInstance())
+                else -> throw IllegalStateException("No action specified for item: $it")
             }
-            true
         }
+    }
+
+    private fun replaceFragmentInMainContainer(fragment: Fragment): Boolean {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFragmentContainer, fragment)
+                .commit()
+
+        return true
     }
 
     // Suppress RestrictedApi warning because of this bug https://issuetracker.google.com/issues/37130193
