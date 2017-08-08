@@ -11,15 +11,12 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.feature.channels.ChannelsFragment
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
 import co.netguru.android.socialslack.feature.home.HomeFragment
-import co.netguru.android.socialslack.feature.main.adapter.MainPagerAdapter
-import co.netguru.android.socialslack.feature.users.UsersFragment
 import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val OFF_SCREEN_PAGE_LIMIT = 2
         const val REQUEST_SORT_CHANNELS = 101
         const val REQUEST_EXTRA = "requestExtra"
 
@@ -33,34 +30,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
-//    private val tabManager by lazy {
-//        TabManager(tabLayout, viewPager, this,
-//                object : TabManager.OnTabSelectedListener {
-//                    override fun onTabSelected() {
-//                        supportFragmentManager.popBackStack()
-//                    }
-//                })
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initializeToolbar()
-        initializePager()
-        showFragment(HomeFragment.newInstance())
-
-        mainNavigationView.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_home -> showFragment(HomeFragment.newInstance())
-                R.id.menu_channels -> showFragment(ChannelsRootFragment.newInstance())
-                R.id.menu_users -> showFragment(UsersRootFragment.newInstance())
-                R.id.menu_profile -> showFragment(BlankFragment.newInstance())
-            }
-
-            true
-        }
+        initializeBottomNavigationView()
+        replaceFragmentInMainContainer(HomeFragment.newInstance())
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -72,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showFragment(fragment : Fragment) {
+    private fun replaceFragmentInMainContainer(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFragmentContainer, fragment)
                 .commit()
@@ -86,6 +62,18 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun initializeBottomNavigationView() {
+        mainNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_home -> replaceFragmentInMainContainer(HomeFragment.newInstance())
+                R.id.menu_channels -> replaceFragmentInMainContainer(ChannelsRootFragment.newInstance())
+                R.id.menu_users -> replaceFragmentInMainContainer(UsersRootFragment.newInstance())
+                R.id.menu_profile -> replaceFragmentInMainContainer(BlankFragment.newInstance())
+            }
+            true
+        }
+    }
+
     // Suppress RestrictedApi warning because of this bug https://issuetracker.google.com/issues/37130193
     @SuppressLint("RestrictedApi")
     private fun initializeToolbar() {
@@ -96,11 +84,5 @@ class MainActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(false)
             actionBar.setDefaultDisplayHomeAsUpEnabled(false)
         }
-    }
-
-    private fun initializePager() {
-//        viewPager.offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
-//        viewPager.adapter = mainPagerAdapter
-//        tabManager.init()
     }
 }
