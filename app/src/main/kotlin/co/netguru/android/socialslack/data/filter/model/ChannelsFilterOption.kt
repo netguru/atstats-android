@@ -1,8 +1,9 @@
 package co.netguru.android.socialslack.data.filter.model
 
+import android.support.annotation.StringRes
 import co.netguru.android.socialslack.R
 
-enum class ChannelsFilterOption constructor(val value: String, val textResId: Int) {
+enum class ChannelsFilterOption constructor(val value: String, @StringRes val textResId: Int) {
 
     MOST_ACTIVE_CHANNEL("mostActiveChannel", R.string.most_active_channel_filter),
     CHANNEL_WE_ARE_MENTIONED_THE_MOST("channelWeAreMentionedTheMost", R.string.channel_we_are_mentioned_the_most),

@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.feature.channels.ChannelsFragment
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
 import co.netguru.android.socialslack.feature.home.HomeFragment
 import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
@@ -18,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_SORT_CHANNELS = 101
+        const val REQUEST_SORT_USERS = 102
         const val REQUEST_EXTRA = "requestExtra"
 
         private const val REQUEST_DEFAULT = 0
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         when (intent.getIntExtra(REQUEST_EXTRA, REQUEST_DEFAULT)) {
             REQUEST_SORT_CHANNELS -> refreshDataOnChannelsFragment()
+            REQUEST_SORT_USERS -> refreshDataOnUsersFragment()
             else -> throw IllegalStateException("Intent should contains REQUEST_EXTRA")
         }
     }
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     // Workaround for proper BackStack support in nested fragment, because of:
     // https://issuetracker.google.com/issues/36959108
     // https://issuetracker.google.com/issues/37123225
+    @SuppressLint("RestrictedApi")
     override fun onBackPressed() {
         for (fragment in supportFragmentManager.fragments) {
             if (fragment != null && fragment.isVisible) {
@@ -65,11 +67,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshDataOnChannelsFragment() {
-        supportFragmentManager.fragments.forEach({
-            if (it is ChannelsFragment) {
-                it.sortData()
-            }
-        })
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer)
+        if (fragment is ChannelsRootFragment) {
+            fragment.sortChannelsData()
+        }
+    }
+
+    private fun refreshDataOnUsersFragment() {
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer)
+        if (fragment is UsersRootFragment) {
+            fragment.sortUsersData()
+        }
     }
 
     private fun initializeBottomNavigationView() {

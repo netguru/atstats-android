@@ -14,6 +14,7 @@ import co.netguru.android.socialslack.feature.users.adapter.UsersAdapter
 import co.netguru.android.socialslack.feature.users.profile.UsersProfileFragment
 import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_users.*
+import timber.log.Timber
 
 class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.Presenter>(), UsersContract.View {
 
@@ -87,6 +88,10 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     }
 
     override fun createPresenter() = component.getPresenter()
+
+    fun sortData() {
+        Timber.d("Sorting")
+    }
 
     private fun initRecyclerView() {
         usersRecyclerView.setHasFixedSize(true)

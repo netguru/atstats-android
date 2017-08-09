@@ -20,4 +20,11 @@ class UsersRootFragment : BaseFragmentWithNestedFragment() {
         super.onViewCreated(view, savedInstanceState)
         replaceNestedFragment(R.id.fragmentUsersRootContainer, UsersFragment.newInstance())
     }
+
+    fun sortUsersData() {
+        val fragment = childFragmentManager.findFragmentById(R.id.fragmentUsersRootContainer)
+        if (fragment is UsersFragment) {
+            fragment.sortData()
+        }
+    }
 }

@@ -66,7 +66,7 @@ class FilterPresenterTest {
         //given
         whenever(filterController.saveChannelsFilterOption(anyObject())).thenReturn(Completable.complete())
         //when
-        filterPresenter.channelsFilterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
+        filterPresenter.filterOptionChanged(ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
         //then
         verify(filterController).saveChannelsFilterOption(anyObject())
     }

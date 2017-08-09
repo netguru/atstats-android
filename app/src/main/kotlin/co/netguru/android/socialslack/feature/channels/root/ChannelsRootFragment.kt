@@ -23,4 +23,11 @@ class ChannelsRootFragment : BaseFragmentWithNestedFragment() {
         super.onViewCreated(view, savedInstanceState)
         replaceNestedFragment(R.id.fragmentChannelRootContainer, ChannelsFragment.newInstance())
     }
+
+    fun sortChannelsData() {
+        val fragment = childFragmentManager.findFragmentById(R.id.fragmentChannelRootContainer)
+        if (fragment is ChannelsFragment) {
+            fragment.sortData()
+        }
+    }
 }
