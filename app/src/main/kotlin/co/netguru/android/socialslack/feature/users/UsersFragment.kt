@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.users
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
@@ -42,8 +43,7 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         filterViewIconImageView.setImageResource(R.drawable.users_title_bar)
-        //TODO 04.08.2017 Should be set according to selected filter option
-        filterViewTextView.setText(R.string.person_we_talk_most)
+        presenter.getCurrentFilterOption()
         presenter.getUsersData()
     }
 
@@ -87,10 +87,18 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         FilterActivity.startActivity(context, FilterObjectType.USERS)
     }
 
+    override fun showFilterOptionError() {
+        Snackbar.make(usersRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun changeSelectedFilterOption(stringResId: Int) {
+        filterViewTextView.setText(stringResId)
+    }
+
     override fun createPresenter() = component.getPresenter()
 
     fun sortData() {
-        Timber.d("Sorting")
+        presenter.sortRequestReceived(adapter.usersList)
     }
 
     private fun initRecyclerView() {

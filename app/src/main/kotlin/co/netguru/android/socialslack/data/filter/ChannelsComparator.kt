@@ -2,7 +2,10 @@ package co.netguru.android.socialslack.data.filter
 
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 import java.util.*
+import kotlin.Comparator
 
 object ChannelsComparator {
 
@@ -14,6 +17,13 @@ object ChannelsComparator {
             else -> return getAscComparator()
         }
     }
+
+    fun getUsersComparatorForFilterOption(filterOption: UsersFilterOption) : Comparator<UserStatistic>
+            = Comparator { channelStatistics1, channelStatistics2 ->
+        channelStatistics1.messages.
+                compareTo(channelStatistics2.messages)
+    }
+
 
     private fun getAscComparator(): Comparator<ChannelStatistics> = Comparator { channelStatistics1, channelStatistics2 ->
         channelStatistics1.messageCount.
