@@ -10,10 +10,10 @@
     <string name="action_send">Send</string>
 
     // Menu tabs
-    <string name="tab_home">Home</string>
-    <string name="tab_channels">Channels</string>
-    <string name="tab_users">Users</string>
-    <string name="tab_profile">Profile</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_channels">Channels</string>
+    <string name="menu_users">Users</string>
+    <string name="menu_profile">Profile</string>
 
     <string name="login_error_msg">Authorization error</string>
 
