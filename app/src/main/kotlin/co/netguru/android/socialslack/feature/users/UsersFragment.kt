@@ -1,12 +1,13 @@
 package co.netguru.android.socialslack.feature.users
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.filter.FilterActivity
+import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import co.netguru.android.socialslack.feature.users.adapter.UsersAdapter
@@ -45,6 +46,16 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         presenter.getUsersData()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionFilter -> {
+                presenter.filterButtonClicked()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun getMenuResource() = R.menu.menu_fragment_search_filter
 
     override fun showUsersList(usersList: List<UserStatistic>) {
@@ -62,11 +73,17 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     }
 
     override fun showUserDetails(clickedUserPosition: Int) {
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragmentUsersRootContainer,
-                        UsersProfileFragment.newInstance(adapter.usersList.toTypedArray(), clickedUserPosition))
-                .addToBackStack(null)
-                .commit()
+        if (parentFragment is BaseFragmentWithNestedFragment) {
+            val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
+            fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentUsersRootContainer,
+                    UsersProfileFragment.newInstance(adapter.usersList.toTypedArray(), clickedUserPosition))
+        } else {
+            throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
+        }
+    }
+
+    override fun showFilterView() {
+        FilterActivity.startActivity(context, FilterObjectType.USERS)
     }
 
     override fun createPresenter() = component.getPresenter()

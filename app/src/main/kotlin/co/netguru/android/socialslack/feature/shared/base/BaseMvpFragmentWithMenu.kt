@@ -16,7 +16,6 @@ abstract class BaseMvpFragmentWithMenu<V : MvpView, P : MvpPresenter<V>> : MvpFr
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
         inflater.inflate(getMenuResource(), menu)
     }
 

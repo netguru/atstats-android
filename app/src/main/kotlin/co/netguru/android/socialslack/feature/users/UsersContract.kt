@@ -14,6 +14,8 @@ interface UsersContract {
         fun hideLoadingView()
 
         fun showUserDetails(clickedUserPosition: Int)
+
+        fun showFilterView()
     }
 
     interface Presenter : MvpPresenter<View> {
@@ -21,5 +23,7 @@ interface UsersContract {
         fun getUsersData()
 
         fun onUserClicked(clickedUserPosition: Int)
+
+        fun filterButtonClicked()
     }
 }

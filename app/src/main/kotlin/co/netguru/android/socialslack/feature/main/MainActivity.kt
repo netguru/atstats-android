@@ -48,6 +48,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Workaround for proper BackStack support in nested fragment, because of:
+    // https://issuetracker.google.com/issues/36959108
+    // https://issuetracker.google.com/issues/37123225
+    override fun onBackPressed() {
+        for (fragment in supportFragmentManager.fragments) {
+            if (fragment != null && fragment.isVisible) {
+                val childFragmentManager = fragment.childFragmentManager
+                if (childFragmentManager.backStackEntryCount > 0) {
+                    childFragmentManager.popBackStack()
+                    return
+                }
+            }
+        }
+        super.onBackPressed()
+    }
+
     private fun refreshDataOnChannelsFragment() {
         supportFragmentManager.fragments.forEach({
             if (it is ChannelsFragment) {

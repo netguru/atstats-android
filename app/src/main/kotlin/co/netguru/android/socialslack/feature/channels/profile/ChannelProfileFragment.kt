@@ -30,8 +30,6 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
             return channelProfileFragment
         }
 
-        val TAG: String = ChannelProfileFragment::class.java.simpleName
-
         private const val KEY_CHANNEL = "key:channel"
         private const val KEY_CHANNEL_MOST_ACTIVE_LIST = "key:channel_list"
     }

@@ -10,10 +10,10 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.user.model.UserStatistic
-import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
+import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_users.*
 
-internal class HomeUsersFragment : BaseMvpFragmentWithMenu<HomeUsersContract.View, HomeUsersContract.Presenter>(),
+internal class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsersContract.Presenter>(),
         HomeUsersContract.View {
 
     private val component by lazy { App.getUserComponent(context).plusHomeUsersComponent() }
@@ -29,8 +29,6 @@ internal class HomeUsersFragment : BaseMvpFragmentWithMenu<HomeUsersContract.Vie
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_home_users)
     }
-
-    override fun getMenuResource() = R.menu.menu_fragment_search
 
     override fun setUsersWeWriteMost(users: List<UserStatistic>) {
         initRecyclerWithData(usersRecycler1, users)

@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.feature.home
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -18,11 +19,17 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        setHasOptionsMenu(true)
+    }
+
+    //TODO 09.08.2017 Remove when implementing menu for this view
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.clear()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_home)
     }
 

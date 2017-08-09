@@ -23,6 +23,10 @@ class UsersPresenter @Inject constructor() : MvpNullObjectBasePresenter<UsersCon
         view.showUserDetails(clickedUserPosition)
     }
 
+    override fun filterButtonClicked() {
+        view.showFilterView()
+    }
+
     //TODO 04.08.2017 Remove while integrating API
     private fun getMockedData(): List<UserStatistic> {
         val userList = mutableListOf<UserStatistic>()

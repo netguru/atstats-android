@@ -12,6 +12,7 @@ import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
+import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import kotlinx.android.synthetic.main.filter_view.*
@@ -83,13 +84,13 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
     }
 
     override fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>) {
-        fragmentManager
-                .beginTransaction()
-                // TODO get the number of messages
-                .replace(R.id.fragmentChannelRootContainer,
-                        ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
-                .addToBackStack(ChannelProfileFragment.TAG)
-                .commit()
+        if (parentFragment is BaseFragmentWithNestedFragment) {
+            val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
+            fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentChannelRootContainer,
+                    ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
+        } else {
+            throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
+        }
     }
 
     override fun onChannelClick(channelStatistics: ChannelStatistics) {

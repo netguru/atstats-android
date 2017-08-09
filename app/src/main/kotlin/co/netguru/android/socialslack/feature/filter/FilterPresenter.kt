@@ -26,7 +26,7 @@ class FilterPresenter @Inject constructor(private val filterController: FilterCo
     override fun filterObjectTypeReceived(filterObjectType: FilterObjectType) {
         when (filterObjectType) {
             FilterObjectType.CHANNELS -> initViewWithChannelsFilterFragment()
-            else -> TODO("Not implemented yet")
+            else -> Timber.d("Received users to filter")
         }
     }
 
