@@ -1,6 +1,5 @@
 package co.netguru.android.socialslack.feature.channels
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.*
@@ -13,12 +12,12 @@ import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
+import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
-import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_channels.*
 
-class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Presenter>(),
+class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, ChannelsContract.Presenter>(),
         ChannelsContract.View, ChannelsViewHolder.ChannelClickListener {
 
     companion object {
@@ -29,18 +28,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
 
     private lateinit var adapter: ChannelsAdapter
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        setHasOptionsMenu(true)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_channels)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_channels_fragment, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -60,6 +49,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
+    override fun getMenuResource() = R.menu.menu_fragment_search_filter
 
     override fun showChannels(channelList: List<ChannelStatistics>) {
         adapter.addChannels(channelList)

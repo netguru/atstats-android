@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import co.netguru.android.socialslack.feature.users.adapter.UsersAdapter
 import co.netguru.android.socialslack.feature.users.profile.UsersProfileFragment
-import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_users.*
 
-class UsersFragment : MvpFragment<UsersContract.View, UsersContract.Presenter>(), UsersContract.View {
+class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.Presenter>(), UsersContract.View {
 
     companion object {
         fun newInstance() = UsersFragment()
@@ -44,6 +44,8 @@ class UsersFragment : MvpFragment<UsersContract.View, UsersContract.Presenter>()
         filterViewTextView.setText(R.string.person_we_talk_most)
         presenter.getUsersData()
     }
+
+    override fun getMenuResource() = R.menu.menu_fragment_search_filter
 
     override fun showUsersList(usersList: List<UserStatistic>) {
         adapter.addUsers(usersList)

@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.users.profile.adapter.UsersProfileAdapter
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_users_profile.*
 
-class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfileContract.Presenter>(),
+class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, UsersProfileContract.Presenter>(),
         UsersProfileContract.View {
 
     companion object {
@@ -49,6 +50,8 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
             presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY))
         }
     }
+
+    override fun getMenuResource() = R.menu.menu_fragment_search
 
     override fun createPresenter() = component.getPresenter()
 

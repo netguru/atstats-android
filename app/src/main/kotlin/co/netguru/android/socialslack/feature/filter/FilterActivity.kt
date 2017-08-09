@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
-import co.netguru.android.socialslack.feature.main.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class FilterActivity : AppCompatActivity() {
