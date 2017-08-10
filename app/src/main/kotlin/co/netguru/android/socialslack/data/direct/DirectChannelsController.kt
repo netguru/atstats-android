@@ -36,7 +36,7 @@ class DirectChannelsController @Inject constructor(private val directMessagesApi
                 .doAfterSuccess { directMessagesDao.insertDirectChannel(it) }
 
    private fun getAllMessagesFromApi(channelId: String) =
-            getMessagesFromApi(channelId, SINCE_TIME.toString())
+            getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
 
     private fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<DirectMessage>> {

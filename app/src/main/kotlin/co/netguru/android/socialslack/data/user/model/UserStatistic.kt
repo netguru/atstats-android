@@ -25,7 +25,7 @@ data class UserStatistic(val id: String,
                                   currentDayStreak: Int = 1): UserStatistic {
             return UserStatistic(this.id,
                     this.username,
-                    this.realName,
+                    this.realName ?: "",
                     messages,
                     sentMessages,
                     receivedMessages,
