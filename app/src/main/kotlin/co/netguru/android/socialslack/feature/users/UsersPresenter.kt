@@ -59,13 +59,11 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
-                        onSuccess = { (userList, filterOption) ->
+                        onSuccess = { (userList, _) ->
                             view.showUsersList(userList)
-                            view.changeSelectedFilterOption(filterOption)
                         },
                         onError = {
                             Timber.e(it, "Error while getting users list")
-                            view.showLoadingView()
                         })
     }
 
