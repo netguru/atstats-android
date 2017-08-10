@@ -15,7 +15,7 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
 
     companion object {
         // TODO 11.08.2017 replace this with the user ID
-        private const val MOCK_USER = "user"
+        private const val MOCK_USER = "U2JHH3HAA"
     }
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
