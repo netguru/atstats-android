@@ -7,6 +7,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
@@ -65,8 +66,9 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
         Snackbar.make(channelsRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun setCurrentFilterOptionText(stringResId: Int) {
-        filterViewTextView.setText(stringResId)
+    override fun setCurrentFilterOption(filterOption: ChannelsFilterOption) {
+        filterViewTextView.setText(filterOption.textResId)
+        adapter.selectedFilterOption = filterOption
     }
 
     override fun showFilterView() {

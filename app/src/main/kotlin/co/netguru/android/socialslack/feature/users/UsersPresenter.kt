@@ -3,8 +3,8 @@ package co.netguru.android.socialslack.feature.users
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.filter.FilterController
-import co.netguru.android.socialslack.data.filter.UsersComparator
-import co.netguru.android.socialslack.data.filter.UsersPositionUpdater
+import co.netguru.android.socialslack.data.filter.users.UsersComparator
+import co.netguru.android.socialslack.data.filter.users.UsersPositionUpdater
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
@@ -40,7 +40,7 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {
-                            view.changeSelectedFilterOption(it.textResId)
+                            view.changeSelectedFilterOption(it)
                         },
                         onError = {
                             Timber.e(it, "Error while getting current filter option")
@@ -60,7 +60,8 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
                         onSuccess = { (userList, filterOption) ->
-                            view.showUsersList(userList, filterOption)
+                            view.showUsersList(userList)
+                            view.changeSelectedFilterOption(filterOption)
                         },
                         onError = {
                             Timber.e(it, "Error while getting users list")
@@ -96,8 +97,8 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
                         onSuccess = { (userList, filterOption) ->
-                            view.showUsersList(userList, filterOption)
-                            view.changeSelectedFilterOption(filterOption.textResId)
+                            view.showUsersList(userList)
+                            view.changeSelectedFilterOption(filterOption)
                         },
                         onError = {
                             Timber.e(it, "Error while changing users order")

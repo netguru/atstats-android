@@ -1,4 +1,4 @@
-package co.netguru.android.socialslack.data.filter
+package co.netguru.android.socialslack.data.filter.users
 
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
@@ -21,11 +21,9 @@ object UsersPositionUpdater {
     }
 
     private fun compareUsersDependsOnFilterOption(filterOption: UsersFilterOption, firstUser: UserStatistic,
-                                                  secondUser: UserStatistic): Boolean {
-        when (filterOption) {
-            UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST -> return firstUser.sentMessages == secondUser.sentMessages
-            UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST -> return firstUser.receivedMessages == secondUser.receivedMessages
-            UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST -> return firstUser.totalMessages == secondUser.totalMessages
-        }
+                                                  secondUser: UserStatistic) = when (filterOption) {
+        UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST -> firstUser.sentMessages == secondUser.sentMessages
+        UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST -> firstUser.receivedMessages == secondUser.receivedMessages
+        UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST -> firstUser.totalMessages == secondUser.totalMessages
     }
 }

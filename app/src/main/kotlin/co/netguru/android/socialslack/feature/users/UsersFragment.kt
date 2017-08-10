@@ -59,8 +59,8 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
 
     override fun getMenuResource() = R.menu.menu_fragment_search_filter
 
-    override fun showUsersList(usersList: List<UserStatistic>, selectedFilterOption: UsersFilterOption) {
-        adapter.addUsers(usersList, selectedFilterOption)
+    override fun showUsersList(usersList: List<UserStatistic>) {
+        adapter.addUsers(usersList)
     }
 
     override fun showLoadingView() {
@@ -91,8 +91,9 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         Snackbar.make(usersRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun changeSelectedFilterOption(stringResId: Int) {
-        filterViewTextView.setText(stringResId)
+    override fun changeSelectedFilterOption(selectedFilterOption: UsersFilterOption) {
+        filterViewTextView.setText(selectedFilterOption.textResId)
+        adapter.selectedFilterOption = selectedFilterOption
     }
 
     override fun createPresenter() = component.getPresenter()

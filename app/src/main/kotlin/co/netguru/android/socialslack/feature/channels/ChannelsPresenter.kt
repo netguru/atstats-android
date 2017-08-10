@@ -4,8 +4,9 @@ import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
-import co.netguru.android.socialslack.data.filter.ChannelsComparator
+import co.netguru.android.socialslack.data.filter.channels.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
+import co.netguru.android.socialslack.data.filter.channels.ChannelsPositionUpdater
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.Observable
@@ -38,7 +39,7 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {
-                            view.setCurrentFilterOptionText(it.textResId)
+                            view.setCurrentFilterOption(it)
                         },
                         onError = {
                             Timber.e(it, "Error while getting current filter option")
@@ -78,9 +79,9 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
-                        onSuccess = {
-                            view.showChannels(it.first)
-                            view.setCurrentFilterOptionText(it.second.textResId)
+                        onSuccess = { (channelsList, filterOption) ->
+                            view.showChannels(channelsList)
+                            view.setCurrentFilterOption(filterOption)
                         },
                         onError = {
                             Timber.e(it, "Error while changing channels order")
@@ -89,8 +90,7 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
     }
 
     override fun onChannelClick(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>) {
-        compositeDisposable +=
-                filterController.getChannelsFilterOption()
+        compositeDisposable += filterController.getChannelsFilterOption()
                         .flatMap { getProperStreamForCurrentFilterOption(it, channelStatistics, channelList) }
                         .compose(RxTransformers.applySingleComputationSchedulers())
                         .subscribeBy(
@@ -112,7 +112,7 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
             //we should sort channels list if current filter option is different than most active channel
             Observable.fromIterable(channelList)
                     .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
-                    .doOnSuccess(this::updateChannelPositionInList)
+                    .doOnSuccess { ChannelsPositionUpdater.updateChannelsPositionInList(it, ChannelsFilterOption.MOST_ACTIVE_CHANNEL) }
                     .map { getSelectedChannelFromUpdatedList(channelStatistics.channelId, it) }
                     .doOnSuccess { Timber.d("Most active channels: ${it.second}") }
         }
@@ -161,25 +161,7 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
     private fun sortChannelsList(channelList: List<ChannelStatistics>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<ChannelStatistics>, ChannelsFilterOption>> {
         return Observable.fromIterable(channelList)
                 .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(channelsFilterOption))
-                .doOnSuccess(this::updateChannelPositionInList)
+                .doOnSuccess { ChannelsPositionUpdater.updateChannelsPositionInList(it, channelsFilterOption) }
                 .map { Pair(it, channelsFilterOption) }
-    }
-
-    //TODO 13.07.2017 Should be changed, when there will
-    //TODO possibility to obtain all needed information about the channel from SLACK API. Position should be
-    //TODO updated according to current position in the sorted list
-    private fun updateChannelPositionInList(channelList: List<ChannelStatistics>) {
-        if (channelList.isEmpty()) {
-            return
-        }
-        var currentPositionInList = 1
-        channelList[0].currentPositionInList = currentPositionInList
-        for (i in 1..channelList.size - 1) {
-            if (channelList[i].messageCount == channelList[i - 1].messageCount) {
-                channelList[i].currentPositionInList = currentPositionInList
-            } else {
-                channelList[i].currentPositionInList = ++currentPositionInList
-            }
-        }
     }
 }

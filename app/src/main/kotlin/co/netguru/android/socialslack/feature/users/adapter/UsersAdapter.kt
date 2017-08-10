@@ -9,7 +9,7 @@ class UsersAdapter(private val onUserClickListener: OnUserClickListener) : Recyc
 
     internal val usersList: MutableList<UserStatistic> = mutableListOf()
 
-    private lateinit var selectedFilterOption: UsersFilterOption
+    internal lateinit var selectedFilterOption: UsersFilterOption
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(parent, onUserClickListener)
 
@@ -19,8 +19,7 @@ class UsersAdapter(private val onUserClickListener: OnUserClickListener) : Recyc
 
     override fun getItemCount() = usersList.size
 
-    internal fun addUsers(usersList: List<UserStatistic>, selectedFilterOption: UsersFilterOption) {
-        this.selectedFilterOption = selectedFilterOption
+    internal fun addUsers(usersList: List<UserStatistic>) {
         this.usersList.clear()
         this.usersList.addAll(usersList)
         notifyDataSetChanged()
