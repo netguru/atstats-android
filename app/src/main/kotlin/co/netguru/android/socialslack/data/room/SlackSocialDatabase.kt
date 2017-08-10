@@ -8,7 +8,7 @@ import co.netguru.android.socialslack.data.direct.DirectChannelsDao
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
 
 // TODO 31.07.2017 Do the schema for the db
-@Database(entities = arrayOf(ChannelStatistics::class, DirectChannelStatistics::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(ChannelStatistics::class, DirectChannelStatistics::class), version = 2, exportSchema = false)
 abstract class SlackSocialDatabase : RoomDatabase() {
 
     companion object {

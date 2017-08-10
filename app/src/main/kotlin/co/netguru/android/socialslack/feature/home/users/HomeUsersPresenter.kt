@@ -2,7 +2,7 @@ package co.netguru.android.socialslack.feature.home.users
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.direct.DirectMessagesController
+import co.netguru.android.socialslack.data.direct.DirectChannelsController
 import co.netguru.android.socialslack.data.direct.model.ChannelStatistic
 import co.netguru.android.socialslack.data.direct.model.DirectChannel
 import co.netguru.android.socialslack.data.direct.model.DirectChannelWithMessages
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @FragmentScope
 class HomeUsersPresenter @Inject constructor(
-        private val directMessagesController: DirectMessagesController,
+        private val directMessagesController: DirectChannelsController,
         private val usersController: UsersController)
     : MvpNullObjectBasePresenter<HomeUsersContract.View>(), HomeUsersContract.Presenter {
 
@@ -41,7 +41,7 @@ class HomeUsersPresenter @Inject constructor(
     }
 
     private fun fetchMessages() {
-        directMessagesController.getDirectMessagesList()
+        directMessagesController.getDirectChannelsList()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .flattenAsFlowable { x -> x }
                 .flatMapSingle { fetchMessagesInConversation(it) }

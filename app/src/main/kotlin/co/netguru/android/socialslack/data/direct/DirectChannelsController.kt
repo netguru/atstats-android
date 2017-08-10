@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DirectMessagesController @Inject constructor(private val directMessagesApi: DirectMessagesApi,
+class DirectChannelsController @Inject constructor(private val directMessagesApi: DirectMessagesApi,
                                                    private val directMessagesDao: DirectChannelsDao) {
 
     companion object {
@@ -21,7 +21,7 @@ class DirectMessagesController @Inject constructor(private val directMessagesApi
         private val currentTime = System.currentTimeMillis() / 1000
     }
 
-    fun getDirectMessagesList(): Single<List<DirectChannel>> =
+    fun getDirectChannelsList(): Single<List<DirectChannel>> =
             directMessagesApi.getDirectMessagesList()
                     .map { it.channels }
 
