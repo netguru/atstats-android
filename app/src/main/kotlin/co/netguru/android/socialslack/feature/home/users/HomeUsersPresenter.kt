@@ -6,7 +6,7 @@ import co.netguru.android.socialslack.data.direct.DirectMessagesController
 import co.netguru.android.socialslack.data.direct.model.ChannelStatistic
 import co.netguru.android.socialslack.data.direct.model.DirectChannel
 import co.netguru.android.socialslack.data.direct.model.DirectChannelWithMessages
-import co.netguru.android.socialslack.data.direct.model.Message
+import co.netguru.android.socialslack.data.direct.model.DirectMessage
 import co.netguru.android.socialslack.data.user.UsersController
 import co.netguru.android.socialslack.data.user.model.UserStatistic.Companion.toStatisticsView
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
@@ -127,14 +127,14 @@ class HomeUsersPresenter @Inject constructor(
                 .map { DirectChannelWithMessages(directChannel, it) }
     }
 
-    private fun getMessagesOnIO(inChannel: String, latestTimestamp: String?): Single<List<Message>> {
+    private fun getMessagesOnIO(inChannel: String, latestTimestamp: String?): Single<List<DirectMessage>> {
         return directMessagesController.getMessagesInDirectChannel(inChannel,
                 latestTimestamp, MAX_MESSAGES_PER_REQUEST)
                 .compose(RxTransformers.applySingleIoSchedulers())
     }
 
-    private fun addLists(a: List<Message>, b: List<Message>): List<Message> {
-        val list: MutableList<Message> = mutableListOf<Message>()
+    private fun addLists(a: List<DirectMessage>, b: List<DirectMessage>): List<DirectMessage> {
+        val list: MutableList<DirectMessage> = mutableListOf<DirectMessage>()
         list.addAll(a)
         list.addAll(b)
         return list.toList()

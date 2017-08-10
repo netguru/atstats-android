@@ -27,8 +27,8 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
     fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
             .map { it.channelList }
 
-    fun countChannelStatistics(channelId: String, channelName: String, user: String) =
-            getMessagesAllMessagesFromApi(channelId)
+    fun countChannelStatistics(channelId: String, channelName: String, user: String): Single<ChannelStatistics> =
+            getAllMessagesFromApi(channelId)
                     .observeOn(Schedulers.computation())
                     .flattenAsObservable { it }
                     .collect({ ChannelStatisticsCount(user) }, { t1: ChannelStatisticsCount?, t2: ChannelMessage? -> t1?.accept(t2) })
@@ -41,7 +41,7 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
                 .flatMapCompletable(this::parseResponse)
     }
 
-    private fun getMessagesAllMessagesFromApi(channelId: String) =
+    private fun getAllMessagesFromApi(channelId: String) =
             getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
 
