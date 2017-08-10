@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.feature.filter
 
+import android.support.annotation.VisibleForTesting
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.filter.FilterController
@@ -17,7 +18,8 @@ class FilterPresenter @Inject constructor(private val filterController: FilterCo
 
     private val compositeDisposable = CompositeDisposable()
 
-    private lateinit var currentFilterObjectType: FilterObjectType
+    @VisibleForTesting
+    internal lateinit var currentFilterObjectType: FilterObjectType
 
     override fun detachView(retainInstance: Boolean) {
         super.detachView(retainInstance)
