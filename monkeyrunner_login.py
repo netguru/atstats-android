@@ -5,7 +5,7 @@ from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 device = MonkeyRunner.waitForConnection()
 
 # Installs the Android package.
-device.installPackage('/bitrise/deploy/app-production-release-bitrise-signed.apk')
+device.installPackage('app-production-release-bitrise-signed.apk')
 
 # Press 'Ok Got it' dialog
 device.touch(675, 415, MonkeyDevice.DOWN_AND_UP)
