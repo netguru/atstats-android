@@ -2,21 +2,25 @@ package co.netguru.android.socialslack.feature.users.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 
 class UsersAdapter(private val onUserClickListener: OnUserClickListener) : RecyclerView.Adapter<UsersViewHolder>() {
 
     internal val usersList: MutableList<UserStatistic> = mutableListOf()
 
+    private lateinit var selectedFilterOption: UsersFilterOption
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(parent, onUserClickListener)
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
-        holder.bind(usersList[position])
+        holder.bind(usersList[position], selectedFilterOption)
     }
 
     override fun getItemCount() = usersList.size
 
-    internal fun addUsers(usersList: List<UserStatistic>) {
+    internal fun addUsers(usersList: List<UserStatistic>, selectedFilterOption: UsersFilterOption) {
+        this.selectedFilterOption = selectedFilterOption
         this.usersList.clear()
         this.usersList.addAll(usersList)
         notifyDataSetChanged()

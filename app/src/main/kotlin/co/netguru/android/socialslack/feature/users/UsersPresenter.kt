@@ -2,8 +2,9 @@ package co.netguru.android.socialslack.feature.users
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.filter.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
+import co.netguru.android.socialslack.data.filter.UsersComparator
+import co.netguru.android.socialslack.data.filter.UsersPositionUpdater
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
@@ -14,6 +15,7 @@ import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.zipWith
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @FragmentScope
@@ -23,6 +25,7 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
     companion object {
         //TODO 04.08.2017 Remove while integrating API
         private const val MOCKED_DATA_SIZE = 20
+        private const val MAX_MESSAGES_NUMBER = 200
     }
 
     private val compositeDisposable = CompositeDisposable()
@@ -47,12 +50,36 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
     }
 
     override fun getUsersData() {
-        view.showUsersList(getMockedData())
-        view.hideLoadingView()
+        //TODO 10.08.2017 Should be refactored when integrating API
+        view.showLoadingView()
+        compositeDisposable += Single.just(getMockedData())
+                .zipWith(filterController.getUsersFilterOption())
+                { userList, filterOption -> Pair(userList, filterOption) }
+                .flatMap { sortUsersList(it.first, it.second) }
+                .compose(RxTransformers.applySingleIoSchedulers())
+                .doAfterTerminate { view.hideLoadingView() }
+                .subscribeBy(
+                        onSuccess = { (userList, filterOption) ->
+                            view.showUsersList(userList, filterOption)
+                        },
+                        onError = {
+                            Timber.e(it, "Error while getting users list")
+                            view.showLoadingView()
+                        })
     }
 
     override fun onUserClicked(clickedUserPosition: Int) {
-        view.showUserDetails(clickedUserPosition)
+        compositeDisposable += filterController.getUsersFilterOption()
+                .compose(RxTransformers.applySingleIoSchedulers())
+                .subscribeBy(
+                        onSuccess = {
+                            view.showUserDetails(clickedUserPosition, it)
+                        },
+                        onError = {
+                            Timber.e(it, "Error while getting current filter option")
+                        }
+                )
+
     }
 
     override fun filterButtonClicked() {
@@ -69,7 +96,7 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
                         onSuccess = { (userList, filterOption) ->
-                            view.showUsersList(userList)
+                            view.showUsersList(userList, filterOption)
                             view.changeSelectedFilterOption(filterOption.textResId)
                         },
                         onError = {
@@ -81,24 +108,9 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
     private fun sortUsersList(usersList: List<UserStatistic>, usersFilterOption: UsersFilterOption
     ): Single<Pair<List<UserStatistic>, UsersFilterOption>> {
         return Observable.fromIterable(usersList)
-                .toSortedList(ChannelsComparator.getUsersComparatorForFilterOption(usersFilterOption))
-                .doOnSuccess { updateUsersPositionInList(it, usersFilterOption) }
+                .toSortedList(UsersComparator.getUsersComparatorForFilterOption(usersFilterOption))
+                .doOnSuccess { UsersPositionUpdater.updateUsersPositionInList(it, usersFilterOption) }
                 .map { Pair(it, usersFilterOption) }
-    }
-
-    private fun updateUsersPositionInList(usersList: List<UserStatistic>, filterOption: UsersFilterOption) {
-        if (usersList.isEmpty()) {
-            return
-        }
-        var currentPositionInList = 1
-        usersList[0].currentPositionInList = currentPositionInList
-        for (i in 1.until(usersList.size)) {
-            if (usersList[i].totalMessages == usersList[i - 1].totalMessages) {
-                usersList[i].currentPositionInList = currentPositionInList
-            } else {
-                usersList[i].currentPositionInList = ++currentPositionInList
-            }
-        }
     }
 
     //TODO 04.08.2017 Remove while integrating API
@@ -106,13 +118,15 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
         val userList = mutableListOf<UserStatistic>()
 
         for (i in 1..MOCKED_DATA_SIZE) {
+            val sentMessages = Random().nextInt(MAX_MESSAGES_NUMBER)
+            val recvdMessages = Random().nextInt(MAX_MESSAGES_NUMBER)
             userList += UserStatistic("U2JHH3HAA",
-                    "rafal.adasiewicz",
-                    "Rafal Adasiewicz",
-                    350 - i,
-                    50,
-                    300 - i,
-                    350 - i,
+                    "rafal.adasiewicz $i",
+                    "Rafal Adasiewicz $i",
+                    sentMessages + recvdMessages,
+                    sentMessages,
+                    recvdMessages,
+                    sentMessages + recvdMessages,
                     7,
                     "https://avatars.slack-edge.com/2016-10-10/89333489734_47e72c65c34236dcff70_192.png",
                     i

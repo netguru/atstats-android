@@ -6,6 +6,7 @@ import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
@@ -15,7 +16,6 @@ import co.netguru.android.socialslack.feature.users.adapter.UsersAdapter
 import co.netguru.android.socialslack.feature.users.profile.UsersProfileFragment
 import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_users.*
-import timber.log.Timber
 
 class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.Presenter>(), UsersContract.View {
 
@@ -59,8 +59,8 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
 
     override fun getMenuResource() = R.menu.menu_fragment_search_filter
 
-    override fun showUsersList(usersList: List<UserStatistic>) {
-        adapter.addUsers(usersList)
+    override fun showUsersList(usersList: List<UserStatistic>, selectedFilterOption: UsersFilterOption) {
+        adapter.addUsers(usersList, selectedFilterOption)
     }
 
     override fun showLoadingView() {
@@ -73,11 +73,11 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         usersLoadingView.visibility = View.GONE
     }
 
-    override fun showUserDetails(clickedUserPosition: Int) {
+    override fun showUserDetails(clickedUserPosition: Int, selectedFilterOption: UsersFilterOption) {
         if (parentFragment is BaseFragmentWithNestedFragment) {
             val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
             fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentUsersRootContainer,
-                    UsersProfileFragment.newInstance(adapter.usersList.toTypedArray(), clickedUserPosition))
+                    UsersProfileFragment.newInstance(adapter.usersList.toTypedArray(), clickedUserPosition, selectedFilterOption))
         } else {
             throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
         }

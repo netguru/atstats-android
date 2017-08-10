@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.users
 
 import android.support.annotation.StringRes
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
@@ -8,13 +9,13 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 interface UsersContract {
 
     interface View : MvpView {
-        fun showUsersList(usersList: List<UserStatistic>)
+        fun showUsersList(usersList: List<UserStatistic>, selectedFilterOption: UsersFilterOption)
 
         fun showLoadingView()
 
         fun hideLoadingView()
 
-        fun showUserDetails(clickedUserPosition: Int)
+        fun showUserDetails(clickedUserPosition: Int, selectedFilterOption: UsersFilterOption)
 
         fun showFilterView()
 
