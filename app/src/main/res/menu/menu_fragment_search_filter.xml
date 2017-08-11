@@ -2,17 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--TODO 10.07.2017 Icons should be changed -->
-
     <item
         android:id="@+id/actionFilter"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/ic_filter_list_white"
         android:title="@string/action_filter"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/actionSearch"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_search_white"
         android:title="@string/action_search"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -6,21 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.users.profile.adapter.UsersProfileAdapter
-import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_users_profile.*
 
-class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfileContract.Presenter>(),
+class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, UsersProfileContract.Presenter>(),
         UsersProfileContract.View {
 
     companion object {
-        fun newInstance(userStatisticsList: Array<UserStatistic>, currentUserPosition: Int): UsersProfileFragment {
+        fun newInstance(userStatisticsList: Array<UserStatistic>, currentUserPosition: Int,
+                        selectedFilterOption: UsersFilterOption): UsersProfileFragment {
             val fragment = UsersProfileFragment()
             val bundle = Bundle()
 
             bundle.putParcelableArray(USER_STATISTICS_LIST_KEY, userStatisticsList)
             bundle.putInt(CURRENT_USER_POSITION_KEY, currentUserPosition)
+            bundle.putSerializable(SELECTED_FILTER_OPTION, selectedFilterOption)
             fragment.arguments = bundle
 
             return fragment
@@ -28,6 +31,7 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
 
         private const val USER_STATISTICS_LIST_KEY = "key:user_statistics_list"
         private const val CURRENT_USER_POSITION_KEY = "key:current_user_position"
+        private const val SELECTED_FILTER_OPTION = "key:selected_filter_option"
     }
 
     private val adapter by lazy { UsersProfileAdapter() }
@@ -46,14 +50,17 @@ class UsersProfileFragment : MvpFragment<UsersProfileContract.View, UsersProfile
         with(arguments) {
             val userStatisticsList = getParcelableArray(USER_STATISTICS_LIST_KEY)
                     .filterIsInstance(UserStatistic::class.java).toList()
-            presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY))
+            val selectedFilterOption = getSerializable(SELECTED_FILTER_OPTION) as UsersFilterOption
+            presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY), selectedFilterOption)
         }
     }
 
+    override fun getMenuResource() = R.menu.menu_fragment_search
+
     override fun createPresenter() = component.getPresenter()
 
-    override fun initView(userStatisticsList: List<UserStatistic>) {
-        adapter.addUsersStatistics(userStatisticsList)
+    override fun initView(userStatisticsList: List<UserStatistic>, currentFilterOption: UsersFilterOption) {
+        adapter.addUsersStatistics(userStatisticsList, currentFilterOption)
     }
 
     override fun scrollToUserPosition(userPosition: Int) {

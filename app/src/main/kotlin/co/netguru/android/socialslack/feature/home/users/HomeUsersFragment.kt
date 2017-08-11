@@ -26,12 +26,8 @@ internal class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsers
         fun newInstance() = HomeUsersFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_home_users)
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun setUsersWeWriteMost(users: List<UserStatistic>) {
