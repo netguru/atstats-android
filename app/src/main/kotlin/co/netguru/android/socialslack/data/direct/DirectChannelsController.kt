@@ -12,11 +12,11 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @UserScope
-class DirectChannelsController @Inject constructor(private val directMessagesApi: DirectMessagesApi,
-                                                   private val directMessagesDao: DirectChannelsDao) {
+class DirectChannelsController @Inject constructor(private val directChannelsApi: DirectChannnelsApi,
+                                                   private val directChannelsDao: DirectChannelsDao) {
 
     fun getDirectChannelsList(): Single<List<DirectChannel>> =
-            directMessagesApi.getDirectMessagesList()
+            directChannelsApi.getDirectMessagesList()
                     .map { it.channels }
 
     fun countDirectChannelStatistics(channelId: String, userId: String): Single<DirectChannelStatistics> =
@@ -27,7 +27,7 @@ class DirectChannelsController @Inject constructor(private val directMessagesApi
                             { t1: DirectChannelStatisticsCount?, t2: DirectMessage? -> t1?.accept(t2) })
                     .map { DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser) }
                     .observeOn(Schedulers.io())
-                    .doAfterSuccess { directMessagesDao.insertDirectChannel(it) }
+                    .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }
 
     private fun getAllMessagesFromApi(channelId: String) =
             getMessagesFromApi(channelId, (TimeAndCountUtil.currentTimeInSeconds() - TimeAndCountUtil.SINCE_TIME).toString())
@@ -56,7 +56,7 @@ class DirectChannelsController @Inject constructor(private val directMessagesApi
     }
 
     private fun getMessagesInIOFromApi(channelId: String, latestTimestamp: String, oldestTimestamp: String) =
-            directMessagesApi.getDirectMessagesWithUser(channelId, TimeAndCountUtil.MESSAGE_COUNT, latestTimestamp, oldestTimestamp)
+            directChannelsApi.getDirectMessagesWithUser(channelId, TimeAndCountUtil.MESSAGE_COUNT, latestTimestamp, oldestTimestamp)
                     .subscribeOn(Schedulers.io())
 
     fun sortUserWeWriteMost(channelStatistics: List<DirectChannelStatistics>? = null,
@@ -92,7 +92,7 @@ class DirectChannelsController @Inject constructor(private val directMessagesApi
                 if (channelStatistics != null)
                     Single.just(channelStatistics)
                 else
-                    directMessagesDao.getAllDirectChannels()
+                    directChannelsDao.getAllDirectChannels()
 
         return singleChannelStatistics
                 .map {

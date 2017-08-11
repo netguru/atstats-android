@@ -1,7 +1,7 @@
 package co.netguru.android.socialslack.app
 
 import co.netguru.android.socialslack.data.channels.ChannelsApi
-import co.netguru.android.socialslack.data.direct.DirectMessagesApi
+import co.netguru.android.socialslack.data.direct.DirectChannnelsApi
 import co.netguru.android.socialslack.data.session.LoginApi
 import co.netguru.android.socialslack.data.user.UsersApi
 import dagger.Module
@@ -22,7 +22,7 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideDirectMessagesApi(retrofit: Retrofit): DirectMessagesApi = retrofit.create(DirectMessagesApi::class.java)
+    fun provideDirectMessagesApi(retrofit: Retrofit): DirectChannnelsApi = retrofit.create(DirectChannnelsApi::class.java)
 
     @Singleton
     @Provides

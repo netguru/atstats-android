@@ -6,7 +6,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface DirectMessagesApi {
+interface DirectChannnelsApi {
 
     @GET("/api/im.list")
     fun getDirectMessagesList(): Single<DirectChannelList>
