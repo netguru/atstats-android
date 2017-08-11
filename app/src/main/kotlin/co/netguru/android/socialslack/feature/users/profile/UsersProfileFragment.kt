@@ -34,7 +34,13 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
         private const val SELECTED_FILTER_OPTION = "key:selected_filter_option"
     }
 
-    private val adapter by lazy { UsersProfileAdapter() }
+    private val adapter by lazy {
+        UsersProfileAdapter(object : UsersProfileAdapter.OnUsersShareButtonClickListener {
+            override fun onShareButtonClick(clickedUserPosition: Int, usersList: List<UserStatistic>) {
+                presenter.onShareButtonClicked(clickedUserPosition, usersList)
+            }
+        })
+    }
 
     private val component by lazy {
         App.getUserComponent(context).plusUsersProfileComponent()
@@ -75,6 +81,10 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
     override fun hideLoadingView() {
         usersProfileRecyclerView.visibility = View.VISIBLE
         usersProfileProgressBar.visibility = View.GONE
+    }
+
+    override fun showShareView(clickedItemPosition: Int, usersList: List<UserStatistic>) {
+        //TODO 11.08.2017 Should show share view
     }
 
     private fun initRecyclerView() {

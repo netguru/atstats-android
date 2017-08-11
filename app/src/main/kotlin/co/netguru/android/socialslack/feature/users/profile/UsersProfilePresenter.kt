@@ -47,4 +47,9 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
                         }
                 )
     }
+
+    override fun onShareButtonClicked(clickedItemPosition: Int, usersList: List<UserStatistic>) {
+        //TODO 11.08.2017 Add sorting logic(if needed)
+        view.showShareView(clickedItemPosition, usersList)
+    }
 }

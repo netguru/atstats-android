@@ -12,8 +12,9 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_users_profile.view.*
 import kotlinx.android.synthetic.main.profile_header_layout.view.*
 
-class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_users_profile, parent, false)) {
+internal class UsersProfileViewHolder(parent: ViewGroup,
+                                      private val onShareButtonClickListener: OnShareButtonClickListener)
+    : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_users_profile, parent, false)) {
 
     companion object {
         private const val USERNAME_PREFIX = "@"
@@ -30,6 +31,11 @@ class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val totalMsgTextView = itemView.totalMsgTextView
     private val sentRecvdTextView = itemView.sentRecvdMsgTextView
     private val msgStreakTextView = itemView.msgStreakTextView
+    private val shareButton = itemView.shareSendButton
+
+    init {
+        shareButton.setOnClickListener { onShareButtonClickListener.onShareButtonClicked(adapterPosition) }
+    }
 
     fun bind(item: UserStatistic, usersFilterOption: UsersFilterOption) {
         setTextViewsAccordingToCurrentFilterOption(usersFilterOption)
@@ -59,5 +65,9 @@ class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private fun setTextOnTextViews(@StringRes titleResId: Int, @StringRes messageDetailResId: Int) {
         titleTextView.setText(titleResId)
         messagesDetailTextView.setText(messageDetailResId)
+    }
+
+    internal interface OnShareButtonClickListener {
+        fun onShareButtonClicked(itemPosition: Int)
     }
 }

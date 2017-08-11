@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.data.user.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import co.netguru.android.socialslack.data.share.Sharable
 import co.netguru.android.socialslack.data.user.profile.Presence
 import paperparcel.PaperParcel
 
@@ -17,7 +18,7 @@ data class UserStatistic(val id: String,
                          val currentDayStreak: Int,
                          val avatarUrl: String?,
                          var currentPositionInList: Int = 1,
-                         var presence: Presence = Presence.AWAY) : Parcelable {
+                         var presence: Presence = Presence.AWAY) : Parcelable, Sharable {
 
     companion object {
         //TODO 02.08.2017 Remove those mocked values when database will be ready
