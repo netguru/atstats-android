@@ -62,9 +62,9 @@ class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersA
             View.VISIBLE else View.GONE
     }
 
-    private fun loadUserPhoto(avatarUrl: String) {
+    private fun loadUserPhoto(avatarUrl: String?) {
         Glide.with(itemView.context)
-                .load(avatarUrl)
+                .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
                 .bitmapTransform(RoundedCornersTransformation(itemView.context,
                         itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt(),
                         USER_AVATAR_ROUNDED_CORNERS_MARGIN))

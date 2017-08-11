@@ -38,15 +38,9 @@ class DirectChannelsControllerTest {
         private val MESSAGE_4 = DirectMessage(USER, "", LATEST)
         private val MESSAGE_5 = DirectMessage(USER_WE_TALK_THE_MOST, "", LATEST)
         //
-        private val STATISTICS_USER_WRITE_TO_US_MOST = DirectChannelStatistics("1", USER_WRITES_TO_US_MOST, 1, 4)
-        private val STATISTICS_USER_WE_WRITE_MOST = DirectChannelStatistics("2", USER_WE_WRITE_MOST, 4, 1)
-        private val STATISTICS_USER_WE_TALK_MORE = DirectChannelStatistics("3", USER_WE_WRITE_MOST, 3, 3)
-        private val STATISTICS_USER_RANDOM = DirectChannelStatistics("4", RANDOM_USER, 2, 2)
-        //
         private val LIST_CHANNELS = listOf(DIRECT_CHANNEL_1, DIRECT_CHANNEL_2, DIRECT_CHANNEL_3, DIRECT_CHANNEL_4)
         private val DIRECT_CHANNEL_LIST = DirectChannelList(true, LIST_CHANNELS)
         private val LIST_MESSAGES_USER_WE_TALK_MORE = listOf(MESSAGE_1, MESSAGE_2, MESSAGE_3, MESSAGE_4, MESSAGE_5)
-        private val LIST_OF_STATISTICS = listOf(STATISTICS_USER_WRITE_TO_US_MOST, STATISTICS_USER_WE_WRITE_MOST, STATISTICS_USER_WE_TALK_MORE, STATISTICS_USER_RANDOM)
     }
 
     @Rule
@@ -102,29 +96,5 @@ class DirectChannelsControllerTest {
             assertEquals(value.messagesFromUs, 2)
         }
         testObserver.assertNoErrors()
-    }
-
-    @Test
-    fun `should sort the list correctly when request sort user writes to us most`() {
-        // when
-        val testObserver = directChannelsController.sortUserThatWritesToUsMost(LIST_OF_STATISTICS).test()
-        // then
-        testObserver.assertValue(listOf(STATISTICS_USER_WRITE_TO_US_MOST, STATISTICS_USER_WE_TALK_MORE, STATISTICS_USER_RANDOM, STATISTICS_USER_WE_WRITE_MOST))
-    }
-
-    @Test
-    fun `should sort the list correctly when request sort user we write most`() {
-        // when
-        val testObserver = directChannelsController.sortUserWeWriteMost(LIST_OF_STATISTICS).test()
-        // then
-        testObserver.assertValue(listOf(STATISTICS_USER_WE_WRITE_MOST, STATISTICS_USER_WE_TALK_MORE, STATISTICS_USER_RANDOM, STATISTICS_USER_WRITE_TO_US_MOST))
-    }
-
-    @Test
-    fun `should sort the list correctly when request sort user we talk most`() {
-        // when
-        val testObserver = directChannelsController.sortUserWeTalkTheMost(LIST_OF_STATISTICS).test()
-        // then
-        testObserver.assertValue(listOf(STATISTICS_USER_WE_TALK_MORE, STATISTICS_USER_WRITE_TO_US_MOST, STATISTICS_USER_WE_WRITE_MOST, STATISTICS_USER_RANDOM))
     }
 }

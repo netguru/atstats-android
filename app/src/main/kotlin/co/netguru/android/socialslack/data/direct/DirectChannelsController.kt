@@ -29,30 +29,6 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                     .observeOn(Schedulers.io())
                     .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }
 
-    fun sortUserWeWriteMost(channelStatistics: List<DirectChannelStatistics>? = null,
-                            numberToShow: Int? = null): Single<List<DirectChannelStatistics>> =
-            sortWithComparatorAndReturn(
-                    channelStatistics,
-                    numberToShow,
-                    this::userWeWriteMostComparator
-            )
-
-    fun sortUserThatWritesToUsMost(channelStatistics: List<DirectChannelStatistics>? = null,
-                                   numberToShow: Int? = null): Single<List<DirectChannelStatistics>> =
-            sortWithComparatorAndReturn(
-                    channelStatistics,
-                    numberToShow,
-                    this::userThatWritesToUsMostComparator
-            )
-
-    fun sortUserWeTalkTheMost(channelStatistics: List<DirectChannelStatistics>? = null,
-                              numberToShow: Int? = null): Single<List<DirectChannelStatistics>> =
-            sortWithComparatorAndReturn(
-                    channelStatistics,
-                    numberToShow,
-                    this::userWeTalkTheMostComparator
-            )
-
     private fun getAllMessagesFromApi(channelId: String) =
             getMessagesFromApi(channelId, (TimeAndCountUtil.currentTimeInSeconds() - TimeAndCountUtil.SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
@@ -105,13 +81,4 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                     if (numberToShow != null) it.subList(0, numberToShow) else it
                 }
     }
-
-    private fun userWeWriteMostComparator(o1: DirectChannelStatistics, o2: DirectChannelStatistics) =
-            o2.messagesFromUs.compareTo(o1.messagesFromUs)
-
-    private fun userThatWritesToUsMostComparator(o1: DirectChannelStatistics, o2: DirectChannelStatistics) =
-            o2.messagesFromOtherUser.compareTo(o1.messagesFromOtherUser)
-
-    private fun userWeTalkTheMostComparator(o1: DirectChannelStatistics, o2: DirectChannelStatistics) =
-            (o2.messagesFromOtherUser + o2.messagesFromUs).compareTo((o1.messagesFromOtherUser + o1.messagesFromUs))
 }
