@@ -26,12 +26,11 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
     override fun attachView(view: FetchContract.View) {
         super.attachView(view)
         compositeDisposable += fetchAndStoreChannelsStatistics()
-                .concatWith(fetchAndSotreDirectChannelsStatistics())
+                .concatWith(fetchAndStoreDirectChannelsStatistics())
                 .subscribeBy(
                         onComplete = { view.showMainActivity() },
                         onError = { handleError(it, "Error while fetching data") }
                 )
-
     }
 
     override fun detachView(retainInstance: Boolean) {
@@ -53,7 +52,7 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
             .toCompletable()
             .compose(RxTransformers.applyCompletableIoSchedulers())
 
-    private fun fetchAndSotreDirectChannelsStatistics() = directChannelsController.getDirectChannelsList()
+    private fun fetchAndStoreDirectChannelsStatistics() = directChannelsController.getDirectChannelsList()
             .flattenAsFlowable { it }
             .flatMapSingle {
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)

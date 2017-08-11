@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.data.direct
 
 import co.netguru.android.socialslack.app.scope.UserScope
+import co.netguru.android.socialslack.common.util.TimeAndCountUtil
 import co.netguru.android.socialslack.data.direct.model.DirectChannel
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatisticsCount
@@ -13,12 +14,6 @@ import javax.inject.Inject
 @UserScope
 class DirectChannelsController @Inject constructor(private val directMessagesApi: DirectMessagesApi,
                                                    private val directMessagesDao: DirectChannelsDao) {
-
-    companion object {
-        private const val COUNT = 1000
-        private const val SINCE_TIME: Long = 60 * 60 * 24 * 30 // 30 days in seconds
-        private val currentTime = System.currentTimeMillis() / 1000
-    }
 
     fun getDirectChannelsList(): Single<List<DirectChannel>> =
             directMessagesApi.getDirectMessagesList()
@@ -35,11 +30,11 @@ class DirectChannelsController @Inject constructor(private val directMessagesApi
                     .doAfterSuccess { directMessagesDao.insertDirectChannel(it) }
 
     private fun getAllMessagesFromApi(channelId: String) =
-            getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
+            getMessagesFromApi(channelId, (TimeAndCountUtil.currentTimeInSeconds() - TimeAndCountUtil.SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
 
     private fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<DirectMessage>> {
-        var lastTimestamp = currentTime.toString()
+        var lastTimestamp = TimeAndCountUtil.currentTimeInSeconds().toString()
 
         return Flowable.range(0, Int.MAX_VALUE)
                 .concatMap {
@@ -61,7 +56,7 @@ class DirectChannelsController @Inject constructor(private val directMessagesApi
     }
 
     private fun getMessagesInIOFromApi(channelId: String, latestTimestamp: String, oldestTimestamp: String) =
-            directMessagesApi.getDirectMessagesWithUser(channelId, COUNT, latestTimestamp, oldestTimestamp)
+            directMessagesApi.getDirectMessagesWithUser(channelId, TimeAndCountUtil.MESSAGE_COUNT, latestTimestamp, oldestTimestamp)
                     .subscribeOn(Schedulers.io())
 
     fun sortUserWeWriteMost(channelStatistics: List<DirectChannelStatistics>? = null,

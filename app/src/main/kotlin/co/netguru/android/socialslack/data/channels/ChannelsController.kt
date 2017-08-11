@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.data.channels
 
+import co.netguru.android.socialslack.common.util.TimeAndCountUtil
 import co.netguru.android.socialslack.data.channels.model.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -16,12 +17,9 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
                                              private val channelsDao: ChannelsDao) {
 
     companion object {
-        private const val COUNT = 1000
         private const val FILE_PARAMETER_NAME = "file"
         private const val FILE_NAME = "channel_statistics.jpg"
         private const val MEDIA_TYPE = "image/jpeg"
-        private const val SINCE_TIME: Long = 60 * 60 * 24 * 30 // 30 days in seconds
-        private val currentTime = System.currentTimeMillis() / 1000
     }
 
     fun getChannelsList(): Single<List<Channel>> = channelsApi.getChannelsList()
@@ -42,11 +40,11 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
     }
 
     private fun getAllMessagesFromApi(channelId: String) =
-            getMessagesFromApi(channelId, (currentTime - SINCE_TIME).toString())
+            getMessagesFromApi(channelId, (TimeAndCountUtil.currentTimeInSeconds() - TimeAndCountUtil.SINCE_TIME).toString())
                     .subscribeOn(Schedulers.io())
 
     private fun getMessagesFromApi(channelId: String, sinceTime: String): Single<List<ChannelMessage>> {
-        var lastTimestamp: String? = (currentTime).toString()
+        var lastTimestamp: String? = (TimeAndCountUtil.currentTimeInSeconds()).toString()
 
         return Flowable.range(0, Int.MAX_VALUE)
                 .concatMap {
@@ -68,7 +66,7 @@ class ChannelsController @Inject constructor(private val channelsApi: ChannelsAp
     }
 
     private fun getHistoryMessagesOnIOFromAPI(channelId: String, latestTimestamp: String?, oldestTimestamp: String?) =
-            channelsApi.getChannelsHistory(channelId, COUNT, latestTimestamp, oldestTimestamp)
+            channelsApi.getChannelsHistory(channelId, TimeAndCountUtil.MESSAGE_COUNT, latestTimestamp, oldestTimestamp)
                     .subscribeOn(Schedulers.io())
 
     private fun createMultipartBody(fileByteArray: ByteArray): MultipartBody.Part {
