@@ -20,7 +20,8 @@ object ChannelsPositionUpdater {
         }
     }
 
-    private fun compareUsersDependsOnFilterOption(filterOption: ChannelsFilterOption, firstChannel: ChannelStatistics,
+    private fun compareUsersDependsOnFilterOption(filterOption: ChannelsFilterOption,
+                                                  firstChannel: ChannelStatistics,
                                                   secondChannel: ChannelStatistics) = when (filterOption) {
         ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE -> firstChannel.myMessageCount == secondChannel.myMessageCount
         ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST -> firstChannel.mentionsCount == secondChannel.mentionsCount

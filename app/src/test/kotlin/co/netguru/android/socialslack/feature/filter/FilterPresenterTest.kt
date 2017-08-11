@@ -67,7 +67,7 @@ class FilterPresenterTest {
     fun `should save channels filter option when channels filter option changed and filter object type is channel`() {
         //given
         whenever(filterController.saveChannelsFilterOption(anyObject())).thenReturn(Completable.complete())
-        filterPresenter.currentFilterObjectType = FilterObjectType.CHANNELS
+        filterPresenter.filterObjectTypeReceived(FilterObjectType.CHANNELS)
         //when
         filterPresenter.filterOptionChanged()
         //then
@@ -78,7 +78,7 @@ class FilterPresenterTest {
     fun `should show main activity with request channels sort when channels filter option changed successful and filter object type is channel`() {
         //given
         whenever(filterController.saveChannelsFilterOption(anyObject())).thenReturn(Completable.complete())
-        filterPresenter.currentFilterObjectType = FilterObjectType.CHANNELS
+        filterPresenter.filterObjectTypeReceived(FilterObjectType.CHANNELS)
         //when
         filterPresenter.filterOptionChanged()
         //then
@@ -113,7 +113,7 @@ class FilterPresenterTest {
     fun `should save users filter option when users filter option changed and current filter object type is user`() {
         //given
         whenever(filterController.saveUsersFilterOption(anyObject())).thenReturn(Completable.complete())
-        filterPresenter.currentFilterObjectType = FilterObjectType.USERS
+        filterPresenter.filterObjectTypeReceived(FilterObjectType.USERS)
         //when
         filterPresenter.filterOptionChanged()
         //then
@@ -124,7 +124,7 @@ class FilterPresenterTest {
     fun `should show main activity with request users sort when users filter option changed successful and filter object type is user`() {
         //given
         whenever(filterController.saveUsersFilterOption(anyObject())).thenReturn(Completable.complete())
-        filterPresenter.currentFilterObjectType = FilterObjectType.USERS
+        filterPresenter.filterObjectTypeReceived(FilterObjectType.USERS)
         //when
         filterPresenter.filterOptionChanged()
         //then

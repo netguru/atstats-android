@@ -20,7 +20,8 @@ object UsersPositionUpdater {
         }
     }
 
-    private fun compareUsersDependsOnFilterOption(filterOption: UsersFilterOption, firstUser: UserStatistic,
+    private fun compareUsersDependsOnFilterOption(filterOption: UsersFilterOption,
+                                                  firstUser: UserStatistic,
                                                   secondUser: UserStatistic) = when (filterOption) {
         UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST -> firstUser.sentMessages == secondUser.sentMessages
         UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST -> firstUser.receivedMessages == secondUser.receivedMessages

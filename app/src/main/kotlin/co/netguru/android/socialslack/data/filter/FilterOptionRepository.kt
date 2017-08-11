@@ -22,22 +22,22 @@ class FilterOptionRepository @Inject constructor(@Named(LocalRepositoryModule.FI
     fun saveChannelsFilterOption(channelsFilterOption: ChannelsFilterOption): Completable {
         return Completable.fromAction({
             sharedPreferences.edit {
-                putString(CHANNELS_FILTER_OPTION, channelsFilterOption.value)
+                putString(CHANNELS_FILTER_OPTION, channelsFilterOption.name)
             }
         })
     }
 
-    fun getChannelsFilterOption() = ChannelsFilterOption.getEnumForValue(sharedPreferences
-            .getString(CHANNELS_FILTER_OPTION, ChannelsFilterOption.MOST_ACTIVE_CHANNEL.value))
+    fun getChannelsFilterOption() = ChannelsFilterOption.valueOf(sharedPreferences
+            .getString(CHANNELS_FILTER_OPTION, ChannelsFilterOption.MOST_ACTIVE_CHANNEL.name))
 
     fun saveUsersFilterOption(usersFilterOption: UsersFilterOption): Completable {
         return Completable.fromAction({
             sharedPreferences.edit {
-                putString(USERS_FILTER_OPTION, usersFilterOption.value)
+                putString(USERS_FILTER_OPTION, usersFilterOption.name)
             }
         })
     }
 
-    fun getUsersFilterOption() = UsersFilterOption.getEnumForValue(sharedPreferences
-            .getString(USERS_FILTER_OPTION, UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST.value))
+    fun getUsersFilterOption() = UsersFilterOption.valueOf(sharedPreferences
+            .getString(USERS_FILTER_OPTION, UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST.name))
 }

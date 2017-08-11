@@ -40,7 +40,7 @@ class FilterOptionRepositoryTest {
     @Test
     fun `should get channels filter option from SharedPreferences`() {
         //given
-        whenever(sharedPreferences.getString(anyString(), anyString())).thenReturn(ChannelsFilterOption.MOST_ACTIVE_CHANNEL.value)
+        whenever(sharedPreferences.getString(anyString(), anyString())).thenReturn(ChannelsFilterOption.MOST_ACTIVE_CHANNEL.name)
         //when
         filterOptionRepository.getChannelsFilterOption()
         //then

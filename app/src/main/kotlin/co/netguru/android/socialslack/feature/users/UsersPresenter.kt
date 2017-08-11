@@ -104,8 +104,10 @@ class UsersPresenter @Inject constructor(private val filterController: FilterCon
                         })
     }
 
-    private fun sortUsersList(usersList: List<UserStatistic>, usersFilterOption: UsersFilterOption
+    private fun sortUsersList(usersList: List<UserStatistic>,
+                              usersFilterOption: UsersFilterOption
     ): Single<Pair<List<UserStatistic>, UsersFilterOption>> {
+
         return Observable.fromIterable(usersList)
                 .toSortedList(UsersComparator.getUsersComparatorForFilterOption(usersFilterOption))
                 .doOnSuccess { UsersPositionUpdater.updateUsersPositionInList(it, usersFilterOption) }

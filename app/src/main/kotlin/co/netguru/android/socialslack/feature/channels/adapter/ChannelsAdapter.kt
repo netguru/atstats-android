@@ -21,7 +21,6 @@ class ChannelsAdapter(private val onChannelClickListener: ChannelsViewHolder.Cha
 
     override fun getItemCount() = channelsList.size
 
-
     fun addChannels(channelsList: List<ChannelStatistics>) {
         this.channelsList.clear()
         this.channelsList.addAll(channelsList)

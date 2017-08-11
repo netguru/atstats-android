@@ -11,7 +11,6 @@ object UsersComparator {
         UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST -> getComparatorForPersonWhoWeTalkTheMost()
     }
 
-
     private fun getComparatorForPersonWhoWeWriteTheMost(): Comparator<UserStatistic> =
             Comparator { user1, user2 ->
                 user2.sentMessages.compareTo(user1.sentMessages)
