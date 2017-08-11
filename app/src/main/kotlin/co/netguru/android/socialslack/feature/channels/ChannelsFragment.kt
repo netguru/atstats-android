@@ -1,6 +1,5 @@
 package co.netguru.android.socialslack.feature.channels
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.*
@@ -8,17 +7,19 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
+import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
+import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
-import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_channels.*
 
-class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Presenter>(),
+class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, ChannelsContract.Presenter>(),
         ChannelsContract.View, ChannelsViewHolder.ChannelClickListener {
 
     companion object {
@@ -29,18 +30,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
 
     private lateinit var adapter: ChannelsAdapter
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        setHasOptionsMenu(true)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_channels)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_channels_fragment, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -61,6 +52,8 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         }
     }
 
+    override fun getMenuResource() = R.menu.menu_fragment_search_filter
+
     override fun showChannels(channelList: List<ChannelStatistics>) {
         adapter.addChannels(channelList)
     }
@@ -73,8 +66,9 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
         Snackbar.make(channelsRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun setCurrentFilterOptionText(stringResId: Int) {
-        filterViewTextView.setText(stringResId)
+    override fun setCurrentFilterOption(filterOption: ChannelsFilterOption) {
+        filterViewTextView.setText(filterOption.textResId)
+        adapter.selectedFilterOption = filterOption
     }
 
     override fun showFilterView() {
@@ -92,13 +86,13 @@ class ChannelsFragment : MvpFragment<ChannelsContract.View, ChannelsContract.Pre
     }
 
     override fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>) {
-        fragmentManager
-                .beginTransaction()
-                // TODO get the number of messages
-                .replace(R.id.fragmentChannelRootContainer,
-                        ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
-                .addToBackStack(ChannelProfileFragment.TAG)
-                .commit()
+        if (parentFragment is BaseFragmentWithNestedFragment) {
+            val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
+            fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentChannelRootContainer,
+                    ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
+        } else {
+            throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
+        }
     }
 
     override fun onChannelClick(channelStatistics: ChannelStatistics) {

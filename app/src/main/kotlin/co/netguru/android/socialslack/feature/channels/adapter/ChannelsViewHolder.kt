@@ -1,16 +1,17 @@
 package co.netguru.android.socialslack.feature.channels.adapter
 
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
-import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import kotlinx.android.synthetic.main.item_channels.view.*
 
 class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: ChannelClickListener? = null)
-    : BaseViewHolder<ChannelStatistics>(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
+    : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
 
     companion object {
         private const val POSITION_FIRST = 1
@@ -27,14 +28,22 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
         itemView.setOnClickListener { onChannelClickListener?.onChannelClick(item) }
     }
 
-    override fun bind(item: ChannelStatistics) {
+    fun bind(item: ChannelStatistics, filterOption: ChannelsFilterOption) {
         this.item = item
+        showMessagesNrAccordingToSelectedFilterOption(item, filterOption)
         with(item) {
             channelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
             channelsNameTextView.text = channelName
-            channelsMessagesNrTextView.text = messageCount.toString()
             changeRankViewVisibility(currentPositionInList)
             changeMessagesNrTextColor(currentPositionInList)
+        }
+    }
+
+    private fun showMessagesNrAccordingToSelectedFilterOption(item: ChannelStatistics, filterOption: ChannelsFilterOption) {
+        when (filterOption) {
+            ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> channelsMessagesNrTextView.text = item.messageCount.toString()
+            ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST -> channelsMessagesNrTextView.text = item.mentionsCount.toString()
+            ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE-> channelsMessagesNrTextView.text = item.myMessageCount.toString()
         }
     }
 
