@@ -2,29 +2,30 @@ package co.netguru.android.socialslack.feature.home.users
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.direct.DirectMessagesController
-import co.netguru.android.socialslack.data.direct.model.ChannelStatistic
-import co.netguru.android.socialslack.data.direct.model.DirectChannel
-import co.netguru.android.socialslack.data.direct.model.DirectChannelWithMessages
-import co.netguru.android.socialslack.data.direct.model.Message
+import co.netguru.android.socialslack.data.direct.DirectChannelsDao
+import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
+import co.netguru.android.socialslack.data.filter.directchannel.DirectChannelsComparator
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.UsersController
+import co.netguru.android.socialslack.data.user.model.User
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.model.UserStatistic.Companion.toStatisticsView
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
-import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.zipWith
 import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
 class HomeUsersPresenter @Inject constructor(
-        private val directMessagesController: DirectMessagesController,
-        private val usersController: UsersController)
+        private val usersController: UsersController,
+        private val directChannelsDao: DirectChannelsDao)
     : MvpNullObjectBasePresenter<HomeUsersContract.View>(), HomeUsersContract.Presenter {
 
     private companion object {
-        val MAX_MESSAGES_PER_REQUEST = 1000
         val USERS_SHOWN_IN_STATISTICS = 3
     }
 
@@ -41,102 +42,66 @@ class HomeUsersPresenter @Inject constructor(
     }
 
     private fun fetchMessages() {
-        directMessagesController.getDirectMessagesList()
+        compositeDisposable += directChannelsDao.getAllDirectChannels()
                 .compose(RxTransformers.applySingleIoSchedulers())
-                .flattenAsFlowable { x -> x }
-                .flatMapSingle { fetchMessagesInConversation(it) }
-                .toList()
                 .subscribeBy(onSuccess = this::processUserData, onError = { it.printStackTrace() })
     }
 
-    private fun processUserData(channels: List<DirectChannelWithMessages>) {
+    private fun processUserData(channels: List<DirectChannelStatistics>) {
         findUserWeTalkTheMost(channels)
-        findOtherUsersStatistics(channels)
+        findUserWeWriteMost(channels)
+        findUserThatWritesToUsMost(channels)
     }
 
-    private fun findOtherUsersStatistics(channels: List<DirectChannelWithMessages>) {
-        val channelsWithStatistics: MutableList<ChannelStatistic> = mutableListOf()
+    private fun findUserWeWriteMost(channelStatistics: List<DirectChannelStatistics>) {
 
-        for ((directChannel, messages) in channels) {
-            var messagesFromUs: Int = 0
-            var messagesFromOtherUser: Int = 0
-
-            for ((user) in messages) {
-                if (user == directChannel.userId) {
-                    messagesFromOtherUser++
-                } else {
-                    messagesFromUs++
-                }
-            }
-
-            val channelStatistic = ChannelStatistic(directChannel,
-                    messagesFromUs, messagesFromOtherUser)
-            channelsWithStatistics.add(channelStatistic)
-        }
-
-        findUserWeWriteMost(channelsWithStatistics.toList())
-        findUserThatWritesToUsMost(channelsWithStatistics.toList())
-    }
-
-    private fun findUserWeWriteMost(channelStatistics: List<ChannelStatistic>) {
-        val sortedChannels = channelStatistics.sortedWith(Comparator<ChannelStatistic> { o1, o2
-            -> o2.messagesFromUs.compareTo(o1.messagesFromUs) })
-
-        Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserInfo(sortedChannels[it].channel.userId).toFlowable() },
-                        { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromUs) })
-                .toList()
-                .compose(RxTransformers.applySingleIoSchedulers())
+        compositeDisposable += findUserWithFilter(channelStatistics,
+                UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST,
+                this::toUserStatisticsThatWeWriteMost)
                 .subscribeBy(onSuccess = view::setUsersWeWriteMost, onError = { it.printStackTrace() })
     }
 
-    private fun findUserThatWritesToUsMost(channelStatistics: List<ChannelStatistic>) {
-        val sortedChannels = channelStatistics.sortedWith(Comparator<ChannelStatistic> { o1, o2 ->
-            o2.messagesFromOtherUser.compareTo(o1.messagesFromOtherUser)
-        })
+    private fun findUserThatWritesToUsMost(channelStatistics: List<DirectChannelStatistics>) {
 
-        Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserInfo(sortedChannels[it].channel.userId).toFlowable() },
-                        { index, user -> user.toStatisticsView(sortedChannels[index].messagesFromOtherUser) })
-                .toList()
-                .compose(RxTransformers.applySingleIoSchedulers())
+        compositeDisposable += findUserWithFilter(channelStatistics,
+                UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST,
+                this::toUserStatisticsThatWritesToUsMost)
                 .subscribeBy(onSuccess = view::setUsersThatWriteToUsTheMost, onError = { it.printStackTrace() })
     }
 
-    private fun findUserWeTalkTheMost(channels: List<DirectChannelWithMessages>) {
-        val sortedChannels = channels.sortedWith(Comparator<DirectChannelWithMessages> { o1, o2 ->
-            o2.messages.size.compareTo(o1.messages.size) })
+    private fun findUserWeTalkTheMost(channelStatistics: List<DirectChannelStatistics>) {
 
-        Flowable.range(0, USERS_SHOWN_IN_STATISTICS)
-                .flatMap({ usersController.getUserInfo(sortedChannels[it].directChannel.userId).toFlowable() },
-                        { index, user -> user.toStatisticsView(sortedChannels[index].messages.size) })
-                .toList()
-                .compose(RxTransformers.applySingleIoSchedulers())
+        compositeDisposable += findUserWithFilter(channelStatistics,
+                UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST,
+                this::toUserStatisticsThatTalkMost)
                 .subscribeBy(onSuccess = view::setUsersWeTalkTheMost, onError = { Timber.e(it) })
     }
 
-    private fun fetchMessagesInConversation(directChannel: DirectChannel): Single<DirectChannelWithMessages> {
-        var latestTimestamp: String? = null
+    private fun findUserWithFilter(channelStatistics: List<DirectChannelStatistics>,
+                                   filter: UsersFilterOption,
+                                   toUserStatistics: (DirectChannelStatistics, User) -> UserStatistic) = Single.just(channelStatistics)
+            .zipWith(Single.just(filter))
+            { statisticsList, filterOption -> Pair(statisticsList, filterOption) }
+            .map(this::sortWithFilter)
+            .flattenAsFlowable { it }
+            .flatMap({ usersController.getUserInfo(it.userId).toFlowable() },
+                    toUserStatistics)
+            .toList()
+            .compose(RxTransformers.applySingleIoSchedulers())
 
-        return Flowable.range(0, Int.MAX_VALUE)
-                .concatMap { getMessagesOnIO(directChannel.id, latestTimestamp).toFlowable() }
-                .doOnNext { if (it.isNotEmpty()) latestTimestamp = it.last().timeStamp }
-                .takeUntil { it.size != MAX_MESSAGES_PER_REQUEST }
-                .scan(this::addLists)
-                .lastOrError()
-                .map { DirectChannelWithMessages(directChannel, it) }
-    }
+    private fun sortWithFilter(listFilter: Pair<List<DirectChannelStatistics>, UsersFilterOption>) =
+            listFilter.first
+                    .sortedWith(DirectChannelsComparator.getFirectChannelComparatorForFilterOption(listFilter.second))
+                    .subList(0, USERS_SHOWN_IN_STATISTICS)
 
-    private fun getMessagesOnIO(inChannel: String, latestTimestamp: String?): Single<List<Message>> {
-        return directMessagesController.getMessagesInDirectChannel(inChannel,
-                latestTimestamp, MAX_MESSAGES_PER_REQUEST)
-                .compose(RxTransformers.applySingleIoSchedulers())
-    }
+    private fun toUserStatisticsThatWeWriteMost(channelStatistics: DirectChannelStatistics, user: User)
+            = user.toStatisticsView(channelStatistics.messagesFromUs)
 
-    private fun addLists(a: List<Message>, b: List<Message>): List<Message> {
-        val list: MutableList<Message> = mutableListOf<Message>()
-        list.addAll(a)
-        list.addAll(b)
-        return list.toList()
-    }
+    private fun toUserStatisticsThatWritesToUsMost(channelStatistics: DirectChannelStatistics, user: User)
+            = user.toStatisticsView(channelStatistics.messagesFromOtherUser)
+
+    private fun toUserStatisticsThatTalkMost(channelStatistics: DirectChannelStatistics, user: User) = user.toStatisticsView(
+            channelStatistics.messagesFromOtherUser + channelStatistics.messagesFromUs,
+            channelStatistics.messagesFromUs,
+            channelStatistics.messagesFromOtherUser)
 }

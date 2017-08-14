@@ -15,7 +15,7 @@ data class UserStatistic(val id: String,
                          val receivedMessages: Int,
                          val totalMessages: Int,
                          val currentDayStreak: Int,
-                         val avatarUrl: String,
+                         val avatarUrl: String?,
                          var currentPositionInList: Int = 1,
                          var presence: Presence = Presence.AWAY) : Parcelable {
 
@@ -25,7 +25,7 @@ data class UserStatistic(val id: String,
                                   currentDayStreak: Int = 1): UserStatistic {
             return UserStatistic(this.id,
                     this.username,
-                    this.realName,
+                    this.realName ?: "",
                     messages,
                     sentMessages,
                     receivedMessages,

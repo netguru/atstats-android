@@ -9,7 +9,6 @@ import co.netguru.android.socialslack.data.channels.model.ChannelMessage
 import co.netguru.android.socialslack.data.channels.model.*
 import org.junit.Assert.*
 import com.nhaarman.mockito_kotlin.*
-import org.mockito.Mockito.mock
 import org.mockito.Mockito.anyInt
 import org.mockito.Mockito.anyString
 import io.reactivex.Single

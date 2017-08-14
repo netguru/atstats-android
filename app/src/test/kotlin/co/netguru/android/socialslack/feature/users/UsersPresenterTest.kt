@@ -6,6 +6,7 @@ import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
+import co.netguru.android.socialslack.data.user.UsersController
 import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Single
 import org.junit.After
@@ -22,6 +23,7 @@ class UsersPresenterTest {
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     val filterController = mock<FilterController>()
+    val usersController = mock<UsersController>()
     lateinit var view: UsersContract.View
 
     lateinit var usersPresenter: UsersPresenter
@@ -31,7 +33,7 @@ class UsersPresenterTest {
         whenever(filterController.getUsersFilterOption()).thenReturn(Single.just(UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST))
 
         view = mock(UsersContract.View::class.java)
-        usersPresenter = UsersPresenter(filterController)
+        usersPresenter = UsersPresenter(usersController, filterController)
         usersPresenter.attachView(view)
     }
 
