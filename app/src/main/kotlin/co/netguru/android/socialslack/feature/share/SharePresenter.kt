@@ -34,6 +34,8 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
     override fun <T> prepareView(selectedItem: T, mostActiveItemList: List<T>) {
         if (selectedItem is ChannelStatistics) {
             prepareChannelView(selectedItem, mostActiveItemList.filterIsInstance(ChannelStatistics::class.java))
+        } else {
+            Timber.d("UserStatistics Reveiced!")
         }
     }
 

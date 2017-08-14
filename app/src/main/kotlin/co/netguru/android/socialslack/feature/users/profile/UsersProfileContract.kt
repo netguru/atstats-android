@@ -16,7 +16,7 @@ interface UsersProfileContract {
 
         fun hideLoadingView()
 
-        fun showShareView(clickedItemPosition: Int, usersList: List<UserStatistic>)
+        fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>)
     }
 
     interface Presenter : MvpPresenter<View> {

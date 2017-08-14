@@ -8,6 +8,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.users.profile.adapter.UsersProfileAdapter
 import kotlinx.android.synthetic.main.fragment_users_profile.*
@@ -83,8 +84,8 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
         usersProfileProgressBar.visibility = View.GONE
     }
 
-    override fun showShareView(clickedItemPosition: Int, usersList: List<UserStatistic>) {
-        //TODO 11.08.2017 Should show share view
+    override fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>) {
+        ShareDialogFragment.newInstance(clickedItem, usersList.toTypedArray()).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
     private fun initRecyclerView() {
