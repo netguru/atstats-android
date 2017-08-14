@@ -23,11 +23,6 @@ class UsersPresenter @Inject constructor(private val usersController: UsersContr
                                          private val filterController: FilterController)
     : MvpNullObjectBasePresenter<UsersContract.View>(), UsersContract.Presenter {
 
-    companion object {
-        //TODO 04.08.2017 Remove while integrating API
-        private const val MOCKED_DATA_SIZE = 20
-    }
-
     private val compositeDisposable = CompositeDisposable()
 
     override fun detachView(retainInstance: Boolean) {
