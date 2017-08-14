@@ -1,8 +1,7 @@
 package co.netguru.android.socialslack.feature.channels
 
-import android.support.annotation.StringRes
-import co.netguru.android.socialslack.data.channels.model.Channel
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
@@ -17,7 +16,7 @@ interface ChannelsContract {
 
         fun showFilterView()
 
-        fun setCurrentFilterOptionText(@StringRes stringResId: Int)
+        fun setCurrentFilterOption(filterOption: ChannelsFilterOption)
 
         fun showLoadingView()
 

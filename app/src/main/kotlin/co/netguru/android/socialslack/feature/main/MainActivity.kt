@@ -4,18 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.feature.channels.ChannelsFragment
-import co.netguru.android.socialslack.feature.main.adapter.MainPagerAdapter
+import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
+import co.netguru.android.socialslack.feature.home.HomeFragment
+import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val OFF_SCREEN_PAGE_LIMIT = 2
         const val REQUEST_SORT_CHANNELS = 101
+        const val REQUEST_SORT_USERS = 102
         const val REQUEST_EXTRA = "requestExtra"
 
         private const val REQUEST_DEFAULT = 0
@@ -28,22 +30,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val mainPagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }
-    private val tabManager by lazy {
-        TabManager(tabLayout, viewPager, this,
-                object : TabManager.OnTabSelectedListener {
-                    override fun onTabSelected() {
-                        supportFragmentManager.popBackStack()
-                    }
-                })
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initializeToolbar()
-        initializePager()
+        initializeBottomNavigationView()
+        replaceFragmentInMainContainer(HomeFragment.newInstance())
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -51,16 +44,60 @@ class MainActivity : AppCompatActivity() {
 
         when (intent.getIntExtra(REQUEST_EXTRA, REQUEST_DEFAULT)) {
             REQUEST_SORT_CHANNELS -> refreshDataOnChannelsFragment()
+            REQUEST_SORT_USERS -> refreshDataOnUsersFragment()
             else -> throw IllegalStateException("Intent should contains REQUEST_EXTRA")
         }
     }
 
-    private fun refreshDataOnChannelsFragment() {
-        supportFragmentManager.fragments.forEach({
-            if (it is ChannelsFragment) {
-                it.sortData()
+    // Workaround for proper BackStack support in nested fragment, because of:
+    // https://issuetracker.google.com/issues/36959108
+    // https://issuetracker.google.com/issues/37123225
+    @SuppressLint("RestrictedApi")
+    override fun onBackPressed() {
+        for (fragment in supportFragmentManager.fragments) {
+            if (fragment != null && fragment.isVisible) {
+                val childFragmentManager = fragment.childFragmentManager
+                if (childFragmentManager.backStackEntryCount > 0) {
+                    childFragmentManager.popBackStack()
+                    return
+                }
             }
-        })
+        }
+        super.onBackPressed()
+    }
+
+    private fun refreshDataOnChannelsFragment() {
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer)
+        if (fragment is ChannelsRootFragment) {
+            fragment.sortChannelsData()
+        }
+    }
+
+    private fun refreshDataOnUsersFragment() {
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer)
+        if (fragment is UsersRootFragment) {
+            fragment.sortUsersData()
+        }
+    }
+
+    private fun initializeBottomNavigationView() {
+        mainNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_home -> replaceFragmentInMainContainer(HomeFragment.newInstance())
+                R.id.menu_channels -> replaceFragmentInMainContainer(ChannelsRootFragment.newInstance())
+                R.id.menu_users -> replaceFragmentInMainContainer(UsersRootFragment.newInstance())
+                R.id.menu_profile -> replaceFragmentInMainContainer(BlankFragment.newInstance())
+                else -> throw IllegalStateException("No action specified for item: $it")
+            }
+        }
+    }
+
+    private fun replaceFragmentInMainContainer(fragment: Fragment): Boolean {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFragmentContainer, fragment)
+                .commit()
+
+        return true
     }
 
     // Suppress RestrictedApi warning because of this bug https://issuetracker.google.com/issues/37130193
@@ -73,11 +110,5 @@ class MainActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(false)
             actionBar.setDefaultDisplayHomeAsUpEnabled(false)
         }
-    }
-
-    private fun initializePager() {
-        viewPager.offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
-        viewPager.adapter = mainPagerAdapter
-        tabManager.init()
     }
 }

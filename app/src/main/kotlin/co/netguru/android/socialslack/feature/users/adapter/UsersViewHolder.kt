@@ -1,18 +1,19 @@
 package co.netguru.android.socialslack.feature.users.adapter
 
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
-import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.item_users.view.*
 
 class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersAdapter.OnUserClickListener)
-    : BaseViewHolder<UserStatistic>(LayoutInflater.from(parent.context).inflate(R.layout.item_users, parent, false)) {
+    : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_users, parent, false)) {
 
     companion object {
         private const val POSITION_FIRST = 1
@@ -31,16 +32,23 @@ class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersA
         itemView.setOnClickListener { onUserClickListener.onUserClick(adapterPosition) }
     }
 
-    override fun bind(item: UserStatistic) {
+    internal fun bind(item: UserStatistic, selectedFilterOption: UsersFilterOption) {
         with(item) {
+            loadUserPhoto(avatarUrl)
             placeNrTextView.text = (currentPositionInList.toString() + '.')
             userRealNameTextView.text = name
             usernameTextView.text = (USERNAME_PREFIX + username)
-            //TODO 04.08.2017 Should be set according to selected filter option
-            messagesNrTextView.text = totalMessages.toString()
-            loadUserPhoto(avatarUrl)
+            showMessagesNrAccordingToSelectedFilterOption(item, selectedFilterOption)
             changeMessagesNrTextColor(currentPositionInList)
             changeMedalVisibility(currentPositionInList)
+        }
+    }
+
+    private fun showMessagesNrAccordingToSelectedFilterOption(item: UserStatistic, filterOption: UsersFilterOption) {
+        when (filterOption) {
+            UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST -> messagesNrTextView.text = item.sentMessages.toString()
+            UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST -> messagesNrTextView.text = item.receivedMessages.toString()
+            UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST -> messagesNrTextView.text = item.totalMessages.toString()
         }
     }
 
@@ -54,9 +62,10 @@ class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersA
             View.VISIBLE else View.GONE
     }
 
-    private fun loadUserPhoto(avatarUrl: String) {
+    private fun loadUserPhoto(avatarUrl: String?) {
         Glide.with(itemView.context)
-                .load(avatarUrl)
+                // TODO 14.08.2017 find a better placeholder
+                .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
                 .bitmapTransform(RoundedCornersTransformation(itemView.context,
                         itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt(),
                         USER_AVATAR_ROUNDED_CORNERS_MARGIN))

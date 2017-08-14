@@ -10,12 +10,13 @@ import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
-import com.hannesdorfmann.mosby3.mvp.MvpFragment
+import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
 import kotlinx.android.synthetic.main.fragment_channel_profile.*
 import kotlinx.android.synthetic.main.profile_header_layout.*
 
-class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelProfileContract.Presenter>(), ChannelProfileContract.View {
+class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.View,
+        ChannelProfileContract.Presenter>(), ChannelProfileContract.View {
 
     companion object {
         fun newInstance(channelStatistics: ChannelStatistics, mostActiveItemList: Array<ChannelStatistics>): ChannelProfileFragment {
@@ -29,8 +30,6 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
             return channelProfileFragment
         }
 
-        val TAG: String = ChannelProfileFragment::class.java.simpleName
-
         private const val KEY_CHANNEL = "key:channel"
         private const val KEY_CHANNEL_MOST_ACTIVE_LIST = "key:channel_list"
     }
@@ -42,7 +41,7 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
         return container?.inflate(R.layout.fragment_channel_profile)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments.apply {
             val channelStatistics: ChannelStatistics = getParcelable(KEY_CHANNEL)
@@ -51,6 +50,8 @@ class ChannelProfileFragment : MvpFragment<ChannelProfileContract.View, ChannelP
         }
         shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
     }
+
+    override fun getMenuResource() = R.menu.menu_fragment_search
 
     override fun showChannelInfo(totalMessages: Int, totalHere: Int, totalMentions: Int) {
         totalMessagesTextView.text = totalMessages.toString()

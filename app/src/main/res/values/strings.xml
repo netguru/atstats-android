@@ -10,10 +10,10 @@
     <string name="action_send">Send</string>
 
     // Menu tabs
-    <string name="tab_home">Home</string>
-    <string name="tab_channels">Channels</string>
-    <string name="tab_users">Users</string>
-    <string name="tab_profile">Profile</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_channels">Channels</string>
+    <string name="menu_users">Users</string>
+    <string name="menu_profile">Profile</string>
 
     <string name="login_error_msg">Authorization error</string>
 
@@ -27,12 +27,14 @@
 
     // Filter view
     <string name="filter_by">Filter by</string>
-    <!-- TODO 13.07.2017 Update strings when filtering logic will be working correctly.-->
-    <string name="channel_we_are_mentioned_the_most">TODO - Members number ASC</string> <!--Channel We Are Mentioned The Most -->
-    <string name="channel_we_are_most_active">TODO - Members number ASC</string> <!--Channel We Are Most Active -->
-    <string name="most_active_channel_filter">TODO - Members number DESC</string> <!-- Most Active channel -->
+    <string name="channel_we_are_mentioned_the_most">Channel we are mentioned the most</string>
+    <string name="channel_we_are_most_active">Channel we are most active</string>
+    <string name="most_active_channel_filter">Most active channel</string>
     <string name="categories">Categories</string>
     <string name="error_filter_option">Error while changing filter option</string>
+    <string name="person_we_write_most">Person who we write the most</string>
+    <string name="person_writes_to_us_most">Person who writes to us the most</string>
+    <string name="person_we_talk_most">Person who we talk the most</string>
 
     <string name="messages">messages</string>
     <string name="statistic_messages_sent">messages sent by you\non channels</string>
@@ -54,9 +56,6 @@
     <string name="welcome_back_mock">Welcome back\n@amarok</string>
     <string name="statistics">Statistics</string>
     <string name="users">Users</string>
-    <string name="person_we_write_most">Osoba do której najwięcej piszemy</string>
-    <string name="person_writes_to_us_most">Osoba która najwięcej do nas pisze</string>
-    <string name="person_we_talk_most">Osoba z którą najwięcej rozmawiamy</string>
     <string name="hashtag">#</string>
 
     // User statistics
@@ -73,6 +72,7 @@
     <string name="ta_da">Ta-da!</string>
     <string name="private_messages">Private messages</string>
     <string name="received_messages">Received messages</string>
+    <string name="sent_messages">Sent messages</string>
     <string name="total_sent_received">total (sent/received)</string>
     <string name="days_streak">days streak</string>
 </resources>

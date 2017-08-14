@@ -2,11 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--TODO 10.07.2017 Icons should be changed -->
-
     <item
         android:id="@+id/actionApply"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_done_white"
         android:title="@string/action_apply"
         app:showAsAction="ifRoom"/>
 </menu>

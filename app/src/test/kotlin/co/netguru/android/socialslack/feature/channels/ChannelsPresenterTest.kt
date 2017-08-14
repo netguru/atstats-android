@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.channels
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
+
 import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsDao
@@ -13,7 +14,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 
@@ -33,7 +33,7 @@ class ChannelsPresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val channeslDao = mock<ChannelsDao>()
+    val channelsDao = mock<ChannelsDao>()
     val filterController = mock<FilterController>()
     lateinit var view: ChannelsContract.View
 
@@ -51,14 +51,14 @@ class ChannelsPresenterTest {
         CHANNEL4.currentPositionInList = 4
 
         view = mock(ChannelsContract.View::class.java)
-        channelsPresenter = ChannelsPresenter(channeslDao, filterController)
+        channelsPresenter = ChannelsPresenter(channelsDao, filterController)
         channelsPresenter.attachView(view)
     }
 
     @Test
     fun `should show channels list for user when getting channels successful`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Single.just(listOf()))
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -68,7 +68,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show error when getting channels from server failed`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Single.error(Throwable()))
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.error(Throwable()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -78,7 +78,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show loading view when getting channels from server`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Single.just(listOf()))
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -88,7 +88,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should hide loading view when getting channels from server successful`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Single.just(listOf()))
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -98,7 +98,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should hide loading view when getting channels from server failed`() {
         //given
-        whenever(channeslDao.getAllChannels()).thenReturn(Single.error(Throwable()))
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.error(Throwable()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -110,7 +110,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.getCurrentFilterOption()
         //then
-        verify(view).setCurrentFilterOptionText(ArgumentMatchers.anyInt())
+        verify(view).setCurrentFilterOption(anyObject())
     }
 
     @Test
@@ -152,7 +152,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.sortRequestReceived(listOf())
         //then
-        verify(view).setCurrentFilterOptionText(ArgumentMatchers.anyInt())
+        verify(view).setCurrentFilterOption(anyObject())
     }
 
     @Test

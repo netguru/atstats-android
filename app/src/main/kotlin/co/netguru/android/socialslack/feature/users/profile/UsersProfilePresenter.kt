@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.feature.users.profile
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.profile.UsersProfileController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
@@ -24,7 +25,8 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
         compositeDisposable.clear()
     }
 
-    override fun prepareView(userStatisticsList: List<UserStatistic>, currentUserPosition: Int) {
+    override fun prepareView(userStatisticsList: List<UserStatistic>, currentUserPosition: Int,
+                             selectedFilterOption: UsersFilterOption) {
         view.showLoadingView()
         compositeDisposable += Flowable.fromIterable(userStatisticsList)
                 .flatMap {
@@ -35,7 +37,7 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {
-                            view.initView(it)
+                            view.initView(it, selectedFilterOption)
                             view.hideLoadingView()
                             view.scrollToUserPosition(currentUserPosition)
                         },

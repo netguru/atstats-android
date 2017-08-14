@@ -1,16 +1,18 @@
 package co.netguru.android.socialslack.feature.users.profile.adapter
 
+import android.support.annotation.StringRes
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.profile.Presence
-import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_users_profile.view.*
 import kotlinx.android.synthetic.main.profile_header_layout.view.*
 
-class UsersProfileViewHolder(parent: ViewGroup) : BaseViewHolder<UserStatistic>(
+class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_users_profile, parent, false)) {
 
     companion object {
@@ -29,10 +31,8 @@ class UsersProfileViewHolder(parent: ViewGroup) : BaseViewHolder<UserStatistic>(
     private val sentRecvdTextView = itemView.sentRecvdMsgTextView
     private val msgStreakTextView = itemView.msgStreakTextView
 
-    override fun bind(item: UserStatistic) {
-        //TODO 02.08.2017 title text should be set according to current filter option
-        titleTextView.text = itemView.resources.getText(R.string.person_we_write_most)
-        messagesDetailTextView.text = itemView.resources.getText(R.string.received_messages)
+    fun bind(item: UserStatistic, usersFilterOption: UsersFilterOption) {
+        setTextViewsAccordingToCurrentFilterOption(usersFilterOption)
 
         with(item) {
             totalMessagesTextView.text = totalMessages.toString()
@@ -46,6 +46,18 @@ class UsersProfileViewHolder(parent: ViewGroup) : BaseViewHolder<UserStatistic>(
 
             Glide.with(itemView.context).load(avatarUrl).into(userAvatar)
         }
+    }
 
+    private fun setTextViewsAccordingToCurrentFilterOption(usersFilterOption: UsersFilterOption) {
+        when (usersFilterOption) {
+            UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST -> setTextOnTextViews(R.string.person_we_write_most, R.string.sent_messages)
+            UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST -> setTextOnTextViews(R.string.person_writes_to_us_most, R.string.received_messages)
+            UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST -> setTextOnTextViews(R.string.person_we_talk_most, R.string.total_messages)
+        }
+    }
+
+    private fun setTextOnTextViews(@StringRes titleResId: Int, @StringRes messageDetailResId: Int) {
+        titleTextView.setText(titleResId)
+        messagesDetailTextView.setText(messageDetailResId)
     }
 }
