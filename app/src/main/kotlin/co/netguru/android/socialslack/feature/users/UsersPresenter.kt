@@ -53,7 +53,7 @@ class UsersPresenter @Inject constructor(private val usersController: UsersContr
         view.showLoadingView()
         compositeDisposable += usersController.getAllDirectChannelsStatistics()
                 .map {
-                    // Get only the first 20 user that we speak more with
+                    // Get only those users with messages in conversation
                     it.filter { it.messagesFromOtherUser + it.messagesFromUs > 0 }
                 }
                 .flatMap {

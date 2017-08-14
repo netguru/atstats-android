@@ -2,18 +2,13 @@ package co.netguru.android.socialslack.feature.home.users
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.direct.DirectChannelsController
 import co.netguru.android.socialslack.data.direct.DirectChannelsDao
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
 import co.netguru.android.socialslack.data.filter.directchannel.DirectChannelsComparator
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
-import co.netguru.android.socialslack.data.filter.users.UsersComparator
-import co.netguru.android.socialslack.data.filter.users.UsersPositionUpdater
 import co.netguru.android.socialslack.data.user.UsersController
-import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.model.UserStatistic.Companion.toStatisticsView
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
