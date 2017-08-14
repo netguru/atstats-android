@@ -45,19 +45,17 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
 
     private fun fetchAndStoreChannelsStatistics() = channelsController.getChannelsList()
             .flattenAsFlowable { it.filter { it.isCurrentUserMember } }
-            .flatMapSingle {
+            .flatMapCompletable {
                 channelsController.countChannelStatistics(it.id, it.name, MOCK_USER)
+                        .toCompletable()
             }
-            .toList()
-            .toCompletable()
             .compose(RxTransformers.applyCompletableIoSchedulers())
 
     private fun fetchAndStoreDirectChannelsStatistics() = directChannelsController.getDirectChannelsList()
             .flattenAsFlowable { it }
-            .flatMapSingle {
+            .flatMapCompletable {
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)
+                        .toCompletable()
             }
-            .toList()
-            .toCompletable()
             .compose(RxTransformers.applyCompletableIoSchedulers())
 }

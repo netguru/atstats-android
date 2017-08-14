@@ -58,27 +58,4 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
     private fun getMessagesInIOFromApi(channelId: String, latestTimestamp: String, oldestTimestamp: String) =
             directChannelsApi.getDirectMessagesWithUser(channelId, TimeAndCountUtil.MESSAGE_COUNT, latestTimestamp, oldestTimestamp)
                     .subscribeOn(Schedulers.io())
-
-    private fun sortWithComparatorAndReturn(channelStatistics: List<DirectChannelStatistics>?,
-                                            numberToShow: Int?,
-                                            comparator: (DirectChannelStatistics, DirectChannelStatistics) -> Int)
-            : Single<List<DirectChannelStatistics>> {
-
-        val singleChannelStatistics =
-                if (channelStatistics != null)
-                    Single.just(channelStatistics)
-                else
-                    directChannelsDao.getAllDirectChannels()
-
-        return singleChannelStatistics
-                .map {
-                    it.sortedWith(Comparator<DirectChannelStatistics> { o1, o2
-                        ->
-                        comparator(o1, o2)
-                    })
-                }
-                .map {
-                    if (numberToShow != null) it.subList(0, numberToShow) else it
-                }
-    }
 }

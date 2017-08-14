@@ -64,6 +64,7 @@ class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersA
 
     private fun loadUserPhoto(avatarUrl: String?) {
         Glide.with(itemView.context)
+                // TODO 14.08.2017 find a better placeholder
                 .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
                 .bitmapTransform(RoundedCornersTransformation(itemView.context,
                         itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt(),
