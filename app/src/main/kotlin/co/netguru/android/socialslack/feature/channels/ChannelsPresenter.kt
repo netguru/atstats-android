@@ -8,6 +8,7 @@ import co.netguru.android.socialslack.data.filter.channels.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.channels.ChannelsPositionUpdater
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.share.SharableListProvider
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -22,10 +23,6 @@ import javax.inject.Inject
 class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao,
                                             private val filterController: FilterController)
     : MvpNullObjectBasePresenter<ChannelsContract.View>(), ChannelsContract.Presenter {
-
-    companion object {
-        private const val MOST_ACTIVE_CHANNEL_NUMBER = 3
-    }
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -89,73 +86,18 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
                         })
     }
 
-    override fun onChannelClick(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>) {
-        compositeDisposable += filterController.getChannelsFilterOption()
-                        .flatMap { getProperStreamForCurrentFilterOption(it, channelStatistics, channelList) }
-                        .compose(RxTransformers.applySingleComputationSchedulers())
-                        .subscribeBy(
-                                onSuccess = { (channel, channelsList) ->
-                                    view.showChannelDetails(channel, channelsList)
-                                },
-                                onError = {
-                                    Timber.e(it, "Error while getting three most active channels")
-                                })
-    }
-
-    private fun getProperStreamForCurrentFilterOption(currentFilterOption: ChannelsFilterOption,
-                                                      channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>
-    ): Single<Pair<ChannelStatistics, List<ChannelStatistics>>> {
-
-        return if (currentFilterOption == ChannelsFilterOption.MOST_ACTIVE_CHANNEL) {
-            Single.just(Pair(channelStatistics, getMostActiveChannelsList(channelList, channelStatistics)))
-        } else {
-            //we should sort channels list if current filter option is different than most active channel
-            Observable.fromIterable(channelList)
-                    .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
-                    .doOnSuccess { ChannelsPositionUpdater.updateChannelsPositionInList(it, ChannelsFilterOption.MOST_ACTIVE_CHANNEL) }
-                    .map { getSelectedChannelFromUpdatedList(channelStatistics.channelId, it) }
-                    .doOnSuccess { Timber.d("Most active channels: ${it.second}") }
-        }
-    }
-
-    private fun getSelectedChannelFromUpdatedList(channelId: String, channelList: List<ChannelStatistics>
-    ): Pair<ChannelStatistics, List<ChannelStatistics>> {
-        channelList.filter { it.channelId == channelId }
-                .forEach { return Pair(it, getMostActiveChannelsList(channelList, it)) }
-
-        throw IllegalStateException("There is no channel with id: $channelId in channels list")
-    }
-
-    private fun getMostActiveChannelsList(channelList: List<ChannelStatistics>, channelStatistics: ChannelStatistics): List<ChannelStatistics> {
-        val lastMostActiveChannel = channelList[MOST_ACTIVE_CHANNEL_NUMBER - 1]
-        if (channelStatistics.currentPositionInList > lastMostActiveChannel.currentPositionInList) {
-            //if our channel current position is higher than last in list then just take proper sublist
-            return channelList.take(MOST_ACTIVE_CHANNEL_NUMBER)
-        } else {
-            val mostActiveChannels = channelList.take(MOST_ACTIVE_CHANNEL_NUMBER).toMutableList()
-            //selected channel can be inside most active channels list, but it's position can be wrong
-            //so we have to remove it from list
-            removeSelectedChannelFromChannelList(channelStatistics.channelId, mostActiveChannels)
-            // and then add to proper place
-            addSelectedChannelToProperPlace(channelStatistics, mostActiveChannels)
-
-            //if we don't remove anything from list, it can contains more than MOST_ACTIVE_CHANNEL_NUMBER
-            return mostActiveChannels.take(MOST_ACTIVE_CHANNEL_NUMBER).toList()
-        }
-    }
-
-    private fun removeSelectedChannelFromChannelList(channelId: String, channelList: MutableList<ChannelStatistics>) {
-        val channel = channelList.find { it.channelId == channelId }
-        channelList.remove(channel)
-    }
-
-    private fun addSelectedChannelToProperPlace(channelStatistics: ChannelStatistics, channelList: MutableList<ChannelStatistics>) {
-        for (i in 0.until(channelList.size)) {
-            if (channelList[i].currentPositionInList >= channelStatistics.currentPositionInList) {
-                channelList.add(i, channelStatistics)
-                break
-            }
-        }
+    override fun onChannelClick(selectedItemPosition: Int, channelList: List<ChannelStatistics>) {
+        compositeDisposable += Single.just(channelList)
+                .map { SharableListProvider.getSharableList(selectedItemPosition, channelList) }
+                .map { it.filterIsInstance(ChannelStatistics::class.java) }
+                .compose(RxTransformers.applySingleIoSchedulers())
+                .subscribeBy(
+                        onSuccess = {
+                            view.showChannelDetails(channelList[selectedItemPosition], it)
+                        },
+                        onError = {
+                            Timber.e(it, "Error while getting sharable channels list")
+                        })
     }
 
     private fun sortChannelsList(channelList: List<ChannelStatistics>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<ChannelStatistics>, ChannelsFilterOption>> {

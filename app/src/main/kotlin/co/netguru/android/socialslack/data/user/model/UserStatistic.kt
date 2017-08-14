@@ -43,4 +43,8 @@ data class UserStatistic(val id: String,
     }
 
     override fun describeContents() = 0
+
+    override fun id() = id
+
+    override fun currentPositionInList() = currentPositionInList
 }

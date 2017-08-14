@@ -32,7 +32,7 @@ interface ChannelsContract {
 
         fun filterButtonClicked()
 
-        fun onChannelClick(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>)
+        fun onChannelClick(selectedItemPosition: Int, channelList: List<ChannelStatistics>)
 
         fun sortRequestReceived(channelList: List<ChannelStatistics>)
     }

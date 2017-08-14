@@ -10,7 +10,7 @@ import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import kotlinx.android.synthetic.main.item_channels.view.*
 
-class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: ChannelClickListener? = null)
+class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: ChannelsAdapter.ChannelClickListener? = null)
     : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
 
     companion object {
@@ -25,7 +25,7 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
     private lateinit var item: ChannelStatistics
 
     init {
-        itemView.setOnClickListener { onChannelClickListener?.onChannelClick(item) }
+        itemView.setOnClickListener { onChannelClickListener?.onChannelClick(adapterPosition) }
     }
 
     fun bind(item: ChannelStatistics, filterOption: ChannelsFilterOption) {
@@ -55,9 +55,5 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
     private fun changeMessagesNrTextColor(channelsPositionInList: Int) {
         channelsMessagesNrTextView.setTextColor(ContextCompat.getColor(itemView.context,
                 if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primary))
-    }
-
-    interface ChannelClickListener {
-        fun onChannelClick(channelStatistics: ChannelStatistics)
     }
 }

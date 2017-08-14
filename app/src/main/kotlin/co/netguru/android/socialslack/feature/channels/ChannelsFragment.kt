@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_channels.*
 
 class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, ChannelsContract.Presenter>(),
-        ChannelsContract.View, ChannelsViewHolder.ChannelClickListener {
+        ChannelsContract.View, ChannelsAdapter.ChannelClickListener {
 
     companion object {
         fun newInstance() = ChannelsFragment()
@@ -95,8 +95,8 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
         }
     }
 
-    override fun onChannelClick(channelStatistics: ChannelStatistics) {
-        presenter.onChannelClick(channelStatistics, adapter.channelsList)
+    override fun onChannelClick(clickedItemPosition: Int) {
+        presenter.onChannelClick(clickedItemPosition, adapter.channelsList)
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
