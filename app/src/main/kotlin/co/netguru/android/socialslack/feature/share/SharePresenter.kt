@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -18,8 +19,6 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
 
     companion object {
         private const val CHANNEL_PREFIX = "#"
-        private const val MOST_ACTIVE_ITEM_POSITION = 1
-        private const val NUMBER_OF_MOST_ACTIVE_ITEMS = 3
     }
 
     private val compositeDisposable = CompositeDisposable()
@@ -31,11 +30,13 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
         compositeDisposable.clear()
     }
 
-    override fun <T> prepareView(selectedItem: T, mostActiveItemList: List<T>) {
+    override fun <T : Any> prepareView(selectedItem: T, mostActiveItemList: List<T>) {
         if (selectedItem is ChannelStatistics) {
             prepareChannelView(selectedItem, mostActiveItemList.filterIsInstance(ChannelStatistics::class.java))
+        } else if (selectedItem is UserStatistic) {
+            prepareUserView(selectedItem, mostActiveItemList.filterIsInstance(UserStatistic::class.java))
         } else {
-            Timber.d("UserStatistics Reveiced!")
+            throw IllegalStateException("There is no action for selectedItem type: ${selectedItem::class.java}")
         }
     }
 
@@ -61,25 +62,51 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
 
     private fun prepareChannelView(selectedChannel: ChannelStatistics, mostActiveChannelsList: List<ChannelStatistics>) {
         currentChannelName = selectedChannel.channelName
-        view.initShareChannelView(selectedChannel, mostActiveChannelsList)
+        view.initShareChannelView(mostActiveChannelsList)
         view.showChannelName(CHANNEL_PREFIX + selectedChannel.channelName)
 
-        val lastMostActiveItem = mostActiveChannelsList[NUMBER_OF_MOST_ACTIVE_ITEMS - 1]
-        checkSelectedChannelPosition(selectedChannel, lastMostActiveItem.currentPositionInList)
+        checkSelectedChannelPosition(selectedChannel, mostActiveChannelsList.last().currentPositionInList)
     }
 
-    private fun checkSelectedChannelPosition(selectedChannel: ChannelStatistics, lastMostActiveChannelPosition: Int) {
-        if (selectedChannel.currentPositionInList == MOST_ACTIVE_ITEM_POSITION) {
+    private fun checkSelectedChannelPosition(selectedChannel: ChannelStatistics, lastChannelPosition: Int) {
+        if (isOnMostActiveItemPosition(selectedChannel.currentPositionInList, lastChannelPosition)) {
             view.showSelectedChannelMostActiveText()
         } else {
             view.showSelectedChannelTalkMoreText()
-            checkShouldShowExtraItem(selectedChannel, lastMostActiveChannelPosition)
+            checkShouldShowExtraChannelItem(selectedChannel, lastChannelPosition)
         }
     }
 
-    private fun checkShouldShowExtraItem(selectedChannel: ChannelStatistics, lastMostActiveChannelPosition: Int) {
-        if (selectedChannel.currentPositionInList > lastMostActiveChannelPosition) {
+    private fun checkShouldShowExtraChannelItem(selectedChannel: ChannelStatistics, lastChannelPosition: Int) {
+        if (shouldShowExtraItem(selectedChannel.currentPositionInList, lastChannelPosition)) {
             view.showSelectedChannelOnLastPosition(selectedChannel)
         }
     }
+
+    private fun prepareUserView(selectedUser: UserStatistic, usersList: List<UserStatistic>) {
+        currentChannelName = selectedUser.id
+        view.initShareUsersView(usersList)
+        view.showChannelName(selectedUser.name)
+
+        checkSelectedUserPosition(selectedUser, usersList.last().currentPositionInList)
+    }
+
+    private fun checkSelectedUserPosition(selectedUser: UserStatistic, lastUserPosition: Int) {
+        if (isOnMostActiveItemPosition(selectedUser.currentPositionInList, lastUserPosition)) {
+            view.showSelectedUserMostActiveText()
+        } else {
+            view.showSelectedUserTalkMoreText()
+            checkShouldShowExtraUserItem(selectedUser, lastUserPosition)
+        }
+    }
+
+    private fun checkShouldShowExtraUserItem(selectedUser: UserStatistic, lastUserPosition: Int) {
+        if (shouldShowExtraItem(selectedUser.currentPositionInList, lastUserPosition)) {
+            view.showSelectedUserOnLastPosition(selectedUser)
+        }
+    }
+
+    private fun shouldShowExtraItem(selectedItemPosition: Int, lastItemPosition: Int) = selectedItemPosition > lastItemPosition
+
+    private fun isOnMostActiveItemPosition(selectedItemPosition: Int, lastItemPosition: Int) = selectedItemPosition == lastItemPosition
 }

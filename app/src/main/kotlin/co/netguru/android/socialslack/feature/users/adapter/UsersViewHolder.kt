@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.feature.users.adapter
 
+import android.support.annotation.LayoutRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,8 +13,9 @@ import com.bumptech.glide.Glide
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.item_users.view.*
 
-class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersAdapter.OnUserClickListener)
-    : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_users, parent, false)) {
+class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
+                      private val onUserClickListener: UsersAdapter.OnUserClickListener? = null)
+    : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)) {
 
     companion object {
         private const val POSITION_FIRST = 1
@@ -29,7 +31,7 @@ class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersA
     private val userMedalImageView = itemView.userMedalImageView
 
     init {
-        itemView.setOnClickListener { onUserClickListener.onUserClick(adapterPosition) }
+        itemView.setOnClickListener { onUserClickListener?.onUserClick(adapterPosition) }
     }
 
     internal fun bind(item: UserStatistic, selectedFilterOption: UsersFilterOption) {
@@ -54,7 +56,7 @@ class UsersViewHolder(parent: ViewGroup, private val onUserClickListener: UsersA
 
     private fun changeMessagesNrTextColor(channelsPositionInList: Int) {
         messagesNrTextView.setTextColor(ContextCompat.getColor(itemView.context,
-                if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primary))
+                if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primaryDark))
     }
 
     private fun changeMedalVisibility(channelsPositionInList: Int) {
