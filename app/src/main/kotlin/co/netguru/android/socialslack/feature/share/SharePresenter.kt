@@ -28,8 +28,8 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
 
     private val compositeDisposable = CompositeDisposable()
 
-    private lateinit var channelId: String
-    private lateinit var channelName: String
+    private var channelId: String = ""
+    private var channelName: String = ""
 
     override fun detachView(retainInstance: Boolean) {
         super.detachView(retainInstance)
