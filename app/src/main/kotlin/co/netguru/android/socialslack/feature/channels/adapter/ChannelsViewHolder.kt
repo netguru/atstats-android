@@ -46,6 +46,6 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
 
     private fun changeMessagesNrTextColor(channelsPositionInList: Int) {
         channelsMessagesNrTextView.setTextColor(ContextCompat.getColor(itemView.context,
-                if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primary))
+                if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primaryDark))
     }
 }
