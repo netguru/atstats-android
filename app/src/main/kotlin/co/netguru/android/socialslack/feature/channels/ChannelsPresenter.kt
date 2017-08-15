@@ -90,10 +90,12 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
         compositeDisposable += Single.just(channelList)
                 .map { SharableListProvider.getSharableList(selectedItemPosition, channelList) }
                 .map { it.filterIsInstance(ChannelStatistics::class.java) }
+                .zipWith(filterController.getChannelsFilterOption())
+                { channelsList, filterOption -> Pair(channelsList, filterOption) }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
-                        onSuccess = {
-                            view.showChannelDetails(channelList[selectedItemPosition], it)
+                        onSuccess = { (channelsList, filterOption) ->
+                            view.showChannelDetails(channelList[selectedItemPosition], channelsList, filterOption)
                         },
                         onError = {
                             Timber.e(it, "Error while getting sharable channels list")

@@ -1,3 +1,5 @@
 package co.netguru.android.socialslack.data.filter.model
 
-interface Filter
+import java.io.Serializable
+
+interface Filter : Serializable

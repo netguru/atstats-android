@@ -7,7 +7,7 @@ data class DirectChannelStatisticsCount(var otherUserId: String,
 
     fun accept(directMessage: DirectMessage?): DirectChannelStatisticsCount {
         directMessage?.apply {
-            user?.let {
+            user.let {
                 if (user == otherUserId) messagesFromOtherUser++ else messagesFromUs++
             }
         }

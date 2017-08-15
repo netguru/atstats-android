@@ -10,18 +10,22 @@ object SharableListProvider {
 
         //if our item current position is lower or equal than last in list we should check if sharable list contains it
         if (selectedItem.currentPositionInList() <= sharableList.last().currentPositionInList()) {
-            addSelectedItemToProperPositionInSharableList(selectedItem, sharableList.toMutableList())
+            return getSharableListWithSelectedItemOnProperPosition(selectedItem, sharableList.toMutableList())
         }
 
-        //if we won't remove anything from the list, it can contain more than SHARABLE_ITEM_COUNT objects
-        return sharableList.take(SHARABLE_ITEM_COUNT)
+        return sharableList
     }
 
-    private fun addSelectedItemToProperPositionInSharableList(selectedItem: Sharable, itemList: MutableList<Sharable>) {
+    private fun getSharableListWithSelectedItemOnProperPosition(selectedItem: Sharable,
+                                                                itemList: MutableList<Sharable>)
+            : List<Sharable> {
         //selected item can be inside sharable list, but it's position can be wrong so we have to remove it from list
         removeSelectedSharableFromList(selectedItem.id(), itemList)
         // and then add to proper place
         addSelectedItemToProperPlace(selectedItem, itemList)
+
+        //if we won't remove anything from the list, it can contain more than SHARABLE_ITEM_COUNT objects
+        return itemList.take(SHARABLE_ITEM_COUNT)
     }
 
     private fun removeSelectedSharableFromList(selectedItemId: String, sharableList: MutableList<Sharable>) {

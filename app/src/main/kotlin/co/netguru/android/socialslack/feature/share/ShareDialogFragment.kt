@@ -10,8 +10,11 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.channels.ChannelsMessagesNumberProvider
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
+import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.share.Sharable
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
@@ -29,13 +32,14 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         ShareContract.View {
 
     companion object {
-        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>): ShareDialogFragment
+        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>, filter: Filter): ShareDialogFragment
                 where T : Parcelable, T : Sharable {
 
             val fragment = ShareDialogFragment()
             val bundle = Bundle()
             bundle.putParcelable(SELECTED_ITEM_KEY, selectedItem)
             bundle.putParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY, mostActiveItemList)
+            bundle.putSerializable(FILTER_OPTION, filter)
 
             fragment.arguments = bundle
             return fragment
@@ -45,9 +49,10 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
 
         private const val SELECTED_ITEM_KEY = "key:selected_item"
         private const val MOST_ACTIVE_ITEM_LIST_KEY = "key:most_active_item_list"
+        private const val FILTER_OPTION = "key:filter_option"
 
-            private const val USERNAME_PREFIX = "@"
-            private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
+        private const val USERNAME_PREFIX = "@"
+        private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
 
     }
 
@@ -68,18 +73,19 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
             presenter.onSendButtonClick(ScreenShotUtils.takeScreenShotByteArray(shareRootView))
         }
         presenter.prepareView(arguments.getParcelable(SELECTED_ITEM_KEY),
-                arguments.getParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY).toList())
+                arguments.getParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY).toList(),
+                arguments.getSerializable(FILTER_OPTION) as Filter)
     }
 
     override fun createPresenter() = component.getPresenter()
 
-    override fun initShareChannelView(channelsList: List<ChannelStatistics>) {
-        val adapter = ShareChannelAdapter(channelsList, ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
+    override fun initShareChannelView(channelsList: List<ChannelStatistics>, filterOption: ChannelsFilterOption) {
+        val adapter = ShareChannelAdapter(channelsList, filterOption)
         shareRecyclerView.adapter = adapter
     }
 
-    override fun initShareUsersView(userList: List<UserStatistic>) {
-        val adapter = ShareUserAdapter(userList, UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST)
+    override fun initShareUsersView(userList: List<UserStatistic>, filterOption: UsersFilterOption) {
+        val adapter = ShareUserAdapter(userList, filterOption)
         shareRecyclerView.adapter = adapter
     }
 
@@ -96,10 +102,10 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         shareStatusTextView.text = resources.getString(R.string.share_talk_more)
     }
 
-    override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics) {
+    override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
         shareMoreVertImage.visibility = View.VISIBLE
         shareLastChannelContainer.visibility = View.VISIBLE
-        showLastChannelData(channelStatistics)
+        showLastChannelData(channelStatistics, filterOption)
     }
 
     override fun showSelectedUserMostActiveText() {
@@ -110,10 +116,10 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         shareStatusTextView.text = resources.getString(R.string.share_talk_more)
     }
 
-    override fun showSelectedUserOnLastPosition(user: UserStatistic) {
+    override fun showSelectedUserOnLastPosition(user: UserStatistic, filterOption: UsersFilterOption) {
         shareMoreVertImage.visibility = View.VISIBLE
         shareLastUserContainer.visibility = View.VISIBLE
-        showLastUserData(user)
+        showLastUserData(user, filterOption)
     }
 
     override fun showShareConfirmationDialog(itemName: String) {
@@ -140,20 +146,22 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         Snackbar.make(shareRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun showLastChannelData(channelStatistics: ChannelStatistics) {
+    private fun showLastChannelData(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
+        shareLastChannel.itemChannelsMessagesNrTextView.text = ChannelsMessagesNumberProvider
+                .getProperMessagesNumber(filterOption, channelStatistics).toString()
+
         with(channelStatistics) {
             shareLastChannel.itemChannelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
             shareLastChannel.itemChannelsNameTextView.text = channelName
-            shareLastChannel.itemChannelsMessagesNrTextView.text = messageCount.toString()
         }
     }
 
-    private fun showLastUserData(user: UserStatistic) {
+    private fun showLastUserData(user: UserStatistic, filterOption: UsersFilterOption) {
+        shareLastUser.messagesNrTextView.text = UsersMessagesNumberProvider.getProperMessagesNumber(filterOption, user).toString()
         with(user) {
             shareLastUser.placeNrTextView.text = (currentPositionInList.toString() + '.')
             shareLastUser.userRealNameTextView.text = name
             shareLastUser.usernameTextView.text = (USERNAME_PREFIX + username)
-            shareLastUser.messagesNrTextView.text = user.totalMessages.toString()
             loadUserPhoto(user.avatarUrl)
         }
     }

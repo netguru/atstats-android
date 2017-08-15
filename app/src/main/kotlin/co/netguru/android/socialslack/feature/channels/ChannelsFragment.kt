@@ -10,7 +10,6 @@ import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
-import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
@@ -85,11 +84,11 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
         channelLoadingView.visibility = View.GONE
     }
 
-    override fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>) {
+    override fun showChannelDetails(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>, filterOption: ChannelsFilterOption) {
         if (parentFragment is BaseFragmentWithNestedFragment) {
             val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
             fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentChannelRootContainer,
-                    ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
+                    ChannelProfileFragment.newInstance(channelStatistics, channelList.toTypedArray(), filterOption))
         } else {
             throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
         }

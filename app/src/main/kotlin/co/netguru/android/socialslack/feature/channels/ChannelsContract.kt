@@ -22,7 +22,7 @@ interface ChannelsContract {
 
         fun hideLoadingView()
 
-        fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>)
+        fun showChannelDetails(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>, filterOption: ChannelsFilterOption)
     }
 
     interface Presenter : MvpPresenter<View> {

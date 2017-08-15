@@ -85,7 +85,8 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
     }
 
     override fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>) {
-        ShareDialogFragment.newInstance(clickedItem, usersList.toTypedArray()).show(fragmentManager, ShareDialogFragment.TAG)
+        val filterOption = arguments.getSerializable(SELECTED_FILTER_OPTION) as UsersFilterOption
+        ShareDialogFragment.newInstance(clickedItem, usersList.toTypedArray(), filterOption).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
     private fun initRecyclerView() {
