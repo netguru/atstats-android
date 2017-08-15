@@ -46,12 +46,12 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.actionApply -> {
                 presenter.filterOptionChanged()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

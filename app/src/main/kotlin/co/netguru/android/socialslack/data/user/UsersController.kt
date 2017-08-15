@@ -28,7 +28,6 @@ class UsersController @Inject constructor(private val usersApi: UsersApi,
                         getUserInfo(userId).toFlowable()
                                 .map {
                                     it.toStatisticsView(
-                                            messagesFromOtherUser + messagesFromUs,
                                             messagesFromUs,
                                             messagesFromOtherUser
                                     )

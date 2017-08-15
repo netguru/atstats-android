@@ -1,17 +1,19 @@
 package co.netguru.android.socialslack.feature.channels.adapter
 
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.channels.ChannelsMessagesNumberProvider
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.filter.model.Filter
+import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import kotlinx.android.synthetic.main.item_channels.view.*
 
 class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: ChannelsAdapter.ChannelClickListener? = null)
-    : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
+    : BaseViewHolder<ChannelStatistics>(LayoutInflater.from(parent.context).inflate(R.layout.item_channels, parent, false)) {
 
     companion object {
         private const val POSITION_FIRST = 1
@@ -22,28 +24,18 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
     private val channelsMessagesNrTextView = itemView.itemChannelsMessagesNrTextView
     private val channelsRankImageView = itemView.itemChannelsRankImageView
 
-    private lateinit var item: ChannelStatistics
-
     init {
         itemView.setOnClickListener { onChannelClickListener?.onChannelClick(adapterPosition) }
     }
 
-    fun bind(item: ChannelStatistics, filterOption: ChannelsFilterOption) {
-        this.item = item
-        showMessagesNrAccordingToSelectedFilterOption(item, filterOption)
+    override fun bind(item: ChannelStatistics, filter: Filter) {
+        val channelsFilter = filter as ChannelsFilterOption
+        channelsMessagesNrTextView.text = ChannelsMessagesNumberProvider.getProperMessagesNumber(channelsFilter, item).toString()
         with(item) {
             channelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
             channelsNameTextView.text = channelName
             changeRankViewVisibility(currentPositionInList)
             changeMessagesNrTextColor(currentPositionInList)
-        }
-    }
-
-    private fun showMessagesNrAccordingToSelectedFilterOption(item: ChannelStatistics, filterOption: ChannelsFilterOption) {
-        when (filterOption) {
-            ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> channelsMessagesNrTextView.text = item.messageCount.toString()
-            ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST -> channelsMessagesNrTextView.text = item.mentionsCount.toString()
-            ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE-> channelsMessagesNrTextView.text = item.myMessageCount.toString()
         }
     }
 
