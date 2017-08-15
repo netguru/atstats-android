@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -18,6 +19,7 @@ class SharePresenterTest {
         private val CHANNEL2 = ChannelStatistics("1", "", 5, 3, 3, 3)
         private val CHANNEL3 = ChannelStatistics("1", "", 5, 3, 3, 3)
         private val CHANNEL4 = ChannelStatistics("1", "", 5, 3, 3, 3)
+        private val CHANNELS_FILTER_OPTION = ChannelsFilterOption.MOST_ACTIVE_CHANNEL
     }
 
     @Rule
@@ -44,7 +46,7 @@ class SharePresenterTest {
     @Test
     fun `should init channel view when preparing view for channel`() {
         //when
-        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), CHANNELS_FILTER_OPTION)
         //then
         verify(view).initShareChannelView(anyObject(), anyObject())
     }
@@ -52,7 +54,7 @@ class SharePresenterTest {
     @Test
     fun `should show channel name when preparing view for channel`() {
         //when
-        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), CHANNELS_FILTER_OPTION)
         //then
         verify(view).showChannelName(anyString())
     }
@@ -60,7 +62,7 @@ class SharePresenterTest {
     @Test
     fun `should show selected channel most active text when selected channel is most active`() {
         //when
-        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), CHANNELS_FILTER_OPTION)
         //then
         verify(view).showSelectedChannelMostActiveText()
     }
@@ -68,7 +70,7 @@ class SharePresenterTest {
     @Test
     fun `should show selected channel talk more text when selected channel is not most active`() {
         //when
-        sharePresenter.prepareView(CHANNEL2, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+        sharePresenter.prepareView(CHANNEL2, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), CHANNELS_FILTER_OPTION)
         //then
         verify(view).showSelectedChannelTalkMoreText()
     }
@@ -76,17 +78,17 @@ class SharePresenterTest {
     @Test
     fun `should show extra item when selected channel position is greater than last most active channel position`() {
         //when
-        sharePresenter.prepareView(CHANNEL4, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        sharePresenter.prepareView(CHANNEL4, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), CHANNELS_FILTER_OPTION)
         //then
-        verify(view).showSelectedChannelOnLastPosition(anyObject())
+        verify(view).showSelectedChannelOnLastPosition(anyObject(), anyObject())
     }
 
     @Test
     fun `should not show extra item when selected channel position is in most active channels list`() {
         //when
-        sharePresenter.prepareView(CHANNEL3, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        sharePresenter.prepareView(CHANNEL3, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), CHANNELS_FILTER_OPTION)
         //then
-        verify(view, never()).showSelectedChannelOnLastPosition(anyObject())
+        verify(view, never()).showSelectedChannelOnLastPosition(anyObject(), anyObject())
     }
 
     @Test

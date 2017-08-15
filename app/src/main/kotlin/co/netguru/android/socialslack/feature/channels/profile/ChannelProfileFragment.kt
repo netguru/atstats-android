@@ -10,7 +10,6 @@ import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
-import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*

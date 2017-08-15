@@ -97,7 +97,7 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
         channelId = selectedUser.id
         channelName = selectedUser.name
         view.initShareUsersView(usersList, filterOption)
-        view.showChannelName(selectedUser.firstName)
+        view.showChannelName(selectedUser.name)
 
         checkSelectedUserPosition(selectedUser, usersList.last().currentPositionInList, filterOption)
     }
