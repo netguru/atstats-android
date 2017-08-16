@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_users.*
@@ -31,19 +32,20 @@ internal class HomeUsersFragment : MvpFragment<HomeUsersContract.View, HomeUsers
     }
 
     override fun setUsersWeWriteMost(users: List<UserStatistic>) {
-        initRecyclerWithData(usersRecycler1, users)
+        initRecyclerWithData(usersRecycler1, users, UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST)
     }
 
     override fun setUsersThatWriteToUsTheMost(users: List<UserStatistic>) {
-        initRecyclerWithData(usersRecycler2, users)
+        initRecyclerWithData(usersRecycler2, users, UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST)
     }
 
     override fun setUsersWeTalkTheMost(users: List<UserStatistic>) {
-        initRecyclerWithData(usersRecycler3, users)
+        initRecyclerWithData(usersRecycler3, users, UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST)
     }
 
-    private fun initRecyclerWithData(recyclerView: RecyclerView, userStatisticList: List<UserStatistic>) {
-        val usersAdapter = HomeUsersAdapter()
+    private fun initRecyclerWithData(recyclerView: RecyclerView, userStatisticList: List<UserStatistic>,
+                                     filterOption: UsersFilterOption) {
+        val usersAdapter = HomeUsersAdapter(filterOption)
         usersAdapter.addUsers(userStatisticList)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = usersAdapter

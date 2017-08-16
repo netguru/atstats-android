@@ -1,19 +1,22 @@
 package co.netguru.android.socialslack.feature.users.profile.adapter
 
 import android.support.annotation.StringRes
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
+import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.profile.Presence
+import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_users_profile.view.*
 import kotlinx.android.synthetic.main.profile_header_layout.view.*
 
-class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_users_profile, parent, false)) {
+internal class UsersProfileViewHolder(parent: ViewGroup,
+                                      private val onShareButtonClickListener: OnShareButtonClickListener)
+    : BaseViewHolder<UserStatistic>(LayoutInflater.from(parent.context).inflate(R.layout.item_users_profile, parent, false)) {
 
     companion object {
         private const val USERNAME_PREFIX = "@"
@@ -30,12 +33,18 @@ class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val totalMsgTextView = itemView.totalMsgTextView
     private val sentRecvdTextView = itemView.sentRecvdMsgTextView
     private val msgStreakTextView = itemView.msgStreakTextView
+    private val shareButton = itemView.shareSendButton
 
-    fun bind(item: UserStatistic, usersFilterOption: UsersFilterOption) {
-        setTextViewsAccordingToCurrentFilterOption(usersFilterOption)
+    init {
+        shareButton.setOnClickListener { onShareButtonClickListener.onShareButtonClicked(adapterPosition) }
+    }
+
+    override fun bind(item: UserStatistic, filter: Filter) {
+        val usersFilter = filter as UsersFilterOption
+        setTextViewsAccordingToCurrentFilterOption(usersFilter)
+        totalMessagesTextView.text = UsersMessagesNumberProvider.getProperMessagesNumber(usersFilter, item).toString()
 
         with(item) {
-            totalMessagesTextView.text = totalMessages.toString()
             userFirstLastNameTextView.text = name
             usernameTextView.text = (USERNAME_PREFIX + username)
             totalMsgTextView.text = totalMessages.toString()
@@ -59,5 +68,9 @@ class UsersProfileViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private fun setTextOnTextViews(@StringRes titleResId: Int, @StringRes messageDetailResId: Int) {
         titleTextView.setText(titleResId)
         messagesDetailTextView.setText(messageDetailResId)
+    }
+
+    internal interface OnShareButtonClickListener {
+        fun onShareButtonClicked(itemPosition: Int)
     }
 }

@@ -27,6 +27,7 @@ class ChannelsPresenterTest {
         private val CHANNEL3 = ChannelStatistics("3", "", 4, 5, 5, 5)
         private val CHANNEL33 = ChannelStatistics("33", "", 4, 5, 5, 5)
         private val CHANNEL4 = ChannelStatistics("4", "", 2, 5, 5, 5)
+        private val MOCKED_FILTER_OPTION = ChannelsFilterOption.MOST_ACTIVE_CHANNEL
     }
 
     @Rule
@@ -41,7 +42,7 @@ class ChannelsPresenterTest {
 
     @Before
     fun setUp() {
-        whenever(filterController.getChannelsFilterOption()).thenReturn(Single.just(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
+        whenever(filterController.getChannelsFilterOption()).thenReturn(Single.just(MOCKED_FILTER_OPTION))
 
         CHANNEL_MOST_ACTIVE.currentPositionInList = 1
         CHANNEL1.currentPositionInList = 1
@@ -194,7 +195,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should get channels filter option when on channel click`() {
         //when
-        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
         //then
         verify(filterController).getChannelsFilterOption()
     }
@@ -202,43 +203,33 @@ class ChannelsPresenterTest {
     @Test
     fun `should show channel details when getting most active channels successful`() {
         //when
-        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
         //then
-        verify(view).showChannelDetails(anyObject(), anyObject())
+        verify(view).showChannelDetails(anyObject(), anyObject(), anyObject())
     }
 
     @Test
     fun `should show selected channel details with 3 top channels from list when current filter option is most active`() {
         //when
-        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
         //then
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
-    }
-
-    @Test
-    fun `should sort most active channels list when current filter option is not most active`() {
-        //given
-        whenever(filterController.getChannelsFilterOption()).thenReturn(Single.just(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE))
-        //when
-        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL4, CHANNEL3, CHANNEL2, CHANNEL_MOST_ACTIVE))
-        //verify
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3))
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), MOCKED_FILTER_OPTION)
     }
 
     @Test
     fun `should change selected channel position in most active list when other channel has the same messages number and it's position is higher`() {
         //when
-        channelsPresenter.onChannelClick(CHANNEL_MOST_ACTIVE, listOf(CHANNEL1, CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        channelsPresenter.onChannelClick(1, listOf(CHANNEL1, CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
         //verify
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL1, CHANNEL2))
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL1, CHANNEL2), MOCKED_FILTER_OPTION)
     }
 
     @Test
     fun `should add selected channel to most active list when missing and last item from list has the same current position number`() {
         //when
-        channelsPresenter.onChannelClick(CHANNEL33, listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4))
+        channelsPresenter.onChannelClick(4, listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4, CHANNEL33))
         //verify
-        verify(view).showChannelDetails(CHANNEL33, listOf(CHANNEL1, CHANNEL2, CHANNEL33))
+        verify(view).showChannelDetails(CHANNEL33, listOf(CHANNEL1, CHANNEL2, CHANNEL33), MOCKED_FILTER_OPTION)
     }
 
     @After

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/users_item_height"
+    android:layout_height="@dimen/users_share_item_height"
     android:padding="@dimen/margin_small">
 
     <TextView
@@ -16,8 +16,8 @@
 
     <FrameLayout
         android:id="@+id/userAvatarContainer"
-        android:layout_width="@dimen/item_user_avatar_container_size"
-        android:layout_height="@dimen/item_user_avatar_container_size"
+        android:layout_width="@dimen/item_user_share_avatar_container_size"
+        android:layout_height="@dimen/item_user_share_avatar_container_size"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/placeNrTextView">
 

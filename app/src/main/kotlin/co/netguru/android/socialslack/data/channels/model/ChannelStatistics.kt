@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.data.channels.model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
@@ -14,7 +15,7 @@ data class ChannelStatistics(@PrimaryKey @ColumnInfo(name = "channel_id") var ch
                              var messageCount: Int,
                              var hereCount: Int,
                              var mentionsCount: Int,
-                             var myMessageCount: Int):Parcelable, Sharable {
+                             var myMessageCount: Int) : Parcelable, Sharable {
 
     var currentPositionInList: Int = 0
 
@@ -27,4 +28,10 @@ data class ChannelStatistics(@PrimaryKey @ColumnInfo(name = "channel_id") var ch
     }
 
     override fun describeContents() = 0
+
+    @Ignore
+    override fun id() = channelId
+
+    @Ignore
+    override fun currentPositionInList() = currentPositionInList
 }

@@ -41,8 +41,9 @@
             android:id="@+id/channelsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_marginStart="@dimen/margin_default"
+            android:clipToPadding="false"
+            android:paddingEnd="@dimen/margin_default"
+            android:paddingStart="@dimen/margin_default"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
         <ProgressBar
