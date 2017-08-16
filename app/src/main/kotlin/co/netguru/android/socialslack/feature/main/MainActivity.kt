@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
 import co.netguru.android.socialslack.feature.home.HomeFragment
+import co.netguru.android.socialslack.feature.profile.ProfileFragment
 import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_home -> replaceFragmentInMainContainer(HomeFragment.newInstance())
                 R.id.menu_channels -> replaceFragmentInMainContainer(ChannelsRootFragment.newInstance())
                 R.id.menu_users -> replaceFragmentInMainContainer(UsersRootFragment.newInstance())
-                R.id.menu_profile -> replaceFragmentInMainContainer(BlankFragment.newInstance())
+                R.id.menu_profile -> replaceFragmentInMainContainer(ProfileFragment.newInstance())
                 else -> throw IllegalStateException("No action specified for item: $it")
             }
         }

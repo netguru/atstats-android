@@ -6,6 +6,7 @@ import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileCom
 import co.netguru.android.socialslack.feature.fetch.FetchComponent
 import co.netguru.android.socialslack.feature.filter.FilterComponent
 import co.netguru.android.socialslack.feature.home.users.HomeUsersComponent
+import co.netguru.android.socialslack.feature.profile.ProfileComponent
 import co.netguru.android.socialslack.feature.share.ShareComponent
 import co.netguru.android.socialslack.feature.users.UsersComponent
 import co.netguru.android.socialslack.feature.users.profile.UsersProfileComponent
@@ -31,6 +32,8 @@ interface UserComponent {
     fun plusUsersComponent(): UsersComponent
 
     fun plusUsersProfileComponent(): UsersProfileComponent
+
+    fun plusProfileComponent(): ProfileComponent
 
     @Subcomponent.Builder
     interface Builder {
