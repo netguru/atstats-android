@@ -39,7 +39,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
             val bundle = Bundle()
             bundle.putParcelable(SELECTED_ITEM_KEY, selectedItem)
             bundle.putParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY, mostActiveItemList)
-            bundle.putSerializable(FILTER_OPTION, filter)
+            bundle.putString(FILTER_OPTION, filter.filterName())
 
             fragment.arguments = bundle
             return fragment
@@ -74,7 +74,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         }
         presenter.prepareView(arguments.getParcelable(SELECTED_ITEM_KEY),
                 arguments.getParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY).toList(),
-                arguments.getSerializable(FILTER_OPTION) as Filter)
+                arguments.getString(FILTER_OPTION))
     }
 
     override fun createPresenter() = component.getPresenter()
@@ -167,7 +167,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {
-        Glide.with(context)
+        Glide.with(this)
                 // TODO 14.08.2017 find a better placeholder
                 .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
                 .bitmapTransform(RoundedCornersTransformation(context,

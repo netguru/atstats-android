@@ -25,7 +25,7 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
             val bundle = Bundle()
             bundle.putParcelable(KEY_CHANNEL, channelStatistics)
             bundle.putParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST, mostActiveItemList)
-            bundle.putSerializable(FILTER_OPTION, filterOption)
+            bundle.putString(FILTER_OPTION, filterOption.name)
 
             val channelProfileFragment = ChannelProfileFragment()
             channelProfileFragment.arguments = bundle
@@ -68,7 +68,7 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
         val channelStatistics: ChannelStatistics = arguments.getParcelable(KEY_CHANNEL)
         val channelArray: Array<ChannelStatistics> = arguments.getParcelableArray(KEY_CHANNEL_MOST_ACTIVE_LIST)
                 .filterIsInstance(ChannelStatistics::class.java).toTypedArray()
-        val filterOption = arguments.getSerializable(FILTER_OPTION) as ChannelsFilterOption
+        val filterOption = ChannelsFilterOption.valueOf(arguments.getString(FILTER_OPTION))
 
         ShareDialogFragment.newInstance(channelStatistics, channelArray, filterOption).show(fragmentManager, ShareDialogFragment.TAG)
     }

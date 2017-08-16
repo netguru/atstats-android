@@ -24,7 +24,7 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
 
             bundle.putParcelableArray(USER_STATISTICS_LIST_KEY, userStatisticsList)
             bundle.putInt(CURRENT_USER_POSITION_KEY, currentUserPosition)
-            bundle.putSerializable(SELECTED_FILTER_OPTION, selectedFilterOption)
+            bundle.putString(SELECTED_FILTER_OPTION, selectedFilterOption.name)
             fragment.arguments = bundle
 
             return fragment
@@ -57,7 +57,7 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
         with(arguments) {
             val userStatisticsList = getParcelableArray(USER_STATISTICS_LIST_KEY)
                     .filterIsInstance(UserStatistic::class.java).toList()
-            val selectedFilterOption = getSerializable(SELECTED_FILTER_OPTION) as UsersFilterOption
+            val selectedFilterOption = UsersFilterOption.valueOf(getString(SELECTED_FILTER_OPTION))
             presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY), selectedFilterOption)
         }
     }
@@ -85,7 +85,7 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
     }
 
     override fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>) {
-        val filterOption = arguments.getSerializable(SELECTED_FILTER_OPTION) as UsersFilterOption
+        val filterOption = UsersFilterOption.valueOf(arguments.getString(SELECTED_FILTER_OPTION))
         ShareDialogFragment.newInstance(clickedItem, usersList.toTypedArray(), filterOption).show(fragmentManager, ShareDialogFragment.TAG)
     }
 

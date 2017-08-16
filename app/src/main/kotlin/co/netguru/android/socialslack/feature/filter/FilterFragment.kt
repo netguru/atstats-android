@@ -22,7 +22,7 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
         fun newInstance(filterObjectType: FilterObjectType): FilterFragment {
             val fragment = FilterFragment()
             val bundle = Bundle()
-            bundle.putSerializable(FILTER_OBJECT_TYPE, filterObjectType)
+            bundle.putString(FILTER_OBJECT_TYPE, filterObjectType.name)
             fragment.arguments = bundle
 
             return fragment
@@ -42,7 +42,7 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.filterObjectTypeReceived(arguments.getSerializable(FILTER_OBJECT_TYPE) as FilterObjectType)
+        presenter.filterObjectTypeReceived(FilterObjectType.valueOf(arguments.getString(FILTER_OBJECT_TYPE)))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

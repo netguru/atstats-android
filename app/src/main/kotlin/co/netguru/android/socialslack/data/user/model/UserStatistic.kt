@@ -24,7 +24,7 @@ data class UserStatistic(val id: String,
         fun User.toStatisticsView(sentMessages: Int, receivedMessages: Int,
                                   currentDayStreak: Int = 1): UserStatistic {
             return UserStatistic(this.id,
-                    this.username,
+                    this.username ?: "",
                     this.firstName ?: "",
                     this.lastName ?: "",
                     this.realName ?: "",

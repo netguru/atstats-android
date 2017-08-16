@@ -5,7 +5,6 @@ import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
-import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
@@ -15,6 +14,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
 import javax.inject.Inject
+
+//TODO 16.08.2017 Should be divided into two presenters
 
 @FragmentScope
 class SharePresenter @Inject constructor(private val channelsController: ChannelsController)
@@ -36,14 +37,14 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
         compositeDisposable.clear()
     }
 
-    override fun <T : Any> prepareView(selectedItem: T, mostActiveItemList: List<T>, filter: Filter) {
+    override fun <T : Any> prepareView(selectedItem: T, mostActiveItemList: List<T>, filterName: String) {
         when (selectedItem) {
             is ChannelStatistics -> prepareChannelView(selectedItem,
                     mostActiveItemList.filterIsInstance(ChannelStatistics::class.java),
-                    filter as ChannelsFilterOption)
+                    ChannelsFilterOption.valueOf(filterName))
             is UserStatistic -> prepareUserView(selectedItem,
                     mostActiveItemList.filterIsInstance(UserStatistic::class.java),
-                    filter as UsersFilterOption)
+                    UsersFilterOption.valueOf(filterName))
             else -> throw IllegalStateException("There is no action for selectedItem type: ${selectedItem::class.java}")
         }
     }
