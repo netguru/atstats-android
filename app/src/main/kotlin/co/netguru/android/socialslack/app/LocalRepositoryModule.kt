@@ -12,6 +12,7 @@ class LocalRepositoryModule(private val userId: String) {
 
     companion object {
         const val FILTER_OPTION_SHARED_PREFERENCES_NAME = "filterOption"
+        const val THEME_OPTION_SHARED_PREFERENCES_NAME = "themeOption"
     }
 
     @Named(FILTER_OPTION_SHARED_PREFERENCES_NAME)
@@ -20,5 +21,13 @@ class LocalRepositoryModule(private val userId: String) {
     fun provideFilterOptionSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(context.packageName + userId +
                 FILTER_OPTION_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+    }
+
+    @Named(THEME_OPTION_SHARED_PREFERENCES_NAME)
+    @UserScope
+    @Provides
+    fun provideThemeOptionSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(context.packageName + userId +
+        THEME_OPTION_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 }
