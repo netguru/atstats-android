@@ -4,7 +4,7 @@ import android.support.annotation.StringRes
 import co.netguru.android.socialslack.R
 
 
-enum class ThemeOption constructor(@StringRes val textResId: Int) {
+enum class ThemeOption(@StringRes val textResId: Int) {
 
     COLORFUL(R.string.colourful),
     NETGURU(R.string.netguru);
