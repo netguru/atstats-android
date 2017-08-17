@@ -75,7 +75,7 @@
     <dimen name="users_profile_small_margin">4dp</dimen>
 
     //Profile
-    <dimen name="profile_height">250dp</dimen>
+    <dimen name="profile_height">230dp</dimen>
     <dimen name="profile_division_width">150dp</dimen>
     <dimen name="profile_division_height">1dp</dimen>
     <dimen name="profile_toggle_switch_width">160dp</dimen>
