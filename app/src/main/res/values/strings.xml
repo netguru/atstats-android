@@ -4,6 +4,7 @@
     <string name="welcome_to">Welcome to</string>
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
+    <string name="colourful">Colourful</string>
 
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
@@ -79,7 +80,6 @@
 
     // Profile
     <string name="colour_scheme">Colour scheme</string>
-    <string name="colourful">Colourful</string>
     <string name="log_out">Log out</string>
     <string name="send_us_feedback">Send us feedback</string>
 </resources>
