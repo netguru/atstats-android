@@ -1,7 +1,7 @@
 package co.netguru.android.socialslack.data.user
 
 import co.netguru.android.socialslack.data.user.model.UserResponse
-import co.netguru.android.socialslack.data.user.profile.UserPresence
+import co.netguru.android.socialslack.data.user.profile.model.UserPresence
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -3,7 +3,7 @@ package co.netguru.android.socialslack.data.user.model
 import android.os.Parcel
 import android.os.Parcelable
 import co.netguru.android.socialslack.data.share.Sharable
-import co.netguru.android.socialslack.data.user.profile.Presence
+import co.netguru.android.socialslack.data.user.profile.model.Presence
 import paperparcel.PaperParcel
 
 @PaperParcel
