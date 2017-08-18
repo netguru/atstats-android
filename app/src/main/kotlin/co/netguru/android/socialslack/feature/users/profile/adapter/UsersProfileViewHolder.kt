@@ -8,7 +8,7 @@ import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
-import co.netguru.android.socialslack.data.user.profile.Presence
+import co.netguru.android.socialslack.data.user.profile.model.Presence
 import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_users_profile.view.*
