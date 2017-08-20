@@ -116,7 +116,7 @@
                             android:text="@string/colour_scheme" />
 
                         <belka.us.androidtoggleswitch.widgets.ToggleSwitch
-                            android:id="@+id/colorToggleSwitch"
+                            android:id="@+id/themeToggleSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_tiny"

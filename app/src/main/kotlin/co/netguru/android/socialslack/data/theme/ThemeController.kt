@@ -7,7 +7,9 @@ import javax.inject.Inject
 @UserScope
 class ThemeController @Inject constructor(private val themeOptionRepository: ThemeOptionRepository) {
 
-    fun getThemeOption() = Single.just(themeOptionRepository.getThemeOption())
+    fun getThemeOption(): Single<ThemeOption> = Single.just(themeOptionRepository.getThemeOption())
 
     fun saveThemeOption(themeOption: ThemeOption) = themeOptionRepository.saveThemeOption(themeOption)
+
+    fun getThemeSync(): ThemeOption = themeOptionRepository.getThemeOption()
 }

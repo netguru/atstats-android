@@ -25,5 +25,5 @@ class ThemeOptionRepository @Inject constructor(@Named(LocalRepositoryModule.THE
             })
 
     fun getThemeOption() = ThemeOption.valueOf(
-            sharedPreferences.getString(THEME_OPTIONS, ThemeOption.COLORFUL.name))
+            sharedPreferences.getString(THEME_OPTIONS, ThemeOption.COLOURFUL.name))
 }

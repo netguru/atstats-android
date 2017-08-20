@@ -6,7 +6,7 @@ import co.netguru.android.socialslack.R
 
 enum class ThemeOption(@StringRes val textResId: Int) {
 
-    COLORFUL(R.string.colourful),
+    COLOURFUL(R.string.colourful),
     NETGURU(R.string.netguru);
 
 }

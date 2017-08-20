@@ -8,9 +8,13 @@ interface ProfileContract {
 
     interface View: MvpView{
 
+        fun changeTheme()
+
+        fun showChangeThemeError()
     }
 
     interface Presenter: MvpPresenter<View> {
 
+        fun changeTheme()
     }
 }
