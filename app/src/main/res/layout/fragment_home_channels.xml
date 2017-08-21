@@ -23,7 +23,7 @@
         android:gravity="center"
         android:text="@string/most_active_channel"
         android:textAllCaps="true"
-        android:textColor="@color/violet2"
+        android:textColor="?attr/colorTextPrimary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
@@ -44,7 +44,7 @@
         android:gravity="center"
         android:text="@string/channel_we_write_most"
         android:textAllCaps="true"
-        android:textColor="@color/violet2"
+        android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
@@ -65,7 +65,7 @@
         android:gravity="center"
         android:text="@string/mentioned_most"
         android:textAllCaps="true"
-        android:textColor="@color/violet2"
+        android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView

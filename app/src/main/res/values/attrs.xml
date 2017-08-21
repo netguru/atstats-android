@@ -2,4 +2,9 @@
 <resources>
     <attr name="colorHighlight" format="reference" />
     <attr name="colorNormal" format="reference" />
+    <attr name="colorMain" format="reference" />
+    <attr name="colorTextPrimary" format="reference" />
+    <attr name="colorTextSecondary" format="reference" />
+    <attr name="colorTextHighlight" format="reference" />
+    <attr name="colorButton" format="reference" />
 </resources>

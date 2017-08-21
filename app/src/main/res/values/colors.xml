@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primaryColorful">#6D5EB3</color>
-    <color name="primaryNetguru">#1DC05F</color>
     <color name="primaryDarkColourful">#3d3483</color>
-    <color name="primaryDarkNetguru">#1DC05F</color>
     <color name="accentColourful">#FF722E</color>
-    <color name="accentNetguru">#1DC05F</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -13,8 +10,12 @@
     <color name="grey">#9B9AA5</color>
     <color name="lightGrey">#E8E8EE</color>
     <color name="materialDivider">#1f000000</color>
+
     <color name="violet">#524B75</color>
     <color name="violet2">#817C9A</color>
+    <color name="lightPink">#A58B96</color>
+    <color name="green">#1DC05F</color>
+    <color name="green2">#7F8984</color>
 
     <color name="orange">#FF722E</color>
 

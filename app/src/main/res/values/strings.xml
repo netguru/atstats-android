@@ -55,7 +55,8 @@
     <string name="channels">Channels</string>
     <string name="channel_we_write_most">Kanał na którym najwięcej piszemy</string>
     <string name="mentioned_most">Jesteśmy najczęściej mentionowani</string>
-    <string name="welcome_back_mock">Welcome back\n@amarok</string>
+    <string name="welcome_back_mock">Welcome back</string>
+    <string name="mock_name">\@amarok</string>
     <string name="statistics">Statistics</string>
     <string name="users">Users</string>
     <string name="hashtag">#</string>

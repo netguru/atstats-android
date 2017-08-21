@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/filterViewTextView"
-        style="@style/FontSmall.PrimaryDark"
+        style="@style/FontSmall.ColorTextPrimary"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"

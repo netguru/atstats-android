@@ -89,14 +89,14 @@
 
                         <TextView
                             android:id="@+id/teamNameTextView"
-                            style="@style/FontMedium.DarkViolet"
+                            style="@style/FontMedium.ColorTextPrimary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="Netguru" />
 
                         <TextView
                             android:id="@+id/teamPageTextView"
-                            style="@style/FontMedium.DarkViolet"
+                            style="@style/FontMedium.ColorTextPrimary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="netguru.slack.com" />
@@ -109,7 +109,7 @@
                             android:layout_marginTop="@dimen/margin_small" />
 
                         <TextView
-                            style="@style/FontSmall.Violet"
+                            style="FontSmall.ColorTextSecondary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_default"
@@ -121,7 +121,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_tiny"
                             android:background="@drawable/switch_colour_scheme_border"
-                            custom:activeBgColor="@color/violet"
+                            custom:activeBgColor="?attr/colorMain"
                             custom:cornerRadius="@dimen/card_corner_radius_small"
                             custom:inactiveBgColor="@android:color/transparent"
                             custom:textToggleLeft="@string/colourful"
@@ -130,7 +130,7 @@
 
                         <TextView
                             android:id="@+id/logOutTextView"
-                            style="@style/Font16.violet"
+                            style="@style/Font16.ColorTextSecondary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_default"

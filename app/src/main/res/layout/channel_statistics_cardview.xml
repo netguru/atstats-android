@@ -36,7 +36,7 @@
 
                 <TextView
                     android:id="@+id/channelNameTextView"
-                    style="@style/FontLarge.PrimaryDark"
+                    style="@style/FontLarge.ColorTextPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -80,7 +80,7 @@
 
             <TextView
                 android:id="@+id/totalOfHereTextView"
-                style="@style/FontDisplay2.PrimaryDark"
+                style="@style/FontDisplay2.ColorTextPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/channelStatisticsRelativeLayout"
@@ -133,7 +133,7 @@
 
                     <TextView
                         android:id="@+id/yourMentionsTextView"
-                        style="@style/FontDisplay2.PrimaryDark"
+                        style="@style/FontDisplay2.ColorTextPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mentionsTitleRelativeLayout"
@@ -182,7 +182,7 @@
 
                     <TextView
                         android:id="@+id/secondTotalHereTextView"
-                        style="@style/FontDisplay2.PrimaryDark"
+                        style="@style/FontDisplay2.ColorTextPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/secondHereTitleRelativeLayout"

@@ -4,5 +4,5 @@
     <corners android:radius="@dimen/card_corner_radius_small" />
     <stroke
         android:width="@dimen/profile_toggle_switch_stroke_border"
-        android:color="@color/violet" />
+        android:color="?attr/colorMain" />
 </shape>
