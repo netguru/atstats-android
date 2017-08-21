@@ -11,7 +11,7 @@
         android:layout_height="@dimen/common_zero"
         android:layout_marginStart="@dimen/home_marginLeft"
         android:layout_weight="1.3"
-        android:drawableStart="@drawable/users_active"
+        android:drawableStart="?attr/usersActiveDrawable"
         android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
         android:gravity="center"
         android:text="@string/users" />

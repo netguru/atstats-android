@@ -12,7 +12,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/modal_top2">
+        android:background="?attr/modalTop2Drawable">
 
         <TextView
             android:id="@+id/shareConfirmationItemNameText"

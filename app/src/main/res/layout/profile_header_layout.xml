@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/rankTextView"
-                    android:src="@drawable/rank_profile" />
+                    android:src="?attr/rankProfileDrawable" />
 
             </RelativeLayout>
 

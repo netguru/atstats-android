@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_screen_background">
+    android:background="?attr/splashScreenBackgroundDrawable">
 
     <TextView
         android:id="@+id/loginWelcomeText"
@@ -30,7 +30,7 @@
         android:layout_above="@id/loginLogoText"
         android:layout_centerHorizontal="true"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/button_sigin_slack" />
+        android:src="?attr/buttonSignInSlackDrawable" />
 
     <TextView
         android:id="@+id/loginLogoText"

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:drawablePadding="@dimen/margin_small"
-        android:drawableStart="@drawable/chart_header"
+        android:drawableStart="?attr/chartHeaderDrawable"
         android:gravity="center_vertical"
         android:padding="@dimen/margin_default"
         android:textStyle="bold"

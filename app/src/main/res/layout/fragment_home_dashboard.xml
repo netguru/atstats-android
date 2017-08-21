@@ -62,7 +62,7 @@
             android:layout_marginStart="@dimen/home_marginLeft"
             android:layout_weight="0.5"
             android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
-            android:drawableStart="@drawable/statistics_orange"
+            android:drawableStart="?attr/statisticsDrawable"
             android:gravity="center"
             android:text="@string/statistics" />
 
