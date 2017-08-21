@@ -6,7 +6,7 @@ import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileCom
 import co.netguru.android.socialslack.feature.fetch.FetchComponent
 import co.netguru.android.socialslack.feature.filter.FilterComponent
 import co.netguru.android.socialslack.feature.home.users.HomeUsersComponent
-import co.netguru.android.socialslack.feature.main.MainComponent
+import co.netguru.android.socialslack.common.customTheme.CustomThemeComponent
 import co.netguru.android.socialslack.feature.profile.ProfileComponent
 import co.netguru.android.socialslack.feature.share.ShareComponent
 import co.netguru.android.socialslack.feature.users.UsersComponent
@@ -18,7 +18,7 @@ import dagger.Subcomponent
 @Subcomponent(modules = arrayOf(LocalRepositoryModule::class))
 interface UserComponent {
 
-    fun plusMainComponent(): MainComponent
+    fun plusCustomThemeComponent(): CustomThemeComponent
 
     fun plusFetchComponent(): FetchComponent
 

@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
+import co.netguru.android.socialslack.common.extensions.getAttributeColor
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import kotlinx.android.synthetic.main.activity_main.*
 
-class FilterActivity : AppCompatActivity() {
+class FilterActivity : CustomThemeActivity() {
 
     companion object {
         const val FILTER_OBJECT_TYPE = "filterObjectType"
@@ -23,6 +25,7 @@ class FilterActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
         initializeToolbar()
@@ -52,6 +55,7 @@ class FilterActivity : AppCompatActivity() {
     }
 
     private fun initializeToolbar() {
+        toolbar.setBackgroundColor(this.getAttributeColor(R.attr.colorPrimary))
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.categories)

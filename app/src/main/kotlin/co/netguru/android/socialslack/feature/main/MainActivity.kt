@@ -6,9 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
 import co.netguru.android.socialslack.data.theme.ThemeOption
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
@@ -17,7 +16,7 @@ import co.netguru.android.socialslack.feature.profile.ProfileFragment
 import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : CustomThemeActivity() {
 
     companion object {
         const val REQUEST_SORT_CHANNELS = 101
@@ -41,11 +40,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    val component by lazy { App.getUserComponent(this).plusMainComponent() }
-    private val themeComponent by lazy { component.getThemeController() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(if (themeComponent.getThemeSync() == ThemeOption.COLOURFUL) R.style.AppThemeColourful else R.style.AppThemeNetguru)
+        setTheme()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
