@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/shareChannelStatusTextView"
-        style="@style/FontMedium.Orange"
+        style="@style/FontMedium.Accent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

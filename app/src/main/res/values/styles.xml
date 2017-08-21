@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
+    <style name="AppThemeColourful" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorful</item>
+        <item name="colorAccent">@color/accentColourful</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColourful</item>
+        <item name="colorHighlight">@color/accentColourful</item>
+        <item name="colorNormal">@color/primaryColorful</item>
     </style>
 
-    <style name="AppTheme.TranslucentStatus" parent="AppTheme">
+    <style name="AppThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryNetguru</item>
+        <item name="colorAccent">@color/accentNetguru</item>
+        <item name="colorPrimaryDark">@color/primaryDarkNetguru</item>
+        <item name="colorHighlight">@color/primaryNetguru</item>
+        <item name="colorNormal">@color/black</item>
+    </style>
+
+    <style name="AppTheme.TranslucentStatus" parent="AppThemeColourful">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="MainToolbarTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/primary</item>
+        <!-- Not working when setting the background color here from attrs -->
         <item name="android:textColorPrimary">@color/white</item>
     </style>
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -52,7 +62,7 @@
     </style>
 
     <style name="FontSmall.PrimaryDark" parent="TextAppearance.AppCompat.Small" >
-        <item name="android:textColor">@color/primaryDark</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
     <style name="Font12.Grey" parent="FontSmall.Grey">
@@ -60,11 +70,11 @@
     </style>
 
     <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium" >
-        <item name="android:textColor">@color/primaryDark</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
     <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textColor">@color/primaryDark</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
     <style name="Font22.PrimaryDark" parent="FontLarge.PrimaryDark">
@@ -76,15 +86,15 @@
     </style>
 
     <style name="FontDisplay2.PrimaryDark" parent="TextAppearance.AppCompat.Display2">
-        <item name="android:textColor">@color/primaryDark</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
-    <style name="FontMedium.Orange" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/orange</item>
+    <style name="FontMedium.Accent" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
-    <style name="FontLarge.Orange" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textColor">@color/orange</item>
+    <style name="FontLarge.Accent" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <style name="FontLarge.LightGrey" parent="TextAppearance.AppCompat.Large">

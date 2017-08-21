@@ -11,6 +11,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.theme.ThemeOption
+import co.netguru.android.socialslack.feature.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -53,6 +54,8 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
     }
 
     override fun changeTheme() {
+        activity.finish()
+        MainActivity.startActivityOnProfile(activity)
     }
 
     override fun showChangeThemeError() {

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#6D5EB3</color>
-    <color name="primaryDark">#3d3483</color>
-    <color name="accent">#FF722E</color>
+    <color name="primaryColorful">#6D5EB3</color>
+    <color name="primaryNetguru">#1DC05F</color>
+    <color name="primaryDarkColourful">#3d3483</color>
+    <color name="primaryDarkNetguru">#1DC05F</color>
+    <color name="accentColourful">#FF722E</color>
+    <color name="accentNetguru">#1DC05F</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
