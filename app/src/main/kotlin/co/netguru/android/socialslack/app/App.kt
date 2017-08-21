@@ -54,7 +54,7 @@ class App : Application() {
         if (userComponent == null) {
             this.userComponent = applicationComponent
                     .userComponentBuilder()
-                    .localRepositoryModule(LocalRepositoryModule(MOCKED_USER_ID))
+                    .userLocalRepositoryModule(UserLocalRepositoryModule(MOCKED_USER_ID))
                     .build()
         }
 

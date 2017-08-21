@@ -15,10 +15,8 @@ import co.netguru.android.socialslack.feature.users.profile.UsersProfileComponen
 import dagger.Subcomponent
 
 @UserScope
-@Subcomponent(modules = arrayOf(LocalRepositoryModule::class))
+@Subcomponent(modules = arrayOf(UserLocalRepositoryModule::class))
 interface UserComponent {
-
-    fun plusCustomThemeComponent(): CustomThemeComponent
 
     fun plusFetchComponent(): FetchComponent
 
@@ -40,7 +38,7 @@ interface UserComponent {
 
     @Subcomponent.Builder
     interface Builder {
-        fun localRepositoryModule(localRepositoryModule: LocalRepositoryModule): UserComponent.Builder
+        fun userLocalRepositoryModule(localRepositoryModule: UserLocalRepositoryModule): UserComponent.Builder
 
         fun build(): UserComponent
     }

@@ -2,14 +2,14 @@ package co.netguru.android.socialslack.data.theme
 
 import android.content.SharedPreferences
 import co.netguru.android.socialslack.app.LocalRepositoryModule
-import co.netguru.android.socialslack.app.scope.UserScope
 import co.netguru.android.socialslack.common.extensions.edit
 import io.reactivex.Completable
 import javax.inject.Inject
 import javax.inject.Named
+import javax.inject.Singleton
 
 
-@UserScope
+@Singleton
 class ThemeOptionRepository @Inject constructor(@Named(LocalRepositoryModule.THEME_OPTION_SHARED_PREFERENCES_NAME)
                                                 private val sharedPreferences: SharedPreferences) {
 

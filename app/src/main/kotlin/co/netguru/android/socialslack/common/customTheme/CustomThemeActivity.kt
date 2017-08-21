@@ -8,7 +8,7 @@ import co.netguru.android.socialslack.data.theme.ThemeOption
 
 abstract class CustomThemeActivity: AppCompatActivity() {
 
-    val component by lazy { App.getUserComponent(this).plusCustomThemeComponent() }
+    val component by lazy { App.getApplicationComponent(this).plusCustomThemeComponent() }
     private val themeComponent by lazy { component.getThemeController() }
 
     fun setTheme() {
