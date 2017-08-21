@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/primaryDarkColourful</item>
         <item name="colorHighlight">@color/accentColourful</item>
         <item name="colorNormal">@color/primaryColorful</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="AppThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
@@ -14,6 +15,12 @@
         <item name="colorPrimaryDark">@color/primaryDarkNetguru</item>
         <item name="colorHighlight">@color/primaryNetguru</item>
         <item name="colorNormal">@color/black</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <style name="AppTheme.TranslucentStatus" parent="AppThemeColourful">
