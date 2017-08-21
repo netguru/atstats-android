@@ -5,19 +5,23 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.customTheme.MvpCustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.feature.main.MainActivity
-import com.hannesdorfmann.mosby3.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_fetch.*
 
 
-class FetchActivity : MvpActivity<FetchContract.View, FetchContract.Presenter>(), FetchContract.View {
+class FetchActivity : MvpCustomThemeActivity<FetchContract.View, FetchContract.Presenter>(), FetchContract.View {
 
     private val component by lazy { App.getUserComponent(this).plusFetchComponent() }
 
     override fun showMainActivity() {
         startActivity<MainActivity>()
         finish()
+    }
+
+    override fun inject() {
+        component.inject(this)
     }
 
     override fun showErrorMessage() {

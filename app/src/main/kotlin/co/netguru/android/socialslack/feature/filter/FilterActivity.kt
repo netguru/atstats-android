@@ -25,7 +25,6 @@ class FilterActivity : CustomThemeActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
         initializeToolbar()

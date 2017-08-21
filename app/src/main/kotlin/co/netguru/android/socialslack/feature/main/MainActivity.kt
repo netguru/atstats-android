@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBar
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
-import co.netguru.android.socialslack.data.theme.ThemeOption
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
 import co.netguru.android.socialslack.feature.home.HomeFragment
 import co.netguru.android.socialslack.feature.profile.ProfileFragment
@@ -41,7 +40,6 @@ class MainActivity : CustomThemeActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
