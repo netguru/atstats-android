@@ -8,5 +8,4 @@ enum class ThemeOption(@StringRes val textResId: Int) {
 
     COLOURFUL(R.string.colourful),
     NETGURU(R.string.netguru);
-
 }

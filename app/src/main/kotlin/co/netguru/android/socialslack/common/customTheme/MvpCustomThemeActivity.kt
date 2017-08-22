@@ -13,11 +13,6 @@ import javax.inject.Inject
 
 abstract class MvpCustomThemeActivity<V : CustomThemeContract.View, P : CustomThemeContract.Presenter<V>> : MvpActivity<V, P>() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        setTheme()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme()

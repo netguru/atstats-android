@@ -7,7 +7,7 @@ abstract class CustomThemeActivity :
         MvpCustomThemeActivity<CustomThemeContract.View, CustomThemeContract.Presenter<CustomThemeContract.View>>(),
         CustomThemeContract.View {
 
-    val component by lazy { App.getApplicationComponent(this).plusCustomThemeComponent() }
+    private val component by lazy { App.getApplicationComponent(this).plusCustomThemeComponent() }
 
     override fun createPresenter(): CustomThemeContract.Presenter<CustomThemeContract.View> =
             component.getPresenter()

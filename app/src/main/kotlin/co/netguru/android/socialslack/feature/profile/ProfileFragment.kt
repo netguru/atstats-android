@@ -28,19 +28,19 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
 
     private val themeController by lazy { component.getThemeController() }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_profile)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun createPresenter(): ProfileContract.Presenter = component.getPresenter()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        themeToggleSwitch.setOnToggleSwitchChangeListener { _: Int, _: Boolean ->
+        themeToggleSwitch.setOnToggleSwitchChangeListener { _, _ ->
             presenter.changeTheme()
         }
     }
-
-    override fun createPresenter(): ProfileContract.Presenter = component.getPresenter()
 
     //TODO 09.08.2017 Workaround for clearing menu options
     override fun onAttach(context: Context) {

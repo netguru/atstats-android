@@ -10,5 +10,4 @@ abstract class CustomThemePresenter<V: CustomThemeContract.View> constructor(pri
 
     override fun showColourfulTheme(): Boolean =
             themeController.getThemeSync() == ThemeOption.COLOURFUL
-
 }

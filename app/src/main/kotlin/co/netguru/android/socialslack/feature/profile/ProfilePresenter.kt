@@ -23,12 +23,10 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
     }
 
     override fun changeTheme() {
-        compositeDisposable+=themeController.getThemeOption()
+        compositeDisposable += themeController.getThemeOption()
                 .flatMapCompletable {
-                    // TODO Remove the variable
-                    var theme = if(it==ThemeOption.COLOURFUL) ThemeOption.NETGURU else ThemeOption.COLOURFUL
-                    Timber.d("Change of theme to ${theme.name}")
-                    themeController.saveThemeOption(theme)
+                    themeController.saveThemeOption(if (it == ThemeOption.COLOURFUL)
+                        ThemeOption.NETGURU else ThemeOption.COLOURFUL)
                 }
                 .compose(RxTransformers.applyCompletableIoSchedulers())
                 .subscribeBy(
@@ -39,5 +37,4 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
                         }
                 )
     }
-
 }
