@@ -1,10 +1,10 @@
 package co.netguru.android.socialslack.feature.channels.adapter
 
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.extensions.getAttributeColor
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.channels.ChannelsMessagesNumberProvider
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
@@ -45,7 +45,9 @@ class ChannelsViewHolder(parent: ViewGroup, private val onChannelClickListener: 
     }
 
     private fun changeMessagesNrTextColor(channelsPositionInList: Int) {
-        channelsMessagesNrTextView.setTextColor(ContextCompat.getColor(itemView.context,
-                if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primaryDark))
+        val context = itemView.context
+        channelsMessagesNrTextView.setTextColor(
+                if (channelsPositionInList == POSITION_FIRST)
+                    context.getAttributeColor(R.attr.colorHighlight) else context.getAttributeColor(R.attr.colorNormal))
     }
 }

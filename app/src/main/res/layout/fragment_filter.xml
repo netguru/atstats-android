@@ -12,7 +12,7 @@
         android:weightSum="1">
 
         <TextView
-            style="@style/FontSmall.PrimaryDark"
+            style="@style/FontSmall.ColorTextPrimary"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

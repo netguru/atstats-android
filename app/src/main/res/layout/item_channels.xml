@@ -21,12 +21,12 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_toEndOf="@id/itemChannelsPlaceNrTextView"
-        android:src="@drawable/rank_profile"
+        android:src="?attr/rankProfileDrawable"
         android:visibility="gone" />
 
     <TextView
         android:id="@+id/itemChannelsNameTextView"
-        style="@style/FontMedium.PrimaryDark"
+        style="@style/FontMedium.ColorTextPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

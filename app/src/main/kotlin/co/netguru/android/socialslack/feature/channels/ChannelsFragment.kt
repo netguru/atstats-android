@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
@@ -36,7 +37,7 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        filterViewIconImageView.setImageResource(R.drawable.hashtag_title)
+        filterViewIconImageView.setImageResource(context.getAttributeDrawable(R.attr.hashtagTitleDrawable))
         presenter.getChannels()
         presenter.getCurrentFilterOption()
     }

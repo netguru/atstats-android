@@ -10,7 +10,7 @@
         android:layout_height="@dimen/common_zero"
         android:layout_marginStart="@dimen/home_marginLeft"
         android:layout_weight="1.3"
-        android:drawableStart="@drawable/channels_orange"
+        android:drawableStart="?attr/channelsDrawable"
         android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
         android:gravity="center"
         android:text="@string/channels" />
@@ -23,7 +23,7 @@
         android:gravity="center"
         android:text="@string/most_active_channel"
         android:textAllCaps="true"
-        android:textColor="@color/violet2"
+        android:textColor="?attr/colorTextPrimary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
@@ -44,7 +44,7 @@
         android:gravity="center"
         android:text="@string/channel_we_write_most"
         android:textAllCaps="true"
-        android:textColor="@color/violet2"
+        android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
@@ -65,7 +65,7 @@
         android:gravity="center"
         android:text="@string/mentioned_most"
         android:textAllCaps="true"
-        android:textColor="@color/violet2"
+        android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView

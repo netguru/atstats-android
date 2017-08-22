@@ -1,17 +1,18 @@
 package co.netguru.android.socialslack.feature.fetch
 
+import co.netguru.android.socialslack.common.customTheme.CustomThemeContract
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
 
 interface FetchContract {
 
-    interface View: MvpView {
+    interface View: CustomThemeContract.View {
 
         fun showMainActivity()
 
         fun showErrorMessage()
     }
 
-    interface Presenter: MvpPresenter<View>
+    interface Presenter: CustomThemeContract.Presenter<View>
 }

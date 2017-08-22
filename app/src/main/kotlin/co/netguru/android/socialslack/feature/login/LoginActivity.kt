@@ -2,10 +2,11 @@ package co.netguru.android.socialslack.feature.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
+import co.netguru.android.socialslack.common.customTheme.CustomThemeContract
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : CustomThemeActivity(), CustomThemeContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

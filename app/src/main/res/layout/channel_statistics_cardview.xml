@@ -32,11 +32,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitEnd"
-                    android:src="@drawable/hashtag_title" />
+                    android:src="?attr/hashtagTitleDrawable" />
 
                 <TextView
                     android:id="@+id/channelNameTextView"
-                    style="@style/FontLarge.PrimaryDark"
+                    style="@style/FontLarge.ColorTextPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -65,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:src="@drawable/messages_icon" />
+                    android:src="?attr/messagesIconDrawable" />
 
                 <TextView
                     android:id="@+id/totalHereTitleTextView"
@@ -80,7 +80,7 @@
 
             <TextView
                 android:id="@+id/totalOfHereTextView"
-                style="@style/FontDisplay2.PrimaryDark"
+                style="@style/FontDisplay2.ColorTextPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/channelStatisticsRelativeLayout"
@@ -118,7 +118,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:src="@drawable/mentions_icon" />
+                            android:src="?attr/mentionsIconDrawable" />
 
                         <TextView
                             android:id="@+id/yourMentionsTitleTextView"
@@ -133,7 +133,7 @@
 
                     <TextView
                         android:id="@+id/yourMentionsTextView"
-                        style="@style/FontDisplay2.PrimaryDark"
+                        style="@style/FontDisplay2.ColorTextPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mentionsTitleRelativeLayout"
@@ -167,7 +167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:src="@drawable/here_icon" />
+                            android:src="?attr/hereIconDrawable" />
 
                         <TextView
                             android:id="@+id/secondTotalHereTitleTextView"
@@ -182,7 +182,7 @@
 
                     <TextView
                         android:id="@+id/secondTotalHereTextView"
-                        style="@style/FontDisplay2.PrimaryDark"
+                        style="@style/FontDisplay2.ColorTextPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/secondHereTitleRelativeLayout"

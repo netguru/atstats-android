@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:src="@drawable/medal" />
+            android:src="?attr/medalDrawable" />
     </FrameLayout>
 
 
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/usernameTextView"
-            style="@style/FontSmall.PrimaryDark"
+            style="@style/FontSmall.ColorTextSecondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="\@anna.rice" />

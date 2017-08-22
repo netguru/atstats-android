@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorHighlight" format="reference" />
+    <attr name="colorNormal" format="reference" />
+    <attr name="colorMain" format="reference" />
+    <attr name="colorTextPrimary" format="reference" />
+    <attr name="colorTextSecondary" format="reference" />
+    <attr name="colorTextHighlight" format="reference" />
+    <attr name="colorButton" format="reference" />
+
+    <!-- Drawables -->
+    <attr name="buttonSignInSlackDrawable" format="reference" />
+    <attr name="channelsDrawable" format="reference" />
+    <attr name="chartHeaderDrawable" format="reference" />
+    <attr name="hashtagTitleDrawable" format="reference" />
+    <attr name="hereIconDrawable" format="reference" />
+    <attr name="medalDrawable" format="reference" />
+    <attr name="mentionsIconDrawable" format="reference" />
+    <attr name="messagesIconDrawable" format="reference" />
+    <attr name="modalTop1Drawable" format="reference" />
+    <attr name="modalTop2Drawable" format="reference" />
+    <attr name="profileMentionsDrawable" format="reference" />
+    <attr name="profileMessagesDrawable" format="reference" />
+    <attr name="profilePrivMsgDrawable" format="reference" />
+    <attr name="profileReadMsgDrawable" format="reference" />
+    <attr name="profileReceivedPrivMsgsDrawable" format="reference" />
+    <attr name="profileSentPrivsDrawable" format="reference" />
+    <attr name="rankProfileDrawable" format="reference" />
+    <attr name="slackIconDrawable" format="reference" />
+    <attr name="splashScreenBackgroundDrawable" format="reference" />
+    <attr name="statisticsDrawable" format="reference" />
+    <attr name="usersActiveDrawable" format="reference" />
+    <attr name="usersDrawable" format="reference" />
+    <attr name="usersTitleBarDrawable" format="reference" />
+</resources>

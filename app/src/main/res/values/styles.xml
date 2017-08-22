@@ -1,20 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
+    <style name="AppThemeColourful" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorful</item>
+        <item name="colorAccent">@color/accentColourful</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColourful</item>
+        <item name="colorHighlight">@color/accentColourful</item>
+        <item name="colorNormal">@color/primaryColorful</item>
+        <item name="colorMain">@color/violet</item>
+        <item name="colorTextPrimary">@color/violet</item>
+        <item name="colorTextSecondary">@color/violet2</item>
+        <item name="colorTextHighlight">@color/violet</item>
+        <item name="colorButton">@color/lightPink</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <!-- Drawables -->
+        <item name="buttonSignInSlackDrawable">@drawable/button_signin_slack_violet</item>
+        <item name="channelsDrawable">@drawable/channels_orange</item>
+        <item name="chartHeaderDrawable">@drawable/chart_header_violet</item>
+        <item name="hashtagTitleDrawable">@drawable/hashtag_title_violet</item>
+        <item name="hereIconDrawable">@drawable/here_icon_violet</item>
+        <item name="medalDrawable">@drawable/medal_orange</item>
+        <item name="mentionsIconDrawable">@drawable/mentions_icon_violet</item>
+        <item name="messagesIconDrawable">@drawable/messages_icon_violet</item>
+        <item name="modalTop1Drawable">@drawable/modal_top1_violet</item>
+        <item name="modalTop2Drawable">@drawable/modal_top2_violet</item>
+        <item name="profileMentionsDrawable">@drawable/profile_mentions_violet</item>
+        <item name="profileMessagesDrawable">@drawable/profile_messages_violet</item>
+        <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_violet</item>
+        <item name="profileReadMsgDrawable">@drawable/profile_read_msg_violet</item>
+        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet</item>
+        <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_violet</item>
+        <item name="rankProfileDrawable">@drawable/rank_profile_orange</item>
+        <item name="slackIconDrawable">@drawable/slack_icon_violet</item>
+        <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
+        <item name="statisticsDrawable">@drawable/statistics_orange</item>
+        <item name="usersActiveDrawable">@drawable/users_active_violet</item>
+        <item name="usersDrawable">@drawable/users_orange</item>
+        <item name="usersTitleBarDrawable">@drawable/users_title_bar_violet</item>
     </style>
 
-    <style name="AppTheme.TranslucentStatus" parent="AppTheme">
+    <style name="AppThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorAccent">@color/green</item>
+        <item name="colorPrimaryDark">@color/green</item>
+        <item name="colorHighlight">@color/green</item>
+        <item name="colorNormal">@color/black</item>
+        <item name="colorMain">@color/green</item>
+        <item name="colorTextPrimary">@color/black</item>
+        <item name="colorTextSecondary">@color/green2</item>
+        <item name="colorTextHighlight">@color/green</item>
+        <item name="colorButton">@color/green</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <!-- Drawables -->
+        <item name="buttonSignInSlackDrawable">@drawable/button_signin_slack_green</item>
+        <item name="channelsDrawable">@drawable/channels_green</item>
+        <item name="chartHeaderDrawable">@drawable/chart_header_green</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="hashtagTitleDrawable">@drawable/hashtag_title_violet</item>
+        <item name="hereIconDrawable">@drawable/here_icon_green</item>
+        <item name="medalDrawable">@drawable/medal_green</item>
+        <item name="mentionsIconDrawable">@drawable/mentions_icon_green</item>
+        <item name="messagesIconDrawable">@drawable/messages_icon_green</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="modalTop1Drawable">@drawable/modal_top1_violet</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="modalTop2Drawable">@drawable/modal_top2_violet</item>
+        <item name="profileMentionsDrawable">@drawable/profile_mentions_green</item>
+        <item name="profileMessagesDrawable">@drawable/profile_messages_green</item>
+        <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_green</item>
+        <item name="profileReadMsgDrawable">@drawable/profile_read_msg_green</item>
+        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green</item>
+        <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_green</item>
+        <item name="rankProfileDrawable">@drawable/rank_profile_green</item>
+        <item name="slackIconDrawable">@drawable/slack_icon_green</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="statisticsDrawable">@drawable/statistics_orange</item>
+        <item name="usersActiveDrawable">@drawable/users_active_green</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="usersDrawable">@drawable/users_orange</item>
+        <!-- TODO 21.08.2017 replace for the green one -->
+        <item name="usersTitleBarDrawable">@drawable/users_title_bar_violet</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="AppTheme.TranslucentStatus" parent="AppThemeColourful">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="MainToolbarTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/primary</item>
+        <!-- Not working when setting the background color here from attrs -->
         <item name="android:textColorPrimary">@color/white</item>
     </style>
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <style name="SplashThemeColourful" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="SplashThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- TODO 22.08.2017 Change for the green one -->
+        <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
@@ -31,6 +124,18 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Font16.ColorTextSecondary" parent="FontSmall.ColorTextSecondary">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="FontSmall.ColorTextSecondary" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">?attr/colorTextSecondary</item>
+    </style>
+
+    <style name="FontMedium.ColorTextPrimary" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+    </style>
+
     <style name="FontSmall.Grey" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/grey</item>
     </style>
@@ -39,8 +144,8 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="FontSmall.PrimaryDark" parent="TextAppearance.AppCompat.Small" >
-        <item name="android:textColor">@color/primaryDark</item>
+    <style name="FontSmall.ColorTextPrimary" parent="TextAppearance.AppCompat.Small" >
+        <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
     <style name="Font12.Grey" parent="FontSmall.Grey">
@@ -48,31 +153,31 @@
     </style>
 
     <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium" >
-        <item name="android:textColor">@color/primaryDark</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
-    <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textColor">@color/primaryDark</item>
+    <style name="FontLarge.ColorTextPrimary" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <style name="Font22.PrimaryDark" parent="FontLarge.PrimaryDark">
+    <style name="Font22.PrimaryDark" parent="FontLarge.ColorTextPrimary">
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="Font28.PrimaryDark" parent="FontLarge.PrimaryDark">
+    <style name="Font28.PrimaryDark" parent="FontLarge.ColorTextPrimary">
         <item name="android:textSize">28sp</item>
     </style>
 
-    <style name="FontDisplay2.PrimaryDark" parent="TextAppearance.AppCompat.Display2">
-        <item name="android:textColor">@color/primaryDark</item>
+    <style name="FontDisplay2.ColorTextPrimary" parent="TextAppearance.AppCompat.Display2">
+        <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <style name="FontMedium.Orange" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/orange</item>
+    <style name="FontMedium.Accent" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
-    <style name="FontLarge.Orange" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textColor">@color/orange</item>
+    <style name="FontLarge.Accent" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <style name="FontLarge.LightGrey" parent="TextAppearance.AppCompat.Large">
@@ -85,7 +190,12 @@
     </style>
 
     <style name="TextMedium" parent="TextAppearance.AppCompat.Medium" >
-        <item name="android:textColor">@color/violet</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium.Highlight" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textColor">?attr/colorTextHighlight</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

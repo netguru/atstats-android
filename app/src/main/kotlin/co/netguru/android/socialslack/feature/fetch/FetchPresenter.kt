@@ -1,9 +1,11 @@
 package co.netguru.android.socialslack.feature.fetch
 
 import co.netguru.android.socialslack.app.scope.ActivityScope
+import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.direct.DirectChannelsController
+import co.netguru.android.socialslack.data.theme.ThemeController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -13,8 +15,9 @@ import javax.inject.Inject
 
 @ActivityScope
 class FetchPresenter @Inject constructor(private val channelsController: ChannelsController,
-                                         private val directChannelsController: DirectChannelsController)
-    : MvpNullObjectBasePresenter<FetchContract.View>(), FetchContract.Presenter {
+                                         private val directChannelsController: DirectChannelsController,
+                                         themeController: ThemeController)
+    : CustomThemePresenter<FetchContract.View>(themeController), FetchContract.Presenter {
 
     companion object {
         // TODO 11.08.2017 replace this with the user ID

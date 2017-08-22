@@ -1,16 +1,17 @@
 package co.netguru.android.socialslack.feature.splash
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
+import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.session.TokenController
 import co.netguru.android.socialslack.data.session.model.TokenCheck
-import co.netguru.android.socialslack.TestHelper.whenever
-
+import co.netguru.android.socialslack.data.theme.ThemeController
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Single
 import org.junit.Before
-import org.junit.Test
-import org.mockito.Mockito.*
-
 import org.junit.Rule
+import org.junit.Test
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @Suppress("IllegalIdentifier")
 class SplashPresenterTest {
@@ -19,16 +20,18 @@ class SplashPresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    lateinit var tokenController: TokenController
+    val tokenController = mock<TokenController>()
+
+    val themeController = mock<ThemeController>()
+
     lateinit var view: SplashContract.View
 
     lateinit var splashPresenter: SplashPresenter
 
     @Before
     fun setUp() {
-        tokenController = mock(TokenController::class.java)
         view = mock(SplashContract.View::class.java)
-        splashPresenter = SplashPresenter(tokenController)
+        splashPresenter = SplashPresenter(tokenController, themeController)
     }
 
     @Test
