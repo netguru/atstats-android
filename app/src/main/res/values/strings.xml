@@ -84,4 +84,6 @@
     <string name="colour_scheme">Colour scheme</string>
     <string name="log_out">Log out</string>
     <string name="send_us_feedback">Send us feedback</string>
+    <string name="error_changing_theme">"Error while changing the theme"</string>
+    <string name="error_getting_team_info">"Error while getting team's info"</string>
 </resources>

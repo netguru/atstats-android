@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.direct.DirectChannelsDao
+import co.netguru.android.socialslack.data.team.TeamDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -23,4 +24,8 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideDirectChannelsDao(slackSocialDatabase: SlackSocialDatabase): DirectChannelsDao = slackSocialDatabase.directChannelsDao()
+
+    @Singleton
+    @Provides
+    fun provideTeamDao(slackSocialDatabase: SlackSocialDatabase): TeamDao = slackSocialDatabase.teamDao()
 }

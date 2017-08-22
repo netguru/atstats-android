@@ -8,6 +8,7 @@ import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.direct.DirectChannelsController
 import co.netguru.android.socialslack.data.direct.model.DirectChannel
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
+import co.netguru.android.socialslack.data.team.TeamController
 import co.netguru.android.socialslack.data.theme.ThemeController
 import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Single
@@ -50,6 +51,8 @@ class FetchPresenterTest {
 
     val directChannelsController = mock<DirectChannelsController>()
 
+    val teamController = mock<TeamController>()
+
     val themeController = mock<ThemeController>()
 
     val view = mock<FetchContract.View>()
@@ -58,7 +61,7 @@ class FetchPresenterTest {
 
     @Before
     fun setUp() {
-        fetchPresenter = FetchPresenter(channelsController, directChannelsController, themeController)
+        fetchPresenter = FetchPresenter(channelsController, directChannelsController, teamController, themeController)
     }
 
     @Test

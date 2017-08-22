@@ -5,6 +5,7 @@ import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.direct.DirectChannelsController
+import co.netguru.android.socialslack.data.team.TeamController
 import co.netguru.android.socialslack.data.theme.ThemeController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @ActivityScope
 class FetchPresenter @Inject constructor(private val channelsController: ChannelsController,
                                          private val directChannelsController: DirectChannelsController,
+                                         private val teamController: TeamController,
                                          themeController: ThemeController)
     : CustomThemePresenter<FetchContract.View>(themeController), FetchContract.Presenter {
 
@@ -30,6 +32,7 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
         super.attachView(view)
         compositeDisposable += fetchAndStoreChannelsStatistics()
                 .concatWith(fetchAndStoreDirectChannelsStatistics())
+                .concatWith(fetchAndStoreTeam())
                 .subscribeBy(
                         onComplete = { view.showMainActivity() },
                         onError = { handleError(it, "Error while fetching data") }
@@ -60,5 +63,8 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)
                         .toCompletable()
             }
+            .compose(RxTransformers.applyCompletableIoSchedulers())
+
+    private fun fetchAndStoreTeam() = teamController.fetchTeamInfo()
             .compose(RxTransformers.applyCompletableIoSchedulers())
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.data.team.model.Team
 import co.netguru.android.socialslack.data.theme.ThemeOption
 import co.netguru.android.socialslack.feature.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
@@ -22,6 +23,7 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         fun newInstance() = ProfileFragment()
         const val COLOURFUL_THEME_POSITION = 0
         const val NETGURU_THEME_POSITION = 1
+        const val SLACK_DOMAIN = ".slack.com"
     }
 
     private val component by lazy { App.getUserComponent(context).plusProfileComponent() }
@@ -59,7 +61,16 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
     }
 
     override fun showChangeThemeError() {
-        Snackbar.make(sendUsFeedBackButton, "Error while changing the theme", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(sendUsFeedBackButton, R.string.error_changing_theme, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showTeamInfo(team: Team) {
+        teamNameTextView.text = team.name
+        teamPageTextView.text = team.domain.plus(SLACK_DOMAIN)
+    }
+
+    override fun showTeamInfoError() {
+        Snackbar.make(sendUsFeedBackButton, R.string.error_getting_team_info, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun initView() {
