@@ -11,26 +11,19 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 import javax.inject.Inject
 
 
-abstract class MvpCustomThemeActivity<V : MvpView, P : MvpPresenter<V>> : MvpActivity<V, P>() {
-
-    @Inject
-    lateinit var themeController: ThemeController
+abstract class MvpCustomThemeActivity<V : CustomThemeContract.View, P : CustomThemeContract.Presenter<V>> : MvpActivity<V, P>() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        inject()
-        setTheme()
         super.onCreate(savedInstanceState, persistentState)
+        setTheme()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        inject()
-        setTheme()
         super.onCreate(savedInstanceState)
+        setTheme()
     }
 
-    abstract fun inject()
-
-    private fun setTheme() {
-        setTheme(if (themeController?.getThemeSync() == ThemeOption.COLOURFUL) R.style.AppThemeColourful else R.style.AppThemeNetguru)
+    open fun setTheme() {
+        setTheme(if (getPresenter().showColourfulTheme()) R.style.AppThemeColourful else R.style.AppThemeNetguru)
     }
 }

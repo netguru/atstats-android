@@ -20,10 +20,6 @@ class FetchActivity : MvpCustomThemeActivity<FetchContract.View, FetchContract.P
         finish()
     }
 
-    override fun inject() {
-        component.inject(this)
-    }
-
     override fun showErrorMessage() {
         progressBar.visibility = View.INVISIBLE
         Snackbar.make(mainLayout, R.string.error_msg, Snackbar.LENGTH_LONG)

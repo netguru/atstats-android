@@ -9,7 +9,5 @@ import dagger.Subcomponent
 @Subcomponent
 interface CustomThemeComponent {
 
-    fun inject(customThemeActivity: CustomThemeActivity)
-
-    fun getThemeController(): ThemeController
+    fun getPresenter(): CustomThemePresenterImpl
 }

@@ -11,6 +11,4 @@ interface SplashComponent {
     fun inject(splashActivity: SplashActivity)
 
     fun getPresenter() : SplashPresenter
-
-    fun getThemeController(): ThemeController
 }

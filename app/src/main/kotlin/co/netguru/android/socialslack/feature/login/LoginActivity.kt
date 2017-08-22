@@ -4,8 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
+import co.netguru.android.socialslack.common.customTheme.CustomThemeContract
 
-class LoginActivity : CustomThemeActivity() {
+class LoginActivity : CustomThemeActivity(), CustomThemeContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

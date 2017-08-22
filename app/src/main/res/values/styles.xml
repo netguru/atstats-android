@@ -98,7 +98,16 @@
         <!-- Not working when setting the background color here from attrs -->
         <item name="android:textColorPrimary">@color/white</item>
     </style>
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <style name="SplashThemeColourful" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="SplashThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- TODO 22.08.2017 Change for the green one -->
+        <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
