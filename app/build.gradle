@@ -152,6 +152,7 @@ dependencies {
     compile libs.verticalViewPager
     compile libs.gridLayout
     compile libs.cardView
+    compile 'us.belka:androidtoggleswitch:1.2.2'
 
     // kotlin
     compile libs.kotlin

@@ -1,11 +1,11 @@
 package co.netguru.android.socialslack.feature.users.adapter
 
 import android.support.annotation.LayoutRes
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.extensions.getAttributeColor
 import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
@@ -50,8 +50,9 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
     }
 
     private fun changeMessagesNrTextColor(channelsPositionInList: Int) {
-        messagesNrTextView.setTextColor(ContextCompat.getColor(itemView.context,
-                if (channelsPositionInList == POSITION_FIRST) R.color.orange else R.color.primaryDark))
+        val context = itemView.context
+        messagesNrTextView.setTextColor(if (channelsPositionInList == POSITION_FIRST)
+            context.getAttributeColor(R.attr.colorHighlight) else context.getAttributeColor(R.attr.colorNormal))
     }
 
     private fun changeMedalVisibility(channelsPositionInList: Int) {

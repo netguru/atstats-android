@@ -3,6 +3,8 @@
     <string name="app_name">Social Slack</string>
     <string name="welcome_to">Welcome to</string>
     <string name="designed_with_love_by">Designed with love by</string>
+    <string name="netguru">Netguru</string>
+    <string name="colourful">Colourful</string>
 
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
@@ -53,7 +55,8 @@
     <string name="channels">Channels</string>
     <string name="channel_we_write_most">Kanał na którym najwięcej piszemy</string>
     <string name="mentioned_most">Jesteśmy najczęściej mentionowani</string>
-    <string name="welcome_back_mock">Welcome back\n@amarok</string>
+    <string name="welcome_back_mock">Welcome back</string>
+    <string name="mock_name">\@amarok</string>
     <string name="statistics">Statistics</string>
     <string name="users">Users</string>
     <string name="hashtag">#</string>
@@ -76,4 +79,9 @@
     <string name="sent_messages">Sent messages</string>
     <string name="total_sent_received">total (sent/received)</string>
     <string name="days_streak">days streak</string>
+
+    // Profile
+    <string name="colour_scheme">Colour scheme</string>
+    <string name="log_out">Log out</string>
+    <string name="send_us_feedback">Send us feedback</string>
 </resources>

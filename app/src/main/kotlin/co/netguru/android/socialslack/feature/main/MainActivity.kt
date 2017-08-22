@@ -6,19 +6,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
+import co.netguru.android.socialslack.common.extensions.getAttributeColor
 import co.netguru.android.socialslack.feature.channels.root.ChannelsRootFragment
 import co.netguru.android.socialslack.feature.home.HomeFragment
+import co.netguru.android.socialslack.feature.profile.ProfileFragment
 import co.netguru.android.socialslack.feature.users.root.UsersRootFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : CustomThemeActivity() {
 
     companion object {
         const val REQUEST_SORT_CHANNELS = 101
         const val REQUEST_SORT_USERS = 102
         const val REQUEST_EXTRA = "requestExtra"
+        const val SHOW_PROFILE_KEY = "key:showProfile"
 
         private const val REQUEST_DEFAULT = 0
 
@@ -26,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(context, MainActivity::class.java)
             intent.putExtra(MainActivity.REQUEST_EXTRA, requestCode)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
+
+        fun startActivityOnProfile(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(SHOW_PROFILE_KEY, true)
             context.startActivity(intent)
         }
     }
@@ -36,7 +45,8 @@ class MainActivity : AppCompatActivity() {
 
         initializeToolbar()
         initializeBottomNavigationView()
-        replaceFragmentInMainContainer(HomeFragment.newInstance())
+        if (intent.getBooleanExtra(SHOW_PROFILE_KEY, false)) showProfile()
+            else replaceFragmentInMainContainer(HomeFragment.newInstance())
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -80,13 +90,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showProfile() {
+        mainNavigationView.selectedItemId = R.id.menu_profile
+    }
+
     private fun initializeBottomNavigationView() {
         mainNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> replaceFragmentInMainContainer(HomeFragment.newInstance())
                 R.id.menu_channels -> replaceFragmentInMainContainer(ChannelsRootFragment.newInstance())
                 R.id.menu_users -> replaceFragmentInMainContainer(UsersRootFragment.newInstance())
-                R.id.menu_profile -> replaceFragmentInMainContainer(BlankFragment.newInstance())
+                R.id.menu_profile -> replaceFragmentInMainContainer(ProfileFragment.newInstance())
                 else -> throw IllegalStateException("No action specified for item: $it")
             }
         }
@@ -103,6 +117,8 @@ class MainActivity : AppCompatActivity() {
     // Suppress RestrictedApi warning because of this bug https://issuetracker.google.com/issues/37130193
     @SuppressLint("RestrictedApi")
     private fun initializeToolbar() {
+        // Not working when setting up the background color from attrs in styles
+        toolbar.setBackgroundColor(this.getAttributeColor(R.attr.colorPrimary))
         setSupportActionBar(toolbar)
         val actionBar: ActionBar? = supportActionBar
         actionBar?.let {

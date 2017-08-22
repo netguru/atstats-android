@@ -31,7 +31,7 @@
             android:layout_marginEnd="@dimen/margin_small"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_default"
-            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardCornerRadius="@dimen/card_corner_radius_small"
             app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
@@ -95,7 +95,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="@dimen/users_profile_small_margin"
-                            android:drawableStart="@drawable/profile_sent_privs"
+                            android:drawableStart="?attr/profileSentPrivsDrawable"
                             android:gravity="center"
                             android:lines="1"
                             android:text="@string/private_messages"
@@ -111,7 +111,7 @@
 
                         <TextView
                             android:id="@+id/sentRecvdMsgTextView"
-                            style="@style/FontMedium.PrimaryDark"
+                            style="@style/FontMedium.ColorTextPrimary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -141,7 +141,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="@dimen/users_profile_small_margin"
-                            android:drawableStart="@drawable/profile_received_priv_msgs"
+                            android:drawableStart="?attr/profileReceivedPrivMsgsDrawable"
                             android:gravity="center"
                             android:lines="1"
                             android:text="@string/private_messages"

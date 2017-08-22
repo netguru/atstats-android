@@ -8,5 +8,7 @@ import dagger.Subcomponent
 @Subcomponent
 interface FetchComponent {
 
+    fun inject(fetchActivity: FetchActivity)
+
     fun getPresenter(): FetchPresenter
 }

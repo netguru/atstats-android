@@ -14,7 +14,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/modal_top1">
+            android:background="?attr/modalTop1Drawable">
 
             <TextView
                 style="@style/FontLarge.LightGrey"
@@ -36,14 +36,14 @@
 
         <TextView
             android:id="@+id/shareNameTextView"
-            style="@style/FontMedium.PrimaryDark"
+            style="@style/FontMedium.ColorTextPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/shareStatusTextView"
-            style="@style/FontMedium.Orange"
+            style="@style/FontMedium.Accent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
