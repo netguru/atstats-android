@@ -31,11 +31,11 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
                              selectedFilterOption: UsersFilterOption) {
         view.showLoadingView()
         compositeDisposable += Flowable.fromIterable(userStatisticsList)
-                .flatMap {
+                .concatMapEager {
                     usersProfileController.getUserWithPresence(it)
                             .subscribeOn(Schedulers.io())
                 }
-                .toSortedList { o1, o2 -> o1.currentPositionInList.compareTo(o2.currentPositionInList) }
+                .toList()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {
