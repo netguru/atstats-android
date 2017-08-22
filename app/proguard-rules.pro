@@ -38,6 +38,9 @@
     public static *** d(...);
 }
 
+# Models!
+-keepclassmembernames class co.netguru.android.socialslack.data.**.model.** { *; }
+
 # app compat-v7
 -keep class android.support.v7.widget.SearchView { *; }
 

@@ -19,7 +19,7 @@ class FilterActivity : CustomThemeActivity() {
 
         fun startActivity(context: Context, filterObjectType: FilterObjectType) {
             val intent = Intent(context, FilterActivity::class.java)
-            intent.putExtra(FilterActivity.FILTER_OBJECT_TYPE, filterObjectType)
+            intent.putExtra(FilterActivity.FILTER_OBJECT_TYPE, filterObjectType.name)
             context.startActivity(intent)
         }
     }
@@ -30,8 +30,7 @@ class FilterActivity : CustomThemeActivity() {
         initializeToolbar()
 
         val fragment = supportFragmentManager.findFragmentById(R.id.filterFragmentContainer)
-                ?: FilterFragment.newInstance(intent.getSerializableExtra(FILTER_OBJECT_TYPE)
-                as FilterObjectType)
+                ?: FilterFragment.newInstance(FilterObjectType.valueOf(intent.getStringExtra(FILTER_OBJECT_TYPE)))
 
         supportFragmentManager.beginTransaction()
                 .replace(R.id.filterFragmentContainer, fragment)

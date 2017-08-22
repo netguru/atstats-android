@@ -1,4 +1,4 @@
-package co.netguru.android.socialslack.data.user.profile
+package co.netguru.android.socialslack.data.user.profile.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -57,7 +57,7 @@ class HomeUsersPresenter @Inject constructor(
 
         compositeDisposable += findUserWithFilter(channelStatistics,
                 UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST,
-                this::toUserStatisticsThatWeWriteMost)
+                this::toUserStatistics)
                 .subscribeBy(onSuccess = view::setUsersWeWriteMost, onError = { it.printStackTrace() })
     }
 
@@ -65,7 +65,7 @@ class HomeUsersPresenter @Inject constructor(
 
         compositeDisposable += findUserWithFilter(channelStatistics,
                 UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST,
-                this::toUserStatisticsThatWritesToUsMost)
+                this::toUserStatistics)
                 .subscribeBy(onSuccess = view::setUsersThatWriteToUsTheMost, onError = { it.printStackTrace() })
     }
 
@@ -73,7 +73,7 @@ class HomeUsersPresenter @Inject constructor(
 
         compositeDisposable += findUserWithFilter(channelStatistics,
                 UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST,
-                this::toUserStatisticsThatTalkMost)
+                this::toUserStatistics)
                 .subscribeBy(onSuccess = view::setUsersWeTalkTheMost, onError = { Timber.e(it) })
     }
 
@@ -94,14 +94,6 @@ class HomeUsersPresenter @Inject constructor(
                     .sortedWith(DirectChannelsComparator.getFirectChannelComparatorForFilterOption(listFilter.second))
                     .subList(0, USERS_SHOWN_IN_STATISTICS)
 
-    private fun toUserStatisticsThatWeWriteMost(channelStatistics: DirectChannelStatistics, user: User)
-            = user.toStatisticsView(channelStatistics.messagesFromUs)
-
-    private fun toUserStatisticsThatWritesToUsMost(channelStatistics: DirectChannelStatistics, user: User)
-            = user.toStatisticsView(channelStatistics.messagesFromOtherUser)
-
-    private fun toUserStatisticsThatTalkMost(channelStatistics: DirectChannelStatistics, user: User) = user.toStatisticsView(
-            channelStatistics.messagesFromOtherUser + channelStatistics.messagesFromUs,
-            channelStatistics.messagesFromUs,
-            channelStatistics.messagesFromOtherUser)
+    private fun toUserStatistics(channelStatistics: DirectChannelStatistics, user: User)
+            = user.toStatisticsView(channelStatistics.messagesFromUs, channelStatistics.messagesFromOtherUser)
 }

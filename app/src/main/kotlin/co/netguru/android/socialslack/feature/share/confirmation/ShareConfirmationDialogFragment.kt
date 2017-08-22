@@ -27,7 +27,7 @@ class ShareConfirmationDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_share_confirmation)
+        return inflater.inflate(R.layout.fragment_share_confirmation, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

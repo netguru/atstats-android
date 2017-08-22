@@ -11,7 +11,6 @@ import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
-import co.netguru.android.socialslack.feature.channels.adapter.ChannelsViewHolder
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
@@ -21,7 +20,7 @@ import kotlinx.android.synthetic.main.filter_view.*
 import kotlinx.android.synthetic.main.fragment_channels.*
 
 class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, ChannelsContract.Presenter>(),
-        ChannelsContract.View, ChannelsViewHolder.ChannelClickListener {
+        ChannelsContract.View, ChannelsAdapter.ChannelClickListener {
 
     companion object {
         fun newInstance() = ChannelsFragment()
@@ -86,18 +85,18 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
         channelLoadingView.visibility = View.GONE
     }
 
-    override fun showChannelDetails(channelStatistics: ChannelStatistics, mostActiveChannelList: List<ChannelStatistics>) {
+    override fun showChannelDetails(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>, filterOption: ChannelsFilterOption) {
         if (parentFragment is BaseFragmentWithNestedFragment) {
             val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
             fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentChannelRootContainer,
-                    ChannelProfileFragment.newInstance(channelStatistics, mostActiveChannelList.toTypedArray()))
+                    ChannelProfileFragment.newInstance(channelStatistics, channelList.toTypedArray(), filterOption))
         } else {
             throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
         }
     }
 
-    override fun onChannelClick(channelStatistics: ChannelStatistics) {
-        presenter.onChannelClick(channelStatistics, adapter.channelsList)
+    override fun onChannelClick(clickedItemPosition: Int) {
+        presenter.onChannelClick(clickedItemPosition, adapter.channelsList)
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()

@@ -16,7 +16,6 @@
 
     <dimen name="splash_netguru_logo_bottom_margin">80dp</dimen>
     <dimen name="channels_item_height">60dp</dimen>
-    <dimen name="users_item_height">100dp</dimen>
 
     // Channel profile
     <dimen name="channel_card_view_elevation">13dp</dimen>
@@ -62,6 +61,7 @@
     <dimen name="header_textSize">28sp</dimen>
 
     //Users list
+    <dimen name="users_item_height">100dp</dimen>
     <dimen name="item_user_avatar_container_size">72dp</dimen>
     <dimen name="item_user_avatar_radius">8dp</dimen>
     <dimen name="item_user_avatar_margin">6dp</dimen>
@@ -81,4 +81,8 @@
     <dimen name="profile_toggle_switch_width">160dp</dimen>
     <dimen name="profile_toggle_switch_stroke_border">1dp</dimen>
     <dimen name="profile_card_elevation">6dp</dimen>
+
+    //Users share
+    <dimen name="users_share_item_height">70dp</dimen>
+    <dimen name="item_user_share_avatar_container_size">60dp</dimen>
 </resources>

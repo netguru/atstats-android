@@ -15,10 +15,14 @@ interface UsersProfileContract {
         fun showLoadingView()
 
         fun hideLoadingView()
+
+        fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>)
     }
 
     interface Presenter : MvpPresenter<View> {
         fun prepareView(userStatisticsList: List<UserStatistic>, currentUserPosition: Int,
                         selectedFilterOption: UsersFilterOption)
+
+        fun onShareButtonClicked(clickedItemPosition: Int, usersList: List<UserStatistic>)
     }
 }

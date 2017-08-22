@@ -10,19 +10,14 @@ import co.netguru.android.socialslack.data.user.model.User
 import co.netguru.android.socialslack.data.user.model.UserProfile
 import co.netguru.android.socialslack.data.user.model.UserResponse
 import co.netguru.android.socialslack.data.user.model.UserStatistic
-import co.netguru.android.socialslack.data.user.profile.Presence
-import com.nhaarman.mockito_kotlin.check
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import io.reactivex.Observable
+
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
+
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentCaptor
-import org.mockito.Mockito.anyInt
+
 import org.mockito.Mockito.anyString
 
 
@@ -31,13 +26,13 @@ class UsersControllerTest {
 
     companion object {
         val USER_PROFILE = UserProfile("", "", "", "", "", "", "", "", "", "")
-        val USER = User("1", "User", "User", USER_PROFILE)
+        val USER = User("1", "User", "User", "User", "User", USER_PROFILE)
         val USER_RESPONSE = UserResponse(true, USER)
         val USER_PROFILE_2 = UserProfile("", "", "", "", "", "", "", "", "", "")
-        val USER_2 = User("2", "User2", "User2", USER_PROFILE_2)
+        val USER_2 = User("2", "User2", "User2", "User", "User", USER_PROFILE_2)
         val USER_RESPONSE_2 = UserResponse(true, USER_2)
         val USER_PROFILE_3 = UserProfile("", "", "", "", "", "", "", "", "", "")
-        val USER_3 = User("3", "User3", "User3", USER_PROFILE_3)
+        val USER_3 = User("3", "User3", "User3", "User", "User", USER_PROFILE_3)
         val USER_RESPONSE_3 = UserResponse(true, USER_3)
 
         val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics("ch1", "1", 1, 1)
