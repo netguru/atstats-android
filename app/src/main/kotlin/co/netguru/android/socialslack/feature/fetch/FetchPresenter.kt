@@ -5,11 +5,10 @@ import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.direct.DirectChannelsController
-import co.netguru.android.socialslack.data.session.TokenController
+import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.team.TeamController
 import co.netguru.android.socialslack.data.theme.ThemeController
 import co.netguru.android.socialslack.data.user.UsersController
-import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -17,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @ActivityScope
-class FetchPresenter @Inject constructor(private val tokenController: TokenController,
+class FetchPresenter @Inject constructor(private val sessionController: SessionController,
                                          private val usersController: UsersController,
                                          private val channelsController: ChannelsController,
                                          private val directChannelsController: DirectChannelsController,
@@ -25,16 +24,12 @@ class FetchPresenter @Inject constructor(private val tokenController: TokenContr
                                          themeController: ThemeController)
     : CustomThemePresenter<FetchContract.View>(themeController), FetchContract.Presenter {
 
-    companion object {
-        // TODO 11.08.2017 replace this with the user ID
-        private const val MOCK_USER = "U2JHH3HAA"
-    }
-
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun attachView(view: FetchContract.View) {
         super.attachView(view)
         compositeDisposable += fetchAndStoreChannelsStatistics()
+                .concatWith(fetchAndStoreOwnUserInfo())
                 .concatWith(fetchAndStoreDirectChannelsStatistics())
                 .concatWith(fetchAndStoreTeam())
                 .subscribeBy(
@@ -53,14 +48,18 @@ class FetchPresenter @Inject constructor(private val tokenController: TokenContr
         view.showErrorMessage()
     }
 
-    private fun fetchAndStoreUserInfo() = tokenController.getToken()
-            .flatMap { usersController.getUserInfo(it.userId) }
+    private fun fetchAndStoreOwnUserInfo() = sessionController.getUserSession()
+            .flatMap { usersController.getUserAndStore(it.userId) }
+            .toCompletable()
+            .compose(RxTransformers.applyCompletableIoSchedulers())
 
     private fun fetchAndStoreChannelsStatistics() = channelsController.getChannelsList()
             .flattenAsFlowable { it.filter { it.isCurrentUserMember } }
-            .flatMapCompletable {
-                channelsController.countChannelStatistics(it.id, it.name, MOCK_USER)
-                        .toCompletable()
+            .flatMapCompletable { (id, name) ->
+                sessionController.getUserSession().flatMapCompletable {
+                    channelsController.countChannelStatistics(id, name, it.userId)
+                            .toCompletable()
+                }
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
 

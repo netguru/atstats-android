@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class, NetworkModule::class, ApiModule::class,
-        TokenRepositoryModule::class, DatabaseModule::class, LocalRepositoryModule::class))
+        SessionRepositoryModule::class, DatabaseModule::class, LocalRepositoryModule::class))
 internal interface ApplicationComponent {
 
     fun userComponentBuilder(): UserComponent.Builder

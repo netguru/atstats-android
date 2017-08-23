@@ -2,7 +2,7 @@ package co.netguru.android.socialslack.feature.login
 
 import android.net.Uri
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
-import co.netguru.android.socialslack.data.session.TokenController
+import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.session.model.Token
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.TestHelper.anyObject
@@ -22,7 +22,7 @@ class LoginPresenterTest {
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
-    val tokenController: TokenController = mock(TokenController::class.java)
+    val sessionController: SessionController = mock(SessionController::class.java)
     lateinit var view: LoginContract.View
 
     lateinit var loginPresenter: LoginPresenter
@@ -30,7 +30,7 @@ class LoginPresenterTest {
     @Before
     fun setUp() {
         view = mock(LoginContract.View::class.java)
-        loginPresenter = LoginPresenter(tokenController)
+        loginPresenter = LoginPresenter(sessionController)
         loginPresenter.attachView(view)
     }
 
@@ -38,18 +38,18 @@ class LoginPresenterTest {
     fun `should get oauth uri when login button clicked`() {
         //given
         val uri: Uri = mock(Uri::class.java)
-        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
+        whenever(sessionController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
         //then
-        verify(tokenController).getOauthAuthorizeUri()
+        verify(sessionController).getOauthAuthorizeUri()
     }
 
     @Test
     fun `should show oauth browser when getting uri successful`() {
         //given
         val uri: Uri = mock(Uri::class.java)
-        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
+        whenever(sessionController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
 
@@ -61,7 +61,7 @@ class LoginPresenterTest {
     fun `should disable login button when getting uri successful`() {
         //given
         val uri: Uri = mock(Uri::class.java)
-        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
+        whenever(sessionController.getOauthAuthorizeUri()).thenReturn(Single.just(uri))
         //when
         loginPresenter.loginButtonClicked()
         //then
@@ -74,11 +74,11 @@ class LoginPresenterTest {
         val uri: Uri = mock(Uri::class.java)
         val token: Token = mock(Token::class.java)
         whenever(uri.getQueryParameter(anyString())).thenReturn("")
-        whenever(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
+        whenever(sessionController.requestNewToken(anyString())).thenReturn(Single.just(token))
         //when
         loginPresenter.onAppAuthorizeCodeReceived(uri)
         //then
-        verify(tokenController).requestNewToken(anyString())
+        verify(sessionController).requestNewToken(anyString())
     }
 
     @Test
@@ -87,12 +87,12 @@ class LoginPresenterTest {
         val uri: Uri = mock(Uri::class.java)
         val token: Token = mock(Token::class.java)
         whenever(uri.getQueryParameter(anyString())).thenReturn("")
-        whenever(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
-        whenever(tokenController.saveToken(anyObject())).thenReturn(Completable.complete())
+        whenever(sessionController.requestNewToken(anyString())).thenReturn(Single.just(token))
+        whenever(sessionController.saveToken(anyObject())).thenReturn(Completable.complete())
         //when
         loginPresenter.onAppAuthorizeCodeReceived(uri)
         //then
-        verify(tokenController).saveToken(anyObject())
+        verify(sessionController).saveToken(anyObject())
     }
 
     @Test
@@ -101,8 +101,8 @@ class LoginPresenterTest {
         val uri: Uri = mock(Uri::class.java)
         val token: Token = mock(Token::class.java)
         whenever(uri.getQueryParameter(anyString())).thenReturn("")
-        whenever(tokenController.requestNewToken(anyString())).thenReturn(Single.just(token))
-        whenever(tokenController.saveToken(anyObject())).thenReturn(Completable.complete())
+        whenever(sessionController.requestNewToken(anyString())).thenReturn(Single.just(token))
+        whenever(sessionController.saveToken(anyObject())).thenReturn(Completable.complete())
         //when
         loginPresenter.onAppAuthorizeCodeReceived(uri)
         //then
@@ -112,7 +112,7 @@ class LoginPresenterTest {
     @Test
     fun `should enable login button when error occurs`() {
         //given
-        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
+        whenever(sessionController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
         //when
         loginPresenter.loginButtonClicked()
         //then
@@ -122,7 +122,7 @@ class LoginPresenterTest {
     @Test
     fun `should show error message when error occurs`() {
         //given
-        whenever(tokenController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
+        whenever(sessionController.getOauthAuthorizeUri()).thenReturn(Single.error(Throwable()))
         //when
         loginPresenter.loginButtonClicked()
         //then

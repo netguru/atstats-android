@@ -3,10 +3,10 @@ package co.netguru.android.socialslack.feature.splash
 import co.netguru.android.socialslack.app.scope.ActivityScope
 import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.session.TokenController
+import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.session.model.TokenCheck
+import co.netguru.android.socialslack.data.session.model.UserSession
 import co.netguru.android.socialslack.data.theme.ThemeController
-import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @ActivityScope
-class SplashPresenter @Inject constructor(private val tokenController: TokenController,
+class SplashPresenter @Inject constructor(private val sessionController: SessionController,
                                           themeController: ThemeController)
     : CustomThemePresenter<SplashContract.View>(themeController), SplashContract.Presenter {
 
@@ -22,7 +22,7 @@ class SplashPresenter @Inject constructor(private val tokenController: TokenCont
 
     override fun attachView(view: SplashContract.View) {
         super.attachView(view)
-        compositeDisposable += tokenController.isTokenValid()
+        compositeDisposable += sessionController.isTokenValid()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = this::onCheckTokenNext,
