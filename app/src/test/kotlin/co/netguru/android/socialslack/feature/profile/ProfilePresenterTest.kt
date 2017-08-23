@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.profile
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
+import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.team.TeamDao
 import co.netguru.android.socialslack.data.team.model.Team
@@ -8,6 +9,7 @@ import co.netguru.android.socialslack.data.theme.ThemeController
 import co.netguru.android.socialslack.data.theme.ThemeOption
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
@@ -62,6 +64,7 @@ class ProfilePresenterTest {
     fun `should change theme when the theme is changed`() {
         //given
         whenever(themeController.getThemeOption()).thenReturn(Single.just(ThemeOption.COLOURFUL))
+        whenever(themeController.saveThemeOption(anyObject())).thenReturn(Completable.complete())
 
         // when
         profilePresenter.changeTheme()

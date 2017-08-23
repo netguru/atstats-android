@@ -5,6 +5,7 @@ import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.session.model.Token
 import co.netguru.android.socialslack.data.session.model.TokenCheck
+import co.netguru.android.socialslack.data.session.model.UserSession
 import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -15,7 +16,7 @@ import org.junit.Test
 import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
-class TokenControllerTest {
+class SessionControllerTest {
 
     companion object {
         const val EMPTY_STRING = ""
@@ -53,12 +54,25 @@ class TokenControllerTest {
     fun `should get token from token repository`() {
         //given
         val testObserver = TestObserver<Token>()
-        val token: Token = mock(Token::class.java)
+        val token = mock<Token>()
         whenever(tokenRepository.getToken()).thenReturn(token)
         //when
         sessionController.getToken().subscribe(testObserver)
         //then
         verify(tokenRepository).getToken()
+        testObserver.assertNoErrors()
+    }
+
+    @Test
+    fun `should get UserSession from UserSessionRepository`() {
+        //given
+        val testObserver = TestObserver<UserSession>()
+        val userSession = mock<UserSession>()
+        whenever(userSessionRespository.getUserSession()).thenReturn(userSession)
+        //when
+        sessionController.getUserSession().subscribe(testObserver)
+        //then
+        verify(userSessionRespository).getUserSession()
         testObserver.assertNoErrors()
     }
 
@@ -108,10 +122,27 @@ class TokenControllerTest {
         val token: Token = Token("test_token", "")
         whenever(tokenRepository.getToken()).thenReturn(token)
         whenever(loginApi.checkToken()).thenReturn(Single.just(TokenCheck(true, EMPTY_STRING, EMPTY_STRING)))
+        whenever(userSessionRespository.saveUserSession(anyObject())).thenReturn(Completable.complete())
         //when
         sessionController.isTokenValid().subscribe(testObserver)
         //then
         verify(loginApi).checkToken()
+        testObserver.assertNoErrors()
+    }
+
+    @Test
+    fun `should store UserSession when token is not empty`() {
+        //given
+        val testObserver = TestObserver<TokenCheck>()
+        val token: Token = Token("test_token", "")
+        val userSession = UserSession("userId", "teamId")
+        whenever(tokenRepository.getToken()).thenReturn(token)
+        whenever(loginApi.checkToken()).thenReturn(Single.just(TokenCheck(true, "teamId", "userId")))
+        whenever(userSessionRespository.saveUserSession(anyObject())).thenReturn(Completable.complete())
+        //when
+        sessionController.isTokenValid().subscribe(testObserver)
+        //then
+        verify(userSessionRespository).saveUserSession(anyObject())
         testObserver.assertNoErrors()
     }
 }

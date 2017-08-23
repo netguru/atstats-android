@@ -5,7 +5,6 @@ import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.session.model.TokenCheck
-import co.netguru.android.socialslack.data.session.model.UserSession
 import co.netguru.android.socialslack.data.theme.ThemeController
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -37,7 +36,7 @@ class SplashPresenter @Inject constructor(private val sessionController: Session
 
     private fun onCheckTokenNext(tokenCheck: TokenCheck) {
         when (tokenCheck.isTokenValid) {
-            true -> view.showMainActivity()
+            true -> view.showFetchActivity()
             false -> view.showLoginActivity()
         }
     }

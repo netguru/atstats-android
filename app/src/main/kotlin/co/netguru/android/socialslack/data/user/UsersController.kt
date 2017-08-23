@@ -16,7 +16,7 @@ import javax.inject.Inject
 class UsersController @Inject constructor(private val usersApi: UsersApi,
                                           private val usersDao: UsersDao,
                                           private val directChannelsDao: DirectChannelsDao) {
-
+    // TODO 23.08.2017 to be replace and use getUserAndStore
     internal fun getUserInfo(userId: String): Single<User> {
         return usersApi.getUserInfo(userId)
                 .map { it.user }

@@ -55,7 +55,7 @@ class SplashPresenterTest {
         //when
         splashPresenter.attachView(view)
         //then
-        verify(view).showMainActivity()
+        verify(view).showFetchActivity()
     }
 
     @Test

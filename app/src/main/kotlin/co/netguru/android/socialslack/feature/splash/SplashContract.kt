@@ -7,7 +7,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 interface SplashContract {
 
     interface View : CustomThemeContract.View {
-        fun showMainActivity()
+        fun showFetchActivity()
 
         fun showLoginActivity()
     }
