@@ -9,6 +9,7 @@ import co.netguru.android.socialslack.data.theme.ThemeOption
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Single
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -79,5 +80,10 @@ class ProfilePresenterTest {
 
         //then
         verify(view).showChangeThemeError()
+    }
+
+    @After
+    fun tearDown() {
+        profilePresenter.detachView(false)
     }
 }

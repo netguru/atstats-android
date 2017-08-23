@@ -5,8 +5,10 @@ import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.direct.DirectChannelsController
+import co.netguru.android.socialslack.data.session.TokenController
 import co.netguru.android.socialslack.data.team.TeamController
 import co.netguru.android.socialslack.data.theme.ThemeController
+import co.netguru.android.socialslack.data.user.UsersController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -15,7 +17,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @ActivityScope
-class FetchPresenter @Inject constructor(private val channelsController: ChannelsController,
+class FetchPresenter @Inject constructor(private val tokenController: TokenController,
+                                         private val usersController: UsersController,
+                                         private val channelsController: ChannelsController,
                                          private val directChannelsController: DirectChannelsController,
                                          private val teamController: TeamController,
                                          themeController: ThemeController)
@@ -48,6 +52,9 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
         Timber.e(throwable, message)
         view.showErrorMessage()
     }
+
+    private fun fetchAndStoreUserInfo() = tokenController.getToken()
+            .flatMap { usersController.getUserInfo(it.userId) }
 
     private fun fetchAndStoreChannelsStatistics() = channelsController.getChannelsList()
             .flattenAsFlowable { it.filter { it.isCurrentUserMember } }

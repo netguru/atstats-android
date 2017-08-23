@@ -17,6 +17,7 @@ class TokenRepository @Inject constructor(@Named(TokenRepositoryModule.TOKEN_SHA
         const val EMPTY_TOKEN = ""
         private const val TOKEN_ACCESS_KEY = "token_access"
         private const val TOKEN_SCOPE = "token_scope"
+        private const val TOKEN_USER_ID = "token_user_id"
         private const val TOKEN_TEAM_ID = "token_team_id"
     }
 
@@ -25,6 +26,7 @@ class TokenRepository @Inject constructor(@Named(TokenRepositoryModule.TOKEN_SHA
             sharedPreferences.edit {
                 putString(TOKEN_ACCESS_KEY, token.accessToken)
                 putString(TOKEN_SCOPE, token.scope)
+                putString(TOKEN_USER_ID, token.userId)
                 putString(TOKEN_TEAM_ID, token.teamId)
             }
         })
@@ -32,5 +34,6 @@ class TokenRepository @Inject constructor(@Named(TokenRepositoryModule.TOKEN_SHA
 
     fun getToken(): Token = Token(sharedPreferences.getString(TOKEN_ACCESS_KEY, EMPTY_TOKEN),
             sharedPreferences.getString(TOKEN_SCOPE, EMPTY_TOKEN),
+            sharedPreferences.getString(TOKEN_USER_ID, EMPTY_TOKEN),
             sharedPreferences.getString(TOKEN_TEAM_ID, EMPTY_TOKEN))
 }
