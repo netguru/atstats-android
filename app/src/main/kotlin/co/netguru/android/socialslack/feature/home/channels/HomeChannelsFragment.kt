@@ -1,18 +1,23 @@
 package co.netguru.android.socialslack.feature.home.channels
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_channels.*
 
-class HomeChannelsFragment : Fragment() {
+class HomeChannelsFragment : MvpFragment<HomeChannelsContract.View, HomeChannelsContract.Presenter>(), HomeChannelsContract.View {
+
+    val component: HomeChannelsComponent by lazy { App.getUserComponent(context).plusHomeChannelsComponent() }
+
+    override fun createPresenter(): HomeChannelsPresenter = component.getPresenter()
 
     companion object {
         fun newInstance() = HomeChannelsFragment()
