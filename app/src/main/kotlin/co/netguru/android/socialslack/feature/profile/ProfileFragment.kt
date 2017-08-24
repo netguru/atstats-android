@@ -20,6 +20,8 @@ import co.netguru.android.socialslack.feature.main.MainActivity
 import com.bumptech.glide.Glide
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
+import android.content.Intent
+import android.net.Uri
 
 
 class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presenter>(), ProfileContract.View {
@@ -28,6 +30,7 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         fun newInstance() = ProfileFragment()
         const val COLOURFUL_THEME_POSITION = 0
         const val NETGURU_THEME_POSITION = 1
+        const val MAIL_TO = "mailto:"
     }
 
     private val component by lazy { App.getUserComponent(context).plusProfileComponent() }
@@ -94,12 +97,24 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         logOut()
     }
 
+    private fun sendFeedback() {
+        val intent = Intent(Intent.ACTION_SENDTO)
+                .setData(Uri.parse(MAIL_TO))
+                .putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.feedback_email)))
+                .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_email_subject))
+
+        activity.startActivity(Intent.createChooser(intent, getString(R.string.send_us_feedback)))
+    }
+
     private fun initView() {
         themeToggleSwitch.checkedTogglePosition = if (themeController.getThemeSync() == ThemeOption.COLOURFUL)
             COLOURFUL_THEME_POSITION else NETGURU_THEME_POSITION
 
         logOutTextView.setOnClickListener {
             presenter.logOut()
+        }
+        sendUsFeedBackButton.setOnClickListener {
+            sendFeedback()
         }
     }
 }
