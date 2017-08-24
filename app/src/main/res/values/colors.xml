@@ -4,6 +4,10 @@
     <color name="primaryDarkColourful">#3d3483</color>
     <color name="accentColourful">#FF722E</color>
 
+    <color name="primaryNetguru">@color/green</color>
+    <color name="primaryDarkNetguru">#11AA43</color>
+    <color name="accentNetguru">@color/green</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 

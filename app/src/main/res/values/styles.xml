@@ -40,9 +40,9 @@
     </style>
 
     <style name="AppThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorAccent">@color/green</item>
-        <item name="colorPrimaryDark">@color/green</item>
+        <item name="colorPrimary">@color/primaryNetguru</item>
+        <item name="colorAccent">@color/accentNetguru</item>
+        <item name="colorPrimaryDark">@color/primaryDarkNetguru</item>
         <item name="colorHighlight">@color/green</item>
         <item name="colorNormal">@color/black</item>
         <item name="colorMain">@color/green</item>

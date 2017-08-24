@@ -26,7 +26,7 @@ class SplashActivity : MvpActivity<SplashContract.View, SplashContract.Presenter
 
     override fun createPresenter(): SplashContract.Presenter = component.getPresenter()
 
-    override fun showMainActivity() {
+    override fun showFetchActivity() {
         startActivity<FetchActivity>()
         finish()
     }

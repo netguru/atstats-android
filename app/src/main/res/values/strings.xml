@@ -5,6 +5,9 @@
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
     <string name="colourful">Colourful</string>
+    <!-- TODO 24.08.2017 replace for the correct email -->
+    <string name="feedback_email">someemail@netguru.co</string>
+    <string name="feedback_email_subject">Feedback about Slack Social</string>
 
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
@@ -84,4 +87,10 @@
     <string name="colour_scheme">Colour scheme</string>
     <string name="log_out">Log out</string>
     <string name="send_us_feedback">Send us feedback</string>
+    <string name="error_changing_theme">"Error while changing the theme"</string>
+    <string name="error_getting_team_info">"Error while getting team's info"</string>
+    <string name="error_login_out">"Error while login out"</string>
+    <string name="first_name_last_name">%s %s</string>
+    <string name="username">\@%s</string>
+    <string name="slack_domain">%s.slack.com</string>
 </resources>

@@ -2,7 +2,6 @@ package co.netguru.android.socialslack.data.user
 
 
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
-import org.junit.Rule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.direct.DirectChannelsDao
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
@@ -11,14 +10,14 @@ import co.netguru.android.socialslack.data.user.model.UserProfile
 import co.netguru.android.socialslack.data.user.model.UserResponse
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.nhaarman.mockito_kotlin.mock
-
+import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
-
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-
-import org.mockito.Mockito.anyString
+import co.netguru.android.socialslack.TestHelper.anyObject
+import org.mockito.Mockito.*
 
 
 @Suppress("IllegalIdentifier")
@@ -48,11 +47,13 @@ class UsersControllerTest {
 
     val directChannelsDao = mock<DirectChannelsDao>()
 
+    val usersDao = mock<UsersDao>()
+
     lateinit var usersController: UsersController
 
     @Before
     fun setUp() {
-        usersController = UsersController(usersApi, directChannelsDao)
+        usersController = UsersController(usersApi, usersDao, directChannelsDao)
     }
 
     @Test
@@ -98,5 +99,17 @@ class UsersControllerTest {
                 .assertValue {
                     (it[0].id == USER.id && it[1].id == USER_2.id && it[2].id == USER_3.id)
                 }
+    }
+
+    @Test
+    fun `should get an user and store it when getting user from the api and store`() {
+        // given
+        val testObserver = TestObserver<User>()
+        whenever(usersApi.getUserInfo("1")).thenReturn(Single.just(USER_RESPONSE))
+        // when
+        usersController.getUserAndStore("1").subscribe(testObserver)
+        // then
+        verify(usersDao).insertUser(anyObject())
+        testObserver.assertNoErrors()
     }
 }

@@ -8,10 +8,11 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class TokenRepositoryModule {
+class SessionRepositoryModule {
 
     companion object {
         const val TOKEN_SHARED_PREFERENCES_NAME = "token"
+        const val USER_SHARED_PREFERENCES_NAME = "user"
     }
 
     @Named(TOKEN_SHARED_PREFERENCES_NAME)
@@ -20,5 +21,13 @@ class TokenRepositoryModule {
     fun provideTokenSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(context.packageName +
                 TOKEN_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+    }
+
+    @Named(USER_SHARED_PREFERENCES_NAME)
+    @Singleton
+    @Provides
+    fun provideUserSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(context.packageName +
+                USER_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 }

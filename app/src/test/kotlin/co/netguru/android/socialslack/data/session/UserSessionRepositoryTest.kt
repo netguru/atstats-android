@@ -1,51 +1,50 @@
 package co.netguru.android.socialslack.data.session
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import co.netguru.android.socialslack.data.session.model.Token
-import io.reactivex.observers.TestObserver
 import co.netguru.android.socialslack.TestHelper.whenever
+import co.netguru.android.socialslack.data.session.model.UserSession
+import com.nhaarman.mockito_kotlin.mock
+import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
-class TokenRepositoryTest {
+class UserSessionRepositoryTest {
 
-    val sharedPreferences: SharedPreferences = mock(SharedPreferences::class.java)
+    val sharedPreferences = mock<SharedPreferences>()
 
-    lateinit var tokenRepository: TokenRepository
+    lateinit var userSessionRepository: UserSessionRepository
 
     @Before
     fun setUp() {
-        tokenRepository = TokenRepository(sharedPreferences)
+        userSessionRepository = UserSessionRepository(sharedPreferences)
     }
 
     @Test
-    fun `should get token from SharedPreferences`() {
-        //given
+    fun `should get UserSession from SharedPreferences`() {
+        // given
         whenever(sharedPreferences.getString(anyString(), anyString())).thenReturn("")
-        //when
-        tokenRepository.getToken()
-        //then
-        // 2 times because Token has 2 fields stored in SharedPreferences
+        // when
+        userSessionRepository.getUserSession()
+        // then
+        // 2 times because UserSession has 2 fields stored in SharedPreferences
         verify(sharedPreferences, times(2)).getString(anyString(), anyString())
     }
 
-    @SuppressLint("CommitPrefEdits")
     @Test
-    fun `should save token in SharedPreferences`() {
+    fun `should store UserSession in SharedPreferences`() {
         //given
         val testObserver = TestObserver<Boolean>()
         val editor = mock(SharedPreferences.Editor::class.java)
-        val token = Token("", "")
+        val userSession = UserSession("","")
         whenever(sharedPreferences.edit()).thenReturn(editor)
-        //when
-        tokenRepository.saveToken(token)
+        // when
+        userSessionRepository.saveUserSession(userSession)
                 .toObservable<Boolean>()
                 .subscribe(testObserver)
-        //then
-        // 2 times because we should store all token fields
+        // then
+        // 2 times because we should store all user session fields
         verify(editor, times(2)).putString(anyString(), anyString())
         testObserver.assertNoErrors()
     }

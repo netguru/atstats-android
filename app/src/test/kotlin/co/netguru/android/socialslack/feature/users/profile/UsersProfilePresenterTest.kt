@@ -38,7 +38,7 @@ class UsersProfilePresenterTest {
 
     @Before
     fun setUp() {
-        whenever(usersProfileController.getUserWithPresence(anyObject())).thenReturn(Flowable.just(USER1))
+        whenever(usersProfileController.getUserWithPresence(USER1)).thenReturn(Flowable.just(USER1))
 
         view = mock(UsersProfileContract.View::class.java)
         usersProfilePresenter = UsersProfilePresenter(usersProfileController)
@@ -50,7 +50,7 @@ class UsersProfilePresenterTest {
         //when
         usersProfilePresenter.prepareView(listOf(USER1), 0, MOCKED_FILTER_OPTION)
         //then
-        verify(usersProfileController).getUserWithPresence(anyObject())
+        verify(usersProfileController).getUserWithPresence(USER1)
     }
 
     @Test
@@ -88,7 +88,7 @@ class UsersProfilePresenterTest {
     @Test
     fun `should hide loading view when preparing view failed`() {
         //given
-        whenever(usersProfileController.getUserWithPresence(anyObject())).thenReturn(Flowable.error(Throwable()))
+        whenever(usersProfileController.getUserWithPresence(USER1)).thenReturn(Flowable.error(Throwable()))
         //when
         usersProfilePresenter.prepareView(listOf(USER1), 0, MOCKED_FILTER_OPTION)
         //then

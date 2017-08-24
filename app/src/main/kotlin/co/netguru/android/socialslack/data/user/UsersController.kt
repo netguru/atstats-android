@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.app.scope.UserScope
 import co.netguru.android.socialslack.data.direct.DirectChannelsDao
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
 import co.netguru.android.socialslack.data.user.model.User
+import co.netguru.android.socialslack.data.user.model.UserDB
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.model.UserStatistic.Companion.toStatisticsView
 import io.reactivex.Flowable
@@ -13,8 +14,9 @@ import javax.inject.Inject
 
 @UserScope
 class UsersController @Inject constructor(private val usersApi: UsersApi,
+                                          private val usersDao: UsersDao,
                                           private val directChannelsDao: DirectChannelsDao) {
-
+    // TODO 23.08.2017 to be replace and use getUserAndStore
     internal fun getUserInfo(userId: String): Single<User> {
         return usersApi.getUserInfo(userId)
                 .map { it.user }
@@ -37,4 +39,7 @@ class UsersController @Inject constructor(private val usersApi: UsersApi,
                     }
                     .toList()
                     .cache()
+
+    fun getUserAndStore(userId: String): Single<User> = getUserInfo(userId)
+            .doAfterSuccess { usersDao.insertUser(UserDB.createUserDB(it)) }
 }
