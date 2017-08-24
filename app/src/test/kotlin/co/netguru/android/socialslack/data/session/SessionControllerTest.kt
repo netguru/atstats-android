@@ -145,4 +145,19 @@ class SessionControllerTest {
         verify(userSessionRespository).saveUserSession(anyObject())
         testObserver.assertNoErrors()
     }
+
+    @Test
+    fun `should remove token and usersession when remove session`() {
+        //given
+        val testObserver = TestObserver<TokenCheck>()
+        whenever(tokenRepository.removeToken()).thenReturn(Completable.complete())
+        whenever(userSessionRespository.removeUserSession()).thenReturn(Completable.complete())
+        //when
+        sessionController.removeSession().subscribe(testObserver)
+        //then
+        verify(tokenRepository).removeToken()
+        verify(userSessionRespository).removeUserSession()
+        testObserver.assertNoErrors()
+
+    }
 }

@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class UserSessionRepository @Inject constructor(@Named(SessionRepositoryModule.USER_SHARED_PREFERENCES_NAME)
-                                         private val sharedPreferences: SharedPreferences) {
+                                                private val sharedPreferences: SharedPreferences) {
 
     companion object {
         const val EMPTY_FIELD = ""
@@ -33,4 +33,10 @@ class UserSessionRepository @Inject constructor(@Named(SessionRepositoryModule.U
             sharedPreferences.getString(SESSION_USER_ID, EMPTY_FIELD),
             sharedPreferences.getString(SESSION_TEAM_ID, EMPTY_FIELD)
     )
+
+    fun removeUserSession(): Completable = Completable.fromAction({
+        sharedPreferences.edit {
+            clear()
+        }
+    })
 }

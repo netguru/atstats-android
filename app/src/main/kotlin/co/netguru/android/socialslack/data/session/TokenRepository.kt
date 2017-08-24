@@ -30,4 +30,10 @@ class TokenRepository @Inject constructor(@Named(SessionRepositoryModule.TOKEN_S
 
     fun getToken(): Token = Token(sharedPreferences.getString(TOKEN_ACCESS_KEY, EMPTY_TOKEN),
             sharedPreferences.getString(TOKEN_SCOPE, EMPTY_TOKEN))
+
+    fun removeToken(): Completable = Completable.fromAction({
+        sharedPreferences.edit {
+            clear()
+        }
+    })
 }

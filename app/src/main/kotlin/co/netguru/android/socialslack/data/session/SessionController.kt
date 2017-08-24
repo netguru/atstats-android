@@ -58,9 +58,8 @@ class SessionController @Inject constructor(private val loginApi: LoginApi,
 
     fun getUserSession(): Single<UserSession> = Single.just(userSessionRepository.getUserSession())
 
-    fun removeToken(): Completable {
-        TODO("Clear SharedPreferences and revoke token")
-    }
+    fun removeSession(): Completable = tokenRepository.removeToken()
+            .mergeWith(userSessionRepository.removeUserSession())
 
     private fun getAuthorizeUri(): Uri = Uri.Builder()
             .scheme(NetworkModule.API.URI_SCHEME)
