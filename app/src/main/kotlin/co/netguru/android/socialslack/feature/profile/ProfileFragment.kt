@@ -12,7 +12,8 @@ import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.team.model.Team
 import co.netguru.android.socialslack.data.theme.ThemeOption
-import co.netguru.android.socialslack.data.user.model.UserDB
+import co.netguru.android.socialslack.data.user.profile.model.Presence
+import co.netguru.android.socialslack.data.user.profile.model.UserWithPresence
 import co.netguru.android.socialslack.feature.main.MainActivity
 import com.bumptech.glide.Glide
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
@@ -65,9 +66,12 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         Snackbar.make(sendUsFeedBackButton, R.string.error_changing_theme, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun showUserAndTeamInfo(user: UserDB, team: Team) {
-        firstLastNameTextView.text = getString(R.string.first_name_last_name, user.firstName, user.lastName)
-        nameTextView.text = getString(R.string.username, user.username)
+    override fun showUserAndTeamInfo(user: UserWithPresence, team: Team) {
+        with(user) {
+            firstLastNameTextView.text = getString(R.string.first_name_last_name, firstName, lastName)
+            firstLastNameTextView.isActivated = Presence.ACTIVE == user.presence
+            nameTextView.text = getString(R.string.username, username)
+        }
         teamNameTextView.text = team.name
         teamPageTextView.text = getString(R.string.slack_domain, team.domain)
 
@@ -75,7 +79,7 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
 
     }
 
-    override fun showTeamInfoError() {
+    override fun showInfoError() {
         Snackbar.make(sendUsFeedBackButton, R.string.error_getting_team_info, Snackbar.LENGTH_SHORT).show()
     }
 

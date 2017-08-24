@@ -7,11 +7,13 @@ import co.netguru.android.socialslack.data.team.TeamDao
 import co.netguru.android.socialslack.data.theme.ThemeController
 import co.netguru.android.socialslack.data.theme.ThemeOption
 import co.netguru.android.socialslack.data.user.UsersDao
+import co.netguru.android.socialslack.data.user.profile.UsersProfileController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.zipWith
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -19,6 +21,7 @@ import javax.inject.Inject
 class ProfilePresenter @Inject constructor(private val themeController: ThemeController,
                                            private val sessionController: SessionController,
                                            private val usersDao: UsersDao,
+                                           private val usersProfileController: UsersProfileController,
                                            private val teamDao: TeamDao) :
         MvpNullObjectBasePresenter<ProfileContract.View>(), ProfileContract.Presenter {
 
@@ -27,15 +30,19 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
     override fun attachView(view: ProfileContract.View) {
         super.attachView(view)
         compositeDisposable += sessionController.getUserSession()
-                .flatMap { usersDao.getUser(it.userId) }
+                .flatMap {
+                    usersDao.getUser(it.userId)
+                            .flatMap { usersProfileController.getUserWithPresence(it) }
+                            .subscribeOn(Schedulers.io())
+                }
                 .zipWith(teamDao.getTeam().map { it.first() })
-                { userDb, team -> Pair(userDb, team) }
+                { userWithPresence, team -> Pair(userWithPresence, team) }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = { view.showUserAndTeamInfo(it.first, it.second) },
                         onError = {
                             Timber.e(it)
-                            view.showTeamInfoError()
+                            view.showInfoError()
                         }
                 )
     }

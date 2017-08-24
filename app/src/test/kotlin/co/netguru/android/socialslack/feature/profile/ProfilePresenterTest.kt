@@ -11,24 +11,28 @@ import co.netguru.android.socialslack.data.theme.ThemeController
 import co.netguru.android.socialslack.data.theme.ThemeOption
 import co.netguru.android.socialslack.data.user.UsersDao
 import co.netguru.android.socialslack.data.user.model.UserDB
+import co.netguru.android.socialslack.data.user.profile.UsersProfileController
+import co.netguru.android.socialslack.data.user.profile.model.Presence
+import co.netguru.android.socialslack.data.user.profile.model.UserWithPresence
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
-import org.mockito.Mockito.*
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.anyString
 
 @Suppress("IllegalIdentifier")
 class ProfilePresenterTest {
 
     companion object {
         private const val EMPTY_STRING = ""
-        private val team = Team(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING)
-        private val user = UserDB(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING)
-        private val userSession = UserSession(EMPTY_STRING, EMPTY_STRING)
+        private val TEAM = Team(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING)
+        private val USER = UserDB(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING)
+        private val USER_WITH_PRESENCE = UserWithPresence(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, Presence.ACTIVE)
+        private val USER_SESSION = UserSession(EMPTY_STRING, EMPTY_STRING)
     }
 
     @Rule
@@ -43,23 +47,26 @@ class ProfilePresenterTest {
 
     val usersDao = mock<UsersDao>()
 
+    val usersProfileController = mock<UsersProfileController>()
+
     val teamDao = mock<TeamDao>()
 
     lateinit var profilePresenter: ProfilePresenter
 
     @Before
     fun setUp() {
-        profilePresenter = ProfilePresenter(themeController, sessionController, usersDao, teamDao)
-        whenever(teamDao.getTeam()).thenReturn(Single.just(listOf(team)))
-        whenever(usersDao.getUser(anyString())).thenReturn(Single.just(user))
-        whenever(sessionController.getUserSession()).thenReturn(Single.just(userSession))
+        profilePresenter = ProfilePresenter(themeController, sessionController, usersDao, usersProfileController, teamDao)
+        whenever(teamDao.getTeam()).thenReturn(Single.just(listOf(TEAM)))
+        whenever(usersDao.getUser(anyString())).thenReturn(Single.just(USER))
+        whenever(usersProfileController.getUserWithPresence(USER)).thenReturn(Single.just(USER_WITH_PRESENCE))
+        whenever(sessionController.getUserSession()).thenReturn(Single.just(USER_SESSION))
         profilePresenter.attachView(view)
     }
 
     @Test
     fun `should show user and team info when attach view`() {
         //then
-        verify(view).showUserAndTeamInfo(user, team)
+        verify(view).showUserAndTeamInfo(USER_WITH_PRESENCE, TEAM)
     }
 
     @Test
@@ -71,7 +78,7 @@ class ProfilePresenterTest {
         profilePresenter.attachView(view)
 
         //then
-        verify(view).showTeamInfoError()
+        verify(view).showInfoError()
     }
 
     @Test
@@ -83,7 +90,19 @@ class ProfilePresenterTest {
         profilePresenter.attachView(view)
 
         //then
-        verify(view).showTeamInfoError()
+        verify(view).showInfoError()
+    }
+
+    @Test
+    fun `should show error when an error is return from get user with presence`() {
+        //given
+        whenever(usersProfileController.getUserWithPresence(USER)).thenReturn(Single.error(Throwable()))
+
+        //when
+        profilePresenter.attachView(view)
+
+        //then
+        verify(view).showInfoError()
     }
 
     @Test
@@ -95,7 +114,7 @@ class ProfilePresenterTest {
         profilePresenter.attachView(view)
 
         //then
-        verify(view).showTeamInfoError()
+        verify(view).showInfoError()
     }
 
     @Test
