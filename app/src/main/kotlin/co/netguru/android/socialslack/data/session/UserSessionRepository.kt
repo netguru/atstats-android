@@ -20,23 +20,22 @@ class UserSessionRepository @Inject constructor(@Named(SessionRepositoryModule.U
         private const val SESSION_TEAM_ID = "token_team_id"
     }
 
-    fun saveUserSession(userSession: UserSession): Completable {
-        return Completable.fromAction({
-            sharedPreferences.edit {
-                putString(SESSION_USER_ID, userSession.userId)
-                putString(SESSION_TEAM_ID, userSession.teamId)
-            }
-        })
+    fun saveUserSession(userSession: UserSession): Completable = Completable.fromAction {
+        sharedPreferences.edit {
+            putString(SESSION_USER_ID, userSession.userId)
+            putString(SESSION_TEAM_ID, userSession.teamId)
+        }
     }
+
 
     fun getUserSession(): UserSession = UserSession(
             sharedPreferences.getString(SESSION_USER_ID, EMPTY_FIELD),
             sharedPreferences.getString(SESSION_TEAM_ID, EMPTY_FIELD)
     )
 
-    fun removeUserSession(): Completable = Completable.fromAction({
+    fun removeUserSession(): Completable = Completable.fromAction {
         sharedPreferences.edit {
             clear()
         }
-    })
+    }
 }

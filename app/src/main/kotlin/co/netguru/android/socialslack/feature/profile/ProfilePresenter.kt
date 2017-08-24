@@ -41,7 +41,9 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
                 { userWithPresence, team -> Pair(userWithPresence, team) }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
-                        onSuccess = { view.showUserAndTeamInfo(it.first, it.second) },
+                        onSuccess = { (userWithPresence, team) ->
+                            view.showUserAndTeamInfo(userWithPresence, team)
+                        },
                         onError = {
                             Timber.e(it)
                             view.showInfoError()

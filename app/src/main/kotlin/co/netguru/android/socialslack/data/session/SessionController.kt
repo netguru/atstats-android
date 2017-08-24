@@ -33,7 +33,7 @@ class SessionController @Inject constructor(private val loginApi: LoginApi,
     fun checkToken(): Single<TokenCheck> = loginApi.checkToken()
             .flatMap { token ->
                 saveUserSession(UserSession(token.userId, token.teamId))
-                        .toSingle { token }
+                        .toSingleDefault(token)
             }
 
     fun isTokenValid(): Single<TokenCheck> {

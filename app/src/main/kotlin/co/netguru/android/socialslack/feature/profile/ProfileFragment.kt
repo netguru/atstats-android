@@ -71,7 +71,7 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         teamNameTextView.text = team.name
         teamPageTextView.text = getString(R.string.slack_domain, team.domain)
 
-        Glide.with(context).load(user.avatarUrl).into(profilePictureImageView)
+        Glide.with(this).load(user.avatarUrl).into(profilePictureImageView)
     }
 
     override fun changeTheme() {
