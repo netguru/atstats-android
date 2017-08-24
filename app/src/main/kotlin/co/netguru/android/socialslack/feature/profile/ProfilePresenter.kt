@@ -2,18 +2,23 @@ package co.netguru.android.socialslack.feature.profile
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
+import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.team.TeamDao
 import co.netguru.android.socialslack.data.theme.ThemeController
 import co.netguru.android.socialslack.data.theme.ThemeOption
+import co.netguru.android.socialslack.data.user.UsersDao
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.zipWith
 import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
 class ProfilePresenter @Inject constructor(private val themeController: ThemeController,
+                                           private val sessionController: SessionController,
+                                           private val usersDao: UsersDao,
                                            private val teamDao: TeamDao) :
         MvpNullObjectBasePresenter<ProfileContract.View>(), ProfileContract.Presenter {
 
@@ -21,11 +26,13 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
 
     override fun attachView(view: ProfileContract.View) {
         super.attachView(view)
-        compositeDisposable += teamDao.getTeam()
+        compositeDisposable += sessionController.getUserSession()
+                .flatMap { usersDao.getUser(it.userId) }
+                .zipWith(teamDao.getTeam().map { it.first() })
+                { userDb, team -> Pair(userDb, team) }
                 .compose(RxTransformers.applySingleIoSchedulers())
-                .map { it.first() }
-                .subscribeBy (
-                        onSuccess = view::showTeamInfo,
+                .subscribeBy(
+                        onSuccess = { view.showUserAndTeamInfo(it.first, it.second) },
                         onError = {
                             Timber.e(it)
                             view.showTeamInfoError()
@@ -52,5 +59,9 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
                             view.showChangeThemeError()
                         }
                 )
+    }
+
+    override fun logOut() {
+
     }
 }
