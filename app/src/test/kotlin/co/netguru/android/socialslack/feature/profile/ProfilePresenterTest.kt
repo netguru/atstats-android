@@ -3,6 +3,7 @@ package co.netguru.android.socialslack.feature.profile
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
+import co.netguru.android.socialslack.data.session.LogoutController
 import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.session.model.UserSession
 import co.netguru.android.socialslack.data.team.TeamDao
@@ -51,11 +52,13 @@ class ProfilePresenterTest {
 
     val teamDao = mock<TeamDao>()
 
+    val logoutController = mock<LogoutController>()
+
     lateinit var profilePresenter: ProfilePresenter
 
     @Before
     fun setUp() {
-        profilePresenter = ProfilePresenter(themeController, sessionController, usersDao, usersProfileController, teamDao)
+        profilePresenter = ProfilePresenter(themeController, sessionController, usersDao, usersProfileController, teamDao, logoutController)
         whenever(teamDao.getTeam()).thenReturn(Single.just(listOf(TEAM)))
         whenever(usersDao.getUser(anyString())).thenReturn(Single.just(USER))
         whenever(usersProfileController.getUserWithPresence(USER)).thenReturn(Single.just(USER_WITH_PRESENCE))
@@ -67,6 +70,44 @@ class ProfilePresenterTest {
     fun `should show user and team info when attach view`() {
         //then
         verify(view).showUserAndTeamInfo(USER_WITH_PRESENCE, TEAM)
+    }
+
+    @Test
+    fun `should change theme when the theme is changed`() {
+        //given
+        whenever(themeController.getThemeOption()).thenReturn(Single.just(ThemeOption.COLOURFUL))
+        whenever(themeController.saveThemeOption(anyObject())).thenReturn(Completable.complete())
+
+        // when
+        profilePresenter.changeTheme()
+
+        //then
+        verify(view).changeTheme()
+    }
+
+    @Test
+    fun `should store the new theme when the theme is changed`() {
+        //given
+        whenever(themeController.getThemeOption()).thenReturn(Single.just(ThemeOption.COLOURFUL))
+        whenever(themeController.saveThemeOption(anyObject())).thenReturn(Completable.complete())
+
+        // when
+        profilePresenter.changeTheme()
+
+        // then
+        verify(themeController).saveThemeOption(anyObject())
+    }
+
+    @Test
+    fun `should log out when log out controller completes`() {
+        //given
+        whenever(logoutController.logout()).thenReturn(Completable.complete())
+
+        //when
+        profilePresenter.logOut()
+
+        //then
+        verify(view).logOut()
     }
 
     @Test
@@ -118,32 +159,6 @@ class ProfilePresenterTest {
     }
 
     @Test
-    fun `should change theme when the theme is changed`() {
-        //given
-        whenever(themeController.getThemeOption()).thenReturn(Single.just(ThemeOption.COLOURFUL))
-        whenever(themeController.saveThemeOption(anyObject())).thenReturn(Completable.complete())
-
-        // when
-        profilePresenter.changeTheme()
-
-        //then
-        verify(view).changeTheme()
-    }
-
-    @Test
-    fun `should store the new theme when the theme is changed`() {
-        //given
-        whenever(themeController.getThemeOption()).thenReturn(Single.just(ThemeOption.COLOURFUL))
-        whenever(themeController.saveThemeOption(anyObject())).thenReturn(Completable.complete())
-
-        // when
-        profilePresenter.changeTheme()
-
-        // then
-        verify(themeController).saveThemeOption(anyObject())
-    }
-
-    @Test
     fun `should show error when change theme fails`() {
         //given
         whenever(themeController.getThemeOption()).thenReturn(Single.error(Throwable()))
@@ -166,6 +181,18 @@ class ProfilePresenterTest {
 
         //then
         verify(view).showChangeThemeError()
+    }
+
+    @Test
+    fun `should return error when log out controller return error`() {
+        //given
+        whenever(logoutController.logout()).thenReturn(Completable.error(Throwable()))
+
+        //when
+        profilePresenter.logOut()
+
+        //then
+        verify(view).showLogoutError()
     }
 
     @After

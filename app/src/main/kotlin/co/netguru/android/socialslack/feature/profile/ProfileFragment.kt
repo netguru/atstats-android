@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.team.model.Team
 import co.netguru.android.socialslack.data.theme.ThemeOption
 import co.netguru.android.socialslack.data.user.profile.model.Presence
 import co.netguru.android.socialslack.data.user.profile.model.UserWithPresence
+import co.netguru.android.socialslack.feature.login.LoginActivity
 import co.netguru.android.socialslack.feature.main.MainActivity
 import com.bumptech.glide.Glide
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
@@ -57,15 +59,6 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         menu.clear()
     }
 
-    override fun changeTheme() {
-        activity.finish()
-        MainActivity.startActivityOnProfile(activity)
-    }
-
-    override fun showChangeThemeError() {
-        Snackbar.make(sendUsFeedBackButton, R.string.error_changing_theme, Snackbar.LENGTH_LONG).show()
-    }
-
     override fun showUserAndTeamInfo(user: UserWithPresence, team: Team) {
         with(user) {
             firstLastNameTextView.text = getString(R.string.first_name_last_name, firstName, lastName)
@@ -76,11 +69,29 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         teamPageTextView.text = getString(R.string.slack_domain, team.domain)
 
         Glide.with(context).load(user.image512).into(profilePictureImageView)
+    }
 
+    override fun changeTheme() {
+        activity.finish()
+        MainActivity.startActivityOnProfile(activity)
+    }
+
+    override fun logOut() {
+        activity.finish()
+        activity.startActivity<LoginActivity>()
+    }
+
+    override fun showChangeThemeError() {
+        Snackbar.make(sendUsFeedBackButton, R.string.error_changing_theme, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showInfoError() {
         Snackbar.make(sendUsFeedBackButton, R.string.error_getting_team_info, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showLogoutError() {
+        Snackbar.make(sendUsFeedBackButton, R.string.error_login_out, Snackbar.LENGTH_SHORT).show()
+        logOut()
     }
 
     private fun initView() {

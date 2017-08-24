@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.feature.profile
 
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
+import co.netguru.android.socialslack.data.session.LogoutController
 import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.team.TeamDao
 import co.netguru.android.socialslack.data.theme.ThemeController
@@ -22,7 +23,8 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
                                            private val sessionController: SessionController,
                                            private val usersDao: UsersDao,
                                            private val usersProfileController: UsersProfileController,
-                                           private val teamDao: TeamDao) :
+                                           private val teamDao: TeamDao,
+                                           private val logoutController: LogoutController) :
         MvpNullObjectBasePresenter<ProfileContract.View>(), ProfileContract.Presenter {
 
     private val compositeDisposable = CompositeDisposable()
@@ -69,6 +71,13 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
     }
 
     override fun logOut() {
-
+        compositeDisposable += logoutController.logout()
+                .subscribeBy(
+                        onComplete = view::logOut,
+                        onError = {
+                            Timber.e(it)
+                            view.showLogoutError()
+                        }
+                )
     }
 }

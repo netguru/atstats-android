@@ -14,9 +14,13 @@ interface ProfileContract {
 
         fun changeTheme()
 
-        fun showChangeThemeError()
+        fun logOut()
 
         fun showInfoError()
+
+        fun showChangeThemeError()
+
+        fun showLogoutError()
     }
 
     interface Presenter : MvpPresenter<View> {

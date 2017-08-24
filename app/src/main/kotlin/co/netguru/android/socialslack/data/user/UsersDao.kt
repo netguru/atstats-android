@@ -18,4 +18,7 @@ interface UsersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: UserDB)
+
+    @Query("DELETE FROM users_table")
+    fun deleteAllUsers()
 }
