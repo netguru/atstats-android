@@ -2,20 +2,14 @@ package co.netguru.android.socialslack.app
 
 import android.app.Application
 import android.content.Context
-
 import co.netguru.android.socialslack.BuildConfig
-import timber.log.Timber
-
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
+import timber.log.Timber
 
 class App : Application() {
 
     companion object Factory {
-
-        //TODO 07.08.2017 For now userId is mocked because we don't get current user profile from server
-        //TODO 07.08.2017 UserComponentRestorer should be implemented while implementing ProfileView
-        private const val MOCKED_USER_ID = "user"
 
         internal fun getApplicationComponent(context: Context): ApplicationComponent =
                 (context.applicationContext as App).applicationComponent
@@ -23,9 +17,12 @@ class App : Application() {
         internal fun getUserComponent(context: Context): UserComponent =
                 (context.applicationContext as App).getUserComponent()
 
-        //TODO 07.08.2017 Should be called when user logout
         internal fun releaseUserComponent(context: Context) {
             (context.applicationContext as App).userComponent = null
+        }
+
+        internal fun initUserComponent(context: Context, userId: String) {
+            (context.applicationContext as App).setUpUserComponent(userId)
         }
     }
 
@@ -50,12 +47,16 @@ class App : Application() {
         Fabric.with(this, Crashlytics())
     }
 
+    internal fun setUpUserComponent(userId: String) {
+        this.userComponent = applicationComponent
+                .userComponentBuilder()
+                .userLocalRepositoryModule(UserLocalRepositoryModule(userId))
+                .build()
+    }
+
     internal fun getUserComponent(): UserComponent {
         if (userComponent == null) {
-            this.userComponent = applicationComponent
-                    .userComponentBuilder()
-                    .userLocalRepositoryModule(UserLocalRepositoryModule(MOCKED_USER_ID))
-                    .build()
+            applicationComponent.userComponentRestorer().restoreUserComponent()
         }
 
         return userComponent!!
