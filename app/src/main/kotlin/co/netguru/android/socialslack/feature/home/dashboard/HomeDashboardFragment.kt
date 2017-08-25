@@ -6,13 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
+import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.dashboard_statistics_card.view.*
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 
-class HomeDashboardFragment : Fragment() {
+class HomeDashboardFragment :
+        MvpFragment<HomeDashboardContract.View, HomeDashboardContract.Presenter>(), HomeDashboardContract.View {
+
+    val component by lazy { App.getUserComponent(context).plusHomeDashboardComponent() }
+
+    override fun createPresenter(): HomeDashboardPresenter = component.getPresenter()
 
     companion object {
         fun newInstance() = HomeDashboardFragment()
