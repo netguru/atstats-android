@@ -30,14 +30,15 @@
             tools:text="35" />
 
         <TextView
+            android:id="@+id/channelMessagesTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/channelMessagesTextView"
             android:layout_marginTop="@dimen/card_subtitle_margin"
-            android:text="@string/messages"
             android:textColor="@color/grey"
-            android:textSize="@dimen/subtitle_textSize" />
+            android:textSize="@dimen/subtitle_textSize"
+            tools:text="@string/messages" />
 
         <TextView
             android:id="@+id/channelNameTextView"

@@ -11,6 +11,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_channels.*
 
@@ -28,25 +29,30 @@ class HomeChannelsFragment : MvpFragment<HomeChannelsContract.View, HomeChannels
         return container?.inflate(R.layout.fragment_home_channels)
     }
 
-    override fun showMostActiveChannels(mostActiveChannelList: List<ChannelStatistics>) {
-        initRecyclerView(channelsRecycler1, mostActiveChannelList)
+    override fun showMostActiveChannels(mostActiveChannelList: List<ChannelStatistics>,
+                                        filter: ChannelsFilterOption) {
+        initRecyclerView(channelsRecycler1, mostActiveChannelList, filter)
     }
 
-    override fun showChannelsWeAreMentionTheMost(weAreMentionMostChannelList: List<ChannelStatistics>) {
-        initRecyclerView(channelsRecycler2, weAreMentionMostChannelList)
+    override fun showChannelsWeAreMentionTheMost(weAreMentionMostChannelList: List<ChannelStatistics>,
+                                                 filter: ChannelsFilterOption) {
+        initRecyclerView(channelsRecycler3, weAreMentionMostChannelList, filter)
     }
 
-    override fun showChannelsWeAreMostActive(weAreMostActiveChannelList: List<ChannelStatistics>) {
-        initRecyclerView(channelsRecycler3, weAreMostActiveChannelList)
+    override fun showChannelsWeAreMostActive(weAreMostActiveChannelList: List<ChannelStatistics>,
+                                             filter: ChannelsFilterOption) {
+        initRecyclerView(channelsRecycler2, weAreMostActiveChannelList, filter)
     }
 
     override fun showErrorSortingChannels() {
         Snackbar.make(mainLayout, R.string.error_sorting_channels, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun initRecyclerView(recyclerView: RecyclerView, channelList: List<ChannelStatistics>) {
-        val channelsAdapter = HomeChannelsAdapter()
-        channelsAdapter.addUsers(channelList)
+    private fun initRecyclerView(recyclerView: RecyclerView,
+                                 channelList: List<ChannelStatistics>,
+                                 channelsFilterOption: ChannelsFilterOption) {
+        val channelsAdapter = HomeChannelsAdapter(channelsFilterOption)
+        channelsAdapter.addChannels(channelList)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = channelsAdapter

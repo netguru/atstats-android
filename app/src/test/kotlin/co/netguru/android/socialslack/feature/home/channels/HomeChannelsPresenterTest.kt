@@ -4,6 +4,7 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
@@ -44,19 +45,22 @@ class HomeChannelsPresenterTest {
     @Test
     fun `should show the most active channels when view is attached`() {
         //then
-        verify(view).showMostActiveChannels(listOf(CHANNEL1, CHANNEL2, CHANNEL3))
+        verify(view).showMostActiveChannels(listOf(CHANNEL1, CHANNEL2, CHANNEL3),
+                ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
     }
 
     @Test
     fun `should show the channels where we are mention the most when the view is attached`() {
         //then
-        verify(view).showChannelsWeAreMentionTheMost(listOf(CHANNEL4, CHANNEL3, CHANNEL2))
+        verify(view).showChannelsWeAreMentionTheMost(listOf(CHANNEL4, CHANNEL3, CHANNEL2),
+                ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
     }
 
     @Test
     fun `should show the channels where we are most active when the view is attached`() {
         //then
-        verify(view).showChannelsWeAreMostActive(listOf(CHANNEL3, CHANNEL4, CHANNEL1))
+        verify(view).showChannelsWeAreMostActive(listOf(CHANNEL3, CHANNEL4, CHANNEL1),
+                ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
     }
 
     @Test

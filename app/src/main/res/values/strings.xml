@@ -42,6 +42,7 @@
     <string name="person_we_talk_most">Person who we talk the most</string>
 
     <string name="messages">messages</string>
+    <string name="mentions">mentions</string>
     <string name="statistic_messages_sent">messages sent by you\non channels</string>
     <string name="statistic_mentions">mentions\non channels</string>
     <string name="statistic_private_messages">total number\nof private messages</string>

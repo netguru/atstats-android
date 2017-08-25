@@ -7,11 +7,9 @@ import co.netguru.android.socialslack.data.filter.channels.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.Flowable
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.rxkotlin.toSingle
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -50,7 +48,7 @@ class HomeChannelsPresenter @Inject constructor(private val channelsDao: Channel
     private fun findMostActiveChannels(channelStream: Flowable<List<ChannelStatistics>>) {
         compositeDisposable += sortWithFilter(channelStream, ChannelsFilterOption.MOST_ACTIVE_CHANNEL)
                 .subscribeBy(
-                        onSuccess = view::showMostActiveChannels,
+                        onSuccess = { (list, filter) -> view.showMostActiveChannels(list, filter) },
                         onError = { showError(it, "Error finding the most active channels") }
                 )
     }
@@ -58,7 +56,7 @@ class HomeChannelsPresenter @Inject constructor(private val channelsDao: Channel
     private fun findChannelsWeAreMentionTheMost(channelStream: Flowable<List<ChannelStatistics>>) {
         compositeDisposable += sortWithFilter(channelStream, ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST)
                 .subscribeBy(
-                        onSuccess = view::showChannelsWeAreMentionTheMost,
+                        onSuccess = { (list, filter) -> view.showChannelsWeAreMentionTheMost(list, filter) },
                         onError = { showError(it, "Error finding the channel we are mention most") }
                 )
     }
@@ -66,15 +64,16 @@ class HomeChannelsPresenter @Inject constructor(private val channelsDao: Channel
     private fun findChannelsWeAreMostActive(channelStream: Flowable<List<ChannelStatistics>>) {
         compositeDisposable += sortWithFilter(channelStream, ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE)
                 .subscribeBy(
-                        onSuccess = view::showChannelsWeAreMostActive,
-                        onError = {showError(it, "Error finding the channels we are most active")}
+                        onSuccess = { (list, filter) -> view.showChannelsWeAreMostActive(list, filter) },
+                        onError = { showError(it, "Error finding the channels we are most active") }
                 )
     }
 
     private fun sortWithFilter(channelStream: Flowable<List<ChannelStatistics>>, filter: ChannelsFilterOption) =
             channelStream
                     .flatMapSingle { this.sortChannelList(it, filter) }
-                    .firstOrError()
+                    .map { Pair(it, filter) }
+                    .lastOrError()
                     .compose(RxTransformers.applySingleIoSchedulers())
 
 
