@@ -27,8 +27,7 @@
                 android:id="@+id/userAvatar"
                 android:layout_width="@dimen/user_avatar_size"
                 android:layout_height="@dimen/user_avatar_size"
-                android:layout_gravity="end|center"
-                android:src="@drawable/this_is_totally_a_person" />
+                android:layout_gravity="end|center" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
