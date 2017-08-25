@@ -20,4 +20,6 @@ internal interface ApplicationComponent {
     fun plusLoginComponent(): LoginComponent
 
     fun plusSplashComponent(): SplashComponent
+
+    fun userComponentRestorer(): UserComponentRestorer
 }
