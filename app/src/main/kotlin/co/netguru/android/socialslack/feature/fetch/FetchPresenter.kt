@@ -12,6 +12,7 @@ import co.netguru.android.socialslack.data.user.UsersController
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -29,9 +30,9 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
     override fun attachView(view: FetchContract.View) {
         super.attachView(view)
         compositeDisposable += fetchAndStoreChannelsStatistics()
-                .concatWith(fetchAndStoreOwnUserInfo())
-                .concatWith(fetchAndStoreDirectChannelsStatistics())
-                .concatWith(fetchAndStoreTeam())
+                .mergeWith(fetchAndStoreOwnUserInfo())
+                .mergeWith(fetchAndStoreDirectChannelsStatistics())
+                .mergeWith(fetchAndStoreTeam())
                 .subscribeBy(
                         onComplete = { view.showMainActivity() },
                         onError = { handleError(it, "Error while fetching data") }
@@ -58,7 +59,7 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
             .flatMapCompletable { (id, name) ->
                 sessionController.getUserSession().flatMapCompletable {
                     channelsController.countChannelStatistics(id, name, it.userId)
-                            .toCompletable()
+                            .toCompletable().subscribeOn(Schedulers.io())
                 }
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
@@ -67,7 +68,7 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
             .flattenAsFlowable { it }
             .flatMapCompletable {
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)
-                        .toCompletable()
+                        .toCompletable().subscribeOn(Schedulers.io())
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
 
