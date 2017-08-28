@@ -10,6 +10,7 @@ import co.netguru.android.socialslack.common.customTheme.CustomThemeComponent
 import co.netguru.android.socialslack.feature.home.channels.HomeChannelsComponent
 import co.netguru.android.socialslack.feature.home.dashboard.HomeDashboardComponent
 import co.netguru.android.socialslack.feature.profile.ProfileComponent
+import co.netguru.android.socialslack.feature.search.SearchComponent
 import co.netguru.android.socialslack.feature.share.ShareComponent
 import co.netguru.android.socialslack.feature.users.UsersComponent
 import co.netguru.android.socialslack.feature.users.profile.UsersProfileComponent
@@ -41,6 +42,8 @@ interface UserComponent {
     fun plusUsersProfileComponent(): UsersProfileComponent
 
     fun plusProfileComponent(): ProfileComponent
+
+    fun plusSearchComponent(): SearchComponent
 
     @Subcomponent.Builder
     interface Builder {
