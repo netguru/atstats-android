@@ -98,6 +98,22 @@ class ChannelProfilePresenterTest {
         verify(view).hideLoadingView()
     }
 
+    @Test
+    fun `should show share dialog when share button clicked`() {
+        //when
+        presenter.onShareButtonClick()
+        //then
+        verify(view).showShareDialogFragment()
+    }
+
+    @Test
+    fun `should show search view when search button clicked`() {
+        //when
+        presenter.searchButtonClicked()
+        //then
+        verify(view).showSearchView()
+    }
+
     @After
     fun tearDown() {
         presenter.detachView(false)

@@ -16,6 +16,8 @@ interface ChannelsContract {
 
         fun showFilterView()
 
+        fun showSearchView()
+
         fun setCurrentFilterOption(filterOption: ChannelsFilterOption)
 
         fun showLoadingView()
@@ -31,6 +33,8 @@ interface ChannelsContract {
         fun getChannels()
 
         fun filterButtonClicked()
+
+        fun searchButtonClicked()
 
         fun onChannelClick(selectedItemPosition: Int, channelList: List<ChannelStatistics>)
 

@@ -133,6 +133,14 @@ class ChannelsPresenterTest {
     }
 
     @Test
+    fun `should show search view when search button clicked`() {
+        //when
+        channelsPresenter.searchButtonClicked()
+        //then
+        verify(view).showSearchView()
+    }
+
+    @Test
     fun `should get filter option from from filter controller when sort request received`() {
         //when
         channelsPresenter.sortRequestReceived(listOf())

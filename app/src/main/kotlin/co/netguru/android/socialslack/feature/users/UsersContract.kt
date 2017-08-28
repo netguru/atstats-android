@@ -18,6 +18,8 @@ interface UsersContract {
 
         fun showFilterView()
 
+        fun showSearchView()
+
         fun changeSelectedFilterOption(selectedFilterOption: UsersFilterOption)
 
         fun showFilterOptionError()
@@ -34,5 +36,7 @@ interface UsersContract {
         fun filterButtonClicked()
 
         fun sortRequestReceived(usersList: List<UserStatistic>)
+
+        fun searchButtonClicked()
     }
 }

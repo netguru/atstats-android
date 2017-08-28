@@ -2,12 +2,15 @@ package co.netguru.android.socialslack.feature.users.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.search.SearchActivity
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.users.profile.adapter.UsersProfileAdapter
@@ -62,6 +65,14 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.actionSearch -> {
+            presenter.searchButtonClicked()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
     override fun getMenuResource() = R.menu.menu_fragment_search
 
     override fun createPresenter() = component.getPresenter()
@@ -87,6 +98,10 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
     override fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>) {
         val filterOption = UsersFilterOption.valueOf(arguments.getString(SELECTED_FILTER_OPTION))
         ShareDialogFragment.newInstance(clickedItem, usersList.toTypedArray(), filterOption).show(fragmentManager, ShareDialogFragment.TAG)
+    }
+
+    override fun showSearchView() {
+        context.startActivity<SearchActivity>()
     }
 
     private fun initRecyclerView() {

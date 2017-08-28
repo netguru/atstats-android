@@ -7,12 +7,14 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
+import co.netguru.android.socialslack.feature.search.SearchActivity
 import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
@@ -42,14 +44,16 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
         presenter.getCurrentFilterOption()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.actionFilter -> {
-                presenter.filterButtonClicked()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.actionFilter -> {
+            presenter.filterButtonClicked()
+            true
         }
+        R.id.actionSearch -> {
+            presenter.searchButtonClicked()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun getMenuResource() = R.menu.menu_fragment_search_filter
@@ -73,6 +77,10 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
 
     override fun showFilterView() {
         FilterActivity.startActivity(context, FilterObjectType.CHANNELS)
+    }
+
+    override fun showSearchView() {
+        context.startActivity<SearchActivity>()
     }
 
     override fun showLoadingView() {

@@ -40,4 +40,8 @@ class ChannelProfilePresenter @Inject constructor(private val channelsDao: Chann
     override fun onShareButtonClick() {
         view.showShareDialogFragment()
     }
+
+    override fun searchButtonClicked() {
+        view.showSearchView()
+    }
 }

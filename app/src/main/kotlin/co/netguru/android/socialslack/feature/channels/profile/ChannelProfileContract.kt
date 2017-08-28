@@ -17,6 +17,8 @@ interface ChannelProfileContract {
         fun showLoadingView()
 
         fun hideLoadingView()
+
+        fun showSearchView()
     }
 
     interface Presenter : MvpPresenter<View> {
@@ -24,5 +26,7 @@ interface ChannelProfileContract {
         fun getChannelInfo(ChannelId: String)
 
         fun onShareButtonClick()
+
+        fun searchButtonClicked()
     }
 }

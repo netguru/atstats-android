@@ -14,7 +14,7 @@ class SearchActivity : CustomThemeActivity() {
                 ?: SearchFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.login_fragment_container, fragment)
+                .replace(R.id.searchFragmentContainer, fragment)
                 .commit()
     }
 }

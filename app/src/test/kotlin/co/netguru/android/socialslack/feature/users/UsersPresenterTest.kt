@@ -204,6 +204,14 @@ class UsersPresenterTest {
         verify(view).hideLoadingView()
     }
 
+    @Test
+    fun `should show search view when search button clicked`() {
+        //when
+        usersPresenter.searchButtonClicked()
+        //then
+        verify(view).showSearchView()
+    }
+
     @After
     fun tearDown() {
         usersPresenter.detachView(false)
