@@ -28,7 +28,7 @@
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/channelsRecycler1"
+        android:id="@+id/mostActiveChannelsRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
         android:layout_weight="3"
@@ -49,7 +49,7 @@
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/channelsRecycler2"
+        android:id="@+id/channelsWeAreMostActiveRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
         android:layout_weight="3"
@@ -70,7 +70,7 @@
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/channelsRecycler3"
+        android:id="@+id/channelsWeAreMentionTheMostRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
         android:layout_weight="3"

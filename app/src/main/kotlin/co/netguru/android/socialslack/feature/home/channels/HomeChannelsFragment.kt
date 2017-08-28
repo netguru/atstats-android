@@ -31,17 +31,17 @@ class HomeChannelsFragment : MvpFragment<HomeChannelsContract.View, HomeChannels
 
     override fun showMostActiveChannels(mostActiveChannelList: List<ChannelStatistics>,
                                         filter: ChannelsFilterOption) {
-        initRecyclerView(channelsRecycler1, mostActiveChannelList, filter)
+        initRecyclerView(mostActiveChannelsRecycler, mostActiveChannelList, filter)
     }
 
     override fun showChannelsWeAreMentionTheMost(weAreMentionMostChannelList: List<ChannelStatistics>,
                                                  filter: ChannelsFilterOption) {
-        initRecyclerView(channelsRecycler3, weAreMentionMostChannelList, filter)
+        initRecyclerView(channelsWeAreMentionTheMostRecycler, weAreMentionMostChannelList, filter)
     }
 
     override fun showChannelsWeAreMostActive(weAreMostActiveChannelList: List<ChannelStatistics>,
                                              filter: ChannelsFilterOption) {
-        initRecyclerView(channelsRecycler2, weAreMostActiveChannelList, filter)
+        initRecyclerView(channelsWeAreMostActiveRecycler, weAreMostActiveChannelList, filter)
     }
 
     override fun showErrorSortingChannels() {

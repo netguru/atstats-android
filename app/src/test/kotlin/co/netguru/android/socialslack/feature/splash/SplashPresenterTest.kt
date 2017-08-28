@@ -7,6 +7,7 @@ import co.netguru.android.socialslack.data.session.model.TokenCheck
 import co.netguru.android.socialslack.data.theme.ThemeController
 import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Single
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -76,5 +77,10 @@ class SplashPresenterTest {
         splashPresenter.attachView(view)
         //then
         verify(view).showLoginActivity()
+    }
+
+    @After
+    fun tearDown() {
+        splashPresenter.detachView(false)
     }
 }

@@ -20,6 +20,7 @@ import com.nhaarman.mockito_kotlin.capture
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Single
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -148,5 +149,10 @@ class HomeDashboardPresenterTest {
         presenter.attachView(view)
         //then
         verify(view).showCountError()
+    }
+
+    @After
+    fun tearDown() {
+        presenter.detachView(false)
     }
 }

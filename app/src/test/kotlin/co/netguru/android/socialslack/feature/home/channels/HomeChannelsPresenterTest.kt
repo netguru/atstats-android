@@ -9,6 +9,7 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Single
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -72,5 +73,10 @@ class HomeChannelsPresenterTest {
         //then
         // One for every filter
         verify(view, times(3)).showErrorSortingChannels()
+    }
+
+    @After
+    fun tearDown() {
+        presenter.detachView(false)
     }
 }

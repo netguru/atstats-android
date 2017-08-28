@@ -34,6 +34,11 @@ class HomeDashboardPresenter @Inject constructor(private val sessionController: 
         fetch()
     }
 
+    override fun detachView(retainInstance: Boolean) {
+        super.detachView(retainInstance)
+        compositeDisposable.clear()
+    }
+
     private fun showProfilePicture() {
         compositeDisposable += sessionController.getUserSession()
                 .flatMap {
@@ -69,11 +74,15 @@ class HomeDashboardPresenter @Inject constructor(private val sessionController: 
             .observeOn(Schedulers.computation())
             .flattenAsFlowable { it }
             .collect({ ChannelsCount() },
-                    { t1: ChannelsCount?, t2: ChannelStatistics -> t1?.accept(t2) })
+                    { channelsCount: ChannelsCount?, channelStatistics: ChannelStatistics ->
+                        channelsCount?.accept(channelStatistics)
+                    })
 
     private fun getDirectChannelsCount(): Single<DirectChannelsCount> = directChannelsDao.getAllDirectChannels()
             .observeOn(Schedulers.computation())
             .flattenAsFlowable { it }
             .collect({ DirectChannelsCount() },
-                    { t1: DirectChannelsCount?, t2: DirectChannelStatistics -> t1?.accept(t2) })
+                    { directChannelsCount: DirectChannelsCount?, directChannelStatistics: DirectChannelStatistics ->
+                        directChannelsCount?.accept(directChannelStatistics)
+                    })
 }

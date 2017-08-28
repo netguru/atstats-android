@@ -59,7 +59,8 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
             .flatMapCompletable { (id, name) ->
                 sessionController.getUserSession().flatMapCompletable {
                     channelsController.countChannelStatistics(id, name, it.userId)
-                            .toCompletable().subscribeOn(Schedulers.io())
+                            .toCompletable()
+                            .subscribeOn(Schedulers.io())
                 }
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
@@ -68,7 +69,8 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
             .flattenAsFlowable { it }
             .flatMapCompletable {
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)
-                        .toCompletable().subscribeOn(Schedulers.io())
+                        .toCompletable()
+                        .subscribeOn(Schedulers.io())
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
 

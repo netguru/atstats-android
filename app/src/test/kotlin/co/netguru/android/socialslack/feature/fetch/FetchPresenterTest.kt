@@ -11,7 +11,6 @@ import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
 import co.netguru.android.socialslack.data.session.SessionController
 import co.netguru.android.socialslack.data.session.model.UserSession
 import co.netguru.android.socialslack.data.team.TeamController
-import co.netguru.android.socialslack.data.team.model.Team
 import co.netguru.android.socialslack.data.theme.ThemeController
 import co.netguru.android.socialslack.data.user.UsersController
 import co.netguru.android.socialslack.data.user.model.User
@@ -19,10 +18,10 @@ import co.netguru.android.socialslack.data.user.model.UserProfile
 import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Completable
 import io.reactivex.Single
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.anyString
 import org.mockito.Mockito.verify
 
@@ -168,5 +167,10 @@ class FetchPresenterTest {
 
         // then
         verify(view).showErrorMessage()
+    }
+
+    @After
+    fun tearDown() {
+        fetchPresenter.detachView(false)
     }
 }
