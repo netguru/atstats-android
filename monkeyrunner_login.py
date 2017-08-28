@@ -6,7 +6,7 @@ import time
 device = MonkeyRunner.waitForConnection()
 
 # Installs the Android package.
-device.installPackage('app-production-release-bitrise-signed.apk')
+device.installPackage('/bitrise/deploy/app-production-release-bitrise-signed.apk')
 
 # sets a variable with the package's internal name
 package = 'co.netguru.android.socialslack'
