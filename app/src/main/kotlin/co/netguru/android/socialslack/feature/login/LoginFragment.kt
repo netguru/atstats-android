@@ -12,10 +12,8 @@ import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.Snackbar
 import co.netguru.android.socialslack.common.extensions.inflate
-import co.netguru.android.socialslack.feature.main.MainActivity
 import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.feature.fetch.FetchActivity
-
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
 
@@ -23,12 +21,13 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
         fun newInstance(): LoginFragment = LoginFragment()
     }
 
-    private lateinit var component: LoginComponent
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        initComponent()
-        return container?.inflate(R.layout.fragment_login)
+    private val component by lazy {
+        App.getApplicationComponent(context)
+                .plusLoginComponent()
     }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?) = container?.inflate(R.layout.fragment_login)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,10 +59,4 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
     }
 
     override fun createPresenter(): LoginContract.Presenter = component.getPresenter()
-
-    private fun initComponent() {
-        component = App.Factory.getApplicationComponent(context)
-                .plusLoginComponent()
-        component.inject(this)
-    }
 }

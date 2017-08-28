@@ -2,7 +2,6 @@ package co.netguru.android.socialslack.feature.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
@@ -19,9 +18,9 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
         App.getUserComponent(context).plusSearchComponent()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_search)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?) = container?.inflate(R.layout.fragment_search)
+
 
     override fun createPresenter() = component.getPresenter()
 }
