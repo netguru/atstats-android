@@ -19,7 +19,6 @@
         android:layout_width="@dimen/item_user_avatar_container_size"
         android:layout_height="@dimen/item_user_avatar_container_size"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/margin_small"
         android:layout_toEndOf="@id/placeNrTextView">
 
         <ImageView
@@ -33,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:src="@drawable/medal" />
+            android:src="?attr/medalDrawable" />
     </FrameLayout>
 
 
@@ -41,8 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/margin_small"
         android:layout_marginStart="@dimen/margin_small"
         android:layout_toEndOf="@id/userAvatarContainer"
+        android:layout_toStartOf="@+id/messagesNrTextView"
         android:orientation="vertical">
 
         <TextView
@@ -50,12 +51,14 @@
             style="@style/FontMedium.PrimaryDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
             android:textStyle="bold"
             tools:text="Anna Rice" />
 
         <TextView
             android:id="@+id/usernameTextView"
-            style="@style/FontSmall.PrimaryDark"
+            style="@style/FontSmall.ColorTextPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="\@anna.rice" />

@@ -1,10 +1,8 @@
 package co.netguru.android.socialslack.data.channels
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import io.reactivex.Completable
 import io.reactivex.Single
 
 
@@ -19,4 +17,7 @@ interface ChannelsDao {
 
     @Query("SELECT * FROM channel_statistics")
     fun getAllChannels (): Single<List<ChannelStatistics>>
+
+    @Query("DELETE FROM channel_statistics")
+    fun deleteAllChannels()
 }

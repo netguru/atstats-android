@@ -4,9 +4,11 @@ import co.netguru.android.socialslack.RxSchedulersOverrideRule
 
 import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
+import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.UsersController
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Single
 import org.junit.After
@@ -17,6 +19,13 @@ import org.mockito.Mockito.*
 
 @Suppress("IllegalIdentifier")
 class UsersPresenterTest {
+
+    companion object {
+        private const val USER = "user"
+        private val DC_STATISTICS = DirectChannelStatistics("1", USER, 20, 20)
+        private val USER_STATS = UserStatistic("", "", "", "", "",
+                20, 20, 20, 20, "")
+    }
 
     @Rule
     @JvmField
@@ -31,6 +40,8 @@ class UsersPresenterTest {
     @Before
     fun setUp() {
         whenever(filterController.getUsersFilterOption()).thenReturn(Single.just(UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST))
+        whenever(usersController.getAllDirectChannelsStatistics()).thenReturn(Single.just(listOf(DC_STATISTICS)))
+        whenever(usersController.getAllUsersInfo(anyObject())).thenReturn(Single.just(listOf(USER_STATS)))
 
         view = mock(UsersContract.View::class.java)
         usersPresenter = UsersPresenter(usersController, filterController)
@@ -139,6 +150,56 @@ class UsersPresenterTest {
         whenever(filterController.getUsersFilterOption()).thenReturn(Single.error(Throwable()))
         //when
         usersPresenter.sortRequestReceived(listOf())
+        //then
+        verify(view).hideLoadingView()
+    }
+
+    @Test
+    fun `should get all users info when getting user data`() {
+        //when
+        usersPresenter.getUsersData()
+        //then
+        verify(usersController).getAllUsersInfo(anyObject())
+    }
+
+    @Test
+    fun `should get users filter option info when getting user data`() {
+        //when
+        usersPresenter.getUsersData()
+        //then
+        verify(filterController).getUsersFilterOption()
+    }
+
+    @Test
+    fun `should show users data when getting user successful`() {
+        //when
+        usersPresenter.getUsersData()
+        //then
+        verify(view).showUsersList(anyObject())
+    }
+
+    @Test
+    fun `should show loading view when getting user data`() {
+        //when
+        usersPresenter.getUsersData()
+        //then
+        verify(view).showLoadingView()
+    }
+
+    @Test
+    fun `should hide loading view when getting user data`() {
+        //when
+        usersPresenter.getUsersData()
+        //then
+        verify(view).hideLoadingView()
+    }
+
+    @Test
+    fun `should hide loading view when getting user data failed`() {
+        //given
+        whenever(usersController.getAllDirectChannelsStatistics()).thenReturn(Single.error(Throwable()))
+        //when
+        usersPresenter.getUsersData()
         //then
         verify(view).hideLoadingView()
     }

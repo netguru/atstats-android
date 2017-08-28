@@ -8,6 +8,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.users.profile.adapter.UsersProfileAdapter
 import kotlinx.android.synthetic.main.fragment_users_profile.*
@@ -23,7 +24,7 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
 
             bundle.putParcelableArray(USER_STATISTICS_LIST_KEY, userStatisticsList)
             bundle.putInt(CURRENT_USER_POSITION_KEY, currentUserPosition)
-            bundle.putSerializable(SELECTED_FILTER_OPTION, selectedFilterOption)
+            bundle.putString(SELECTED_FILTER_OPTION, selectedFilterOption.name)
             fragment.arguments = bundle
 
             return fragment
@@ -34,7 +35,13 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
         private const val SELECTED_FILTER_OPTION = "key:selected_filter_option"
     }
 
-    private val adapter by lazy { UsersProfileAdapter() }
+    private val adapter by lazy {
+        UsersProfileAdapter(object : UsersProfileAdapter.OnUsersShareButtonClickListener {
+            override fun onShareButtonClick(clickedUserPosition: Int, usersList: List<UserStatistic>) {
+                presenter.onShareButtonClicked(clickedUserPosition, usersList)
+            }
+        })
+    }
 
     private val component by lazy {
         App.getUserComponent(context).plusUsersProfileComponent()
@@ -50,7 +57,7 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
         with(arguments) {
             val userStatisticsList = getParcelableArray(USER_STATISTICS_LIST_KEY)
                     .filterIsInstance(UserStatistic::class.java).toList()
-            val selectedFilterOption = getSerializable(SELECTED_FILTER_OPTION) as UsersFilterOption
+            val selectedFilterOption = UsersFilterOption.valueOf(getString(SELECTED_FILTER_OPTION))
             presenter.prepareView(userStatisticsList, getInt(CURRENT_USER_POSITION_KEY), selectedFilterOption)
         }
     }
@@ -75,6 +82,11 @@ class UsersProfileFragment : BaseMvpFragmentWithMenu<UsersProfileContract.View, 
     override fun hideLoadingView() {
         usersProfileRecyclerView.visibility = View.VISIBLE
         usersProfileProgressBar.visibility = View.GONE
+    }
+
+    override fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>) {
+        val filterOption = UsersFilterOption.valueOf(arguments.getString(SELECTED_FILTER_OPTION))
+        ShareDialogFragment.newInstance(clickedItem, usersList.toTypedArray(), filterOption).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
     private fun initRecyclerView() {

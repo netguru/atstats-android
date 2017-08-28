@@ -1,149 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/shareRootView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/lightGrey"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/modal_top1">
-
-        <TextView
-            style="@style/FontLarge.LightGrey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/margin_big"
-            android:text="@string/share_love" />
-
-        <ImageButton
-            android:id="@+id/shareCloseBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="@dimen/margin_default"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/close" />
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/shareChannelNameTextView"
-        style="@style/FontMedium.PrimaryDark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" />
-
-    <TextView
-        android:id="@+id/shareChannelStatusTextView"
-        style="@style/FontMedium.Orange"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/share_channel_talk_more"
-        android:textStyle="bold" />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_default"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_default">
-
-        <TextView
-            style="@style/Font12.Grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:text="@string/place"
-            android:textAllCaps="true" />
-
-        <TextView
-            style="@style/Font12.Grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="@string/number_of_messages"
-            android:textAllCaps="true" />
-    </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/shareRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginStart="@dimen/margin_default"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
-
-    <FrameLayout
-        android:id="@+id/shareMoreVertImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:src="@drawable/ic_more_vert_grey" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/shareLastItemContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_small"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginStart="@dimen/margin_default"
-        android:visibility="gone">
-
-        <include
-            android:id="@+id/shareLastItem"
-            layout="@layout/item_channels" />
-    </FrameLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/shareRootView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/lightGrey"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/shareAboutSendStatisticsTextView"
-            style="@style/FontSmall.Grey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:gravity="center"
-            android:lines="2" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default">
+            android:background="?attr/modalTop1Drawable">
 
-            <Button
-                android:id="@+id/shareSendButton"
-                style="@style/FontMedium.White"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_rounded_button_corners_gradient_gray"
-                android:text="@string/action_send"
-                android:textAllCaps="false" />
-
-            <ProgressBar
-                android:id="@+id/shareLoadingView"
+            <TextView
+                style="@style/FontLarge.LightGrey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:indeterminate="true"
-                android:visibility="gone" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_big"
+                android:text="@string/share_love" />
+
+            <ImageButton
+                android:id="@+id/shareCloseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/margin_default"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/close" />
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/shareNameTextView"
+            style="@style/FontMedium.ColorTextPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/shareStatusTextView"
+            style="@style/FontMedium.Accent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/share_talk_more"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default">
+
+            <TextView
+                style="@style/Font12.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/place"
+                android:textAllCaps="true" />
+
+            <TextView
+                style="@style/Font12.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/number_of_messages"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shareRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_default"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        <FrameLayout
+            android:id="@+id/shareMoreVertImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:src="@drawable/ic_more_vert_grey" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/shareLastChannelContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_default"
+            android:visibility="gone">
+
+            <include
+                android:id="@+id/shareLastChannel"
+                layout="@layout/item_channels" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/shareLastUserContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_default"
+            android:visibility="gone">
+
+            <include
+                android:id="@+id/shareLastUser"
+                layout="@layout/item_users_share" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shareAboutSendStatisticsTextView"
+                style="@style/FontSmall.Grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:gravity="center"
+                android:lines="2" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default">
+
+                <Button
+                    android:id="@+id/shareSendButton"
+                    style="@style/FontMedium.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+                    android:text="@string/action_send"
+                    android:textAllCaps="false" />
+
+                <ProgressBar
+                    android:id="@+id/shareLoadingView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

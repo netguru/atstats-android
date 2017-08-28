@@ -3,7 +3,7 @@ package co.netguru.android.socialslack.feature.login
 import android.net.Uri
 import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
-import co.netguru.android.socialslack.data.session.TokenController
+import co.netguru.android.socialslack.data.session.SessionController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -12,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class LoginPresenter @Inject constructor(private val tokenController: TokenController)
+class LoginPresenter @Inject constructor(private val sessionController: SessionController)
     : MvpNullObjectBasePresenter<LoginContract.View>(), LoginContract.Presenter {
 
     companion object {
@@ -27,7 +27,7 @@ class LoginPresenter @Inject constructor(private val tokenController: TokenContr
     }
 
     override fun loginButtonClicked() {
-        compositeDisposable += tokenController.getOauthAuthorizeUri()
+        compositeDisposable += sessionController.getOauthAuthorizeUri()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
                         onSuccess = {
@@ -39,8 +39,9 @@ class LoginPresenter @Inject constructor(private val tokenController: TokenContr
     }
 
     override fun onAppAuthorizeCodeReceived(uri: Uri) {
-        compositeDisposable += tokenController.requestNewToken(getCodeFromUri(uri))
-                .flatMapCompletable(tokenController::saveToken)
+        compositeDisposable += sessionController.requestNewToken(getCodeFromUri(uri))
+                .flatMapCompletable(sessionController::saveToken)
+                .concatWith(sessionController.checkToken().toCompletable())
                 .compose(RxTransformers.applyCompletableIoSchedulers())
                 .subscribeBy(
                         onComplete = view::showMainActivity,

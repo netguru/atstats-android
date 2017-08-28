@@ -1,32 +1,38 @@
 package co.netguru.android.socialslack.feature.fetch
 
 import co.netguru.android.socialslack.app.scope.ActivityScope
+import co.netguru.android.socialslack.common.customTheme.CustomThemePresenter
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.channels.ChannelsController
 import co.netguru.android.socialslack.data.direct.DirectChannelsController
-import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
+import co.netguru.android.socialslack.data.session.SessionController
+import co.netguru.android.socialslack.data.team.TeamController
+import co.netguru.android.socialslack.data.theme.ThemeController
+import co.netguru.android.socialslack.data.user.UsersController
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
 @ActivityScope
-class FetchPresenter @Inject constructor(private val channelsController: ChannelsController,
-                                         private val directChannelsController: DirectChannelsController)
-    : MvpNullObjectBasePresenter<FetchContract.View>(), FetchContract.Presenter {
-
-    companion object {
-        // TODO 11.08.2017 replace this with the user ID
-        private const val MOCK_USER = "U2JHH3HAA"
-    }
+class FetchPresenter @Inject constructor(private val sessionController: SessionController,
+                                         private val usersController: UsersController,
+                                         private val channelsController: ChannelsController,
+                                         private val directChannelsController: DirectChannelsController,
+                                         private val teamController: TeamController,
+                                         themeController: ThemeController)
+    : CustomThemePresenter<FetchContract.View>(themeController), FetchContract.Presenter {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun attachView(view: FetchContract.View) {
         super.attachView(view)
         compositeDisposable += fetchAndStoreChannelsStatistics()
-                .concatWith(fetchAndStoreDirectChannelsStatistics())
+                .mergeWith(fetchAndStoreOwnUserInfo())
+                .mergeWith(fetchAndStoreDirectChannelsStatistics())
+                .mergeWith(fetchAndStoreTeam())
                 .subscribeBy(
                         onComplete = { view.showMainActivity() },
                         onError = { handleError(it, "Error while fetching data") }
@@ -43,11 +49,19 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
         view.showErrorMessage()
     }
 
+    private fun fetchAndStoreOwnUserInfo() = sessionController.getUserSession()
+            .flatMap { usersController.getUserAndStore(it.userId) }
+            .toCompletable()
+            .compose(RxTransformers.applyCompletableIoSchedulers())
+
     private fun fetchAndStoreChannelsStatistics() = channelsController.getChannelsList()
             .flattenAsFlowable { it.filter { it.isCurrentUserMember } }
-            .flatMapCompletable {
-                channelsController.countChannelStatistics(it.id, it.name, MOCK_USER)
-                        .toCompletable()
+            .flatMapCompletable { (id, name) ->
+                sessionController.getUserSession().flatMapCompletable {
+                    channelsController.countChannelStatistics(id, name, it.userId)
+                            .toCompletable()
+                            .subscribeOn(Schedulers.io())
+                }
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
 
@@ -56,6 +70,10 @@ class FetchPresenter @Inject constructor(private val channelsController: Channel
             .flatMapCompletable {
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)
                         .toCompletable()
+                        .subscribeOn(Schedulers.io())
             }
+            .compose(RxTransformers.applyCompletableIoSchedulers())
+
+    private fun fetchAndStoreTeam() = teamController.fetchTeamInfo()
             .compose(RxTransformers.applyCompletableIoSchedulers())
 }

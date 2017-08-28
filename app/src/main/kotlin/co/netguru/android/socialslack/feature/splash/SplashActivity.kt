@@ -1,6 +1,8 @@
 package co.netguru.android.socialslack.feature.splash
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.feature.fetch.FetchActivity
@@ -10,16 +12,21 @@ import com.hannesdorfmann.mosby3.mvp.MvpActivity
 
 class SplashActivity : MvpActivity<SplashContract.View, SplashContract.Presenter>(), SplashContract.View {
 
-    private lateinit var component: SplashComponent
+    val component by lazy { App.getApplicationComponent(this).plusSplashComponent() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        initComponent()
+        setTheme()
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        setTheme()
+        super.onCreate(savedInstanceState, persistentState)
     }
 
     override fun createPresenter(): SplashContract.Presenter = component.getPresenter()
 
-    override fun showMainActivity() {
+    override fun showFetchActivity() {
         startActivity<FetchActivity>()
         finish()
     }
@@ -29,8 +36,7 @@ class SplashActivity : MvpActivity<SplashContract.View, SplashContract.Presenter
         finish()
     }
 
-    private fun initComponent() {
-        component = App.getApplicationComponent(this)
-                .plusSplashComponent()
+    private fun setTheme() {
+        setTheme(if (createPresenter().showColourfulTheme()) R.style.SplashThemeColourful else R.style.SplashThemeNetguru)
     }
 }

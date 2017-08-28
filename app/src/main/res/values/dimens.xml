@@ -4,6 +4,7 @@
     <dimen name="margin_big">24dp</dimen>
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_tiny">1dp</dimen>
 
     <dimen name="fragment_login_logo_padding">12dp</dimen>
     <dimen name="fragment_login_text_logo_margin_bottom">32dp</dimen>
@@ -15,7 +16,6 @@
 
     <dimen name="splash_netguru_logo_bottom_margin">80dp</dimen>
     <dimen name="channels_item_height">60dp</dimen>
-    <dimen name="users_item_height">100dp</dimen>
 
     // Channel profile
     <dimen name="channel_card_view_elevation">13dp</dimen>
@@ -31,7 +31,8 @@
     <dimen name="filter_view_height">60dp</dimen>
     <dimen name="divider_height">1dp</dimen>
     <dimen name="rounded_corners_radius">8dp</dimen>
-    <dimen name="card_corner_radius">6dp</dimen>
+    <dimen name="card_corner_radius_small">6dp</dimen>
+    <dimen name="card_corner_radius_big">24dp</dimen>
     <dimen name="card_elevation">13dp</dimen>
     <dimen name="card_padding">10dp</dimen>
     <dimen name="dashboard_icon_margin">4dp</dimen>
@@ -60,6 +61,7 @@
     <dimen name="header_textSize">28sp</dimen>
 
     //Users list
+    <dimen name="users_item_height">100dp</dimen>
     <dimen name="item_user_avatar_container_size">72dp</dimen>
     <dimen name="item_user_avatar_radius">8dp</dimen>
     <dimen name="item_user_avatar_margin">6dp</dimen>
@@ -71,4 +73,16 @@
     <dimen name="user_status_size">8dp</dimen>
     <dimen name="user_status_inactive_stroke_size">1dp</dimen>
     <dimen name="users_profile_small_margin">4dp</dimen>
+
+    //Profile
+    <dimen name="profile_image_height">180dp</dimen>
+    <dimen name="profile_division_width">150dp</dimen>
+    <dimen name="profile_division_height">1dp</dimen>
+    <dimen name="profile_toggle_switch_width">160dp</dimen>
+    <dimen name="profile_toggle_switch_stroke_border">1dp</dimen>
+    <dimen name="profile_card_elevation">6dp</dimen>
+
+    //Users share
+    <dimen name="users_share_item_height">70dp</dimen>
+    <dimen name="item_user_share_avatar_container_size">60dp</dimen>
 </resources>

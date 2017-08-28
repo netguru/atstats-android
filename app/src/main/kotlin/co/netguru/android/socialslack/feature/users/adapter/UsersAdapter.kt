@@ -2,6 +2,7 @@ package co.netguru.android.socialslack.feature.users.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 
@@ -11,7 +12,8 @@ class UsersAdapter(private val onUserClickListener: OnUserClickListener) : Recyc
 
     internal lateinit var selectedFilterOption: UsersFilterOption
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(parent, onUserClickListener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(parent,
+            R.layout.item_users, onUserClickListener)
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bind(usersList[position], selectedFilterOption)

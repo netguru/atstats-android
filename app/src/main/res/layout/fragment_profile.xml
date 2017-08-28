@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/map"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_zero"
+        android:layout_weight="17">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_default"
+            app:cardCornerRadius="@dimen/card_corner_radius_big"
+            app:cardElevation="@dimen/profile_card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/card_corner_radius_big"
+                    app:cardElevation="@dimen/profile_card_elevation"
+                    android:layout_gravity="center|top">
+
+                        <ImageView
+                            android:id="@+id/profilePictureImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/profile_image_height"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/firstLastNameTextView"
+                                style="@style/FontMedium.White"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableEnd="@drawable/user_status_selector"
+                                android:drawablePadding="@dimen/margin_small"
+                                tools:text="John Rama" />
+
+                            <TextView
+                                android:id="@+id/nameTextView"
+                                style="@style/FontSmall.White"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="\@john.rama" />
+
+                        </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/teamNameTextView"
+                            style="@style/FontMedium.ColorTextPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Netguru" />
+
+                        <TextView
+                            android:id="@+id/teamPageTextView"
+                            style="@style/FontMedium.ColorTextPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="netguru.slack.com" />
+
+                        <include
+                            layout="@layout/divider_vertical"
+                            android:layout_width="@dimen/profile_division_width"
+                            android:layout_height="@dimen/profile_division_height"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:layout_marginTop="@dimen/margin_small" />
+
+                        <TextView
+                            style="FontSmall.ColorTextSecondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:text="@string/colour_scheme" />
+
+                        <belka.us.androidtoggleswitch.widgets.ToggleSwitch
+                            android:id="@+id/themeToggleSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_tiny"
+                            android:background="@drawable/switch_colour_scheme_border"
+                            custom:activeBgColor="?attr/colorMain"
+                            custom:cornerRadius="@dimen/card_corner_radius_small"
+                            custom:inactiveBgColor="@android:color/transparent"
+                            custom:textToggleLeft="@string/colourful"
+                            custom:textToggleRight="@string/netguru"
+                            custom:toggleWidth="@dimen/profile_toggle_switch_width" />
+
+                        <TextView
+                            android:id="@+id/logOutTextView"
+                            style="@style/Font16.ColorTextSecondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:layout_marginTop="@dimen/margin_default"
+                            android:text="@string/log_out" />
+
+                    </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_zero"
+        android:layout_weight="3">
+
+        <Button
+            android:id="@+id/sendUsFeedBackButton"
+            style="@style/FontMedium.White"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@drawable/shape_rounded_button_corners_gradient_gray"
+            android:text="@string/send_us_feedback"
+            android:textAllCaps="false" />
+    </FrameLayout>
+
+</LinearLayout>

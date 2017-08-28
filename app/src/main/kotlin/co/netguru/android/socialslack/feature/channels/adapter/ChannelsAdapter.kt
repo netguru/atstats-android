@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 
-class ChannelsAdapter(private val onChannelClickListener: ChannelsViewHolder.ChannelClickListener) : RecyclerView.Adapter<ChannelsViewHolder>() {
+class ChannelsAdapter(private val onChannelClickListener: ChannelClickListener) : RecyclerView.Adapter<ChannelsViewHolder>() {
 
     internal val channelsList: MutableList<ChannelStatistics> = mutableListOf()
 
@@ -25,5 +25,9 @@ class ChannelsAdapter(private val onChannelClickListener: ChannelsViewHolder.Cha
         this.channelsList.clear()
         this.channelsList.addAll(channelsList)
         notifyDataSetChanged()
+    }
+
+    interface ChannelClickListener {
+        fun onChannelClick(clickedItemPosition: Int)
     }
 }

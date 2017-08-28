@@ -10,25 +10,36 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.channels.ChannelsMessagesNumberProvider
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.filter.model.Filter
+import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
+import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.share.Sharable
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
+import co.netguru.android.socialslack.feature.share.adapter.ShareUserAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpDialogFragment
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
+import com.bumptech.glide.Glide
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.android.synthetic.main.item_channels.view.*
+import kotlinx.android.synthetic.main.item_users.view.*
 
 class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContract.Presenter>(),
         ShareContract.View {
 
     companion object {
-        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>): ShareDialogFragment
+        fun <T> newInstance(selectedItem: T, mostActiveItemList: Array<T>, filter: Filter): ShareDialogFragment
                 where T : Parcelable, T : Sharable {
 
             val fragment = ShareDialogFragment()
             val bundle = Bundle()
             bundle.putParcelable(SELECTED_ITEM_KEY, selectedItem)
             bundle.putParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY, mostActiveItemList)
+            bundle.putString(FILTER_OPTION, filter.filterName())
 
             fragment.arguments = bundle
             return fragment
@@ -38,6 +49,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
 
         private const val SELECTED_ITEM_KEY = "key:selected_item"
         private const val MOST_ACTIVE_ITEM_LIST_KEY = "key:most_active_item_list"
+        private const val FILTER_OPTION = "key:filter_option"
+
+        private const val USERNAME_PREFIX = "@"
+        private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
+
     }
 
     private val component by lazy {
@@ -57,38 +73,53 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
             presenter.onSendButtonClick(ScreenShotUtils.takeScreenShotByteArray(shareRootView))
         }
         presenter.prepareView(arguments.getParcelable(SELECTED_ITEM_KEY),
-                arguments.getParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY).toList())
+                arguments.getParcelableArray(MOST_ACTIVE_ITEM_LIST_KEY).toList(),
+                arguments.getString(FILTER_OPTION))
     }
 
     override fun createPresenter() = component.getPresenter()
 
-    override fun initShareChannelView(selectedChannel: ChannelStatistics, mostActiveChannels: List<ChannelStatistics>) {
-        val adapter = ShareChannelAdapter()
+    override fun initShareChannelView(channelsList: List<ChannelStatistics>, filterOption: ChannelsFilterOption) {
+        val adapter = ShareChannelAdapter(channelsList, filterOption)
         shareRecyclerView.adapter = adapter
-        adapter.addChannels(mostActiveChannels)
     }
 
-    override fun initShareUserView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun initShareUsersView(userList: List<UserStatistic>, filterOption: UsersFilterOption) {
+        val adapter = ShareUserAdapter(userList, filterOption)
+        shareRecyclerView.adapter = adapter
     }
 
     override fun showChannelName(channelName: String) {
-        shareChannelNameTextView.text = resources.getString(R.string.share_recon_this, channelName)
+        shareNameTextView.text = resources.getString(R.string.share_recon_this, channelName)
         shareAboutSendStatisticsTextView.text = resources.getString(R.string.share_send_statistics_to, channelName)
     }
 
     override fun showSelectedChannelMostActiveText() {
-        shareChannelStatusTextView.text = resources.getString(R.string.share_most_talkative_channel)
+        shareStatusTextView.text = resources.getString(R.string.share_most_talkative_channel)
     }
 
     override fun showSelectedChannelTalkMoreText() {
-        shareChannelStatusTextView.text = resources.getString(R.string.share_channel_talk_more)
+        shareStatusTextView.text = resources.getString(R.string.share_talk_more)
     }
 
-    override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics) {
+    override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
         shareMoreVertImage.visibility = View.VISIBLE
-        shareLastItemContainer.visibility = View.VISIBLE
-        showLastChannelData(channelStatistics)
+        shareLastChannelContainer.visibility = View.VISIBLE
+        showLastChannelData(channelStatistics, filterOption)
+    }
+
+    override fun showSelectedUserMostActiveText() {
+        shareStatusTextView.text = resources.getString(R.string.share_most_talkative_user)
+    }
+
+    override fun showSelectedUserTalkMoreText() {
+        shareStatusTextView.text = resources.getString(R.string.share_talk_more)
+    }
+
+    override fun showSelectedUserOnLastPosition(user: UserStatistic, filterOption: UsersFilterOption) {
+        shareMoreVertImage.visibility = View.VISIBLE
+        shareLastUserContainer.visibility = View.VISIBLE
+        showLastUserData(user, filterOption)
     }
 
     override fun showShareConfirmationDialog(itemName: String) {
@@ -115,12 +146,33 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         Snackbar.make(shareRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun showLastChannelData(channelStatistics: ChannelStatistics) {
+    private fun showLastChannelData(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
+        shareLastChannel.itemChannelsMessagesNrTextView.text = ChannelsMessagesNumberProvider
+                .getProperMessagesNumber(filterOption, channelStatistics).toString()
+
         with(channelStatistics) {
-            shareLastItem.itemChannelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
-            shareLastItem.itemChannelsNameTextView.text = channelName
-            shareLastItem.itemChannelsMessagesNrTextView.text = messageCount.toString()
+            shareLastChannel.itemChannelsPlaceNrTextView.text = (currentPositionInList.toString() + '.')
+            shareLastChannel.itemChannelsNameTextView.text = channelName
         }
+    }
+
+    private fun showLastUserData(user: UserStatistic, filterOption: UsersFilterOption) {
+        shareLastUser.messagesNrTextView.text = UsersMessagesNumberProvider.getProperMessagesNumber(filterOption, user).toString()
+        with(user) {
+            shareLastUser.placeNrTextView.text = (currentPositionInList.toString() + '.')
+            shareLastUser.userRealNameTextView.text = name
+            shareLastUser.usernameTextView.text = (USERNAME_PREFIX + username)
+            loadUserPhoto(user.avatarUrl)
+        }
+    }
+
+    private fun loadUserPhoto(avatarUrl: String?) {
+        Glide.with(this)
+                // TODO 14.08.2017 find a better placeholder
+                .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
+                .bitmapTransform(RoundedCornersTransformation(context,
+                        resources.getDimension(R.dimen.item_user_avatar_radius).toInt(), USER_AVATAR_ROUNDED_CORNERS_MARGIN))
+                .into(shareLastUser.userAvatarImageView)
     }
 
     private fun initRecyclerView() {

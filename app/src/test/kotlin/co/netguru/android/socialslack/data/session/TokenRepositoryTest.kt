@@ -28,8 +28,8 @@ class TokenRepositoryTest {
         //when
         tokenRepository.getToken()
         //then
-        // 3 times because Token has 3 fields stored in SharedPreferences
-        verify(sharedPreferences, times(3)).getString(anyString(), anyString())
+        // 2 times because Token has 2 fields stored in SharedPreferences
+        verify(sharedPreferences, times(2)).getString(anyString(), anyString())
     }
 
     @SuppressLint("CommitPrefEdits")
@@ -38,15 +38,15 @@ class TokenRepositoryTest {
         //given
         val testObserver = TestObserver<Boolean>()
         val editor = mock(SharedPreferences.Editor::class.java)
-        val token = Token("", "", "")
+        val token = Token("", "")
         whenever(sharedPreferences.edit()).thenReturn(editor)
         //when
         tokenRepository.saveToken(token)
                 .toObservable<Boolean>()
                 .subscribe(testObserver)
         //then
-        // 3 times because we should store all token fields
-        verify(editor, times(3)).putString(anyString(), anyString())
+        // 2 times because we should store all token fields
+        verify(editor, times(2)).putString(anyString(), anyString())
         testObserver.assertNoErrors()
     }
 }

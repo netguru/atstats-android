@@ -21,4 +21,7 @@ interface DirectChannelsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDirectChannel(directChannelStatistics: DirectChannelStatistics)
+
+    @Query("DELETE FROM direct_channel_statistics")
+    fun deleteAllDirectChannelsStatistics()
 }

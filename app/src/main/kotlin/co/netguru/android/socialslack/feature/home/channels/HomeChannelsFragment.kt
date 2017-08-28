@@ -1,18 +1,25 @@
 package co.netguru.android.socialslack.feature.home.channels
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_channels.*
 
-class HomeChannelsFragment : Fragment() {
+class HomeChannelsFragment : MvpFragment<HomeChannelsContract.View, HomeChannelsContract.Presenter>(), HomeChannelsContract.View {
+
+    val component: HomeChannelsComponent by lazy { App.getUserComponent(context).plusHomeChannelsComponent() }
+
+    override fun createPresenter(): HomeChannelsPresenter = component.getPresenter()
 
     companion object {
         fun newInstance() = HomeChannelsFragment()
@@ -22,24 +29,30 @@ class HomeChannelsFragment : Fragment() {
         return container?.inflate(R.layout.fragment_home_channels)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // TODO 11.07.17 download data from API
-        initRecyclerWithMockData(channelsRecycler1)
-        initRecyclerWithMockData(channelsRecycler2)
-        initRecyclerWithMockData(channelsRecycler3)
+    override fun showMostActiveChannels(mostActiveChannelList: List<ChannelStatistics>,
+                                        filter: ChannelsFilterOption) {
+        initRecyclerView(mostActiveChannelsRecycler, mostActiveChannelList, filter)
     }
 
-    private fun initRecyclerWithMockData(recyclerView: RecyclerView) {
-        val channel1 = ChannelStatistics("0", "#tradeguru-design", 420, 200,
-                200, 200)
-        val channel2 = ChannelStatistics("0", "#tradeguru-design", 420, 200,
-                200, 200)
-        val channel3 = ChannelStatistics("0", "#tradeguru-design", 420, 200,
-                200, 200)
-        val channelsAdapter = HomeChannelsAdapter()
-        channelsAdapter.addUsers(listOf(channel1, channel2, channel3))
+    override fun showChannelsWeAreMentionTheMost(weAreMentionMostChannelList: List<ChannelStatistics>,
+                                                 filter: ChannelsFilterOption) {
+        initRecyclerView(channelsWeAreMentionTheMostRecycler, weAreMentionMostChannelList, filter)
+    }
+
+    override fun showChannelsWeAreMostActive(weAreMostActiveChannelList: List<ChannelStatistics>,
+                                             filter: ChannelsFilterOption) {
+        initRecyclerView(channelsWeAreMostActiveRecycler, weAreMostActiveChannelList, filter)
+    }
+
+    override fun showErrorSortingChannels() {
+        Snackbar.make(mainLayout, R.string.error_sorting_channels, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun initRecyclerView(recyclerView: RecyclerView,
+                                 channelList: List<ChannelStatistics>,
+                                 channelsFilterOption: ChannelsFilterOption) {
+        val channelsAdapter = HomeChannelsAdapter(channelsFilterOption)
+        channelsAdapter.addChannels(channelList)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = channelsAdapter

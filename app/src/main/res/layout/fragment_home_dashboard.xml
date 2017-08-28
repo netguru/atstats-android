@@ -27,16 +27,30 @@
                 android:id="@+id/userAvatar"
                 android:layout_width="@dimen/user_avatar_size"
                 android:layout_height="@dimen/user_avatar_size"
-                android:layout_gravity="end|center"
-                android:src="@drawable/this_is_totally_a_person" />
+                android:layout_gravity="end|center" />
 
-            <TextView
-                style="@style/TextMedium"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/dashboard_welcometext_marginLeft"
-                android:text="@string/welcome_back_mock" />
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/welcome_back_mock" />
+
+                <TextView
+                    android:id="@+id/userNameTextView"
+                    style="@style/TextMedium.Highlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/mock_name" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -47,7 +61,7 @@
             android:layout_marginStart="@dimen/home_marginLeft"
             android:layout_weight="0.5"
             android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
-            android:drawableStart="@drawable/statistics_orange"
+            android:drawableStart="?attr/statisticsDrawable"
             android:gravity="center"
             android:text="@string/statistics" />
 

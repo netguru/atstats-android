@@ -3,6 +3,7 @@ package co.netguru.android.socialslack.app
 import co.netguru.android.socialslack.data.channels.ChannelsApi
 import co.netguru.android.socialslack.data.direct.DirectChannnelsApi
 import co.netguru.android.socialslack.data.session.LoginApi
+import co.netguru.android.socialslack.data.team.TeamApi
 import co.netguru.android.socialslack.data.user.UsersApi
 import dagger.Module
 import dagger.Provides
@@ -27,4 +28,8 @@ class ApiModule {
     @Singleton
     @Provides
     fun provideUsersApi(retrofit: Retrofit): UsersApi = retrofit.create(UsersApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideTeamApi(retrofit: Retrofit): TeamApi = retrofit.create(TeamApi::class.java)
 }

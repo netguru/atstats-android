@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- TODO 07.07.2017 change logo for the correct one, this is a placeholder -->
     <item
-        android:drawable="@drawable/slack_icon"
+        android:drawable="?attr/slackIconDrawable"
         android:right="@dimen/main_toolbar_icon_padding"/>
 </layer-list>

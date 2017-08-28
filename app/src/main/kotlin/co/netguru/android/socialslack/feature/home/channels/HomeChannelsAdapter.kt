@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 
-class HomeChannelsAdapter() : RecyclerView.Adapter<HomeChannelsViewHolder>() {
+class HomeChannelsAdapter(private val filter: ChannelsFilterOption) : RecyclerView.Adapter<HomeChannelsViewHolder>() {
 
     val channels: MutableList<ChannelStatistics> = mutableListOf()
 
@@ -15,7 +16,7 @@ class HomeChannelsAdapter() : RecyclerView.Adapter<HomeChannelsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: HomeChannelsViewHolder, position: Int) {
-        holder.bind(channels[position])
+        holder.bind(channels[position], filter)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeChannelsViewHolder {
@@ -23,9 +24,9 @@ class HomeChannelsAdapter() : RecyclerView.Adapter<HomeChannelsViewHolder>() {
         return HomeChannelsViewHolder(view)
     }
 
-    fun addUsers(users: List<ChannelStatistics>) {
+    fun addChannels(channels: List<ChannelStatistics>) {
         this.channels.clear()
-        this.channels.addAll(users)
+        this.channels.addAll(channels)
         notifyDataSetChanged()
     }
 }

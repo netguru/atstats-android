@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar
 import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
@@ -42,18 +43,18 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        filterViewIconImageView.setImageResource(R.drawable.users_title_bar)
+        filterViewIconImageView.setImageResource(context.getAttributeDrawable(R.attr.usersTitleBarDrawable))
         presenter.getCurrentFilterOption()
         presenter.getUsersData()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.actionFilter -> {
                 presenter.filterButtonClicked()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

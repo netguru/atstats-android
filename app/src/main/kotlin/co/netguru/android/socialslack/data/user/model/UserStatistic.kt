@@ -2,31 +2,32 @@ package co.netguru.android.socialslack.data.user.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import co.netguru.android.socialslack.data.user.profile.Presence
+import co.netguru.android.socialslack.data.share.Sharable
+import co.netguru.android.socialslack.data.user.profile.model.Presence
 import paperparcel.PaperParcel
 
-//TODO 02.08.2017 Refactor this model when database will be ready
 @PaperParcel
 data class UserStatistic(val id: String,
                          val username: String,
+                         val firstName: String,
+                         val lastName: String,
                          val name: String,
-                         val messages: Int,
                          val sentMessages: Int,
                          val receivedMessages: Int,
                          val totalMessages: Int,
                          val currentDayStreak: Int,
                          val avatarUrl: String?,
                          var currentPositionInList: Int = 1,
-                         var presence: Presence = Presence.AWAY) : Parcelable {
+                         var presence: Presence = Presence.AWAY) : Parcelable, Sharable {
 
     companion object {
-        //TODO 02.08.2017 Remove those mocked values when database will be ready
-        fun User.toStatisticsView(messages: Int, sentMessages: Int = 350, receivedMessages: Int = 100,
+        fun User.toStatisticsView(sentMessages: Int, receivedMessages: Int,
                                   currentDayStreak: Int = 1): UserStatistic {
             return UserStatistic(this.id,
-                    this.username,
+                    this.username ?: "",
+                    this.firstName ?: "",
+                    this.lastName ?: "",
                     this.realName ?: "",
-                    messages,
                     sentMessages,
                     receivedMessages,
                     sentMessages + receivedMessages,
@@ -34,7 +35,8 @@ data class UserStatistic(val id: String,
                     this.profile.image512)
         }
 
-        @JvmField val CREATOR = PaperParcelUserStatistic.CREATOR
+        @JvmField
+        val CREATOR = PaperParcelUserStatistic.CREATOR
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -42,4 +44,8 @@ data class UserStatistic(val id: String,
     }
 
     override fun describeContents() = 0
+
+    override fun id() = id
+
+    override fun currentPositionInList() = currentPositionInList
 }

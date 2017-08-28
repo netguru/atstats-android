@@ -1,24 +1,24 @@
 package co.netguru.android.socialslack.app
 
 import android.content.Context
-import dagger.Module
 import android.content.SharedPreferences
-import co.netguru.android.socialslack.app.scope.UserScope
+import dagger.Module
 import dagger.Provides
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
-class LocalRepositoryModule(private val userId: String) {
+class LocalRepositoryModule {
 
     companion object {
-        const val FILTER_OPTION_SHARED_PREFERENCES_NAME = "filterOption"
+        const val THEME_OPTION_SHARED_PREFERENCES_NAME = "themeOption"
     }
 
-    @Named(FILTER_OPTION_SHARED_PREFERENCES_NAME)
-    @UserScope
+    @Named(THEME_OPTION_SHARED_PREFERENCES_NAME)
+    @Singleton
     @Provides
-    fun provideFilterOptionSharedPreferences(context: Context): SharedPreferences {
-        return context.getSharedPreferences(context.packageName + userId +
-                FILTER_OPTION_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+    fun provideThemeOptionSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(context.packageName +
+                THEME_OPTION_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 }
