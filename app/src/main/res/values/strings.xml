@@ -30,6 +30,9 @@
     <string name="total_messages">Total messages</string>
     <string name="rank">Rank</string>
 
+    <string name="error_profile_picture">Error while fetching the profile picture</string>
+    <string name="error_counting_statistics">Error while counting statistics</string>
+
     // Filter view
     <string name="filter_by">Filter by</string>
     <string name="channel_we_are_mentioned_the_most">Channel we are mentioned the most</string>

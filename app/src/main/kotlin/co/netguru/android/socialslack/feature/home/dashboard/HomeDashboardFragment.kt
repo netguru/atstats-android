@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.home.dashboard
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,11 +54,11 @@ class HomeDashboardFragment :
     }
 
     override fun showProfileError() {
-
+        Snackbar.make(userAvatar, R.string.error_profile_picture, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showCountError() {
-
+        Snackbar.make(userAvatar, R.string.error_counting_statistics, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun initStatistics() {
