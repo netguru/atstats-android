@@ -27,12 +27,12 @@ time.sleep(30)
 # Press Sign in
 device.touch(250, 680, MonkeyDevice.DOWN_AND_UP)
 print "Sing in pressed"
-time.sleep(30)
+time.sleep(50)
 
 # Click on team field and wait for keyboard
 device.touch(250, 280, MonkeyDevice.DOWN_AND_UP)
 print "Open browser"
-time.sleep(10)
+time.sleep(30)
 
 # Type Slack Team name
 device.type("dyplom101")
@@ -52,7 +52,7 @@ device.type("gonzalo.acosta@netguru.co")
 
 # Press on the password field
 device.touch(250, 450, MonkeyDevice.DOWN_AND_UP)
-time.sleep(10)
+time.sleep(20)
 
 # Enter password
 device.type("qwerty1234")
@@ -72,15 +72,15 @@ for i in range(1, 10):
 
 # Authorize APP
 device.touch(350, 750, MonkeyDevice.DOWN_AND_UP)
-"Authorize app"
+print "Authorize app"
 time.sleep(30)
 
 # Select Slack Social APP to open
-device.touch(250, 700, MonkeyDevice.DOWN_AND_UP)
-time.sleep(10)
+device.touch(250, 650, MonkeyDevice.DOWN_AND_UP)
+time.sleep(20)
 
 # Click on Always
 device.touch(430, 760, MonkeyDevice.DOWN_AND_UP)
 print "Select Slack Social and open app"
 
-time.sleep(10)
+time.sleep(50)
