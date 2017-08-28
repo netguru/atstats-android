@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -21,13 +22,13 @@
         android:layout_marginStart="@dimen/home_marginLeft"
         android:layout_weight="0.4"
         android:gravity="center"
-        android:text="@string/most_active_channel"
+        android:text="@string/most_active_channel_filter"
         android:textAllCaps="true"
         android:textColor="?attr/colorTextPrimary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/channelsRecycler1"
+        android:id="@+id/mostActiveChannelsRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
         android:layout_weight="3"
@@ -42,13 +43,13 @@
         android:layout_marginStart="@dimen/home_marginLeft"
         android:layout_weight="0.4"
         android:gravity="center"
-        android:text="@string/channel_we_write_most"
+        android:text="@string/channel_we_are_most_active"
         android:textAllCaps="true"
         android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/channelsRecycler2"
+        android:id="@+id/channelsWeAreMostActiveRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
         android:layout_weight="3"
@@ -63,13 +64,13 @@
         android:layout_marginStart="@dimen/home_marginLeft"
         android:layout_weight="0.4"
         android:gravity="center"
-        android:text="@string/mentioned_most"
+        android:text="@string/channel_we_are_mentioned_the_most"
         android:textAllCaps="true"
         android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/channelsRecycler3"
+        android:id="@+id/channelsWeAreMentionTheMostRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
         android:layout_weight="3"

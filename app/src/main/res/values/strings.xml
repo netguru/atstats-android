@@ -30,6 +30,9 @@
     <string name="total_messages">Total messages</string>
     <string name="rank">Rank</string>
 
+    <string name="error_profile_picture">Error while fetching the profile picture</string>
+    <string name="error_counting_statistics">Error while counting statistics</string>
+
     // Filter view
     <string name="filter_by">Filter by</string>
     <string name="channel_we_are_mentioned_the_most">Channel we are mentioned the most</string>
@@ -42,6 +45,7 @@
     <string name="person_we_talk_most">Person who we talk the most</string>
 
     <string name="messages">messages</string>
+    <string name="mentions">mentions</string>
     <string name="statistic_messages_sent">messages sent by you\non channels</string>
     <string name="statistic_mentions">mentions\non channels</string>
     <string name="statistic_private_messages">total number\nof private messages</string>
@@ -54,15 +58,13 @@
     <string name="channel_statistics_your_mentions">Your mentions</string>
     <string name="channel_statistics_share_with_channel">Share with channel</string>
 
-    <string name="most_active_channel">Najbardziej aktywny kanał</string>
     <string name="channels">Channels</string>
-    <string name="channel_we_write_most">Kanał na którym najwięcej piszemy</string>
-    <string name="mentioned_most">Jesteśmy najczęściej mentionowani</string>
     <string name="welcome_back_mock">Welcome back</string>
     <string name="mock_name">\@amarok</string>
     <string name="statistics">Statistics</string>
     <string name="users">Users</string>
     <string name="hashtag">#</string>
+    <string name="error_sorting_channels">There was an error while sorting channels</string>
 
     // User statistics
     <string name="share_with_user">Share with user</string>
