@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.search.adapter.SearchItemType
+import co.netguru.android.socialslack.feature.search.channels.SearchChannelsAdapter
+import co.netguru.android.socialslack.feature.search.users.SearchUsersAdapter
+import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_search.*
 
@@ -36,8 +41,24 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchText.text = SearchItemType.valueOf(arguments.getString(SEARCH_ITEM_TYPE)).name
+        initRecyclerView()
     }
 
     override fun createPresenter() = component.getPresenter()
+
+    override fun initChannelSearchView(channelsList: List<ChannelStatistics>) {
+        searchRecyclerView.adapter = SearchChannelsAdapter(channelsList)
+    }
+
+    override fun initUsersSearchView(usersList: List<UserStatistic>) {
+        searchRecyclerView.adapter = SearchUsersAdapter(usersList)
+    }
+
+    private fun initRecyclerView() {
+        searchRecyclerView.setHasFixedSize(true)
+        searchRecyclerView.addItemDecoration(DividerItemDecorator(
+                context,
+                DividerItemDecorator.Orientation.VERTICAL_LIST, false))
+        presenter.searchItemReceived(SearchItemType.valueOf(arguments.getString(SEARCH_ITEM_TYPE)))
+    }
 }

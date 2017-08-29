@@ -1,11 +1,22 @@
 package co.netguru.android.socialslack.feature.search
 
+import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.feature.search.adapter.SearchItemType
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface SearchContract {
 
-    interface View : MvpView
+    interface View : MvpView {
 
-    interface Presenter : MvpPresenter<View>
+        fun initChannelSearchView(channelsList : List<ChannelStatistics>)
+
+        fun initUsersSearchView(usersList : List<UserStatistic>)
+    }
+
+    interface Presenter : MvpPresenter<View> {
+
+        fun searchItemReceived(searchItemType: SearchItemType)
+    }
 }
