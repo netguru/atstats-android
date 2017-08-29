@@ -28,6 +28,7 @@
             android:layout_above="@+id/dashboardStatisticText"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/card_subtitle_margin"
+            android:gravity="end"
             android:textColor="?attr/colorHighlight"
             android:textSize="@dimen/header_textSize"
             app:autoSizeTextType="uniform"
