@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="value_text_sizes">
+        <item>@dimen/header_textSize_small</item>
+        <item>@dimen/header_textSize_big</item>
+    </array>
+
+    <array name="subtitle_text_sizes">
+        <item>@dimen/subtitle_textSize_small</item>
+        <item>@dimen/subtitle_textSize_big</item>
+    </array>
+
+    <array name="title_text_sizes">
+        <item>@dimen/title_textSize_small</item>
+        <item>@dimen/title_textSize_big</item>
+    </array>
+</resources>
