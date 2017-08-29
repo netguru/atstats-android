@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.fetch.FetchActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".feature.fetch.FetchActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.main.MainActivity"
             android:launchMode="singleTop"
@@ -47,10 +48,20 @@
 
         <activity
             android:name=".feature.filter.FilterActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".feature.search.SearchActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".feature.search.SearchActivity"
+            android:screenOrientation="portrait">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
