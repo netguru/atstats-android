@@ -46,7 +46,7 @@
 
     <string name="messages">messages</string>
     <string name="mentions">mentions</string>
-    <string name="statistic_messages_sent">messages sent by you\non channels</string>
+    <string name="statistic_messages_sent">messages sent\nby you on channels</string>
     <string name="statistic_mentions">mentions\non channels</string>
     <string name="statistic_private_messages">total number\nof private messages</string>
     <string name="statistic_sent_private_messages">sent\nprivate messages</string>
