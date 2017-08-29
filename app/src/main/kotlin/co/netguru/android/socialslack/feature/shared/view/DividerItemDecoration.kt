@@ -2,7 +2,6 @@ package co.netguru.android.socialslack.feature.shared.view
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.support.v4.view.ViewCompat
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
@@ -40,12 +39,12 @@ class DividerItemDecorator(context: Context, private val orientation: Orientatio
         val right = parent.width - parent.paddingRight
 
         val childCount = parent.childCount
-        for (i in 0..childCount - 1) {
+        for (i in 0 until childCount) {
             if (i != childCount - 1 || drawDividerAfterLastItem) {
                 val child = parent.getChildAt(i)
                 val params = child.layoutParams as RecyclerView.LayoutParams
 
-                val top = child.bottom + params.bottomMargin + Math.round(ViewCompat.getTranslationY(child))
+                val top = child.bottom + params.bottomMargin + Math.round(child.translationY)
                 val bottom = top + divider.intrinsicHeight
 
                 divider.setBounds(left, top, right, bottom)
@@ -59,13 +58,13 @@ class DividerItemDecorator(context: Context, private val orientation: Orientatio
         val bottom = parent.height - parent.paddingBottom
 
         val childCount = parent.childCount
-        for (i in 0..childCount - 1) {
+        for (i in 0 until childCount) {
             if (i != childCount - 1 || drawDividerAfterLastItem) {
 
                 val child = parent.getChildAt(i)
                 val params = child.layoutParams as RecyclerView.LayoutParams
 
-                val left = child.right + params.rightMargin + Math.round(ViewCompat.getTranslationX(child))
+                val left = child.right + params.rightMargin + Math.round(child.translationX)
                 val right = left + divider.intrinsicHeight
 
                 divider.setBounds(left, top, right, bottom)

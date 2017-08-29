@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
@@ -56,7 +57,7 @@ class SearchActivity : CustomThemeActivity() {
         searchView.setIconifiedByDefault(false)
 
         // Workaround for removing searchMagIcon
-        val searchMagIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon)
+        val searchMagIcon = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_mag_icon)
         (searchMagIcon.parent as ViewGroup).removeView(searchMagIcon)
     }
 }
