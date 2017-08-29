@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
+import co.netguru.android.socialslack.feature.search.adapter.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : CustomThemeActivity() {
@@ -59,6 +60,6 @@ class SearchActivity : CustomThemeActivity() {
         searchTabLayout.setBackgroundColor(getAttributeColor(R.attr.colorPrimary))
         searchTabLayout.setSelectedTabIndicatorColor(getAttributeColor(R.attr.colorAccent))
         searchTabLayout.setupWithViewPager(searchViewPager)
-        //TODO 29.08.2017 set proper adapter
+        searchViewPager.adapter = SearchPagerAdapter(supportFragmentManager)
     }
 }
