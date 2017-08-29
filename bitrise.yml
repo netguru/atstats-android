@@ -92,13 +92,6 @@ workflows:
         - emulator_name: "$BITRISE_EMULATOR"
         - emulator_options: "-no-boot-anim"
         - skin: 480x800
-    - gradle-runner@1.7.1:
-        inputs:
-        - gradle_file: "$GRADLE_BUILD_FILE_PATH"
-        - gradle_task: assembleProductionRelease
-        - gradlew_path: "$GRADLEW_PATH"
-        - gradle_options: "--full-stacktrace --daemon --parallel --profile"
-        title: Assemble
     - script@1.1.4:
         inputs:
         - content: |-
