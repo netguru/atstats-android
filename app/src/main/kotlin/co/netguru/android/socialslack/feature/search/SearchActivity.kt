@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : CustomThemeActivity() {
 
@@ -19,13 +19,7 @@ class SearchActivity : CustomThemeActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         initializeToolbar()
-
-        val fragment = supportFragmentManager.findFragmentById(R.id.searchFragmentContainer)
-                ?: SearchFragment.newInstance()
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.searchFragmentContainer, fragment)
-                .commit()
+        initializeViewPager()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -59,5 +53,12 @@ class SearchActivity : CustomThemeActivity() {
         // Workaround for removing searchMagIcon
         val searchMagIcon = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_mag_icon)
         (searchMagIcon.parent as ViewGroup).removeView(searchMagIcon)
+    }
+
+    private fun initializeViewPager() {
+        searchTabLayout.setBackgroundColor(getAttributeColor(R.attr.colorPrimary))
+        searchTabLayout.setSelectedTabIndicatorColor(getAttributeColor(R.attr.colorAccent))
+        searchTabLayout.setupWithViewPager(searchViewPager)
+        //TODO 29.08.2017 set proper adapter
     }
 }

@@ -34,6 +34,14 @@ class DividerItemDecorator(context: Context, private val orientation: Orientatio
         }
     }
 
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+        if (orientation == Orientation.VERTICAL_LIST) {
+            outRect.set(0, 0, 0, divider.intrinsicHeight)
+        } else {
+            outRect.set(0, 0, divider.intrinsicWidth, 0)
+        }
+    }
+
     private fun drawVertical(canvas: Canvas, parent: RecyclerView) {
         val left = parent.paddingLeft
         val right = parent.width - parent.paddingRight
@@ -70,14 +78,6 @@ class DividerItemDecorator(context: Context, private val orientation: Orientatio
                 divider.setBounds(left, top, right, bottom)
                 divider.draw(canvas)
             }
-        }
-    }
-
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        if (orientation == Orientation.VERTICAL_LIST) {
-            outRect.set(0, 0, 0, divider.intrinsicHeight)
-        } else {
-            outRect.set(0, 0, divider.intrinsicWidth, 0)
         }
     }
 }
