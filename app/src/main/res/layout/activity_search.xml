@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/MainToolbarTheme" />
+        android:background="@drawable/search_toolbar_background_colorful"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/searchTabLayout"
@@ -28,5 +28,6 @@
     <co.netguru.android.socialslack.feature.shared.view.NonSwipeableViewPager
         android:id="@+id/searchViewPager"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/search_activity_view_pager_margin_top"
         android:layout_height="match_parent" />
 </LinearLayout>

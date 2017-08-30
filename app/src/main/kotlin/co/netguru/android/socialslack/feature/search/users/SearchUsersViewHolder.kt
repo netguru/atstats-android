@@ -2,32 +2,39 @@ package co.netguru.android.socialslack.feature.search.users
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.bumptech.glide.Glide
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-import kotlinx.android.synthetic.main.item_users.view.*
+import kotlinx.android.synthetic.main.item_users_search.view.*
 
 class SearchUsersViewHolder(parent: ViewGroup)
     : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_users_search, parent, false)) {
 
     companion object {
         private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
+        private const val FIRST_ADAPTER_POSITION = 0
     }
 
     private val userAvatarImageView = itemView.userAvatarImageView
     private val userRealNameTextView = itemView.userRealNameTextView
+    private val userMedalImageView = itemView.userMedalImageView
     private val usernameTextView = itemView.usernameTextView
-    private val messagesNrTextView = itemView.messagesNrTextView
 
     fun bind(userStatistic: UserStatistic) {
         with(userStatistic) {
             loadUserPhoto(avatarUrl)
             userRealNameTextView.text = name
             usernameTextView.text = (itemView.context.getString(R.string.username, username))
-            messagesNrTextView.text = totalMessages.toString()
+            changeMedalVisibility()
         }
+    }
+
+    private fun changeMedalVisibility() {
+        userMedalImageView.visibility = if (adapterPosition == FIRST_ADAPTER_POSITION)
+            View.VISIBLE else View.GONE
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {

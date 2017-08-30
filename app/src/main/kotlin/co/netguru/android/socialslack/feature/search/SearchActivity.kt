@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.feature.search.adapter.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -39,7 +38,7 @@ class SearchActivity : CustomThemeActivity() {
     }
 
     private fun initializeToolbar() {
-        toolbar.setBackgroundColor(this.getAttributeColor(R.attr.colorPrimary))
+        toolbar.setBackgroundResource(getAttributeDrawable(R.attr.searchToolbarBackground))
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -50,15 +49,11 @@ class SearchActivity : CustomThemeActivity() {
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setIconifiedByDefault(false)
-
-        // Workaround for removing searchMagIcon
-        val searchMagIcon = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_mag_icon)
-        (searchMagIcon.parent as ViewGroup).removeView(searchMagIcon)
     }
 
     private fun initializeViewPager() {
         searchTabLayout.setBackgroundColor(getAttributeColor(R.attr.colorPrimary))
-        searchTabLayout.setSelectedTabIndicatorColor(getAttributeColor(R.attr.colorAccent))
+        searchTabLayout.setSelectedTabIndicatorColor(getAttributeColor(R.attr.colorTabIndicator))
         searchTabLayout.setupWithViewPager(searchViewPager)
         searchViewPager.adapter = SearchPagerAdapter(supportFragmentManager)
     }

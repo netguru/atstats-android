@@ -7,6 +7,7 @@
     <attr name="colorTextSecondary" format="reference" />
     <attr name="colorTextHighlight" format="reference" />
     <attr name="colorButton" format="reference" />
+    <attr name="colorTabIndicator" format="reference" />
 
     <!-- Drawables -->
     <attr name="buttonSignInSlackDrawable" format="reference" />
@@ -32,4 +33,5 @@
     <attr name="usersActiveDrawable" format="reference" />
     <attr name="usersDrawable" format="reference" />
     <attr name="usersTitleBarDrawable" format="reference" />
+    <attr name="searchToolbarBackground" format="reference" />
 </resources>
