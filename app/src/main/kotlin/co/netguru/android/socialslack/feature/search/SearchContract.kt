@@ -13,6 +13,12 @@ interface SearchContract {
         fun initChannelSearchView(channelsList : List<ChannelStatistics>)
 
         fun initUsersSearchView(usersList : List<UserStatistic>)
+
+        fun showProgressBar()
+
+        fun hideProgressBar()
+
+        fun showError()
     }
 
     interface Presenter : MvpPresenter<View> {

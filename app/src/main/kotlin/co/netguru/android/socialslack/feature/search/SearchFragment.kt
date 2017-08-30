@@ -1,6 +1,7 @@
 package co.netguru.android.socialslack.feature.search
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter>(), SearchContract.View {
 
     companion object {
-        fun newInstance(searchItemType: SearchItemType):SearchFragment {
+        fun newInstance(searchItemType: SearchItemType): SearchFragment {
             val bundle = Bundle()
             bundle.putString(SEARCH_ITEM_TYPE, searchItemType.name)
 
@@ -52,6 +53,20 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
 
     override fun initUsersSearchView(usersList: List<UserStatistic>) {
         searchRecyclerView.adapter = SearchUsersAdapter(usersList)
+    }
+
+    override fun showProgressBar() {
+        searchRecyclerView.visibility = View.GONE
+        searchLoadingView.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        searchRecyclerView.visibility = View.VISIBLE
+        searchLoadingView.visibility = View.GONE
+    }
+
+    override fun showError() {
+        Snackbar.make(searchRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
 
     private fun initRecyclerView() {
