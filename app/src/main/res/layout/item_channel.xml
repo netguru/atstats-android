@@ -19,7 +19,7 @@
             android:layout_width="@dimen/channel_icon_size"
             android:layout_height="@dimen/channel_icon_size"
             android:layout_margin="@dimen/channel_icon_margin"
-            android:src="@drawable/channels_inactive" />
+            android:src="?attr/channelsIconDrawable" />
 
         <TextView
             android:id="@+id/channelMessagesTextView"

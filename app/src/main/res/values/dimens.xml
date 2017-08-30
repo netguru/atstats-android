@@ -7,6 +7,9 @@
     <dimen name="margin_very_small">4dp</dimen>
     <dimen name="margin_tiny">1dp</dimen>
 
+    <dimen name="shadow_radius">5</dimen>
+    <dimen name="shadow_dy">5</dimen>
+
     <dimen name="fragment_login_logo_padding">12dp</dimen>
     <dimen name="fragment_login_text_logo_margin_bottom">32dp</dimen>
     <dimen name="fragment_login_app_name_margin_top">4dp</dimen>
