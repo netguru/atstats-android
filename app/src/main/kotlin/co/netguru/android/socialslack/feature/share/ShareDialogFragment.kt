@@ -160,7 +160,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         with(user) {
             shareLastUser.placeNrTextView.text = (currentPositionInList.toString() + '.')
             shareLastUser.userRealNameTextView.text = name
-            shareLastUser.usernameTextView.text = (context.getString(R.string.at) + username)
+            shareLastUser.usernameTextView.text = (context.getString(R.string.username, username))
             loadUserPhoto(user.avatarUrl)
         }
     }

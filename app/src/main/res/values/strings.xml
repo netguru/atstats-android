@@ -99,5 +99,4 @@
     // Search
     <string name="search_hint">Search users &amp; channels</string>
     <string name="search_title">Search users &amp; channels</string>
-    <string name="at">\@</string>
 </resources>

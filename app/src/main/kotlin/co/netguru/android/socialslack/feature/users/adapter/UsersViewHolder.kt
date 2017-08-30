@@ -42,7 +42,7 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
             loadUserPhoto(avatarUrl)
             placeNrTextView.text = (currentPositionInList.toString() + '.')
             userRealNameTextView.text = name
-            usernameTextView.text = (itemView.context.getString(R.string.at) + username)
+            usernameTextView.text = (itemView.context.getString(R.string.username,username))
             changeMessagesNrTextColor(currentPositionInList)
             changeMedalVisibility(currentPositionInList)
         }

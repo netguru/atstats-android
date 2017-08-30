@@ -45,7 +45,7 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
 
         with(item) {
             userFirstLastNameTextView.text = name
-            usernameTextView.text = (itemView.context.getString(R.string.at) + username)
+            usernameTextView.text = (itemView.context.getString(R.string.username, username))
             totalMsgTextView.text = totalMessages.toString()
             sentRecvdTextView.text = (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
             msgStreakTextView.text = currentDayStreak.toString()

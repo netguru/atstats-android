@@ -25,7 +25,7 @@ class SearchUsersViewHolder(parent: ViewGroup)
         with(userStatistic) {
             loadUserPhoto(avatarUrl)
             userRealNameTextView.text = name
-            usernameTextView.text = (itemView.context.getString(R.string.at) + username)
+            usernameTextView.text = (itemView.context.getString(R.string.username, username))
             messagesNrTextView.text = totalMessages.toString()
         }
     }
