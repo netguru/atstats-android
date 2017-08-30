@@ -37,6 +37,8 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
         App.getUserComponent(context).plusSearchComponent()
     }
 
+    private val channelsAdapter by lazy { SearchChannelsAdapter() }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?) = container?.inflate(R.layout.fragment_search)
 
@@ -48,11 +50,16 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
     override fun createPresenter() = component.getPresenter()
 
     override fun initChannelSearchView(channelsList: List<ChannelStatistics>) {
-        searchRecyclerView.adapter = SearchChannelsAdapter(channelsList)
+        searchRecyclerView.adapter = channelsAdapter
+        channelsAdapter.addChannels(channelsList)
     }
 
     override fun initUsersSearchView(usersList: List<User>) {
         searchRecyclerView.adapter = SearchUsersAdapter(usersList)
+    }
+
+    override fun filterChannelsList(query: String) {
+        channelsAdapter.filterChannels(query)
     }
 
     override fun showProgressBar() {
@@ -67,6 +74,10 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
 
     override fun showError() {
         Snackbar.make(searchRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+    }
+
+    fun refreshData(query: String) {
+        presenter.searchQueryReceived(query)
     }
 
     private fun initRecyclerView() {

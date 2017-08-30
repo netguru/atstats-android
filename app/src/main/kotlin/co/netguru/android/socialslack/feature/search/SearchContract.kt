@@ -10,9 +10,11 @@ interface SearchContract {
 
     interface View : MvpView {
 
-        fun initChannelSearchView(channelsList : List<ChannelStatistics>)
+        fun initChannelSearchView(channelsList: List<ChannelStatistics>)
 
-        fun initUsersSearchView(usersList : List<User>)
+        fun initUsersSearchView(usersList: List<User>)
+
+        fun filterChannelsList(query: String)
 
         fun showProgressBar()
 
@@ -24,5 +26,7 @@ interface SearchContract {
     interface Presenter : MvpPresenter<View> {
 
         fun searchItemReceived(searchItemType: SearchItemType)
+
+        fun searchQueryReceived(query: String)
     }
 }

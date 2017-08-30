@@ -22,6 +22,7 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao, 
     : MvpNullObjectBasePresenter<SearchContract.View>(), SearchContract.Presenter {
 
     private val compositeDisposable = CompositeDisposable()
+    private lateinit var searchItemType: SearchItemType
 
     override fun detachView(retainInstance: Boolean) {
         super.detachView(retainInstance)
@@ -29,9 +30,17 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao, 
     }
 
     override fun searchItemReceived(searchItemType: SearchItemType) {
+        this.searchItemType = searchItemType
         when (searchItemType) {
             SearchItemType.USERS -> getUsersList()
             SearchItemType.CHANNELS -> getChannelsList()
+        }
+    }
+
+    override fun searchQueryReceived(query: String) {
+        Timber.d("Received search query: $query")
+        when(searchItemType) {
+            SearchItemType.CHANNELS -> view.filterChannelsList(query)
         }
     }
 

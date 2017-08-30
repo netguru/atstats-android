@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
@@ -21,7 +22,8 @@ class SearchActivity : CustomThemeActivity() {
         private const val EMPTY_STRING = ""
     }
 
-    lateinit var searchView: SearchView
+    private val searchPagerAdapter by lazy { SearchPagerAdapter(supportFragmentManager) }
+    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,14 @@ class SearchActivity : CustomThemeActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        when (intent.action) {
+            Intent.ACTION_SEARCH -> refreshSearchFragmentData(intent.getStringExtra(SearchManager.QUERY))
+            else -> throw IllegalStateException("There is no action for ${intent.action}")
+        }
+    }
+
+    private fun refreshSearchFragmentData(query: String) {
+        searchPagerAdapter.refreshFragment(searchTabLayout.selectedTabPosition, query)
     }
 
     private fun initializeToolbar() {
@@ -58,9 +68,11 @@ class SearchActivity : CustomThemeActivity() {
     private fun initializeSearchView(menu: Menu) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView = menu.findItem(R.id.actionSearch).actionView as SearchView
-
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setIconifiedByDefault(false)
+
+        val clearButton = searchView.findViewById<View>(R.id.search_close_btn)
+        clearButton.setOnClickListener { clearSearchView() }
     }
 
     private fun initializeViewPager() {
@@ -79,13 +91,14 @@ class SearchActivity : CustomThemeActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 clearSearchView()
             }
-
         })
-        searchViewPager.adapter = SearchPagerAdapter(supportFragmentManager)
+        searchViewPager.adapter = searchPagerAdapter
     }
 
     private fun clearSearchView() {
         searchView.setQuery(EMPTY_STRING, false)
+        searchPagerAdapter.refreshFragment(searchTabLayout.selectedTabPosition, EMPTY_STRING)
+        searchView.isIconified = true
         searchView.clearFocus()
     }
 }
