@@ -7,7 +7,8 @@
     android:layout_marginRight="@dimen/card_marginRight"
     android:orientation="vertical"
     app:cardCornerRadius="@dimen/card_corner_radius_small"
-    app:cardElevation="@dimen/card_elevation">
+    app:cardElevation="@dimen/card_elevation"
+    tools:ignore="missingPrefix">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:textColor="?attr/colorHighlight"
-            android:textSize="@dimen/header_textSize"
+            android:textSize="@dimen/header_textSize_big"
+            app:autoSizePresetSizes="@array/value_text_sizes"
+            app:autoSizeTextType="uniform"
             tools:text="35" />
 
         <TextView
@@ -35,9 +38,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/channelMessagesTextView"
+            android:layout_marginBottom="@dimen/margin_tiny"
             android:layout_marginTop="@dimen/card_subtitle_margin"
+            android:gravity="end"
             android:textColor="@color/grey"
-            android:textSize="@dimen/subtitle_textSize"
+            android:textSize="@dimen/subtitle_textSize_big"
+            app:autoSizePresetSizes="@array/subtitle_text_sizes"
+            app:autoSizeTextType="uniform"
             tools:text="@string/messages" />
 
         <TextView
@@ -47,6 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:gravity="end"
+            android:textSize="@dimen/title_textSize_big"
+            app:autoSizePresetSizes="@array/title_text_sizes"
+            app:autoSizeTextType="uniform"
             tools:text="#tradeguru-design" />
 
     </RelativeLayout>
