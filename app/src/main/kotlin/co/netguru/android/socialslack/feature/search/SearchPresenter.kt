@@ -61,6 +61,9 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao, 
     }
 
     private fun getChannelsList() {
+        //TODO 30.08.2017 For now we are getting only channels in which current user is member
+        //TODO 30.08.2017 Current there is no possibility to get all channels with messages, because of API limitations
+        //TODO 30.08.2017 https://api.slack.com/docs/rate-limits
         view.showProgressBar()
         compositeDisposable += channelsDao.getAllChannels()
                 .flatMap { sortChannelsList(it) }
