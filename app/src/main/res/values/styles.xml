@@ -16,7 +16,9 @@
         <!-- Drawables -->
         <item name="buttonSignInSlackDrawable">@drawable/button_signin_slack_violet</item>
         <item name="channelsDrawable">@drawable/channels_orange</item>
+        <item name="channelsIconDrawable">@drawable/channels_icon_violet</item>
         <item name="chartHeaderDrawable">@drawable/chart_header_violet</item>
+        <item name="filterIconDrawable">@drawable/filter_icon_violet</item>
         <item name="hashtagTitleDrawable">@drawable/hashtag_title_violet</item>
         <item name="hereIconDrawable">@drawable/here_icon_violet</item>
         <item name="medalDrawable">@drawable/medal_orange</item>
@@ -31,7 +33,7 @@
         <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet</item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_violet</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_orange</item>
-        <item name="slackIconDrawable">@drawable/slack_icon_violet</item>
+        <item name="slackIconDrawable">@drawable/netguru_logo_violet</item>
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
         <item name="statisticsDrawable">@drawable/statistics_orange</item>
         <item name="usersActiveDrawable">@drawable/users_active_violet</item>
@@ -54,18 +56,18 @@
 
         <!-- Drawables -->
         <item name="buttonSignInSlackDrawable">@drawable/button_signin_slack_green</item>
+        <item name="channelsIconDrawable">@drawable/channels_icon_green</item>
         <item name="channelsDrawable">@drawable/channels_green</item>
         <item name="chartHeaderDrawable">@drawable/chart_header_green</item>
-        <!-- TODO 21.08.2017 replace for the green one -->
-        <item name="hashtagTitleDrawable">@drawable/hashtag_title_violet</item>
+        <!-- TODO replace for the green one -->
+        <item name="filterIconDrawable">@drawable/filter_icon_violet</item>
+        <item name="hashtagTitleDrawable">@drawable/hashtag_title_green</item>
         <item name="hereIconDrawable">@drawable/here_icon_green</item>
         <item name="medalDrawable">@drawable/medal_green</item>
         <item name="mentionsIconDrawable">@drawable/mentions_icon_green</item>
         <item name="messagesIconDrawable">@drawable/messages_icon_green</item>
-        <!-- TODO 21.08.2017 replace for the green one -->
-        <item name="modalTop1Drawable">@drawable/modal_top1_violet</item>
-        <!-- TODO 21.08.2017 replace for the green one -->
-        <item name="modalTop2Drawable">@drawable/modal_top2_violet</item>
+        <item name="modalTop1Drawable">@drawable/modal_top1_green</item>
+        <item name="modalTop2Drawable">@drawable/modal_top2_green</item>
         <item name="profileMentionsDrawable">@drawable/profile_mentions_green</item>
         <item name="profileMessagesDrawable">@drawable/profile_messages_green</item>
         <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_green</item>
@@ -73,14 +75,12 @@
         <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green</item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_green</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_green</item>
-        <item name="slackIconDrawable">@drawable/slack_icon_green</item>
+        <item name="slackIconDrawable">@drawable/netguru_logo_green</item>
         <!-- TODO 21.08.2017 replace for the green one -->
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
-        <!-- TODO 21.08.2017 replace for the green one -->
-        <item name="statisticsDrawable">@drawable/statistics_orange</item>
+        <item name="statisticsDrawable">@drawable/statistics_green</item>
         <item name="usersActiveDrawable">@drawable/users_active_green</item>
-        <!-- TODO 21.08.2017 replace for the green one -->
-        <item name="usersDrawable">@drawable/users_orange</item>
+        <item name="usersDrawable">@drawable/users_active_green</item>
         <!-- TODO 21.08.2017 replace for the green one -->
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_violet</item>
     </style>
