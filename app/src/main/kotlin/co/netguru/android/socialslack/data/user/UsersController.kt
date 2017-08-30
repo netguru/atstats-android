@@ -22,7 +22,7 @@ class UsersController @Inject constructor(private val usersApi: UsersApi,
                 .map { it.user }
     }
 
-    fun getUsersList() = usersApi.getUserList()
+    fun getUsersList(): Single<List<User>> = usersApi.getUserList()
             .map { it.usersList }
 
     fun getAllDirectChannelsStatistics() = directChannelsDao.getAllDirectChannels()
