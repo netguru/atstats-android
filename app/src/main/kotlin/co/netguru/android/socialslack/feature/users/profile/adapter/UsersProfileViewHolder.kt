@@ -19,7 +19,6 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
     : BaseViewHolder<UserStatistic>(LayoutInflater.from(parent.context).inflate(R.layout.item_users_profile, parent, false)) {
 
     companion object {
-        private const val USERNAME_PREFIX = "@"
         private const val SENT_RECVD_MSG_DIVIDER = " / "
     }
 
@@ -46,7 +45,7 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
 
         with(item) {
             userFirstLastNameTextView.text = name
-            usernameTextView.text = (USERNAME_PREFIX + username)
+            usernameTextView.text = (itemView.context.getString(R.string.username, username))
             totalMsgTextView.text = totalMessages.toString()
             sentRecvdTextView.text = (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
             msgStreakTextView.text = currentDayStreak.toString()

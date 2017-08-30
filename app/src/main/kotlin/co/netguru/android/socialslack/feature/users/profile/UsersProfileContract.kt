@@ -17,6 +17,8 @@ interface UsersProfileContract {
         fun hideLoadingView()
 
         fun showShareView(clickedItem: UserStatistic, usersList: List<UserStatistic>)
+
+        fun showSearchView()
     }
 
     interface Presenter : MvpPresenter<View> {
@@ -24,5 +26,7 @@ interface UsersProfileContract {
                         selectedFilterOption: UsersFilterOption)
 
         fun onShareButtonClicked(clickedItemPosition: Int, usersList: List<UserStatistic>)
+
+        fun searchButtonClicked()
     }
 }

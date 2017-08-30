@@ -95,4 +95,8 @@
     <string name="first_name_last_name">%s %s</string>
     <string name="username">\@%s</string>
     <string name="slack_domain">%s.slack.com</string>
+
+    // Search
+    <string name="search_hint">Search users &amp; channels</string>
+    <string name="search_title">Search users &amp; channels</string>
 </resources>

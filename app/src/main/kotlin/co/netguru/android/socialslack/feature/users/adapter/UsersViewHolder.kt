@@ -21,7 +21,6 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
 
     companion object {
         private const val POSITION_FIRST = 1
-        private const val USERNAME_PREFIX = "@"
         private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
     }
 
@@ -43,7 +42,7 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
             loadUserPhoto(avatarUrl)
             placeNrTextView.text = (currentPositionInList.toString() + '.')
             userRealNameTextView.text = name
-            usernameTextView.text = (USERNAME_PREFIX + username)
+            usernameTextView.text = (itemView.context.getString(R.string.username,username))
             changeMessagesNrTextColor(currentPositionInList)
             changeMedalVisibility(currentPositionInList)
         }

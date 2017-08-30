@@ -67,6 +67,10 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
         view.showFilterView()
     }
 
+    override fun searchButtonClicked() {
+        view.showSearchView()
+    }
+
     override fun sortRequestReceived(channelList: List<ChannelStatistics>) {
         view.showLoadingView()
         compositeDisposable += Single.just(channelList)

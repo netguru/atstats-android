@@ -7,8 +7,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <!-- TODO 27.07.2017 All Hardcoded Strings will be removed in task connected with API integration -->
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

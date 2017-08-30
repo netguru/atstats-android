@@ -63,4 +63,8 @@ class UsersProfilePresenter @Inject constructor(private val usersProfileControll
                             Timber.e(it, "Error while getting sharable users list")
                         })
     }
+
+    override fun searchButtonClicked() {
+        view.showSearchView()
+    }
 }

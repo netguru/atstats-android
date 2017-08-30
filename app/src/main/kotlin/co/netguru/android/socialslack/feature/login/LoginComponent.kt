@@ -7,7 +7,5 @@ import dagger.Subcomponent
 @Subcomponent
 interface LoginComponent {
 
-    fun inject(fragment : LoginFragment)
-
     fun getPresenter() : LoginPresenter
 }

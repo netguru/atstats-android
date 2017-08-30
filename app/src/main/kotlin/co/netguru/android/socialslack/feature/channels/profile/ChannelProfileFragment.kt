@@ -3,13 +3,16 @@ package co.netguru.android.socialslack.feature.channels.profile
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.feature.search.SearchActivity
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import kotlinx.android.synthetic.main.channel_statistics_cardview.*
@@ -55,6 +58,14 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
         shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.actionSearch -> {
+            presenter.searchButtonClicked()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
     override fun getMenuResource() = R.menu.menu_fragment_search
 
     override fun showChannelInfo(totalMessages: Int, totalHere: Int, totalMentions: Int) {
@@ -81,6 +92,10 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
 
     override fun showError() {
         Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showSearchView() {
+        context.startActivity<SearchActivity>()
     }
 
     override fun createPresenter(): ChannelProfileContract.Presenter {

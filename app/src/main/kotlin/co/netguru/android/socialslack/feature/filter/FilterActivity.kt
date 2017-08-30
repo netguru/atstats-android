@@ -3,7 +3,6 @@ package co.netguru.android.socialslack.feature.filter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import co.netguru.android.socialslack.R
@@ -42,14 +41,12 @@ class FilterActivity : CustomThemeActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
+            onBackPressed()
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 
     private fun initializeToolbar() {

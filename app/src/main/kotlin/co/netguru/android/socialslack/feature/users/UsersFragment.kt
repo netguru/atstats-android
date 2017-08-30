@@ -6,10 +6,12 @@ import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
+import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.filter.FilterActivity
+import co.netguru.android.socialslack.feature.search.SearchActivity
 import co.netguru.android.socialslack.feature.shared.base.BaseFragmentWithNestedFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
@@ -48,14 +50,16 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         presenter.getUsersData()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.actionFilter -> {
-                presenter.filterButtonClicked()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.actionFilter -> {
+            presenter.filterButtonClicked()
+            true
         }
+        R.id.actionSearch -> {
+            presenter.searchButtonClicked()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun getMenuResource() = R.menu.menu_fragment_search_filter
@@ -86,6 +90,10 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
 
     override fun showFilterView() {
         FilterActivity.startActivity(context, FilterObjectType.USERS)
+    }
+
+    override fun showSearchView() {
+        context.startActivity<SearchActivity>()
     }
 
     override fun showFilterOptionError() {

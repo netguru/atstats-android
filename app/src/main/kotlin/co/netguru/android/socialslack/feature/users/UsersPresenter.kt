@@ -104,6 +104,10 @@ class UsersPresenter @Inject constructor(private val usersController: UsersContr
                         })
     }
 
+    override fun searchButtonClicked() {
+        view.showSearchView()
+    }
+
     private fun sortUsersList(usersList: List<UserStatistic>,
                               usersFilterOption: UsersFilterOption
     ) = Observable.fromIterable(usersList)

@@ -51,7 +51,6 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         private const val MOST_ACTIVE_ITEM_LIST_KEY = "key:most_active_item_list"
         private const val FILTER_OPTION = "key:filter_option"
 
-        private const val USERNAME_PREFIX = "@"
         private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
 
     }
@@ -161,7 +160,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         with(user) {
             shareLastUser.placeNrTextView.text = (currentPositionInList.toString() + '.')
             shareLastUser.userRealNameTextView.text = name
-            shareLastUser.usernameTextView.text = (USERNAME_PREFIX + username)
+            shareLastUser.usernameTextView.text = (context.getString(R.string.username, username))
             loadUserPhoto(user.avatarUrl)
         }
     }

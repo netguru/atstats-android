@@ -3,12 +3,11 @@ package co.netguru.android.socialslack.feature.home
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.extensions.inflate
+import co.netguru.android.socialslack.common.extensions.startActivity
+import co.netguru.android.socialslack.feature.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -24,18 +23,25 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    //TODO 09.08.2017 Remove when implementing menu for this view
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.clear()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_home)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_fragment_search, menu)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPager()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.actionSearch -> {
+            context.startActivity<SearchActivity>()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     private fun initViewPager() {

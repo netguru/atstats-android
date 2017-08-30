@@ -127,6 +127,14 @@ class UsersProfilePresenterTest {
         verify(view).showShareView(anyObject(), anyObject())
     }
 
+    @Test
+    fun `should show search view when search button clicked`() {
+        //when
+        usersProfilePresenter.searchButtonClicked()
+        //then
+        verify(view).showSearchView()
+    }
+
     @After
     fun tearDown() {
         usersProfilePresenter.detachView(false)
