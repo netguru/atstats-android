@@ -11,7 +11,9 @@
     <!-- Drawables -->
     <attr name="buttonSignInSlackDrawable" format="reference" />
     <attr name="channelsDrawable" format="reference" />
+    <attr name="channelsIconDrawable" format="reference" />
     <attr name="chartHeaderDrawable" format="reference" />
+    <attr name="filterIconDrawable" format="reference"/>
     <attr name="hashtagTitleDrawable" format="reference" />
     <attr name="hereIconDrawable" format="reference" />
     <attr name="medalDrawable" format="reference" />
