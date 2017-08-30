@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.data.user.model.User
 import com.bumptech.glide.Glide
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.item_users_search.view.*
@@ -23,10 +23,10 @@ class SearchUsersViewHolder(parent: ViewGroup)
     private val userMedalImageView = itemView.userMedalImageView
     private val usernameTextView = itemView.usernameTextView
 
-    fun bind(userStatistic: UserStatistic) {
-        with(userStatistic) {
-            loadUserPhoto(avatarUrl)
-            userRealNameTextView.text = name
+    fun bind(user: User) {
+        with(user) {
+            loadUserPhoto(profile.image512)
+            userRealNameTextView.text = realName
             usernameTextView.text = (itemView.context.getString(R.string.username, username))
             changeMedalVisibility()
         }

@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.data.user
 
+import co.netguru.android.socialslack.data.user.model.UserList
 import co.netguru.android.socialslack.data.user.model.UserResponse
 import co.netguru.android.socialslack.data.user.profile.model.UserPresence
 import io.reactivex.Single
@@ -12,5 +13,8 @@ interface UsersApi {
     fun getUserInfo(@Query("user") userId: String): Single<UserResponse>
 
     @GET("api/users.getPresence")
-    fun getUserPresence(@Query("user") userId: String):Single<UserPresence>
+    fun getUserPresence(@Query("user") userId: String): Single<UserPresence>
+
+    @GET("api/users.list")
+    fun getUserList(): Single<UserList>
 }

@@ -9,7 +9,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
-import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.data.user.model.User
 import co.netguru.android.socialslack.feature.search.adapter.SearchItemType
 import co.netguru.android.socialslack.feature.search.channels.SearchChannelsAdapter
 import co.netguru.android.socialslack.feature.search.users.SearchUsersAdapter
@@ -51,7 +51,7 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
         searchRecyclerView.adapter = SearchChannelsAdapter(channelsList)
     }
 
-    override fun initUsersSearchView(usersList: List<UserStatistic>) {
+    override fun initUsersSearchView(usersList: List<User>) {
         searchRecyclerView.adapter = SearchUsersAdapter(usersList)
     }
 

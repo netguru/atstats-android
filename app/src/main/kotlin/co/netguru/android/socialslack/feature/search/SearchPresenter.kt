@@ -6,7 +6,7 @@ import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.channels.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
-import co.netguru.android.socialslack.data.user.model.UserStatistic
+import co.netguru.android.socialslack.data.user.UsersController
 import co.netguru.android.socialslack.feature.search.adapter.SearchItemType
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
 import io.reactivex.Observable
@@ -18,12 +18,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentScope
-class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao)
+class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao, private val usersController: UsersController)
     : MvpNullObjectBasePresenter<SearchContract.View>(), SearchContract.Presenter {
-
-    companion object {
-        private const val MOCKED_ITEMS_COUNT = 50
-    }
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -34,9 +30,24 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao)
 
     override fun searchItemReceived(searchItemType: SearchItemType) {
         when (searchItemType) {
-            SearchItemType.USERS -> view.initUsersSearchView(getMockedUsers())
+            SearchItemType.USERS -> getUsersList()
             SearchItemType.CHANNELS -> getChannelsList()
         }
+    }
+
+    private fun getUsersList() {
+        view.showProgressBar()
+        compositeDisposable += usersController.getUsersList()
+                .compose(RxTransformers.applySingleIoSchedulers())
+                .doAfterTerminate { view.hideProgressBar() }
+                .subscribeBy(
+                        onSuccess = {
+                            view.initUsersSearchView(it)
+                        },
+                        onError = {
+                            Timber.e(it, "Error while getting users list")
+                            view.showError()
+                        })
     }
 
     private fun getChannelsList() {
@@ -58,12 +69,5 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao)
     private fun sortChannelsList(channelList: List<ChannelStatistics>): Single<List<ChannelStatistics>> {
         return Observable.fromIterable(channelList)
                 .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(ChannelsFilterOption.MOST_ACTIVE_CHANNEL))
-    }
-
-    //TODO 29.08.2017 Remove those functions when integrating API
-    private fun getMockedUsers() = 0.until(MOCKED_ITEMS_COUNT).map {
-        UserStatistic("", "user $it", "", "", "User User$it",
-                0, 0, (1000 + it), 0, null
-        )
     }
 }
