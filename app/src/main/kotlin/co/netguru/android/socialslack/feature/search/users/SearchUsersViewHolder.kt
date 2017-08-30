@@ -13,7 +13,6 @@ class SearchUsersViewHolder(parent: ViewGroup)
     : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_users_search, parent, false)) {
 
     companion object {
-        private const val USERNAME_PREFIX = "@"
         private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
     }
 
@@ -26,7 +25,7 @@ class SearchUsersViewHolder(parent: ViewGroup)
         with(userStatistic) {
             loadUserPhoto(avatarUrl)
             userRealNameTextView.text = name
-            usernameTextView.text = (USERNAME_PREFIX + username)
+            usernameTextView.text = (itemView.context.getString(R.string.at) + username)
             messagesNrTextView.text = totalMessages.toString()
         }
     }
