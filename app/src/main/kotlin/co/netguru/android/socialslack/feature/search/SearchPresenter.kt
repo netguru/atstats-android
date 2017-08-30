@@ -40,6 +40,7 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao, 
     override fun searchQueryReceived(query: String) {
         Timber.d("Received search query: $query")
         when(searchItemType) {
+            SearchItemType.USERS -> view.filterUsersList(query)
             SearchItemType.CHANNELS -> view.filterChannelsList(query)
         }
     }

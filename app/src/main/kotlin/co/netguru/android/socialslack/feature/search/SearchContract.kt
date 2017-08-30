@@ -16,6 +16,8 @@ interface SearchContract {
 
         fun filterChannelsList(query: String)
 
+        fun filterUsersList(query: String)
+
         fun showProgressBar()
 
         fun hideProgressBar()

@@ -12,7 +12,7 @@ class SearchChannelsFilter(private val channelsList: List<ChannelStatistics>,
         filteredChannelsList.clear()
         val filterResults = FilterResults()
 
-        channelsList.filter { it.channelName.contains(constraint) }
+        channelsList.filter { it.channelName.toLowerCase().contains(constraint) }
                 .forEach { filteredChannelsList.add(it) }
 
         filterResults.values = filteredChannelsList

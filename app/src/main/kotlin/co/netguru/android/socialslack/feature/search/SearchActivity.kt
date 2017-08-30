@@ -81,15 +81,15 @@ class SearchActivity : CustomThemeActivity() {
         searchTabLayout.setupWithViewPager(searchViewPager)
         searchTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab) {
-                clearSearchView()
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
                 // no-op
             }
 
-            override fun onTabSelected(tab: TabLayout.Tab) {
+            override fun onTabUnselected(tab: TabLayout.Tab) {
                 clearSearchView()
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                // no-op
             }
         })
         searchViewPager.adapter = searchPagerAdapter
