@@ -32,7 +32,7 @@
     <dimen name="card_corner_radius_small">6dp</dimen>
     <dimen name="card_corner_radius_big">24dp</dimen>
     <dimen name="card_elevation">13dp</dimen>
-    <dimen name="card_padding">10dp</dimen>
+    <dimen name="card_padding">6dp</dimen>
     <dimen name="dashboard_icon_margin">4dp</dimen>
     <dimen name="dashboard_statistic_text_marginBottom">4dp</dimen>
     <dimen name="card_subtitle_margin">-6dp</dimen>
@@ -55,8 +55,12 @@
     <dimen name="tab_paddingTop">6dp</dimen>
     <dimen name="tab_text_icon_distance">4dp</dimen>
     <dimen name="tabLayout_elevation">4dp</dimen>
-    <dimen name="subtitle_textSize">14sp</dimen>
-    <dimen name="header_textSize">28sp</dimen>
+    <dimen name="title_textSize_small">12sp</dimen>
+    <dimen name="title_textSize_big">18sp</dimen>
+    <dimen name="subtitle_textSize_small">10sp</dimen>
+    <dimen name="subtitle_textSize_big">14sp</dimen>
+    <dimen name="header_textSize_small">22sp</dimen>
+    <dimen name="header_textSize_big">28sp</dimen>
 
     //Users list
     <dimen name="users_item_height">100dp</dimen>

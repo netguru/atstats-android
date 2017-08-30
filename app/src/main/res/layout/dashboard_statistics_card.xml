@@ -28,8 +28,10 @@
             android:layout_above="@+id/dashboardStatisticText"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/card_subtitle_margin"
+            android:gravity="end"
             android:textColor="?attr/colorHighlight"
-            android:textSize="@dimen/header_textSize"
+            android:textSize="@dimen/header_textSize_big"
+            app:autoSizePresetSizes="@array/value_text_sizes"
             app:autoSizeTextType="uniform"
             tools:text="35" />
 
@@ -42,7 +44,8 @@
             android:layout_marginBottom="@dimen/dashboard_statistic_text_marginBottom"
             android:gravity="end"
             android:textColor="@color/grey"
-            android:textSize="@dimen/subtitle_textSize"
+            android:textSize="@dimen/subtitle_textSize_big"
+            app:autoSizePresetSizes="@array/subtitle_text_sizes"
             app:autoSizeTextType="uniform"
             tools:text="total number of read messages" />
 
