@@ -52,7 +52,7 @@
 
                             <TextView
                                 android:id="@+id/firstLastNameTextView"
-                                style="@style/FontMedium.White"
+                                style="@style/FontMedium.White.Shadow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:drawableEnd="@drawable/user_status_selector"
@@ -61,7 +61,7 @@
 
                             <TextView
                                 android:id="@+id/nameTextView"
-                                style="@style/FontSmall.White"
+                                style="@style/FontSmall.White.Shadow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 tools:text="\@john.rama" />
