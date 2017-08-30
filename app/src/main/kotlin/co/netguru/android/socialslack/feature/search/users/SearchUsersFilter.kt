@@ -12,7 +12,7 @@ class SearchUsersFilter(private val usersList: List<User>,
         filteredUsersList.clear()
         val filterResults = FilterResults()
 
-        usersList.filter { it.realName?.toLowerCase()?.contains(constraint) ?: false }
+        usersList.filter { it.realName?.toLowerCase()?.contains(constraint.toString().toLowerCase()) ?: false }
                 .forEach { filteredUsersList.add(it) }
 
         filterResults.values = filteredUsersList
