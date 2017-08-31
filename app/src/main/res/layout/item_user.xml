@@ -55,10 +55,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/userAvatar"
+            android:ellipsize="end"
             android:gravity="end"
+            android:lines="1"
             android:textSize="@dimen/title_textSize_big"
-            app:autoSizePresetSizes="@array/title_text_sizes"
-            app:autoSizeTextType="uniform"
             tools:text="John Rambo" />
 
     </RelativeLayout>
