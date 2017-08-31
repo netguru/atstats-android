@@ -52,7 +52,8 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
         super.onViewCreated(view, savedInstanceState)
         arguments.apply {
             val channelStatistics: ChannelStatistics = getParcelable(KEY_CHANNEL)
-            setUpFields(channelStatistics)
+            val filterOption = ChannelsFilterOption.valueOf(getString(FILTER_OPTION))
+            setUpFields(channelStatistics, filterOption)
             getPresenter().getChannelInfo(channelStatistics.channelId)
         }
         shareWithUserButton.setOnClickListener { presenter.onShareButtonClick() }
@@ -84,12 +85,6 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
         ShareDialogFragment.newInstance(channelStatistics, channelArray, filterOption).show(fragmentManager, ShareDialogFragment.TAG)
     }
 
-    private fun setUpFields(channelStatistics: ChannelStatistics) {
-        messagesDetailTextView.text = resources.getString(R.string.total_messages)
-        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelStatistics.channelName)
-        rankTextView.text = channelStatistics.currentPositionInList.toString()
-    }
-
     override fun showError() {
         Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
     }
@@ -110,5 +105,18 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
     override fun hideLoadingView() {
         progressBar.visibility = View.INVISIBLE
         channelCardView.visibility = View.VISIBLE
+    }
+
+    private fun setUpFields(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
+        messagesDetailTextView.text = resources.getString(R.string.total_messages)
+        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelStatistics.channelName)
+        rankTextView.text = channelStatistics.currentPositionInList.toString()
+        titleTextView.text = getProperTitleText(filterOption)
+    }
+
+    private fun getProperTitleText(filterOption: ChannelsFilterOption) = when (filterOption) {
+        ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> getString(R.string.most_active_channel_filter)
+        ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE -> getString(R.string.channel_we_are_most_active)
+        ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST -> getString(R.string.channel_we_are_mentioned_the_most)
     }
 }
