@@ -13,6 +13,8 @@ import javax.inject.Singleton
         SessionRepositoryModule::class, DatabaseModule::class, LocalRepositoryModule::class))
 internal interface ApplicationComponent {
 
+    fun getDebugMetricsHelper(): DebugMetricsHelper
+
     fun userComponentBuilder(): UserComponent.Builder
 
     fun plusCustomThemeComponent(): CustomThemeComponent
