@@ -61,7 +61,7 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
             streakDays++
         }
         // if there is a message from 00:00:00 to 23:59:59 yesterday
-        if (messageTimestamp in (lasMidnight - HOURS_24_IN_SECONDS) until (lasMidnight - 1)) {
+        if (messageTimestamp in (lasMidnight - HOURS_24_IN_SECONDS) until lasMidnight) {
             // Add a streak day and check if there is a message in the previous day
             streakDays++
             lasMidnight -= HOURS_24_IN_SECONDS
