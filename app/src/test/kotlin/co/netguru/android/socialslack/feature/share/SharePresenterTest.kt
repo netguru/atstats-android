@@ -78,6 +78,30 @@ class SharePresenterTest {
     }
 
     @Test
+    fun `should show messages number title when preparing view for channels and filter option is not connected with mentions`() {
+        //when
+        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), MOCKED_CHANNELS_FILTER_OPTION)
+        //then
+        verify(view).showMessagesNrTitle()
+    }
+
+    @Test
+    fun `should show messages number title when preparing view for channels and filter option is connected with mentions`() {
+        //when
+        sharePresenter.prepareView(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST.name)
+        //then
+        verify(view).showMentionsNrTitle()
+    }
+
+    @Test
+    fun `should show messages number title when preparing view for user`() {
+        //when
+        sharePresenter.prepareView(USER1, listOf(USER1, USER2, USER3), MOCKED_USERS_FILTER_OPTION)
+        //then
+        verify(view).showMessagesNrTitle()
+    }
+
+    @Test
     fun `should show channel name when preparing view for user`() {
         //when
         sharePresenter.prepareView(USER1, listOf(USER1, USER2, USER3), MOCKED_USERS_FILTER_OPTION)

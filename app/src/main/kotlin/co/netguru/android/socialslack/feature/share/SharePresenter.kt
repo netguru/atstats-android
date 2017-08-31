@@ -76,7 +76,15 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
         view.initShareChannelView(mostActiveChannelsList, filterOption)
         view.showChannelName(CHANNEL_PREFIX + selectedChannel.channelName)
 
+        prepareChannelNrTitleView(filterOption)
         checkSelectedChannelPosition(selectedChannel, mostActiveChannelsList.last().currentPositionInList, filterOption)
+    }
+
+    private fun prepareChannelNrTitleView(filterOption: ChannelsFilterOption) {
+        when(filterOption){
+            ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST -> view.showMentionsNrTitle()
+            else -> view.showMessagesNrTitle()
+        }
     }
 
     private fun checkSelectedChannelPosition(selectedChannel: ChannelStatistics, lastChannelPosition: Int, filterOption: ChannelsFilterOption) {
@@ -97,6 +105,7 @@ class SharePresenter @Inject constructor(private val channelsController: Channel
     private fun prepareUserView(selectedUser: UserStatistic, usersList: List<UserStatistic>, filterOption: UsersFilterOption) {
         channelId = selectedUser.id
         channelName = selectedUser.name
+        view.showMessagesNrTitle()
         view.initShareUsersView(usersList, filterOption)
         view.showChannelName(selectedUser.name)
 

@@ -51,13 +51,11 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         }
     }
 
-    //TODO 09.08.2017 Workaround for clearing menu options
     override fun onAttach(context: Context) {
         super.onAttach(context)
         setHasOptionsMenu(true)
     }
 
-    //TODO 09.08.2017 Workaround for clearing menu options
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.clear()
     }

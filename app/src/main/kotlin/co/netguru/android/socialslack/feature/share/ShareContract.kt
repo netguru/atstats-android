@@ -23,6 +23,10 @@ interface ShareContract {
 
         fun showSelectedChannelTalkMoreText()
 
+        fun showMentionsNrTitle()
+
+        fun showMessagesNrTitle()
+
         fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption)
 
         fun showSelectedUserMostActiveText()

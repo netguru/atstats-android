@@ -105,6 +105,14 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         showLastChannelData(channelStatistics, filterOption)
     }
 
+    override fun showMentionsNrTitle() {
+        shareNrTitleTextView.setText(R.string.number_of_mentions)
+    }
+
+    override fun showMessagesNrTitle() {
+        shareNrTitleTextView.setText(R.string.number_of_messages)
+    }
+
     override fun showSelectedUserMostActiveText() {
         shareStatusTextView.text = resources.getString(R.string.share_most_talkative_user)
     }

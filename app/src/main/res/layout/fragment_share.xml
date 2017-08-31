@@ -67,11 +67,11 @@
                 android:textAllCaps="true" />
 
             <TextView
+                android:id="@+id/shareNrTitleTextView"
                 style="@style/Font12.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="@string/number_of_messages"
                 android:textAllCaps="true" />
         </RelativeLayout>
 

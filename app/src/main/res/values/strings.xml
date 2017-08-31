@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Social Slack</string>
+    <string name="block_canary_display_activity_label" translatable="false">Social Slack block canary</string>
+    <string name="leak_canary_display_activity_label" translatable="false">Social Slack leak canary</string>
+
     <string name="welcome_to">Welcome to</string>
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
@@ -26,6 +29,7 @@
 
     <string name="place">place</string>
     <string name="number_of_messages">No. of messages</string>
+    <string name="number_of_mentions">No. of mentions</string>
 
     <string name="total_messages">Total messages</string>
     <string name="rank">Rank</string>

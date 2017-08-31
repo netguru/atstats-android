@@ -2,10 +2,6 @@ package co.netguru.android.socialslack.app
 
 import android.app.Application
 import android.content.Context
-import co.netguru.android.socialslack.BuildConfig
-import com.crashlytics.android.Crashlytics
-import io.fabric.sdk.android.Fabric
-import timber.log.Timber
 
 class App : Application() {
 
@@ -35,16 +31,9 @@ class App : Application() {
 
     private var userComponent: UserComponent? = null
 
-    init {
-        //TODO 05.07.2017 Move to DebugMetricsHelper class
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
-    }
-
     override fun onCreate() {
         super.onCreate()
-        Fabric.with(this, Crashlytics())
+        applicationComponent.getDebugMetricsHelper().init(this)
     }
 
     internal fun setUpUserComponent(userId: String) {
