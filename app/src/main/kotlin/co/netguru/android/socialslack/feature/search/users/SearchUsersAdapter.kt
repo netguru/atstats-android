@@ -3,12 +3,13 @@ package co.netguru.android.socialslack.feature.search.users
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import co.netguru.android.socialslack.data.user.model.User
+import java.lang.ref.WeakReference
 
 class SearchUsersAdapter : RecyclerView.Adapter<SearchUsersViewHolder>() {
 
     private val usersList = mutableListOf<User>()
     private val usersFilter by lazy {
-        SearchUsersFilter(usersList.toList(), this)
+        SearchUsersFilter(usersList.toList(), WeakReference(this))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SearchUsersViewHolder(parent)

@@ -2,26 +2,20 @@ package co.netguru.android.socialslack.feature.search.users
 
 import android.widget.Filter
 import co.netguru.android.socialslack.data.user.model.User
+import java.lang.ref.WeakReference
 
 class SearchUsersFilter(private val usersList: List<User>,
-                        private val adapter: SearchUsersAdapter) : Filter() {
+                        private val adapter: WeakReference<SearchUsersAdapter>) : Filter() {
 
-    private val filteredUsersList = mutableListOf<User>()
+    override fun performFiltering(constraint: CharSequence) = FilterResults().apply {
+        val filteredList = usersList.filter { it.realName?.toLowerCase()?.contains(constraint.toString().toLowerCase()) ?: false }
 
-    override fun performFiltering(constraint: CharSequence): FilterResults {
-        filteredUsersList.clear()
-        val filterResults = FilterResults()
-
-        usersList.filter { it.realName?.toLowerCase()?.contains(constraint.toString().toLowerCase()) ?: false }
-                .forEach { filteredUsersList.add(it) }
-
-        filterResults.values = filteredUsersList
-        filterResults.count = filteredUsersList.size
-
-        return filterResults
+        values = filteredList
+        count = filteredList.size
     }
 
     override fun publishResults(constraint: CharSequence, results: FilterResults) {
-        adapter.addUsers(filteredUsersList)
+        val filteredList = (results.values as List<*>).filterIsInstance(User::class.java)
+        adapter.get()?.addUsers(filteredList)
     }
 }

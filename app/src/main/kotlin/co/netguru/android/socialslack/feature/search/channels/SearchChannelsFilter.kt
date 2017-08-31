@@ -2,26 +2,20 @@ package co.netguru.android.socialslack.feature.search.channels
 
 import android.widget.Filter
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import java.lang.ref.WeakReference
 
 class SearchChannelsFilter(private val channelsList: List<ChannelStatistics>,
-                           private val adapter: SearchChannelsAdapter) : Filter() {
+                           private val adapter: WeakReference<SearchChannelsAdapter>) : Filter() {
 
-    private val filteredChannelsList = mutableListOf<ChannelStatistics>()
+    override fun performFiltering(constraint: CharSequence)  = FilterResults().apply {
+        val filteredList = channelsList.filter { it.channelName.toLowerCase().contains(constraint.toString().toLowerCase()) }
 
-    override fun performFiltering(constraint: CharSequence): FilterResults {
-        filteredChannelsList.clear()
-        val filterResults = FilterResults()
-
-        channelsList.filter { it.channelName.toLowerCase().contains(constraint.toString().toLowerCase()) }
-                .forEach { filteredChannelsList.add(it) }
-
-        filterResults.values = filteredChannelsList
-        filterResults.count = filteredChannelsList.size
-
-        return filterResults
+        values = filteredList
+        count = filteredList.size
     }
 
     override fun publishResults(constraint: CharSequence, results: FilterResults) {
-        adapter.addChannels(filteredChannelsList)
+        val filteredList = (results.values as List<*>).filterIsInstance(ChannelStatistics::class.java)
+        adapter.get()?.addChannels(filteredList)
     }
 }

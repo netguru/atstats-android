@@ -12,7 +12,8 @@ import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvi
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_users.view.*
 
 class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
@@ -21,7 +22,6 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
 
     companion object {
         private const val POSITION_FIRST = 1
-        private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
     }
 
     private val placeNrTextView = itemView.placeNrTextView
@@ -60,12 +60,11 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {
-        Glide.with(itemView.context)
+        Glide.with(itemView)
                 // TODO 14.08.2017 find a better placeholder
                 .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
-                .bitmapTransform(RoundedCornersTransformation(itemView.context,
-                        itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt(),
-                        USER_AVATAR_ROUNDED_CORNERS_MARGIN))
+                .apply(RequestOptions.centerCropTransform()
+                        .transform(RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(userAvatarImageView)
     }
 }
