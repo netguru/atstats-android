@@ -64,6 +64,9 @@
                             android:layout_height="wrap_content"
                             android:drawableEnd="@drawable/user_status_selector"
                             android:drawablePadding="@dimen/margin_small"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:lines="1"
                             tools:text="Anna Rices" />
 
                         <TextView
@@ -71,6 +74,9 @@
                             style="@style/FontSmall.White.Shadow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:lines="1"
                             tools:text="\@anna.rices" />
                     </LinearLayout>
                 </FrameLayout>
