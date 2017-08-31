@@ -22,7 +22,7 @@ class UsersPresenterTest {
 
     companion object {
         private const val USER = "user"
-        private val DC_STATISTICS = DirectChannelStatistics("1", USER, 20, 20)
+        private val DC_STATISTICS = DirectChannelStatistics("1", USER, 20, 20, 0)
         private val USER_STATS = UserStatistic("", "", "", "", "",
                 20, 20, 20, 20, "")
     }

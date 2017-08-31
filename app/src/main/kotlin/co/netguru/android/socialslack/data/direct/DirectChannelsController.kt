@@ -9,25 +9,65 @@ import co.netguru.android.socialslack.data.direct.model.DirectMessage
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import javax.inject.Inject
 
 @UserScope
 class DirectChannelsController @Inject constructor(private val directChannelsApi: DirectChannnelsApi,
                                                    private val directChannelsDao: DirectChannelsDao) {
 
+    companion object {
+        private const val HOURS_24_IN_SECONDS = 60 * 60 * 24
+
+        private fun getMidnightTimestampInSeconds(): Long {
+            val date = GregorianCalendar()
+            with(date) {
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+            return date.timeInMillis / 1000
+        }
+    }
+
     fun getDirectChannelsList(): Single<List<DirectChannel>> =
             directChannelsApi.getDirectMessagesList()
                     .map { it.channels }
 
-    fun countDirectChannelStatistics(channelId: String, userId: String): Single<DirectChannelStatistics> =
-            getAllMessagesFromApi(channelId)
-                    .observeOn(Schedulers.computation())
-                    .flattenAsObservable { it }
-                    .collect({ DirectChannelStatisticsCount(userId) },
-                            { t1: DirectChannelStatisticsCount?, t2: DirectMessage? -> t1?.accept(t2) })
-                    .map { DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser) }
-                    .observeOn(Schedulers.io())
-                    .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }
+    fun countDirectChannelStatistics(channelId: String, userId: String): Single<DirectChannelStatistics> {
+        var streakDaysMidnightPair = Pair(0, getMidnightTimestampInSeconds())
+
+        return getAllMessagesFromApi(channelId)
+                .observeOn(Schedulers.computation())
+                .flattenAsObservable { it }
+                .doOnNext { streakDaysMidnightPair = countStreakDays(it, streakDaysMidnightPair) }
+                .collect({ DirectChannelStatisticsCount(userId) },
+                        { t1: DirectChannelStatisticsCount?, t2: DirectMessage? -> t1?.accept(t2) })
+                .map {
+                    DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser, streakDaysMidnightPair.first)
+                }
+                .observeOn(Schedulers.io())
+                .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }
+    }
+
+    private fun countStreakDays(directMessage: DirectMessage, streakDaysMidnightPair: Pair<Int, Long>): Pair<Int, Long> {
+        val messageTimestamp = directMessage.timeStamp.toFloat()
+        var streakDays = streakDaysMidnightPair.first
+        var lasMidnight = streakDaysMidnightPair.second
+        // if there is a message from today and streak day wasn't count
+        if (streakDays < 1 && messageTimestamp > lasMidnight) {
+            // count as streak day
+            streakDays++
+        }
+        // if there is a message from 00:00:00 to 23:59:59 yesterday
+        if (messageTimestamp in (lasMidnight - HOURS_24_IN_SECONDS) until lasMidnight) {
+            // Add a streak day and check if there is a message in the previous day
+            streakDays++
+            lasMidnight -= HOURS_24_IN_SECONDS
+        }
+        return Pair(streakDays, lasMidnight)
+    }
 
     private fun getAllMessagesFromApi(channelId: String) =
             getMessagesFromApi(channelId, (TimeAndCountUtil.currentTimeInSeconds() - TimeAndCountUtil.SINCE_TIME).toString())

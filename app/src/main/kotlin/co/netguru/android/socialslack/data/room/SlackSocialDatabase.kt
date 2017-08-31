@@ -11,11 +11,9 @@ import co.netguru.android.socialslack.data.team.model.Team
 import co.netguru.android.socialslack.data.user.UsersDao
 import co.netguru.android.socialslack.data.user.model.UserDB
 
-// TODO 31.07.2017 Do the schema for the db
 @Database(
         entities = arrayOf(ChannelStatistics::class, DirectChannelStatistics::class, Team::class, UserDB::class),
-        version = 3,
-        exportSchema = false)
+        version = 4)
 abstract class SlackSocialDatabase : RoomDatabase() {
 
     companion object {

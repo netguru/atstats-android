@@ -29,12 +29,13 @@ class UsersController @Inject constructor(private val usersApi: UsersApi,
 
     fun getAllUsersInfo(statisticsList: List<DirectChannelStatistics>): Single<List<UserStatistic>> =
             Flowable.fromIterable(statisticsList)
-                    .flatMap { (_, userId, messagesFromUs, messagesFromOtherUser) ->
+                    .flatMap { (_, userId, messagesFromUs, messagesFromOtherUser, streakDays) ->
                         getUserInfo(userId).toFlowable()
                                 .map {
                                     it.toStatisticsView(
                                             messagesFromUs,
-                                            messagesFromOtherUser
+                                            messagesFromOtherUser,
+                                            streakDays
                                     )
                                 }
                                 // Need it to make it concurrent
