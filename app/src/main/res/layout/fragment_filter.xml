@@ -21,7 +21,6 @@
             android:text="@string/filter_by"
             android:textStyle="bold" />
 
-        <!--TODO 10.07.2017 Icon should be changed -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

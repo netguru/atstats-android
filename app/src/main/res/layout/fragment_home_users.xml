@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- TODO change this icon to orange color -->
     <TextView
         style="@style/TextMedium"
         android:layout_width="wrap_content"
