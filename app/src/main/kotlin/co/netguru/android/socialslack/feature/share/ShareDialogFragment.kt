@@ -23,7 +23,8 @@ import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmati
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpDialogFragment
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
 import com.bumptech.glide.Glide
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.android.synthetic.main.item_channels.view.*
 import kotlinx.android.synthetic.main.item_users.view.*
@@ -50,9 +51,6 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         private const val SELECTED_ITEM_KEY = "key:selected_item"
         private const val MOST_ACTIVE_ITEM_LIST_KEY = "key:most_active_item_list"
         private const val FILTER_OPTION = "key:filter_option"
-
-        private const val USER_AVATAR_ROUNDED_CORNERS_MARGIN = 0
-
     }
 
     private val component by lazy {
@@ -169,8 +167,8 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         Glide.with(this)
                 // TODO 14.08.2017 find a better placeholder
                 .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
-                .bitmapTransform(RoundedCornersTransformation(context,
-                        resources.getDimension(R.dimen.item_user_avatar_radius).toInt(), USER_AVATAR_ROUNDED_CORNERS_MARGIN))
+                .apply(RequestOptions.centerCropTransform()
+                        .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(shareLastUser.userAvatarImageView)
     }
 

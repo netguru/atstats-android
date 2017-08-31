@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppThemeColourful" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primaryColorful</item>
         <item name="colorAccent">@color/accentColourful</item>
@@ -11,7 +12,9 @@
         <item name="colorTextSecondary">@color/violet2</item>
         <item name="colorTextHighlight">@color/violet</item>
         <item name="colorButton">@color/lightPink</item>
+        <item name="colorTabIndicator">@color/accentColourful</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
 
         <!-- Drawables -->
         <item name="buttonSignInSlackDrawable">@drawable/button_signin_slack_violet</item>
@@ -30,7 +33,8 @@
         <item name="profileMessagesDrawable">@drawable/profile_messages_violet</item>
         <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_violet</item>
         <item name="profileReadMsgDrawable">@drawable/profile_read_msg_violet</item>
-        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet</item>
+        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet
+        </item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_violet</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_orange</item>
         <item name="slackIconDrawable">@drawable/netguru_logo_violet</item>
@@ -39,6 +43,7 @@
         <item name="usersActiveDrawable">@drawable/users_active_violet</item>
         <item name="usersDrawable">@drawable/users_orange</item>
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_violet</item>
+        <item name="searchToolbarBackground">@drawable/search_toolbar_background_colorful</item>
     </style>
 
     <style name="AppThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
@@ -52,7 +57,9 @@
         <item name="colorTextSecondary">@color/green2</item>
         <item name="colorTextHighlight">@color/green</item>
         <item name="colorButton">@color/green</item>
+        <item name="colorTabIndicator">@color/white</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
 
         <!-- Drawables -->
         <item name="buttonSignInSlackDrawable">@drawable/button_signin_slack_green</item>
@@ -71,7 +78,8 @@
         <item name="profileMessagesDrawable">@drawable/profile_messages_green</item>
         <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_green</item>
         <item name="profileReadMsgDrawable">@drawable/profile_read_msg_green</item>
-        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green</item>
+        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green
+        </item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_green</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_green</item>
         <item name="slackIconDrawable">@drawable/netguru_logo_green</item>
@@ -80,6 +88,7 @@
         <item name="usersActiveDrawable">@drawable/users_active_green</item>
         <item name="usersDrawable">@drawable/users_active_green</item>
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_green</item>
+        <item name="searchToolbarBackground">@drawable/search_toolbar_background_netguru</item>
     </style>
 
     <style name="WindowAnimationTransition">
@@ -94,6 +103,12 @@
     <style name="MainToolbarTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Not working when setting the background color here from attrs -->
         <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@color/transparentWhite</item>
+        <item name="submitBackground">@color/transparentWhite</item>
+        <item name="searchIcon">@null</item>
     </style>
 
     <style name="SplashThemeColourful" parent="Theme.AppCompat.Light.NoActionBar">
@@ -153,7 +168,7 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="FontSmall.ColorTextPrimary" parent="TextAppearance.AppCompat.Small" >
+    <style name="FontSmall.ColorTextPrimary" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
@@ -161,7 +176,7 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium" >
+    <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
@@ -192,18 +207,18 @@
     <style name="FontLarge.LightGrey" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/lightGrey</item>
     </style>
-    
+
     <style name="FontSmall.Capital.Grey" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/grey</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="TextMedium" parent="TextAppearance.AppCompat.Medium" >
+    <style name="TextMedium" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorTextPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextMedium.Highlight" parent="TextAppearance.AppCompat.Medium" >
+    <style name="TextMedium.Highlight" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorTextHighlight</item>
         <item name="android:textStyle">bold</item>
     </style>
