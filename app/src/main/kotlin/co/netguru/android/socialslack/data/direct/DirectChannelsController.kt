@@ -36,31 +36,37 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                     .map { it.channels }
 
     fun countDirectChannelStatistics(channelId: String, userId: String): Single<DirectChannelStatistics> {
-        var lastMidnight = getMidnightTimestampInSeconds()
-        var streakDays = 0
+        var streakDaysMidnightPair = Pair(0, getMidnightTimestampInSeconds())
 
         return getAllMessagesFromApi(channelId)
                 .observeOn(Schedulers.computation())
                 .flattenAsObservable { it }
-                .doOnNext {
-                    val messageTimestamp = it.timeStamp.toFloat()
-                    // if there is a message from today and streak day wasn't count
-                    if (streakDays < 1 && messageTimestamp > lastMidnight) {
-                        // count as streak day
-                        streakDays++
-                    }
-                    // if there is a message from 00:00:00 to 23:59:59 yesterday
-                    if (messageTimestamp in (lastMidnight - HOURS_24_IN_SECONDS)..(lastMidnight - 1)) {
-                        // Add a streak day and check if there is a message in the previous day
-                        streakDays++
-                        lastMidnight -= HOURS_24_IN_SECONDS
-                    }
-                }
+                .doOnNext { streakDaysMidnightPair = countStreakDays(it, streakDaysMidnightPair) }
                 .collect({ DirectChannelStatisticsCount(userId) },
                         { t1: DirectChannelStatisticsCount?, t2: DirectMessage? -> t1?.accept(t2) })
-                .map { DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser, streakDays) }
+                .map {
+                    DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser, streakDaysMidnightPair.first)
+                }
                 .observeOn(Schedulers.io())
                 .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }
+    }
+
+    private fun countStreakDays(directMessage: DirectMessage, streakDaysMidnightPair: Pair<Int, Long>): Pair<Int, Long> {
+        val messageTimestamp = directMessage.timeStamp.toFloat()
+        var streakDays = streakDaysMidnightPair.first
+        var lasMidnight = streakDaysMidnightPair.second
+        // if there is a message from today and streak day wasn't count
+        if (streakDays < 1 && messageTimestamp > lasMidnight) {
+            // count as streak day
+            streakDays++
+        }
+        // if there is a message from 00:00:00 to 23:59:59 yesterday
+        if (messageTimestamp in (lasMidnight - HOURS_24_IN_SECONDS) until (lasMidnight - 1)) {
+            // Add a streak day and check if there is a message in the previous day
+            streakDays++
+            lasMidnight -= HOURS_24_IN_SECONDS
+        }
+        return Pair(streakDays, lasMidnight)
     }
 
     private fun getAllMessagesFromApi(channelId: String) =
