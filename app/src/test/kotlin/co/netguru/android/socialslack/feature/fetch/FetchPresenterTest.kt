@@ -53,7 +53,7 @@ class FetchPresenterTest {
         private val DIRECT_CHANNEL_4 = DirectChannel("4", USER_ID, CREATED)
 
         private val CHANNEL_STATISTICS1 = ChannelStatistics("1", "", 10, 5, 5, 5)
-        private val DIRECT_CHANNEL_STATISTICS = DirectChannelStatistics(CHANNEL_ID, USER_ID, 1, 1)
+        private val DIRECT_CHANNEL_STATISTICS = DirectChannelStatistics(CHANNEL_ID, USER_ID, 1, 1, 0)
     }
 
     @Rule
