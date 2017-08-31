@@ -17,7 +17,7 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                                                    private val directChannelsDao: DirectChannelsDao) {
 
     companion object {
-        private const val HOURS_24_IN_SECONDS = 60 * 60 * 24 - 1
+        private const val HOURS_24_IN_SECONDS = 60 * 60 * 24
 
         private fun getMidnightTimestampInSeconds(): Long {
             val date = GregorianCalendar()
