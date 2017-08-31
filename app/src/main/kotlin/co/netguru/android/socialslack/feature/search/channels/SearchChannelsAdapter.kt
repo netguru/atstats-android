@@ -3,9 +3,14 @@ package co.netguru.android.socialslack.feature.search.channels
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import java.lang.ref.WeakReference
 
-class SearchChannelsAdapter(private val channelsList: List<ChannelStatistics>)
-    : RecyclerView.Adapter<SearchChannelsViewHolder>() {
+class SearchChannelsAdapter : RecyclerView.Adapter<SearchChannelsViewHolder>() {
+
+    private val channelsList = mutableListOf<ChannelStatistics>()
+    private val channelsFilter by lazy {
+        SearchChannelsFilter(channelsList.toList(), WeakReference(this))
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SearchChannelsViewHolder(parent)
 
@@ -14,4 +19,14 @@ class SearchChannelsAdapter(private val channelsList: List<ChannelStatistics>)
     }
 
     override fun getItemCount() = channelsList.size
+
+    internal fun addChannels(channelsList: List<ChannelStatistics>) {
+        this.channelsList.clear()
+        this.channelsList.addAll(channelsList)
+        notifyDataSetChanged()
+    }
+
+    internal fun filterChannels(query: String) {
+        channelsFilter.filter(query)
+    }
 }

@@ -4,6 +4,7 @@
     <dimen name="margin_big">24dp</dimen>
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_very_small">4dp</dimen>
     <dimen name="margin_tiny">1dp</dimen>
 
     <dimen name="shadow_radius">5</dimen>
@@ -95,4 +96,7 @@
     <dimen name="search_tab_height">64dp</dimen>
     <dimen name="search_tab_indicator_height">2dp</dimen>
     <dimen name="search_shadow_height">4dp</dimen>
+    <dimen name='search_activity_view_pager_margin_top'>-4dp</dimen>
+    <dimen name="search_view_background_corner_radius">4dp</dimen>
+    <dimen name="search_view_background_shadow_corners_radius">8dp</dimen>
 </resources>

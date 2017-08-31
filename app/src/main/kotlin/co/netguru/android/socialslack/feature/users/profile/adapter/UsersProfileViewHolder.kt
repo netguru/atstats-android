@@ -52,7 +52,7 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
             rankTextView.text = currentPositionInList.toString()
             userFirstLastNameTextView.isActivated = presence == Presence.ACTIVE
 
-            Glide.with(itemView.context).load(avatarUrl).into(userAvatar)
+            Glide.with(itemView).load(avatarUrl).into(userAvatar)
         }
     }
 

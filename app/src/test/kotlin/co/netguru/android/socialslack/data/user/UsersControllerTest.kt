@@ -1,24 +1,18 @@
 package co.netguru.android.socialslack.data.user
 
-
 import co.netguru.android.socialslack.RxSchedulersOverrideRule
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.direct.DirectChannelsDao
 import co.netguru.android.socialslack.data.direct.model.DirectChannelStatistics
-import co.netguru.android.socialslack.data.user.model.User
-import co.netguru.android.socialslack.data.user.model.UserProfile
-import co.netguru.android.socialslack.data.user.model.UserResponse
-import co.netguru.android.socialslack.data.user.model.UserStatistic
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import co.netguru.android.socialslack.TestHelper.anyObject
+import co.netguru.android.socialslack.data.user.model.*
 import org.mockito.Mockito.*
-
 
 @Suppress("IllegalIdentifier")
 class UsersControllerTest {
@@ -37,6 +31,7 @@ class UsersControllerTest {
         val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics("ch1", "1", 1, 1, 0)
         val DIRECT_CHANNEL_STATISTICS_2 = DirectChannelStatistics("ch2", "2", 2, 2, 0)
         val DIRECT_CHANNEL_STATISTICS_3 = DirectChannelStatistics("ch3", "3", 3, 3, 0)
+        private val USER_LIST = UserList(true, listOf(USER))
     }
 
     @Rule
@@ -57,12 +52,22 @@ class UsersControllerTest {
     }
 
     @Test
+    fun `should get user list from api when getting users list`() {
+        //given
+        whenever(usersApi.getUserList()).thenReturn(Single.just(USER_LIST))
+        //when
+        val testObserver = usersController.getUsersList().test()
+        //then
+        verify(usersApi).getUserList()
+        testObserver.assertNoErrors()
+    }
+
+    @Test
     fun `should get a user info when getting user's info`() {
         // given
-        val testObserver = TestObserver<User>()
         whenever(usersApi.getUserInfo(anyString())).thenReturn(Single.just(USER_RESPONSE))
         // when
-        usersController.getUserInfo("").subscribe(testObserver)
+        val testObserver = usersController.getUserInfo("").test()
         // then
         testObserver
                 .assertNoErrors()
@@ -72,10 +77,10 @@ class UsersControllerTest {
     @Test
     fun `should return a list of direct channels statistics when getting all channels statistics`() {
         // given
-        val testObserver = TestObserver<List<DirectChannelStatistics>>()
+
         whenever(directChannelsDao.getAllDirectChannels()).thenReturn(Single.just(listOf(DIRECT_CHANNEL_STATISTICS_1, DIRECT_CHANNEL_STATISTICS_2, DIRECT_CHANNEL_STATISTICS_3)))
         // when
-        usersController.getAllDirectChannelsStatistics().subscribe(testObserver)
+        val testObserver = usersController.getAllDirectChannelsStatistics().test()
         // then
         testObserver
                 .assertNoErrors()
@@ -85,13 +90,13 @@ class UsersControllerTest {
     @Test
     fun `should return a list of user statistics when getting users statistics from a list of direct channels statistics`() {
         // given
-        val testObserver = TestObserver<List<UserStatistic>>()
         whenever(usersApi.getUserInfo("1")).thenReturn(Single.just(USER_RESPONSE))
         whenever(usersApi.getUserInfo("2")).thenReturn(Single.just(USER_RESPONSE_2))
         whenever(usersApi.getUserInfo("3")).thenReturn(Single.just(USER_RESPONSE_3))
 
         // when
-        usersController.getAllUsersInfo(listOf(DIRECT_CHANNEL_STATISTICS_1, DIRECT_CHANNEL_STATISTICS_2, DIRECT_CHANNEL_STATISTICS_3)).subscribe(testObserver)
+        val testObserver = usersController.getAllUsersInfo(listOf(DIRECT_CHANNEL_STATISTICS_1,
+                DIRECT_CHANNEL_STATISTICS_2, DIRECT_CHANNEL_STATISTICS_3)).test()
 
         // then
         testObserver
@@ -104,10 +109,9 @@ class UsersControllerTest {
     @Test
     fun `should get an user and store it when getting user from the api and store`() {
         // given
-        val testObserver = TestObserver<User>()
         whenever(usersApi.getUserInfo("1")).thenReturn(Single.just(USER_RESPONSE))
         // when
-        usersController.getUserAndStore("1").subscribe(testObserver)
+        val testObserver = usersController.getUserAndStore("1").test()
         // then
         verify(usersDao).insertUser(anyObject())
         testObserver.assertNoErrors()
