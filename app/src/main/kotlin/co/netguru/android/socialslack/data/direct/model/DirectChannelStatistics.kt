@@ -8,4 +8,5 @@ import android.arch.persistence.room.PrimaryKey
 data class DirectChannelStatistics(@PrimaryKey @ColumnInfo(name = "channel_id") var channelId: String,
                                    @ColumnInfo(name = "user_id") var userId: String,
                                    var messagesFromUs: Int,
-                                   var messagesFromOtherUser: Int)
+                                   var messagesFromOtherUser: Int,
+                                   var streakDays: Int)

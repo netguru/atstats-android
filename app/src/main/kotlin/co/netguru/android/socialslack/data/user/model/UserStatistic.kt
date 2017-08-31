@@ -22,7 +22,7 @@ data class UserStatistic(val id: String,
 
     companion object {
         fun User.toStatisticsView(sentMessages: Int, receivedMessages: Int,
-                                  currentDayStreak: Int = 1): UserStatistic {
+                                  currentDayStreak: Int = 0): UserStatistic {
             return UserStatistic(this.id,
                     this.username ?: "",
                     this.firstName ?: "",
