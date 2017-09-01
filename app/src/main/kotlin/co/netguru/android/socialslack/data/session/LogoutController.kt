@@ -27,7 +27,6 @@ class LogoutController @Inject constructor(private val channelsDao: ChannelsDao,
             .mergeWith(sessionController.removeSession())
             .mergeWith(loginApi.revokeToken())
             .mergeWith(themeController.saveThemeOption(ThemeOption.COLOURFUL))
-            .compose(RxTransformers.applyCompletableIoSchedulers())
             .doOnComplete(this::resetUserComponentAfterLogout)
 
     private fun removeAllData(): Completable = Completable.fromAction({

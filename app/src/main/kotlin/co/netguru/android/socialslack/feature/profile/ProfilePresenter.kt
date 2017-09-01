@@ -74,6 +74,7 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
 
     override fun logOut() {
         compositeDisposable += logoutController.logout()
+                .compose(RxTransformers.applyCompletableIoSchedulers())
                 .subscribeBy(
                         onComplete = view::logOut,
                         onError = {
