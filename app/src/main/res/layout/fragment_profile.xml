@@ -12,7 +12,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_zero"
-        android:layout_weight="17">
+        android:layout_weight="21">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -124,8 +124,8 @@
                             style="@style/Font16.ColorTextSecondary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_default"
-                            android:layout_marginTop="@dimen/margin_default"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
                             android:text="@string/log_out" />
 
                     </LinearLayout>
@@ -146,7 +146,6 @@
             style="@style/FontMedium.White"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_big"
             android:layout_marginStart="@dimen/margin_big"
