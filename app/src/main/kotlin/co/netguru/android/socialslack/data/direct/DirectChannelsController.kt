@@ -54,19 +54,19 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
     private fun countStreakDays(directMessage: DirectMessage, streakDaysMidnightPair: Pair<Int, Long>): Pair<Int, Long> {
         val messageTimestamp = directMessage.timeStamp.toFloat()
         var streakDays = streakDaysMidnightPair.first
-        var lasMidnight = streakDaysMidnightPair.second
+        var lastMidnight = streakDaysMidnightPair.second
         // if there is a message from today and streak day wasn't count
-        if (streakDays < 1 && messageTimestamp > lasMidnight) {
+        if (streakDays < 1 && messageTimestamp > lastMidnight) {
             // count as streak day
             streakDays++
         }
         // if there is a message from 00:00:00 to 23:59:59 yesterday
-        if (messageTimestamp in (lasMidnight - HOURS_24_IN_SECONDS) until lasMidnight) {
+        if (messageTimestamp in (lastMidnight - HOURS_24_IN_SECONDS) until lastMidnight) {
             // Add a streak day and check if there is a message in the previous day
             streakDays++
-            lasMidnight -= HOURS_24_IN_SECONDS
+            lastMidnight -= HOURS_24_IN_SECONDS
         }
-        return Pair(streakDays, lasMidnight)
+        return Pair(streakDays, lastMidnight)
     }
 
     private fun getAllMessagesFromApi(channelId: String) =

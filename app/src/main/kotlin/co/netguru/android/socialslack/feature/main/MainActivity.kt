@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
+import android.view.MenuItem
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.common.customTheme.CustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
@@ -69,11 +70,30 @@ class MainActivity : CustomThemeActivity() {
                 val childFragmentManager = fragment.childFragmentManager
                 if (childFragmentManager.backStackEntryCount > 0) {
                     childFragmentManager.popBackStack()
+                    showMainActionBar()
                     return
                 }
             }
         }
         super.onBackPressed()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
+            this.onBackPressed()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    fun showMainActionBar() {
+        supportActionBar?.setLogo(R.drawable.toolbar_icon_padding)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+    fun showNavigationArrowInActionBar() {
+        supportActionBar?.setLogo(null)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun refreshDataOnChannelsFragment() {
