@@ -91,7 +91,7 @@ class MainActivity : CustomThemeActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
-    fun showHomeUpEnableActionBar() {
+    fun showNavigationArrowInActionBar() {
         supportActionBar?.setLogo(null)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

@@ -19,7 +19,7 @@ abstract class BaseFragmentWithNestedFragment : Fragment() {
     internal fun replaceNestedFragmentAndAddToBackStack(@IdRes containerId: Int, nestedFragment: Fragment) {
         val mainActivity = activity
         if (mainActivity is MainActivity) {
-           mainActivity.showHomeUpEnableActionBar()
+           mainActivity.showNavigationArrowInActionBar()
         }
         childFragmentManager.beginTransaction()
                 .replace(containerId, nestedFragment)
