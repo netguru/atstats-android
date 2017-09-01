@@ -50,6 +50,11 @@
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/users_profile_image_height"
+                        android:background="@drawable/gradient_shape_users" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
