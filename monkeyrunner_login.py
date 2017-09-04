@@ -5,19 +5,24 @@ import sys
 import signal
 
 device = None
+APP_PATH = sys.argv[1]
+APP_PACKAGE = sys.argv[2]
+SLACK_TEAM = sys.argv[3]
+ACCOUNT_EMAIL = sys.argv[4]
+ACCOUNT_PASSWORD = sys.argv[5]
 
 # Connects to the current device
 def execute():
     device = MonkeyRunner.waitForConnection()
 
     # Installs the Android package.
-    device.installPackage('/bitrise/deploy/app-production-release-bitrise-signed.apk')
+    device.installPackage(APP_PATH)
 
     # sets a variable with the package's internal name
-    package = 'co.netguru.android.socialslack'
+    package = APP_PACKAGE
 
     # sets a variable with the name of an Activity in the package
-    activity = 'co.netguru.android.socialslack.feature.splash.SplashActivity'
+    activity = APP_PACKAGE + '.feature.splash.SplashActivity'
 
     # sets the name of the component to start
     runComponent = package + '/' + activity
@@ -40,7 +45,7 @@ def execute():
     time.sleep(60)
 
     # Type Slack Team name
-    device.type("dyplom101")
+    device.type(SLACK_TEAM)
     time.sleep(60)
 
     # Press enter key from keyboard
@@ -53,14 +58,14 @@ def execute():
     time.sleep(60)
 
     # Enter email
-    device.type("gonzalo.acosta@netguru.co")
+    device.type(ACCOUNT_EMAIL)
 
     # Press on the password field
     device.touch(250, 450, MonkeyDevice.DOWN_AND_UP)
     time.sleep(60)
 
     # Enter password
-    device.type("qwerty1234")
+    device.type(ACCOUNT_PASSWORD)
 
     # Press sign in
     device.press("KEYCODE_ENTER", MonkeyDevice.DOWN_AND_UP)
