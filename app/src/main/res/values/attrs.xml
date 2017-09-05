@@ -14,7 +14,7 @@
     <attr name="channelsDrawable" format="reference" />
     <attr name="channelsIconDrawable" format="reference" />
     <attr name="chartHeaderDrawable" format="reference" />
-    <attr name="filterIconDrawable" format="reference"/>
+    <attr name="filterIconDrawable" format="reference" />
     <attr name="hashtagTitleDrawable" format="reference" />
     <attr name="hereIconDrawable" format="reference" />
     <attr name="medalDrawable" format="reference" />
@@ -32,6 +32,7 @@
     <attr name="slackIconDrawable" format="reference" />
     <attr name="splashScreenBackgroundDrawable" format="reference" />
     <attr name="statisticsDrawable" format="reference" />
+    <attr name="userPlaceholderDrawable" format="reference" />
     <attr name="usersActiveDrawable" format="reference" />
     <attr name="usersDrawable" format="reference" />
     <attr name="usersTitleBarDrawable" format="reference" />

@@ -20,7 +20,7 @@
             android:layout_width="@dimen/user_avatar_size"
             android:layout_height="@dimen/user_avatar_size"
             android:layout_centerVertical="true"
-            android:src="@drawable/this_is_totally_a_person" />
+            android:src="?attr/userPlaceholderDrawable" />
 
         <TextView
             android:id="@+id/userMessages"

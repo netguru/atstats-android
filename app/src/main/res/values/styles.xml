@@ -40,6 +40,7 @@
         <item name="slackIconDrawable">@drawable/netguru_logo_violet</item>
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
         <item name="statisticsDrawable">@drawable/statistics_orange</item>
+        <item name="userPlaceholderDrawable">@drawable/user_placeholder_violet</item>
         <item name="usersActiveDrawable">@drawable/users_active_violet</item>
         <item name="usersDrawable">@drawable/users_orange</item>
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_violet</item>
@@ -86,6 +87,7 @@
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_green</item>
         <item name="statisticsDrawable">@drawable/statistics_green</item>
         <item name="usersActiveDrawable">@drawable/users_active_green</item>
+        <item name="userPlaceholderDrawable">@drawable/user_placeholder_green</item>
         <item name="usersDrawable">@drawable/users_active_green</item>
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_green</item>
         <item name="searchToolbarBackground">@drawable/search_toolbar_background_netguru</item>
