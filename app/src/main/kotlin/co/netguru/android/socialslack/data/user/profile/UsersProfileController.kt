@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Singleton
 class UsersProfileController @Inject constructor(private val usersApi: UsersApi) {
 
-    // TODO 24.08.2017 this should be remove when storing userstatistics in db
     fun getUserWithPresence(userStatistic: UserStatistic): Flowable<UserStatistic> {
         return usersApi.getUserPresence(userStatistic.id)
                 .doOnSuccess { userStatistic.presence = it.presence }

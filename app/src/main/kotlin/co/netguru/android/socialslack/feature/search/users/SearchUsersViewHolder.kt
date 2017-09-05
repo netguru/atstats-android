@@ -39,7 +39,6 @@ class SearchUsersViewHolder(parent: ViewGroup)
 
     private fun loadUserPhoto(avatarUrl: String?) {
         Glide.with(itemView)
-                // TODO 29.08.2017 find a better placeholder
                 .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
                 .apply(RequestOptions.centerCropTransform()
                         .transform(RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
