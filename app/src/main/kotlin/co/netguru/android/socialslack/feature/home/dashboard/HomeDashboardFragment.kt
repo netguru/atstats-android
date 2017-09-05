@@ -13,6 +13,8 @@ import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
 import co.netguru.android.socialslack.feature.home.dashboard.model.ChannelsCount
 import co.netguru.android.socialslack.feature.home.dashboard.model.DirectChannelsCount
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.dashboard_statistics_card.view.*
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
@@ -38,9 +40,13 @@ class HomeDashboardFragment :
         initStatistics()
     }
 
-    override fun showProfile(username: String?, avatarUrl: String) {
+    override fun showProfile(username: String?, avatarUrl: String?) {
         userNameTextView.text = getString(R.string.username, username)
-        Glide.with(this).load(avatarUrl).into(userAvatar)
+        Glide.with(this)
+                .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
+                .apply(RequestOptions.centerCropTransform()
+                        .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+                .into(userAvatar)
     }
 
     override fun showCounts(channelsCount: ChannelsCount, directChannelsCount: DirectChannelsCount) {
