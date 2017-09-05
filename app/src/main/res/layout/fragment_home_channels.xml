@@ -24,7 +24,7 @@
         android:gravity="center"
         android:text="@string/most_active_channel_filter"
         android:textAllCaps="true"
-        android:textColor="?attr/colorTextPrimary"
+        android:textColor="?attr/colorTextSecondary"
         android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView

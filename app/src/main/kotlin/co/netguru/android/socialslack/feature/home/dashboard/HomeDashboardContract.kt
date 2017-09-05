@@ -10,7 +10,7 @@ interface HomeDashboardContract {
 
     interface View : MvpView {
 
-        fun showProfile(username: String?, avatarUrl: String)
+        fun showProfile(username: String?, avatarUrl: String?)
 
         fun showCounts(channelsCount: ChannelsCount, directChannelsCount: DirectChannelsCount)
 

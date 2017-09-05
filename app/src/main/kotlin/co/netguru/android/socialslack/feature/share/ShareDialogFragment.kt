@@ -173,8 +173,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
 
     private fun loadUserPhoto(avatarUrl: String?) {
         Glide.with(this)
-                // TODO 14.08.2017 find a better placeholder
-                .load(avatarUrl ?: R.drawable.this_is_totally_a_person)
+                .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
                 .apply(RequestOptions.centerCropTransform()
                         .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(shareLastUser.userAvatarImageView)
