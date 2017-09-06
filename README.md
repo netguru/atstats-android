@@ -10,88 +10,51 @@
 -->
 
 <!-- Put your project's name -->
-# social-slack-android
+# Social-Slack-Android
 
-<!-- METADATA -->
-<!-- Add links to JIRA, Google Drive, mailing list and other relevant resources -->
-<!-- Add links to CI configs with build status and deployment environment, e.g.: -->
-| environment | deployment            | status             |
-|-------------|-----------------------|--------------------|
-| name        | HockeyApp/Fabric link | bitrise status tag |
-<!--- If applies, add link to app on Google Play -->
+[![Build Status](https://www.bitrise.io/app/6b9ba9da8d922f79/status.svg?token=dF3EQ-0f7XKwV9V-0Z1OVw&branch=master](https://www.bitrise.io/app/6b9ba9da8d922f79)
 
-## Synopsis
-<!-- Describe the project in few sentences -->
 
-## Development
+Slack-Social-Android is a mobile app for slack users that will visualize their social relations with other users. If you want to grab a copy for yourself just go straight to [Google Play](). However, if you are interested in the core of Slack-Social-Android, check out [Configuration](#configuration) section. Note that Slack account is necessary for using the app.
 
-### Architecture
-<!-- Describe the main architectural pattern used in the project, optionally put a flowchart -->
+We at Netguru strongly believe in open-source software. Slack-Social-Android isn’t our only project repo where you can find the app’s full source code. Explore other [open source projects](https://www.netguru.co/resources) created by our team.
 
-### Integrations
-<!-- Describe external service and hardware integrations, link to reference docs, use #### headings -->
+## Configuration
 
-### Coding guidelines
-[Netguru Android code style guide](https://netguru.atlassian.net/wiki/display/ANDROID/Android+best+practices)
-<!-- OPTIONAL: Describe any additional coding guidelines (if non-standard) -->
+### Instructions
 
-### Workflow & code review
-[Netguru development workflow](https://netguru.atlassian.net/wiki/display/DT2015/Netguru+development+flow)
-<!-- OPTIONAL: Describe workflow and code review process (if non-standard) --> 
+1. Clone repo at `https://github.com/netguru/slack-social-android.git`
+2. Register your app for slack api [here](https://api.slack.com/apps)
+3. Create secret.properties file in main folder (social-slack-android) and paste contents from table:
 
-## Testing
-<!-- Describe the project's testing methodology -->
-<!-- Examples: TDD? Using Espresso for views? What parts must be tested? etc -->
+| Property         
+|---------------------------|
+| FabricApiKey=[1]          | 
+| SlackClientId=[2]         | 
+| SlackClientSecret=[3]     |
+| SlackOauthRedirectUri=[4] | 
 
-## Building
-<!-- Aim to explain the process so that any new or external developer not familiar with the project can perform build and deploy -->
+4. Fill the gap [1] with Fabric Api Key. This property is optional - if you don't want to use Fabric Crashlytics, just leave it empty
+5. Fill the gap [2] with Client Id from your [slack app](https://api.slack.com/apps)
+6. Fill the gap [3] with Client Secret from your [slack app](https://api.slack.com/apps)
+7. Fill the gap [4] with Redirect URL you set in your [slack app](https://api.slack.com/apps)
+8. Open project in Android Studio
+9. That's it!
 
-### Build types
-<!-- List and describe build types -->
-#### debug
- - debuggable
- - disabled ProGuard
- - uses built-in shrinking (no obfuscation)
- 
-#### release
- - uses full ProGuard configuration
- - enables zipAlign, shrinkResources
- - non-debuggable
+## Contribution
 
-### Product flavors
-<!-- List and describe product flavors, purposes and dedicated deployment channels -->
-#### develop
- - preview API, functional testing
- 
-#### production
- - production API, release
+You're more than welcome to contribute or report an issue in case of any problems, questions or improvement proposals.
 
-### Build properties
-<!-- List all build properties that have to be supplied, including secrets. Describe the method of supplying them, both on local builds and CI -->
+## Authors
 
-| Property         | External property name | Environment variable     |
-|------------------|------------------------|--------------------------|
-| HockeyApp App ID | HockeyAppId            | HOCKEY_APP_ID            |
-| Client ID        | SlackClientId          | SLACK_CLIENT_ID          |
-| Client Secret    | SlackClientSecret      | SLACK_CLIENT_SECRET      |
-| Redirect URI     | SlackOauthRedirectUri  | SLACK_OAUTH_REDIRECT_URI |
+* [Designers Team](https://dribbble.com/netguru)
 
-#### Secrets
-Follow [this guide](https://netguru.atlassian.net/wiki/pages/viewpage.action?pageId=33030753) 
+* [Developers Team](https://github.com/netguru/slack-social-android/graphs/contributors)
 
-#### Other properties
+    * [Gonzalo Acosta](https://github.com/GNZ)
+    * [Rafał Adasiewicz](https://github.com/adasiewiczr)
+    * [Filip Zych](https://github.com/navarionek)
 
-### ProGuard
-<!-- Describe ProGuard configuration: is it enabled? Any unusual stuff? -->
+Copyright © 2017 [Netguru](http://netguru.co).
 
-## Deployment
-<!-- Aim to explain the process so that any new or external developer can perform deploy -->
-
-### Bitrise
-<!-- Describe the Continuous Integration process: Bitrise workflows, global configs etc. -->
-
-### HockeyApp / Fabric environments
-<!-- Describe the deployment channels -->
-
-### Supported devices
-<!-- Describe the supported and target devices (do not put stuff that can be easily found in build.gradle files) --> 
+Licensed under the [?]().
