@@ -80,9 +80,9 @@ android {
         def flavorName = variant.getFlavors().get(0).name
         // remove unnecessary variants
         ['release'].each {
-            if (buildName.equals(it)) {
+            if (buildName == it) {
                 ['mock'].each {
-                    if (flavorName.equals(it)) {
+                    if (flavorName == it) {
                         variant.setIgnore(true)
                     }
                 }
@@ -95,11 +95,6 @@ android {
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     packagingOptions {
@@ -128,120 +123,92 @@ android {
 dependencies {
 
     // Support
-    compile libs.appCompat
-    compile libs.recyclerView
-    compile libs.supportDesignLib
+    implementation libs.appCompat
+    implementation libs.recyclerView
+    implementation libs.supportDesignLib
 
     // MVP
-    compile(libs.mosby) {
+    implementation(libs.mosby) {
         exclude module: 'appcompat-v7'
         exclude module: 'support-annotations'
     }
 
-    compile(libs.mosbyNullObject) {
+    implementation(libs.mosbyNullObject) {
         exclude module: 'support-annotations'
     }
 
     // Dagger
-    compile libs.dagger
+    implementation libs.dagger
     kapt proc.dagger
-    provided proc.javaxAnnotation
+    compileOnly proc.javaxAnnotation
 
 
-    compile libs.rxKotlin2
-    compile libs.rxAndroid2
+    implementation libs.rxJava2
+    implementation(libs.rxKotlin2) {
+        exclude module: 'rxjava'
+        exclude module: 'kotlin-stdlib'
+    }
+    implementation(libs.rxAndroid2) {
+        exclude module: 'rxjava'
+    }
 
     // Views
-    compile libs.verticalViewPager
-    compile libs.gridLayout
-    compile libs.cardView
-    compile 'us.belka:androidtoggleswitch:1.2.2'
+    implementation libs.verticalViewPager
+    implementation libs.gridLayout
+    implementation libs.cardView
+    implementation 'us.belka:androidtoggleswitch:1.2.2'
 
     // kotlin
-    compile libs.kotlin
+    implementation libs.kotlin
 
     // Room
-    compile libs.room
-    compile libs.roomRxJava2
+    implementation libs.room
     kapt proc.room
+    implementation(libs.roomRxJava2) {
+        exclude module: 'rxjava'
+    }
 
     // OkHttp + Retrofit
-    compile libs.okHttp
-    compile libs.okHttpLoggingInterceptor
-    compile libs.retrofit
-    compile libs.retrofitGsonConverter
-    compile libs.retrofitRxJava2Adapter
+    implementation libs.okHttp
+    implementation libs.okHttpLoggingInterceptor
+    implementation libs.retrofit
+    implementation libs.retrofitGsonConverter
+    implementation libs.retrofitRxJava2Adapter
+
+    // Glide
+    implementation libs.glide
+
+    //PaperParcel
+    implementation libs.paperParcel
+    kapt proc.paperParcel
+
+    // Timber
+    implementation libs.timber
 
     // Crashlytics
-    releaseCompile(libs.fabric) {
+    releaseImplementation(libs.fabric) {
         transitive = true
     }
 
-    // Glide
-    compile libs.glide
-
     // Stetho
-    compile libs.stetho
+    debugImplementation libs.stetho
 
     // LeakCanary
-    compile libs.leakCanary
+    debugImplementation libs.leakCanary
 
     // BlockCanary
-    compile libs.blockCanary
+    debugImplementation libs.blockCanary
 
     // StrictMode
-    compile libs.strictmodeNotifier
-
-    // Timber
-    compile libs.timber
-
-    //PaperParcel
-    compile libs.paperParcel
-    kapt proc.paperParcel
+    debugImplementation libs.strictmodeNotifier
 
     // Unit testing
-    testCompile(test.junit) {
+    testImplementation(test.junit) {
         exclude module: 'hamcrest-core'
     }
-    testCompile test.room
-    testCompile test.hamcrest
-    testCompile test.mockito
-    testCompile test.mockitoKotlin
-
-    androidTestCompile test.hamcrest
-    androidTestCompile libs.annotations
-    androidTestCompile(test.androidJUnitRunner) {
-        exclude module: 'support-annotations'
+    testImplementation test.room
+    testImplementation test.mockito
+    testImplementation(test.mockitoKotlin) {
+        exclude module: 'mockito-core'
     }
-    androidTestCompile(test.androidJUnit4Rules) {
-        exclude module: 'support-annotations'
-        exclude module: 'hamcrest-core'
-    }
-    androidTestCompile(test.espresso) {
-        exclude module: 'hamcrest-library'
-        exclude module: 'rules'
-        exclude module: 'runner'
-        exclude module: 'javax.annotation-api'
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile(test.espressoContrib) {
-        exclude module: 'espresso-core'
-        exclude module: 'hamcrest-core'
-        exclude module: 'support-v4'
-        exclude module: 'appcompat-v7'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'support-annotations'
-        exclude module: 'design'
-    }
-    androidTestCompile(test.espressoIntents) {
-        exclude module: 'espresso-core'
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile(test.espressoIdlingResource) {
-        exclude module: 'espresso-core'
-    }
-}
-repositories {
-    mavenCentral()
-    maven { url 'https://maven.fabric.io/public' }
 }

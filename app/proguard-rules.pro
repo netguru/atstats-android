@@ -73,11 +73,6 @@
 -keep class dagger.** { *; }
 -dontwarn dagger.internal.codegen.**
 
-# xlog
--keep class com.promegu.xlog.** { *; }
--dontwarn javax.lang.**
--dontwarn javax.tools.**
-
 # stetho
 -dontwarn org.apache.http.**
 -keep class com.facebook.stetho.dumpapp.** { *; }
@@ -93,11 +88,6 @@
 # fabric
 -dontwarn com.crashlytics.android.**
 
-# rx
--keep class rx.internal.util.unsafe.** { *; }
--dontwarn sun.misc.Unsafe
--dontwarn java.lang.invoke.*
-
 # glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.AppGlideModule
@@ -109,28 +99,6 @@
 -dontwarn okhttp3.**
 -dontwarn okio.**
 -dontwarn javax.annotation.**
-
-# BugTags
--keep class com.bugtags.library.** {*;}
--dontwarn org.apache.http.**
--dontwarn android.net.http.AndroidHttpClient
--dontwarn com.bugtags.library.**
-
-# AutoBundle
--keepclasseswithmembernames class * {
-    @com.yatatsu.autobundle.AutoBundleField <fields>;
-}
-
-# AutoGson
--keepclassmembers class **$AutoValue_*$GsonTypeAdapter {
-    void <init>(com.google.gson.Gson);
-}
-
-# AutoParcel
--keep class **AutoValue_*$1 { }
--keepclassmembers class * implements android.os.Parcelable {
-    static ** CREATOR;
-}
 
 # Crashlytics
 -keep class com.crashlytics.** { *; }
