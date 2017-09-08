@@ -38,7 +38,7 @@ ext {
             multiDex                : "com.android.support:multidex:$multiDexVersion",
             constraintLayout        : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
             room                    : "android.arch.persistence.room:runtime:$roomVersion",
-            roomRxJava2             :"android.arch.persistence.room:rxjava2:$roomVersion",
+            roomRxJava2             : "android.arch.persistence.room:rxjava2:$roomVersion",
             safelyAndroid           : "com.github.piasy:safelyandroid:$safelyAndroidVersion",
             safelyAndroidLint       : "com.github.piasy:safelyandroid-lint:$safelyAndroidVersion",
             mosby                   : "com.hannesdorfmann.mosby3:mvp:$mosbyVersion",
