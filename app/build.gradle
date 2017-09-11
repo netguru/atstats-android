@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.frogermcs.androiddevmetrics'
+apply plugin: 'com.vanniktech.android.junit.jacoco'
 apply plugin: 'io.fabric'
 
 ext {
@@ -109,6 +110,29 @@ android {
         debug.java.srcDirs += 'src/debug/kotlin'
         release.java.srcDirs += 'src/release/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    junitJacoco {
+        jacocoVersion='0.7.9'
+        excludes = ['android/databinding/**/*.class',
+                    '**/android/databinding/*Binding.class',
+                    '**/BR.*',
+                    '**/R.class',
+                    '**/R$*.class',
+                    '**/BuildConfig.*',
+                    '**/Manifest*.*',
+                    '**/*$ViewInjector*.*',
+                    '**/*$ViewBinder*.*',
+                    '**/*_MembersInjector.class',
+                    '**/Dagger*Component.class',
+                    '**/Dagger*Component$Builder.class',
+                    '**/*Module_*Factory.class',
+                    '**/AutoValue_*.*',
+                    '**/*JavascriptBridge.class',
+                    '**/Lambda$*.class',
+                    '**/Lambda.class',
+                    '**/*Lambda.class',
+                    '**/*Lambda*.class']
     }
 
     lintOptions {
