@@ -12,7 +12,8 @@
 <!-- Put your project's name -->
 # Social-Slack-Android
 
-[![Build Status](https://www.bitrise.io/app/6b9ba9da8d922f79/status.svg?token=dF3EQ-0f7XKwV9V-0Z1OVw&branch=master)](https://www.bitrise.io/app/6b9ba9da8d922f79)
+[![Build Status](https://www.bitrise.io/app/6b9ba9da8d922f79/status.svg?token=dF3EQ-0f7XKwV9V-0Z1OVw&branch=master)](https://www.bitrise.io/app/6b9ba9da8d922f79)[
+![codecov](https://codecov.io/gh/netguru/slack-social-android/branch/master/graph/badge.svg?token=N0BFgWliTs)](https://codecov.io/gh/netguru/slack-social-android)
 
 Slack-Social-Android is a mobile app that sums up and visualises your relationship with the people you talk to on Slack, based on data from the last 30 days. If you want to grab a copy for yourself just go straight to [Google Play](). However, if you are interested in the core of Slack-Social-Android, check out [Configuration](#configuration) section. Note that Slack account is necessary for using the app.
 
