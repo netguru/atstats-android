@@ -19,7 +19,7 @@
 
             <corners android:radius="@dimen/gradient_button_corner_radius" />
 
-            <solid android:color="#E6ABA7BC" />
+            <solid android:color="@color/violetGreyWithAlpha" />
         </shape>
     </item>
 </layer-list>
