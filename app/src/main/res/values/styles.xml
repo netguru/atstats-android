@@ -162,7 +162,11 @@
     </style>
 
     <style name="FontSmall.Grey" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/grey</item>
+        <item name="android:textColor">@color/textGrey</item>
+    </style>
+
+    <style name="Font15.TextGrey" parent="FontSmall.Grey">
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="Font16.Grey" parent="FontSmall.Grey">
@@ -191,6 +195,10 @@
 
     <style name="Font28.PrimaryDark" parent="FontLarge.ColorTextPrimary">
         <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="Font28.PrimaryDark.RobotoLight" parent="Font28.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="FontDisplay2.ColorTextPrimary" parent="TextAppearance.AppCompat.Display2">

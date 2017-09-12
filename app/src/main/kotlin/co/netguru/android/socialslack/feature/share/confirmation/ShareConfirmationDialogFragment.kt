@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
-import co.netguru.android.socialslack.common.extensions.inflate
 import kotlinx.android.synthetic.main.fragment_share_confirmation.*
 
 class ShareConfirmationDialogFragment : DialogFragment() {
