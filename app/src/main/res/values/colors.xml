@@ -28,6 +28,8 @@
     <color name="green2">#7F8984</color>
 
     <color name="orange">#FF722E</color>
+    <color name="violetGrey">#ABA7BC</color>
+    <color name="violetGreyWithAlpha">#E6ABA7BC</color>
 
     <color name="tabBackground">@color/white</color>
 

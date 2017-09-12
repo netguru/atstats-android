@@ -125,6 +125,11 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="ActionButtonTheme" parent="FontMedium.White.RobotoMedium">
+        <item name="android:background">@drawable/shape_rounded_button_corners_gradient_gray</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <style name="FontSmall.White" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -137,6 +142,10 @@
 
     <style name="FontMedium.White" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="FontMedium.White.RobotoMedium" parent="FontMedium.White">
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="FontMedium.White.Shadow" parent="FontMedium.White">

@@ -50,11 +50,9 @@
 
     <Button
         android:id="@+id/shareConfirmationThankYouBtn"
-        style="@style/FontMedium.White"
+        style="@style/ActionButtonTheme"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_button_height"
         android:layout_margin="@dimen/margin_default"
-        android:background="@drawable/shape_rounded_button_corners_gradient_gray"
-        android:text="@string/thank_you"
-        android:textAllCaps="false" />
+        android:text="@string/thank_you" />
 </LinearLayout>
