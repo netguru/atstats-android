@@ -12,12 +12,17 @@
         android:orientation="vertical"
         tools:context=".feature.main.MainActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/MainToolbarTheme"
-            app:logo="@drawable/toolbar_icon_padding" />
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/MainToolbarTheme"
+                app:logo="@drawable/toolbar_icon_padding" />
+        </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/mainFragmentContainer"
