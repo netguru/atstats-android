@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_small"
         android:layout_toEndOf="@id/userAvatarContainer"
         android:layout_toStartOf="@+id/messagesNrTextView"
@@ -48,31 +48,32 @@
 
         <TextView
             android:id="@+id/userRealNameTextView"
-            style="@style/FontMedium.PrimaryDark"
+            style="@style/FontSmall.TextBlack.RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            android:textStyle="bold"
             tools:text="Anna Rice" />
 
         <TextView
             android:id="@+id/usernameTextView"
-            style="@style/FontSmall.ColorTextSecondary"
+            style="@style/FontSmall.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
             tools:text="\@anna.rice" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/messagesNrTextView"
-        style="@style/Font22.PrimaryDark"
+        style="@style/Font20.PrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/margin_small"
         android:ellipsize="end"
         android:lines="1"
-        android:textStyle="bold"
         tools:text="325" />
 </RelativeLayout>

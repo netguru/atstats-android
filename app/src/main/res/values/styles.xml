@@ -181,6 +181,10 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="FontSmall.TextBlack" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/textBlack</item>
+    </style>
+
     <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
@@ -189,8 +193,24 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
+    <style name="Font20.PrimaryDark" parent="FontLarge.ColorTextPrimary">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Font22.PrimaryDark" parent="FontLarge.ColorTextPrimary">
         <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="FontSmall.TextBlack.RobotoMedium" parent="FontSmall.TextBlack">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FontMedium.PrimaryDark.RobotoLight" parent="FontMedium.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="Font24.White" parent="FontLarge.White">
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="Font28.PrimaryDark" parent="FontLarge.ColorTextPrimary">

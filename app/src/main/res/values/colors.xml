@@ -17,6 +17,7 @@
 
     <color name="grey">#9B9AA5</color>
     <color name="textGrey">#717179</color>
+    <color name="textBlack">#FD220000</color>
     <color name="lightGrey">#E8E8EE</color>
     <color name="materialDivider">#1f000000</color>
 
