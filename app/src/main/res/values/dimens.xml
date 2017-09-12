@@ -28,7 +28,6 @@
 
     // Profile button
     <dimen name="gradient_button_corner_radius">30dp</dimen>
-    <dimen name="gradient_button_radius">60dp</dimen>
 
     <dimen name="filter_view_height">60dp</dimen>
     <dimen name="divider_height">1dp</dimen>
@@ -99,4 +98,5 @@
     <dimen name='search_activity_view_pager_margin_top'>-4dp</dimen>
     <dimen name="search_view_background_corner_radius">4dp</dimen>
     <dimen name="search_view_background_shadow_corners_radius">8dp</dimen>
+    <dimen name="action_button_height">36dp</dimen>
 </resources>

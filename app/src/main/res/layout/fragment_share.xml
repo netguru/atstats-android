@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,7 +9,7 @@
         android:id="@+id/shareRootView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightGrey"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <FrameLayout
@@ -17,7 +18,7 @@
             android:background="?attr/modalTop1Drawable">
 
             <TextView
-                style="@style/FontLarge.LightGrey"
+                style="@style/Font24.White"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -36,10 +37,11 @@
 
         <TextView
             android:id="@+id/shareNameTextView"
-            style="@style/FontMedium.ColorTextPrimary"
+            style="@style/FontMedium.PrimaryDark.RobotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            tools:text="Hey #ng-team, recon this" />
 
         <TextView
             android:id="@+id/shareStatusTextView"
@@ -137,9 +139,10 @@
                 style="@style/FontSmall.Grey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_default"
                 android:gravity="center"
-                android:lines="2" />
+                android:lines="2"
+                tools:text="You are about to send" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -150,7 +153,7 @@
                     android:id="@+id/shareSendButton"
                     style="@style/FontMedium.White"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/action_button_height"
                     android:background="@drawable/shape_rounded_button_corners_gradient_gray"
                     android:text="@string/action_send"
                     android:textAllCaps="false" />
