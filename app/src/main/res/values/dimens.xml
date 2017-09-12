@@ -80,7 +80,7 @@
     <dimen name="users_profile_small_margin">4dp</dimen>
 
     //Profile
-    <dimen name="profile_image_height">180dp</dimen>
+    <dimen name="profile_image_height">186dp</dimen>
     <dimen name="profile_division_width">150dp</dimen>
     <dimen name="profile_division_height">1dp</dimen>
     <dimen name="profile_toggle_switch_width">160dp</dimen>
@@ -98,5 +98,5 @@
     <dimen name='search_activity_view_pager_margin_top'>-4dp</dimen>
     <dimen name="search_view_background_corner_radius">4dp</dimen>
     <dimen name="search_view_background_shadow_corners_radius">8dp</dimen>
-    <dimen name="action_button_height">36dp</dimen>
+    <dimen name="action_button_height">42dp</dimen>
 </resources>
