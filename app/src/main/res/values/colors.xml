@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColorful">#6D5EB3</color>
-    <color name="primaryDarkColourful">#3d3483</color>
+    <color name="primaryColorful">#6456A3</color>
+    <color name="primaryDarkColourful">#524786</color>
     <color name="accentColourful">#FF722E</color>
 
     <color name="primaryNetguru">@color/green</color>
-    <color name="primaryDarkNetguru">#11AA43</color>
+    <color name="primaryDarkNetguru">#008C41</color>
     <color name="accentNetguru">@color/green</color>
 
     <color name="white">#FFFFFF</color>
@@ -24,7 +24,7 @@
     <color name="violet">#524B75</color>
     <color name="violet2">#817C9A</color>
     <color name="lightPink">#A58B96</color>
-    <color name="green">#1DC05F</color>
+    <color name="green">#00C25A</color>
     <color name="green2">#7F8984</color>
 
     <color name="orange">#FF722E</color>
