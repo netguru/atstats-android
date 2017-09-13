@@ -109,7 +109,7 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
 
     private fun setUpFields(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
         messagesDetailTextView.text = resources.getString(R.string.total_messages)
-        channelNameTextView.text = resources.getString(R.string.hashtag).plus(channelStatistics.channelName)
+        channelNameTextView.text = getString(R.string.channel_hashtag, channelStatistics.channelName)
         rankTextView.text = channelStatistics.currentPositionInList.toString()
         titleTextView.text = getProperTitleText(filterOption)
     }

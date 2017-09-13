@@ -64,10 +64,9 @@
 
     <string name="channels">Channels</string>
     <string name="welcome_back_mock">Welcome back</string>
-    <string name="mock_name">\@amarok</string>
     <string name="statistics">Statistics</string>
     <string name="users">Users</string>
-    <string name="hashtag">#</string>
+    <string name="channel_hashtag">#%s</string>
     <string name="error_sorting_channels">There was an error while sorting channels</string>
 
     // User statistics
