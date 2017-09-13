@@ -5,7 +5,7 @@ import android.view.View
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
-import kotlinx.android.synthetic.main.item_channel.view.*
+import kotlinx.android.synthetic.main.item_channel_home.view.*
 
 class HomeChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

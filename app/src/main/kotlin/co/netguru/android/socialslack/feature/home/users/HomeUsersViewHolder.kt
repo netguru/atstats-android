@@ -10,7 +10,7 @@ import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_user.view.*
+import kotlinx.android.synthetic.main.item_users_home.view.*
 
 class HomeUsersViewHolder(itemView: View) : BaseViewHolder<UserStatistic>(itemView) {
 
@@ -21,7 +21,7 @@ class HomeUsersViewHolder(itemView: View) : BaseViewHolder<UserStatistic>(itemVi
             itemView.userName.text = name
             Glide.with(itemView)
                     .load(avatarUrl)
-                    .apply(RequestOptions.centerCropTransform()
+                    .apply(RequestOptions.centerInsideTransform()
                             .transform(RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                     .into(itemView.userAvatar)
         }

@@ -13,28 +13,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/card_padding">
+        android:padding="@dimen/margin_small">
 
         <ImageView
             android:id="@+id/userAvatar"
-            android:layout_width="@dimen/user_avatar_size"
-            android:layout_height="@dimen/user_avatar_size"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:src="?attr/userPlaceholderDrawable" />
 
         <TextView
             android:id="@+id/userMessages"
+            style="@style/Font24.Accent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:gravity="end"
-            android:textColor="?attr/colorHighlight"
-            android:textSize="@dimen/header_textSize_big"
             app:autoSizePresetSizes="@array/value_text_sizes"
             app:autoSizeTextType="uniform"
             tools:text="35" />
 
         <TextView
+            style="@style/FontSmall.Grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -43,14 +43,12 @@
             android:layout_marginTop="@dimen/card_subtitle_margin"
             android:gravity="end"
             android:text="@string/messages"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/subtitle_textSize_big"
             app:autoSizePresetSizes="@array/subtitle_text_sizes"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/userName"
-            style="@style/TextMedium"
+            style="@style/FontSmall.PrimaryDark.RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -59,9 +57,6 @@
             android:ellipsize="end"
             android:gravity="end"
             android:lines="1"
-            android:textSize="@dimen/title_textSize_big"
             tools:text="John Rambo" />
-
     </RelativeLayout>
-
 </android.support.v7.widget.CardView>

@@ -226,6 +226,10 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="Font24.Accent" parent="FontLarge.Accent">
+        <item name="android:textSize">24sp</item>
+    </style>
+
     <style name="Font20.White.RobotoMedium" parent="Font20.White">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>

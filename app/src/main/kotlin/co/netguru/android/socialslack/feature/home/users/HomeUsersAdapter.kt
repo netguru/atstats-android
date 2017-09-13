@@ -20,7 +20,7 @@ class HomeUsersAdapter(private val filterOption: UsersFilterOption) : RecyclerVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeUsersViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_users_home, parent, false)
         return HomeUsersViewHolder(view)
     }
 
