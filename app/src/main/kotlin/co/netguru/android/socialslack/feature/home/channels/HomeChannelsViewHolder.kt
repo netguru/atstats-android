@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_channel_home.view.*
 class HomeChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(channelStatistics: ChannelStatistics, filter: ChannelsFilterOption) {
-        itemView.channelNameTextView.text = channelStatistics.channelName
+        itemView.channelNameTextView.text = itemView.resources.getString(R.string.hashtag).plus(channelStatistics.channelName)
         itemView.channelMessagesTitleTextView.text = itemView.context.getText(R.string.messages)
         when (filter) {
             ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> {
