@@ -11,22 +11,30 @@
 
     <TextView
         android:id="@+id/loginWelcomeText"
-        style="@style/FontLarge.White"
+        style="@style/Font20.White.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_very_big"
+        android:layout_marginTop="@dimen/margin_default"
         android:text="@string/welcome_to" />
 
     <TextView
         android:id="@+id/loginAppNameText"
-        style="@style/FontLarge.White"
+        style="@style/Font20.White.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginWelcomeText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/fragment_login_app_name_margin_top"
         android:text="@string/app_name" />
+
+    <TextView
+        style="@style/FontSmall.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginAppNameText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/fragment_login_description" />
 
     <ImageButton
         android:id="@+id/loginSignInBtn"
@@ -39,12 +47,12 @@
 
     <TextView
         android:id="@+id/loginLogoText"
-        style="@style/FontSmall.Grey"
+        style="@style/FontSmall.ColorTextSecondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/margin_very_big"
+        android:layout_marginBottom="@dimen/margin_big"
         android:drawableEnd="@drawable/netguru_logo"
         android:drawablePadding="@dimen/fragment_login_logo_padding"
         android:text="@string/designed_with_love_by" />
