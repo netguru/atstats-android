@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -33,7 +34,9 @@
         android:clipToPadding="false"
         android:paddingBottom="@dimen/margin_big"
         android:paddingStart="@dimen/margin_default"
-        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop" />
+        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop"
+        android:orientation="horizontal"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
     <TextView
         style="@style/FontSmall.ColorTextSecondary.RobotoMedium"
@@ -53,7 +56,9 @@
         android:clipToPadding="false"
         android:paddingBottom="@dimen/margin_big"
         android:paddingStart="@dimen/margin_default"
-        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop" />
+        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop"
+        android:orientation="horizontal"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
     <TextView
         style="@style/FontSmall.ColorTextSecondary.RobotoMedium"
@@ -73,5 +78,7 @@
         android:clipToPadding="false"
         android:paddingBottom="@dimen/margin_big"
         android:paddingStart="@dimen/margin_default"
-        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop" />
+        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop"
+        android:orientation="horizontal"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 </LinearLayout>

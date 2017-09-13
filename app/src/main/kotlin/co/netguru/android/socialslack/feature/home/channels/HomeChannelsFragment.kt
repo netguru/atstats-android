@@ -2,7 +2,6 @@ package co.netguru.android.socialslack.feature.home.channels
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -54,7 +53,6 @@ class HomeChannelsFragment : MvpFragment<HomeChannelsContract.View, HomeChannels
         val channelsAdapter = HomeChannelsAdapter(channelsFilterOption)
         channelsAdapter.addChannels(channelList)
 
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = channelsAdapter
     }
 }
