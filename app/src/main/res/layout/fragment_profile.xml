@@ -53,7 +53,7 @@
 
                     <TextView
                         android:id="@+id/firstLastNameTextView"
-                        style="@style/FontMedium.White.Shadow"
+                        style="@style/FontMedium.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/user_status_selector"
@@ -62,7 +62,7 @@
 
                     <TextView
                         android:id="@+id/nameTextView"
-                        style="@style/FontSmall.White.Shadow"
+                        style="@style/FontSmall.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
