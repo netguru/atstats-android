@@ -20,7 +20,7 @@ class HomeChannelsAdapter(private val filter: ChannelsFilterOption) : RecyclerVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeChannelsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_channel, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_channel_home, parent, false)
         return HomeChannelsViewHolder(view)
     }
 

@@ -5,12 +5,12 @@ import android.view.View
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
-import kotlinx.android.synthetic.main.item_channel.view.*
+import kotlinx.android.synthetic.main.item_channel_home.view.*
 
 class HomeChannelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(channelStatistics: ChannelStatistics, filter: ChannelsFilterOption) {
-        itemView.channelNameTextView.text = channelStatistics.channelName
+        itemView.channelNameTextView.text = itemView.context.getString(R.string.channel_hashtag, channelStatistics.channelName)
         itemView.channelMessagesTitleTextView.text = itemView.context.getText(R.string.messages)
         when (filter) {
             ChannelsFilterOption.MOST_ACTIVE_CHANNEL -> {

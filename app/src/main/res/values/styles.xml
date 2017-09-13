@@ -154,6 +154,10 @@
         <item name="android:textColor">?attr/colorTextSecondary</item>
     </style>
 
+    <style name="FontSmall.ColorTextSecondary.RobotoMedium" parent="FontSmall.ColorTextSecondary">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="FontMedium.ColorTextPrimary" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
@@ -182,6 +186,10 @@
         <item name="android:textColor">@color/textBlack</item>
     </style>
 
+    <style name="FontSmall.PrimaryDark" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
+    </style>
+
     <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
@@ -202,8 +210,16 @@
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
+    <style name="FontSmall.PrimaryDark.RobotoMedium" parent="FontSmall.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="FontMedium.PrimaryDark.RobotoLight" parent="FontMedium.PrimaryDark">
         <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="FontMedium.PrimaryDark.RobotoMedium" parent="FontMedium.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="Font20.White" parent="FontLarge.White">
@@ -211,6 +227,10 @@
     </style>
 
     <style name="Font24.White" parent="FontLarge.White">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Font24.Accent" parent="FontLarge.Accent">
         <item name="android:textSize">24sp</item>
     </style>
 

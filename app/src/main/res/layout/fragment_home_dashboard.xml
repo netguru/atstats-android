@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/common_zero"
-            android:layout_marginTop="@dimen/dashboard_top_marginTop"
+            android:layout_marginTop="@dimen/margin_default"
             android:layout_weight="1.25"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
@@ -33,11 +33,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dashboard_welcometext_marginLeft"
+                android:layout_marginStart="@dimen/margin_default"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextMedium"
+                    style="@style/FontMedium.PrimaryDark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -45,22 +45,21 @@
 
                 <TextView
                     android:id="@+id/userNameTextView"
-                    style="@style/TextMedium.Highlight"
+                    style="@style/FontMedium.PrimaryDark.RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/mock_name" />
+                    tools:text="amarok" />
             </LinearLayout>
-
         </LinearLayout>
 
         <TextView
-            style="@style/TextMedium"
+            style="@style/FontSmall.PrimaryDark.RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/common_zero"
-            android:layout_marginStart="@dimen/home_marginLeft"
+            android:layout_marginStart="@dimen/margin_default"
             android:layout_weight="0.5"
-            android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
+            android:drawablePadding="@dimen/margin_small"
             android:drawableStart="?attr/statisticsDrawable"
             android:gravity="center"
             android:text="@string/statistics" />
@@ -71,8 +70,6 @@
             android:layout_weight="5"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/home_dashboard_grid_paddingBottom"
-            android:paddingEnd="@dimen/home_dashboard_grid_paddingRight"
-            android:paddingStart="@dimen/home_dashboard_grid_paddingLeft"
             app:columnCount="2"
             app:rowCount="3">
 
@@ -130,6 +127,5 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
         </android.support.v7.widget.GridLayout>
-
     </LinearLayout>
 </FrameLayout>
