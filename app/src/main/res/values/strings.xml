@@ -103,4 +103,5 @@
     // Search
     <string name="search_hint">Search users &amp; channels</string>
     <string name="search_title">Search users &amp; channels</string>
+    <string name="fragment_login_description">Lorem ipsum dolor sit amet \n consectetur adipiscing elit</string>
 </resources>
