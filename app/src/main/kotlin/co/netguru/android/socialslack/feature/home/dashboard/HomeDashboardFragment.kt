@@ -44,7 +44,7 @@ class HomeDashboardFragment :
         userNameTextView.text = getString(R.string.username, username)
         Glide.with(this)
                 .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
-                .apply(RequestOptions.centerCropTransform()
+                .apply(RequestOptions.centerInsideTransform()
                         .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(userAvatar)
     }

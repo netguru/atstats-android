@@ -218,6 +218,10 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="FontMedium.PrimaryDark.RobotoMedium" parent="FontMedium.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="Font20.White" parent="FontLarge.White">
         <item name="android:textSize">20sp</item>
     </style>
