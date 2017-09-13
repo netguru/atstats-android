@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/TextMedium"
+        style="@style/FontSmall.PrimaryDark.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/common_zero"
         android:layout_marginStart="@dimen/home_marginLeft"

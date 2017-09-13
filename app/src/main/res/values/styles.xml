@@ -182,6 +182,10 @@
         <item name="android:textColor">@color/textBlack</item>
     </style>
 
+    <style name="FontSmall.PrimaryDark" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
+    </style>
+
     <style name="FontMedium.PrimaryDark" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
@@ -199,6 +203,10 @@
     </style>
 
     <style name="FontSmall.TextBlack.RobotoMedium" parent="FontSmall.TextBlack">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FontSmall.PrimaryDark.RobotoMedium" parent="FontSmall.PrimaryDark">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
