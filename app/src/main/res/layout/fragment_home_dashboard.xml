@@ -3,7 +3,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:layout_width="match_parent"
@@ -49,16 +50,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/mock_name" />
+                    tools:text="amarok" />
             </LinearLayout>
-
         </LinearLayout>
 
         <TextView
-            style="@style/TextMedium"
+            style="@style/FontSmall.PrimaryDark.RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/common_zero"
-            android:layout_marginStart="@dimen/home_marginLeft"
+            android:layout_marginStart="@dimen/margin_default"
             android:layout_weight="0.5"
             android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
             android:drawableStart="?attr/statisticsDrawable"
@@ -71,8 +71,6 @@
             android:layout_weight="5"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/home_dashboard_grid_paddingBottom"
-            android:paddingEnd="@dimen/home_dashboard_grid_paddingRight"
-            android:paddingStart="@dimen/home_dashboard_grid_paddingLeft"
             app:columnCount="2"
             app:rowCount="3">
 
@@ -130,6 +128,5 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
         </android.support.v7.widget.GridLayout>
-
     </LinearLayout>
 </FrameLayout>

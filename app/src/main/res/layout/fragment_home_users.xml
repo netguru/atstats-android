@@ -8,23 +8,22 @@
         style="@style/FontSmall.PrimaryDark.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/common_zero"
-        android:layout_marginStart="@dimen/home_marginLeft"
+        android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="1.3"
-        android:drawableStart="?attr/usersActiveDrawable"
         android:drawablePadding="@dimen/home_screenTitle_drawablePadding"
+        android:drawableStart="?attr/usersActiveDrawable"
         android:gravity="center"
         android:text="@string/users" />
 
     <TextView
+        style="@style/FontSmall.ColorTextSecondary.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/common_zero"
-        android:layout_marginStart="@dimen/home_marginLeft"
+        android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="0.4"
         android:gravity="center"
         android:text="@string/person_we_write_most"
-        android:textAllCaps="true"
-        android:textColor="?attr/colorTextSecondary"
-        android:textStyle="bold" />
+        android:textAllCaps="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/usersRecycler1"
@@ -33,19 +32,18 @@
         android:layout_weight="3"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/home_screen_cardsRecycler_paddingBottom"
-        android:paddingStart="@dimen/home_marginLeft"
+        android:paddingStart="@dimen/margin_default"
         android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop" />
 
     <TextView
+        style="@style/FontSmall.ColorTextSecondary.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/common_zero"
-        android:layout_marginStart="@dimen/home_marginLeft"
+        android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="0.4"
         android:gravity="center"
         android:text="@string/person_writes_to_us_most"
-        android:textAllCaps="true"
-        android:textColor="?attr/colorTextSecondary"
-        android:textStyle="bold" />
+        android:textAllCaps="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/usersRecycler2"
@@ -54,19 +52,18 @@
         android:layout_weight="3"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/home_screen_cardsRecycler_paddingBottom"
-        android:paddingStart="@dimen/home_marginLeft"
+        android:paddingStart="@dimen/margin_default"
         android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop" />
 
     <TextView
+        style="@style/FontSmall.ColorTextSecondary.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/common_zero"
-        android:layout_marginStart="@dimen/home_marginLeft"
+        android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="0.4"
         android:gravity="center"
         android:text="@string/person_we_talk_most"
-        android:textAllCaps="true"
-        android:textColor="?attr/colorTextSecondary"
-        android:textStyle="bold" />
+        android:textAllCaps="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/usersRecycler3"
@@ -75,7 +72,6 @@
         android:layout_weight="3"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/home_screen_cardsRecycler_paddingBottom"
-        android:paddingStart="@dimen/home_marginLeft"
-        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop"/>
-
+        android:paddingStart="@dimen/margin_default"
+        android:paddingTop="@dimen/home_screen_cardsRecycler_paddingTop" />
 </LinearLayout>

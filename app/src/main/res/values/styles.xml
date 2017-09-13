@@ -154,6 +154,10 @@
         <item name="android:textColor">?attr/colorTextSecondary</item>
     </style>
 
+    <style name="FontSmall.ColorTextSecondary.RobotoMedium" parent="FontSmall.ColorTextSecondary">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="FontMedium.ColorTextPrimary" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
