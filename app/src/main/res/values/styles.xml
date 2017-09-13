@@ -134,24 +134,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="FontSmall.White.Shadow" parent="FontSmall.White">
-        <item name="android:shadowColor">@color/shadowBlack</item>
-        <item name="android:shadowRadius">@dimen/shadow_radius</item>
-        <item name="android:shadowDy">@dimen/shadow_dy</item>
-    </style>
-
     <style name="FontMedium.White" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="FontMedium.White.RobotoMedium" parent="FontMedium.White">
         <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="FontMedium.White.Shadow" parent="FontMedium.White">
-        <item name="android:shadowColor">@color/shadowBlack</item>
-        <item name="android:shadowRadius">@dimen/shadow_radius</item>
-        <item name="android:shadowDy">@dimen/shadow_dy</item>
     </style>
 
     <style name="FontLarge.White" parent="TextAppearance.AppCompat.Large">
