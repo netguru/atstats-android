@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/shareNameTextView"
-            style="@style/FontMedium.PrimaryDark.RobotoLight"
+            style="@style/FontMedium.PrimaryDark.RobotoMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/shareStatusTextView"
-            style="@style/FontMedium.Accent"
+            style="@style/FontMedium.Accent.RobotoMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
