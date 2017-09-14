@@ -45,8 +45,8 @@
     <dimen name="tabLayout_elevation">4dp</dimen>
 
     //Users list
-    <dimen name="users_item_height">100dp</dimen>
-    <dimen name="item_user_avatar_container_size">72dp</dimen>
+    <dimen name="users_item_height">80dp</dimen>
+    <dimen name="item_user_avatar_container_size">60dp</dimen>
     <dimen name="item_user_avatar_radius">8dp</dimen>
     <dimen name="item_user_avatar_margin">6dp</dimen>
 
