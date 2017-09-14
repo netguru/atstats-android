@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/shareConfirmationItemNameText"
-            style="@style/FontLarge.LightGrey"
+            style="@style/Font20.White"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/shareConfirmationThankYouText"
-        style="@style/Font15.TextGrey"
+        style="@style/FontSmall.Grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"

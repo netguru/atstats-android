@@ -25,7 +25,7 @@
     // Profile button
     <dimen name="gradient_button_corner_radius">30dp</dimen>
 
-    <dimen name="filter_view_height">60dp</dimen>
+    <dimen name="filter_view_height">50dp</dimen>
     <dimen name="divider_height">1dp</dimen>
     <dimen name="rounded_corners_radius">8dp</dimen>
     <dimen name="card_corner_radius_small">6dp</dimen>
@@ -45,8 +45,8 @@
     <dimen name="tabLayout_elevation">4dp</dimen>
 
     //Users list
-    <dimen name="users_item_height">100dp</dimen>
-    <dimen name="item_user_avatar_container_size">72dp</dimen>
+    <dimen name="users_item_height">80dp</dimen>
+    <dimen name="item_user_avatar_container_size">60dp</dimen>
     <dimen name="item_user_avatar_radius">8dp</dimen>
     <dimen name="item_user_avatar_margin">6dp</dimen>
 

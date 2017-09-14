@@ -10,7 +10,7 @@
         style="@style/FontMedium.PrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_default"
         android:gravity="center"
         tool:text="Osoba ktora najwiecej do nas pisze" />
@@ -30,18 +30,18 @@
 
             <TextView
                 android:id="@+id/totalMessagesTextView"
-                style="@style/FontLarge.ColorTextPrimary"
+                style="@style/Font20.PrimaryDark.RobotoMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tool:text="123 456" />
 
             <TextView
                 android:id="@+id/messagesDetailTextView"
-                style="@style/FontSmall.Capital.Grey"
+                style="@style/Font12.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAllCaps="true"
                 tool:text="Total messages" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +57,7 @@
 
                 <TextView
                     android:id="@+id/rankTextView"
-                    style="@style/FontLarge.Accent"
+                    style="@style/Font20.Accent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
@@ -69,17 +69,14 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/rankTextView"
                     android:src="?attr/rankProfileDrawable" />
-
             </RelativeLayout>
 
             <TextView
-                style="@style/FontSmall.Capital.Grey"
+                style="@style/Font12.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rank" />
-
+                android:text="@string/rank"
+                android:textAllCaps="true" />
         </LinearLayout>
-
     </RelativeLayout>
-
 </LinearLayout>

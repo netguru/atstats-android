@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/users_item_height"
-    android:padding="@dimen/margin_small">
+    android:paddingTop="@dimen/margin_small"
+    android:paddingEnd="@dimen/margin_small"
+    android:paddingStart="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_default">
 
     <TextView
         android:id="@+id/placeNrTextView"
@@ -48,12 +51,11 @@
 
         <TextView
             android:id="@+id/userRealNameTextView"
-            style="@style/FontMedium.PrimaryDark"
+            style="@style/FontMedium.PrimaryDark.RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            android:textStyle="bold"
             tools:text="Anna Rice" />
 
         <TextView
@@ -66,13 +68,12 @@
 
     <TextView
         android:id="@+id/messagesNrTextView"
-        style="@style/Font22.PrimaryDark"
+        style="@style/Font24.PrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:ellipsize="end"
         android:lines="1"
-        android:textStyle="bold"
         tools:text="325" />
 </RelativeLayout>
