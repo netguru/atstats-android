@@ -36,7 +36,7 @@
 
                 <TextView
                     android:id="@+id/channelNameTextView"
-                    style="@style/FontLarge.ColorTextPrimary"
+                    style="@style/Font20.PrimaryDark.RobotoMedium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -68,6 +68,7 @@
                     android:src="?attr/messagesIconDrawable" />
 
                 <TextView
+                    style="@style/Font11.Grey.RobotoMedium"
                     android:id="@+id/totalHereTitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,7 +81,7 @@
 
             <TextView
                 android:id="@+id/totalOfHereTextView"
-                style="@style/FontDisplay2.ColorTextPrimary"
+                style="@style/Font32.PrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/channelStatisticsRelativeLayout"
@@ -121,6 +122,7 @@
                             android:src="?attr/mentionsIconDrawable" />
 
                         <TextView
+                            style="@style/Font11.Grey.RobotoMedium"
                             android:id="@+id/yourMentionsTitleTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -133,7 +135,7 @@
 
                     <TextView
                         android:id="@+id/yourMentionsTextView"
-                        style="@style/FontDisplay2.ColorTextPrimary"
+                        style="@style/Font32.PrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mentionsTitleRelativeLayout"
@@ -170,6 +172,7 @@
                             android:src="?attr/hereIconDrawable" />
 
                         <TextView
+                            style="@style/Font11.Grey.RobotoMedium"
                             android:id="@+id/secondTotalHereTitleTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -182,7 +185,7 @@
 
                     <TextView
                         android:id="@+id/secondTotalHereTextView"
-                        style="@style/FontDisplay2.ColorTextPrimary"
+                        style="@style/Font32.PrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/secondHereTitleRelativeLayout"
