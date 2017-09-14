@@ -182,6 +182,10 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Font12.Grey.RobotoMedium" parent="Font12.Grey">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="FontSmall.TextBlack" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/textBlack</item>
     </style>
