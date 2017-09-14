@@ -17,7 +17,6 @@
 
     <color name="grey">#9B9AA5</color>
     <color name="textGrey">#717179</color>
-    <color name="textBlack">#FD220000</color>
     <color name="lightGrey">#E8E8EE</color>
     <color name="materialDivider">#1f000000</color>
 
@@ -30,8 +29,6 @@
     <color name="orange">#FF722E</color>
     <color name="violetGrey">#ABA7BC</color>
     <color name="violetGreyWithAlpha">#E6ABA7BC</color>
-
-    <color name="tabBackground">@color/white</color>
 
     <color name="profile_background">#EFF1F5</color>
     <color name="activeGreen">#3EB890</color>
