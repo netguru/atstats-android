@@ -57,6 +57,7 @@ class SearchActivity : CustomThemeActivity() {
 
     private fun refreshSearchFragmentData(query: String) {
         searchPagerAdapter.refreshFragment(searchTabLayout.selectedTabPosition, query)
+        searchView.setQuery(query, false)
     }
 
     private fun initializeToolbar() {
