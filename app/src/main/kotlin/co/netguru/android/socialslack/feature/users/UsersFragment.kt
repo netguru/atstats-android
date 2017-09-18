@@ -68,6 +68,10 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
         adapter.addUsers(usersList)
     }
 
+    override fun showError() {
+        Snackbar.make(usersRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+    }
+
     override fun showLoadingView() {
         usersRecyclerView.visibility = View.GONE
         usersLoadingView.visibility = View.VISIBLE
