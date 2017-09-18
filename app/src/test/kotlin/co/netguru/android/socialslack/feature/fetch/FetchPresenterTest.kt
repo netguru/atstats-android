@@ -106,7 +106,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
 
         // then
-        verify(view).showErrorMessage()
+        verify(view).showError()
     }
 
     @Test
@@ -118,7 +118,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
 
         // then
-        verify(view).showErrorMessage()
+        verify(view).showError()
     }
 
     @Test
@@ -130,7 +130,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
 
         // then
-        verify(view).showErrorMessage()
+        verify(view).showError()
     }
 
     @Test
@@ -142,7 +142,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
 
         // then
-        verify(view).showErrorMessage()
+        verify(view).showError()
     }
 
     @Test
@@ -154,7 +154,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
 
         // then
-        verify(view).showErrorMessage()
+        verify(view).showError()
     }
 
     @Test
@@ -166,7 +166,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
 
         // then
-        verify(view).showErrorMessage()
+        verify(view).showError()
     }
 
     @After

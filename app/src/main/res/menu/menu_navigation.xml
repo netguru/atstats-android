@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_home"
-        android:icon="@drawable/home_inactive"
+        android:icon="@drawable/home_menu"
         android:title="@string/menu_home" />
     <item
         android:id="@+id/menu_channels"
-        android:icon="@drawable/channels_inactive"
+        android:icon="@drawable/channels_menu"
         android:title="@string/menu_channels" />
 
     <item
         android:id="@+id/menu_users"
-        android:icon="@drawable/users_inactive"
+        android:icon="@drawable/users_menu"
         android:title="@string/menu_users" />
 
     <item
         android:id="@+id/menu_profile"
-        android:icon="@drawable/profile_inactive"
+        android:icon="@drawable/profile_menu"
         android:title="@string/menu_profile" />
 </menu>

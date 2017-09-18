@@ -11,8 +11,12 @@ interface FetchContract {
 
         fun showMainActivity()
 
-        fun showErrorMessage()
+        fun showError()
+
+        fun showLoadingView()
     }
 
-    interface Presenter: CustomThemeContract.Presenter<View>
+    interface Presenter: CustomThemeContract.Presenter<View> {
+        fun onRefreshButtonClick()
+    }
 }

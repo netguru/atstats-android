@@ -33,18 +33,18 @@
         <item name="profileMessagesDrawable">@drawable/profile_messages_violet</item>
         <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_violet</item>
         <item name="profileReadMsgDrawable">@drawable/profile_read_msg_violet</item>
-        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet
-        </item>
+        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet</item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_violet</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_orange</item>
         <item name="slackIconDrawable">@drawable/netguru_logo_violet</item>
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
         <item name="statisticsDrawable">@drawable/statistics_orange</item>
         <item name="userPlaceholderDrawable">@drawable/user_placeholder_violet</item>
-        <item name="usersActiveDrawable">@drawable/users_active_violet</item>
-        <item name="usersDrawable">@drawable/users_orange</item>
+        <item name="usersActiveDrawable">@drawable/users_orange</item>
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_violet</item>
         <item name="searchToolbarBackground">@drawable/search_toolbar_background_colorful</item>
+        <item name="loadingEmptyBackground">@drawable/loading_empty_background_violet</item>
+        <item name="loadingEmptyDrawable">@drawable/loading_empty_violet</item>
     </style>
 
     <style name="AppThemeNetguru" parent="Theme.AppCompat.Light.NoActionBar">
@@ -79,8 +79,7 @@
         <item name="profileMessagesDrawable">@drawable/profile_messages_green</item>
         <item name="profilePrivMsgDrawable">@drawable/profile_priv_msg_green</item>
         <item name="profileReadMsgDrawable">@drawable/profile_read_msg_green</item>
-        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green
-        </item>
+        <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green</item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_green</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_green</item>
         <item name="slackIconDrawable">@drawable/netguru_logo_green</item>
@@ -88,9 +87,10 @@
         <item name="statisticsDrawable">@drawable/statistics_green</item>
         <item name="usersActiveDrawable">@drawable/users_active_green</item>
         <item name="userPlaceholderDrawable">@drawable/user_placeholder_green</item>
-        <item name="usersDrawable">@drawable/users_active_green</item>
         <item name="usersTitleBarDrawable">@drawable/users_title_bar_green</item>
         <item name="searchToolbarBackground">@drawable/search_toolbar_background_netguru</item>
+        <item name="loadingEmptyBackground">@drawable/loading_empty_background_green</item>
+        <item name="loadingEmptyDrawable">@drawable/loading_empty_green</item>
     </style>
 
     <style name="WindowAnimationTransition">
@@ -148,6 +148,10 @@
 
     <style name="Font24.White" parent="FontLarge.White">
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="FontMedium.Black" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="FontSmall.Grey" parent="TextAppearance.AppCompat.Small">
@@ -239,6 +243,10 @@
     </style>
 
     <style name="Font20.White.RobotoMedium" parent="Font20.White">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FontMedium.Black.RobotoMedium" parent="FontMedium.Black">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 

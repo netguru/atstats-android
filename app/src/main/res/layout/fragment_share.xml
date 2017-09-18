@@ -125,7 +125,7 @@
 
             <include
                 android:id="@+id/shareLastUser"
-                layout="@layout/item_users_share" />
+                layout="@layout/item_users" />
         </FrameLayout>
 
         <LinearLayout

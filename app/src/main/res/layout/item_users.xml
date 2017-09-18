@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/users_item_height"
-    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_default"
     android:paddingEnd="@dimen/margin_small"
     android:paddingStart="@dimen/margin_small"
-    android:paddingBottom="@dimen/margin_default">
+    android:paddingTop="@dimen/margin_small">
 
     <TextView
         android:id="@+id/placeNrTextView"
@@ -35,9 +35,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:src="?attr/medalDrawable" />
+            android:layout_marginBottom="@dimen/margin_very_small"
+            android:layout_marginEnd="@dimen/margin_very_small"
+            android:src="?attr/medalDrawable"
+            android:visibility="gone" />
     </FrameLayout>
-
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -63,6 +65,8 @@
             style="@style/FontSmall.ColorTextPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
             tools:text="\@anna.rice" />
     </LinearLayout>
 

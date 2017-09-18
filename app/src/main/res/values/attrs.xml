@@ -34,7 +34,8 @@
     <attr name="statisticsDrawable" format="reference" />
     <attr name="userPlaceholderDrawable" format="reference" />
     <attr name="usersActiveDrawable" format="reference" />
-    <attr name="usersDrawable" format="reference" />
     <attr name="usersTitleBarDrawable" format="reference" />
     <attr name="searchToolbarBackground" format="reference" />
+    <attr name="loadingEmptyBackground" format="reference" />
+    <attr name="loadingEmptyDrawable" format="reference" />
 </resources>

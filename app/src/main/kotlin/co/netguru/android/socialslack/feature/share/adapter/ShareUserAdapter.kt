@@ -10,7 +10,7 @@ import co.netguru.android.socialslack.feature.users.adapter.UsersViewHolder
 class ShareUserAdapter(private val usersList: List<UserStatistic>, private val filterOption: UsersFilterOption)
     : RecyclerView.Adapter<UsersViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(parent, R.layout.item_users_share)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(parent, R.layout.item_users)
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bind(usersList[position], filterOption)

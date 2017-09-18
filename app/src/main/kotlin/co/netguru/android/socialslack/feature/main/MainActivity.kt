@@ -116,6 +116,7 @@ class MainActivity : CustomThemeActivity() {
 
     private fun initializeBottomNavigationView() {
         mainNavigationView.setOnNavigationItemSelectedListener {
+            showMainActionBar()
             when (it.itemId) {
                 R.id.menu_home -> replaceFragmentInMainContainer(HomeFragment.newInstance())
                 R.id.menu_channels -> replaceFragmentInMainContainer(ChannelsRootFragment.newInstance())
