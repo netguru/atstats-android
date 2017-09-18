@@ -62,9 +62,9 @@ class UsersPresenter @Inject constructor(private val usersController: UsersContr
                 .subscribeBy(
                         onSuccess = { (userList, _) ->
                             view.showUsersList(userList)
-                            view.showError()
                         },
                         onError = {
+                            view.showError()
                             Timber.e(it, "Error while getting users list")
                         })
     }

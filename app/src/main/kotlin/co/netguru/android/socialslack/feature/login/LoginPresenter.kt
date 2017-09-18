@@ -32,13 +32,13 @@ class LoginPresenter @Inject constructor(private val sessionController: SessionC
                 .subscribeBy(
                         onSuccess = {
                             view.showOAuthBrowser(it)
-                            view.disableLoginButton()
                         },
                         onError = { handleError(it, "Error while getting OAuth URI") }
                 )
     }
 
     override fun onAppAuthorizeCodeReceived(uri: Uri) {
+        view.disableLoginButton()
         compositeDisposable += sessionController.requestNewToken(getCodeFromUri(uri))
                 .flatMapCompletable(sessionController::saveToken)
                 .concatWith(sessionController.checkToken().toCompletable())
