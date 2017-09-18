@@ -29,6 +29,20 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
 
     override fun attachView(view: FetchContract.View) {
         super.attachView(view)
+        fetchAndStoreStatistics()
+    }
+
+    override fun detachView(retainInstance: Boolean) {
+        super.detachView(retainInstance)
+        compositeDisposable.clear()
+    }
+
+    override fun onRefreshButtonClick() {
+        view.showLoadingView()
+        fetchAndStoreStatistics()
+    }
+
+    private fun fetchAndStoreStatistics() {
         compositeDisposable += fetchAndStoreChannelsStatistics()
                 .mergeWith(fetchAndStoreOwnUserInfo())
                 .mergeWith(fetchAndStoreDirectChannelsStatistics())
@@ -39,14 +53,9 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
                 )
     }
 
-    override fun detachView(retainInstance: Boolean) {
-        super.detachView(retainInstance)
-        compositeDisposable.clear()
-    }
-
     private fun handleError(throwable: Throwable, message: String) {
         Timber.e(throwable, message)
-        view.showErrorMessage()
+        view.showError()
     }
 
     private fun fetchAndStoreOwnUserInfo() = sessionController.getUserSession()

@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            app:itemIconTint="@drawable/bottom_navigation_color_selector"
             app:menu="@menu/menu_navigation" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

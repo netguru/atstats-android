@@ -10,6 +10,8 @@
     <dimen name="fragment_login_logo_padding">12dp</dimen>
     <dimen name="fragment_login_text_logo_margin_bottom">32dp</dimen>
 
+    <dimen name="fetch_activity_margin_top">64dp</dimen>
+
     <dimen name="main_toolbar_icon_padding">32dp</dimen>
 
     <dimen name="splash_netguru_logo_bottom_margin">80dp</dimen>
@@ -46,14 +48,14 @@
 
     //Users list
     <dimen name="users_item_height">80dp</dimen>
-    <dimen name="item_user_avatar_container_size">60dp</dimen>
+    <dimen name="item_user_avatar_container_size">68dp</dimen>
     <dimen name="item_user_avatar_radius">8dp</dimen>
-    <dimen name="item_user_avatar_margin">6dp</dimen>
+    <dimen name="item_user_avatar_margin">8dp</dimen>
 
     //Users profile
     <dimen name="share_confirmation_text_margin_top">80dp</dimen>
     <dimen name="item_users_profile_width">328dp</dimen>
-    <dimen name="users_profile_image_height">170dp</dimen>
+    <dimen name="users_profile_image_height">180dp</dimen>
     <dimen name="user_status_size">8dp</dimen>
     <dimen name="user_status_inactive_stroke_size">1dp</dimen>
     <dimen name="users_profile_small_margin">4dp</dimen>
@@ -65,10 +67,6 @@
     <dimen name="profile_toggle_switch_width">160dp</dimen>
     <dimen name="profile_toggle_switch_stroke_border">1dp</dimen>
     <dimen name="profile_card_elevation">6dp</dimen>
-
-    //Users share
-    <dimen name="users_share_item_height">70dp</dimen>
-    <dimen name="item_user_share_avatar_container_size">60dp</dimen>
 
     //Search
     <dimen name="search_tab_height">64dp</dimen>
