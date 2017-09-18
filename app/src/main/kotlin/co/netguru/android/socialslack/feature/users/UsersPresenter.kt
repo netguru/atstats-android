@@ -64,6 +64,7 @@ class UsersPresenter @Inject constructor(private val usersController: UsersContr
                             view.showUsersList(userList)
                         },
                         onError = {
+                            view.showError()
                             Timber.e(it, "Error while getting users list")
                         })
     }

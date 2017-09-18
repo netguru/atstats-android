@@ -63,11 +63,12 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun `should disable login button when getting uri successful`() {
+    fun `should disable login button when requesting new token`() {
         //given
-        whenever(sessionController.getOauthAuthorizeUri()).thenReturn(Single.just(URI))
+        whenever(URI.getQueryParameter(anyString())).thenReturn("")
+        whenever(sessionController.requestNewToken(anyString())).thenReturn(Single.just(TOKEN))
         //when
-        loginPresenter.loginButtonClicked()
+        loginPresenter.onAppAuthorizeCodeReceived(URI)
         //then
         verify(view).disableLoginButton()
     }

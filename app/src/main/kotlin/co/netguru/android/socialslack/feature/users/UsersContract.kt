@@ -10,6 +10,8 @@ interface UsersContract {
     interface View : MvpView {
         fun showUsersList(usersList: List<UserStatistic>)
 
+        fun showError()
+
         fun showLoadingView()
 
         fun hideLoadingView()
