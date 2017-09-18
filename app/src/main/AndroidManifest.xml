@@ -14,24 +14,32 @@
 
         <activity
             android:name=".feature.splash.SplashActivity"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait"
             android:theme="@style/SplashThemeColourful">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".feature.fetch.FetchActivity"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".feature.main.MainActivity"
             android:launchMode="singleTop"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".feature.login.LoginActivity"
             android:launchMode="singleTask"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TranslucentStatus">
             <intent-filter>
@@ -48,13 +56,15 @@
 
         <activity
             android:name=".feature.filter.FilterActivity"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".feature.search.SearchActivity"
             android:launchMode="singleTop"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait">
-            
+
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
