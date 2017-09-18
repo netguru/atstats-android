@@ -95,6 +95,7 @@
     <string name="error_changing_theme">"Error while changing the theme"</string>
     <string name="error_getting_team_info">"Error while getting team's info"</string>
     <string name="error_login_out">"Error while login out"</string>
+    <string name="error_send_feedback">Error while sending feedback. Email client not found.</string>
     <string name="first_name_last_name">%s %s</string>
     <string name="username">\@%s</string>
     <string name="slack_domain">%s.slack.com</string>

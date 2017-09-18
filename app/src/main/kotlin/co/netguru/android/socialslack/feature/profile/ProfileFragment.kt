@@ -1,5 +1,6 @@
 package co.netguru.android.socialslack.feature.profile
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -22,6 +23,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 import android.content.Intent
 import android.net.Uri
+import timber.log.Timber
 
 
 class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presenter>(), ProfileContract.View {
@@ -101,7 +103,12 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
                 .putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.feedback_email)))
                 .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_email_subject))
 
-        activity.startActivity(Intent.createChooser(intent, getString(R.string.send_us_feedback)))
+        try {
+            activity.startActivity(Intent.createChooser(intent, getString(R.string.send_us_feedback)))
+        } catch (ex: ActivityNotFoundException) {
+            Timber.e(ex, "There is no email client")
+            Snackbar.make(sendUsFeedBackButton, R.string.error_send_feedback, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun initView() {
