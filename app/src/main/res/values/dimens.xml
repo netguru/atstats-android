@@ -36,7 +36,6 @@
     <dimen name="card_padding">6dp</dimen>
     <dimen name="card_subtitle_margin">-6dp</dimen>
     <dimen name="user_avatar_size">64dp</dimen>
-    <dimen name="channel_icon_size">24dp</dimen>
     <dimen name="card_width">220dp</dimen>
     <dimen name="home_screen_cardsRecycler_paddingTop">12dp</dimen>
     <dimen name="home_screen_item_padding">12dp</dimen>
