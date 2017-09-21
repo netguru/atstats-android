@@ -36,6 +36,7 @@
         <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_violet</item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_violet</item>
         <item name="userProfileSentPrivsDrawable">@drawable/user_profile_sent_privs_violet</item>
+        <item name="userProfileReceivedPrivsDrawable">@drawable/user_profile_received_priv_msgs_violet</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_orange</item>
         <item name="slackIconDrawable">@drawable/netguru_logo_violet</item>
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_violet</item>
@@ -83,6 +84,7 @@
         <item name="profileReceivedPrivMsgsDrawable">@drawable/profile_received_priv_msgs_green</item>
         <item name="profileSentPrivsDrawable">@drawable/profile_sent_privs_green</item>
         <item name="userProfileSentPrivsDrawable">@drawable/user_profile_sent_privs_green</item>
+        <item name="userProfileReceivedPrivsDrawable">@drawable/user_profile_received_priv_msgs_green</item>
         <item name="rankProfileDrawable">@drawable/rank_profile_green</item>
         <item name="slackIconDrawable">@drawable/netguru_logo_green</item>
         <item name="splashScreenBackgroundDrawable">@drawable/splash_screen_background_green</item>
