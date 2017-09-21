@@ -24,21 +24,33 @@
             android:layout_marginTop="@dimen/fetch_activity_margin_top"
             android:text="@string/fragment_fetch_description" />
 
-        <ImageView
-            android:id="@+id/emptyDrawable"
+        <FrameLayout
+            android:id="@+id/emptyView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fetchDescriptionTextView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/fetch_activity_margin_top"
-            android:src="?attr/loadingEmptyDrawable" />
+            android:layout_marginTop="@dimen/fetch_activity_margin_top">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="?attr/loadingEmptyDrawable" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+        </FrameLayout>
 
         <Button
             android:id="@+id/fetchRefreshButton"
             style="@style/FontMedium.Black.RobotoMedium"
             android:layout_width="match_parent"
             android:layout_height="@dimen/action_button_height"
-            android:layout_below="@id/emptyDrawable"
+            android:layout_below="@id/emptyView"
             android:layout_marginEnd="@dimen/margin_very_big"
             android:layout_marginStart="@dimen/margin_very_big"
             android:layout_marginTop="@dimen/fetch_activity_margin_top"
@@ -59,12 +71,4 @@
             android:drawablePadding="@dimen/fragment_login_logo_padding"
             android:text="@string/designed_with_love_by" />
     </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_default"
-        android:indeterminate="true" />
 </FrameLayout>
