@@ -65,6 +65,7 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
 
     private fun fetchAndStoreChannelsStatistics() = channelsController.getChannelsList()
             .flattenAsFlowable { it.filter { it.isCurrentUserMember } }
+            .filter { !it.isArchived }
             .flatMapCompletable { (id, name) ->
                 sessionController.getUserSession().flatMapCompletable {
                     channelsController.countChannelStatistics(id, name, it.userId)
@@ -76,6 +77,7 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
 
     private fun fetchAndStoreDirectChannelsStatistics() = directChannelsController.getDirectChannelsList()
             .flattenAsFlowable { it }
+            .filter { !it.isUserDeleted }
             .flatMapCompletable {
                 directChannelsController.countDirectChannelStatistics(it.id, it.userId)
                         .toCompletable()

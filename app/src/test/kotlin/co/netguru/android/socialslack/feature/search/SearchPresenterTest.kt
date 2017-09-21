@@ -5,6 +5,8 @@ import co.netguru.android.socialslack.TestHelper.anyObject
 import co.netguru.android.socialslack.TestHelper.whenever
 import co.netguru.android.socialslack.data.channels.ChannelsDao
 import co.netguru.android.socialslack.data.user.UsersController
+import co.netguru.android.socialslack.data.user.model.User
+import co.netguru.android.socialslack.data.user.model.UserProfile
 import co.netguru.android.socialslack.feature.search.adapter.SearchItemType
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -17,6 +19,12 @@ import org.mockito.Mockito.anyString
 
 @Suppress("IllegalIdentifier")
 class SearchPresenterTest {
+
+    companion object {
+        private val USER_PROFILE = UserProfile("", "", "", "", "", "", "", "", "", "")
+        private val USER = User("1", "User", "User", "User", "User", false, USER_PROFILE)
+        private val DELETED_USER = User("1", "User", "User", "User", "User", true, USER_PROFILE)
+    }
 
     @Rule
     @JvmField
@@ -52,6 +60,16 @@ class SearchPresenterTest {
         searchPresenter.searchItemReceived(SearchItemType.USERS)
         //then
         verify(view).showError()
+    }
+
+    @Test
+    fun `should skip deleted users when init users search view`() {
+        //given
+        whenever(usersController.getUsersList()).thenReturn(Single.just(listOf(USER, DELETED_USER)))
+        //when
+        searchPresenter.searchItemReceived(SearchItemType.USERS)
+        //then
+        verify(view).initUsersSearchView(listOf(USER))
     }
 
     @Test
