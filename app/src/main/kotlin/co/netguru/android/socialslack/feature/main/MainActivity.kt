@@ -115,6 +115,8 @@ class MainActivity : CustomThemeActivity() {
     }
 
     private fun initializeBottomNavigationView() {
+        // Workaround to prevent selecting wrong menu option when activity was killed in background
+        mainNavigationView.isSaveEnabled = false
         mainNavigationView.setOnNavigationItemSelectedListener {
             showMainActionBar()
             when (it.itemId) {

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
-    private val homePagerAdapter by lazy { HomeAdapter(fragmentManager) }
+    private val homePagerAdapter by lazy { HomeAdapter(childFragmentManager) }
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.menu_fragment_search, menu)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPager()
     }
