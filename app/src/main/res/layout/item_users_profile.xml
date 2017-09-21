@@ -27,167 +27,172 @@
             app:cardCornerRadius="@dimen/card_corner_radius_small"
             app:cardElevation="@dimen/card_elevation">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/userAvatar"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/users_profile_image_height"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/users_profile_image_height"
-                        android:background="@drawable/gradient_shape_users" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_margin="@dimen/margin_default"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/userFirstLastNameTextView"
-                            style="@style/FontMedium.White"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableEnd="@drawable/user_status_selector"
-                            android:drawablePadding="@dimen/margin_small"
-                            android:ellipsize="end"
-                            android:gravity="end"
-                            android:lines="1"
-                            android:textStyle="bold"
-                            tools:text="Anna Rices" />
-
-                        <TextView
-                            android:id="@+id/usernameTextView"
-                            style="@style/FontSmall.White.RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:gravity="end"
-                            android:lines="1"
-                            tools:text="\@anna.rices" />
-                    </LinearLayout>
-                </FrameLayout>
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_small"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginTop="@dimen/margin_default"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/userAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/users_profile_image_height"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/users_profile_image_height"
+                            android:background="@drawable/gradient_shape_users" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="@dimen/margin_default"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/userFirstLastNameTextView"
+                                style="@style/FontMedium.White"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableEnd="@drawable/user_status_selector"
+                                android:drawablePadding="@dimen/margin_small"
+                                android:ellipsize="end"
+                                android:gravity="end"
+                                android:lines="1"
+                                android:textStyle="bold"
+                                tools:text="Anna Rices" />
+
+                            <TextView
+                                android:id="@+id/usernameTextView"
+                                style="@style/FontSmall.White.RobotoMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="end"
+                                android:lines="1"
+                                tools:text="\@anna.rices" />
+                        </LinearLayout>
+                    </FrameLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_small"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
-                        <TextView
-                            style="@style/Font11.Grey.RobotoMedium"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="@dimen/users_profile_small_margin"
-                            android:drawableStart="?attr/profileSentPrivsDrawable"
-                            android:gravity="center"
-                            android:lines="1"
-                            android:text="@string/private_messages"
-                            android:textAllCaps="true" />
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/totalMsgTextView"
-                            style="@style/Font26.PrimaryDark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            tools:text="340" />
+                            <TextView
+                                style="@style/Font11.Grey.RobotoMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="@dimen/users_profile_small_margin"
+                                android:drawableStart="?attr/profileSentPrivsDrawable"
+                                android:gravity="center"
+                                android:lines="1"
+                                android:text="@string/private_messages"
+                                android:textAllCaps="true" />
 
-                        <TextView
-                            android:id="@+id/sentRecvdMsgTextView"
-                            style="@style/FontSmall.ColorTextPrimary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            tools:text="40 / 300" />
+                            <TextView
+                                android:id="@+id/totalMsgTextView"
+                                style="@style/Font26.PrimaryDark"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                tools:text="340" />
 
-                        <TextView
-                            style="@style/Font12.Grey.RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/margin_very_small"
-                            android:lines="1"
-                            android:text="@string/total_sent_received" />
+                            <TextView
+                                android:id="@+id/sentRecvdMsgTextView"
+                                style="@style/FontSmall.ColorTextPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                tools:text="40 / 300" />
 
+                            <TextView
+                                style="@style/Font12.Grey.RobotoMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/margin_very_small"
+                                android:lines="1"
+                                android:text="@string/total_sent_received" />
+
+                        </LinearLayout>
+
+                        <include layout="@layout/divider_horizontal" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/Font11.Grey.RobotoMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="@dimen/users_profile_small_margin"
+                                android:drawableStart="?attr/profileReceivedPrivMsgsDrawable"
+                                android:gravity="center"
+                                android:lines="1"
+                                android:text="@string/private_messages"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/msgStreakTextView"
+                                style="@style/Font32.PrimaryDark"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                tools:text="17" />
+
+                            <TextView
+                                style="@style/Font12.Grey.RobotoMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/margin_very_small"
+                                android:lines="1"
+                                android:text="@string/days_streak" />
+
+                        </RelativeLayout>
                     </LinearLayout>
 
-                    <include layout="@layout/divider_horizontal" />
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/margin_small"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/Font11.Grey.RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="@dimen/users_profile_small_margin"
-                            android:drawableStart="?attr/profileReceivedPrivMsgsDrawable"
-                            android:gravity="center"
-                            android:lines="1"
-                            android:text="@string/private_messages"
-                            android:textAllCaps="true" />
-
-                        <TextView
-                            android:id="@+id/msgStreakTextView"
-                            style="@style/Font32.PrimaryDark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            tools:text="17" />
-
-                        <TextView
-                            style="@style/Font12.Grey.RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/margin_very_small"
-                            android:lines="1"
-                            android:text="@string/days_streak" />
-
-                    </RelativeLayout>
+                    <Button
+                        android:id="@+id/shareSendButton"
+                        style="@style/ActionButtonTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/action_button_height"
+                        android:layout_marginBottom="@dimen/margin_default"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:text="@string/share_with_user" />
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/shareSendButton"
-                    style="@style/ActionButtonTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/action_button_height"
-                    android:layout_marginBottom="@dimen/margin_default"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginTop="@dimen/margin_default"
-                    android:text="@string/share_with_user" />
-            </LinearLayout>
+            </ScrollView>
         </android.support.v7.widget.CardView>
     </FrameLayout>
 </LinearLayout>
