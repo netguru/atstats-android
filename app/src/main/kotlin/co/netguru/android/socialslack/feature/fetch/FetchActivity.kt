@@ -29,13 +29,13 @@ class FetchActivity : MvpCustomThemeActivity<FetchContract.View, FetchContract.P
 
     override fun showLoadingView() {
         progressBar.visibility = View.VISIBLE
-        fetchRefreshButton.visibility = View.VISIBLE
+        fetchRefreshButton.visibility = View.GONE
         fetchDescriptionTextView.setText(R.string.fragment_fetch_description)
     }
 
     override fun showError() {
         progressBar.visibility = View.GONE
-        fetchRefreshButton.visibility = View.GONE
+        fetchRefreshButton.visibility = View.VISIBLE
         fetchDescriptionTextView.setText(R.string.fragment_fetch_error)
     }
 }
