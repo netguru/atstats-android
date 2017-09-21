@@ -27,10 +27,10 @@ class DirectChannelsControllerTest {
         private const val USER_WE_TALK_THE_MOST = "user3"
         private const val RANDOM_USER = "user4"
         //
-        private val DIRECT_CHANNEL_1 = DirectChannel("1", USER_WRITES_TO_US_MOST, CREATED)
-        private val DIRECT_CHANNEL_2 = DirectChannel("2", USER_WE_WRITE_MOST, CREATED)
-        private val DIRECT_CHANNEL_3 = DirectChannel("3", USER_WE_TALK_THE_MOST, CREATED)
-        private val DIRECT_CHANNEL_4 = DirectChannel("4", RANDOM_USER, CREATED)
+        private val DIRECT_CHANNEL_1 = DirectChannel("1", USER_WRITES_TO_US_MOST, CREATED, false)
+        private val DIRECT_CHANNEL_2 = DirectChannel("2", USER_WE_WRITE_MOST, CREATED, false)
+        private val DIRECT_CHANNEL_3 = DirectChannel("3", USER_WE_TALK_THE_MOST, CREATED, false)
+        private val DIRECT_CHANNEL_4 = DirectChannel("4", RANDOM_USER, CREATED, false)
         //
         private val MESSAGE_1 = DirectMessage(USER_WE_TALK_THE_MOST, "", LATEST)
         private val MESSAGE_2 = DirectMessage(USER, "", LATEST)

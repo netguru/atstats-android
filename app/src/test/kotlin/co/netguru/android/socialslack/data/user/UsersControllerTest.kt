@@ -19,13 +19,13 @@ class UsersControllerTest {
 
     companion object {
         val USER_PROFILE = UserProfile("", "", "", "", "", "", "", "", "", "")
-        val USER = User("1", "User", "User", "User", "User", USER_PROFILE)
+        val USER = User("1", "User", "User", "User", "User", false, USER_PROFILE)
         val USER_RESPONSE = UserResponse(true, USER)
         val USER_PROFILE_2 = UserProfile("", "", "", "", "", "", "", "", "", "")
-        val USER_2 = User("2", "User2", "User2", "User", "User", USER_PROFILE_2)
+        val USER_2 = User("2", "User2", "User2", "User", "User", false, USER_PROFILE_2)
         val USER_RESPONSE_2 = UserResponse(true, USER_2)
         val USER_PROFILE_3 = UserProfile("", "", "", "", "", "", "", "", "", "")
-        val USER_3 = User("3", "User3", "User3", "User", "User", USER_PROFILE_3)
+        val USER_3 = User("3", "User3", "User3", "User", "User", false, USER_PROFILE_3)
         val USER_RESPONSE_3 = UserResponse(true, USER_3)
 
         val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics("ch1", "1", 1, 1, 0)

@@ -39,7 +39,7 @@ class FetchPresenterTest {
         private val USER_SESSION = UserSession(EMPTY_STRING, EMPTY_STRING)
 
         private val USER_PROFILE = UserProfile(USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, USER_ID)
-        private val USER = User(USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, profile = USER_PROFILE)
+        private val USER = User(USER_ID, USER_ID, USER_ID, USER_ID, USER_ID, false, profile = USER_PROFILE)
 
         private val CHANNEL1 = Channel("1", "", "", false, false, 1)
         private val CHANNEL2 = Channel("2", "", "", false, false, 1)
@@ -47,10 +47,10 @@ class FetchPresenterTest {
         private val CHANNEL4 = Channel("4", "", "", false, false, 1)
         private val CHANNEL5 = Channel("5", "", "", false, false, 1)
 
-        private val DIRECT_CHANNEL_1 = DirectChannel("1", USER_ID, CREATED)
-        private val DIRECT_CHANNEL_2 = DirectChannel("2", USER_ID, CREATED)
-        private val DIRECT_CHANNEL_3 = DirectChannel("3", USER_ID, CREATED)
-        private val DIRECT_CHANNEL_4 = DirectChannel("4", USER_ID, CREATED)
+        private val DIRECT_CHANNEL_1 = DirectChannel("1", USER_ID, CREATED, false)
+        private val DIRECT_CHANNEL_2 = DirectChannel("2", USER_ID, CREATED, false)
+        private val DIRECT_CHANNEL_3 = DirectChannel("3", USER_ID, CREATED, false)
+        private val DIRECT_CHANNEL_4 = DirectChannel("4", USER_ID, CREATED, false)
 
         private val CHANNEL_STATISTICS1 = ChannelStatistics("1", "", 10, 5, 5, 5)
         private val DIRECT_CHANNEL_STATISTICS = DirectChannelStatistics(CHANNEL_ID, USER_ID, 1, 1, 0)
