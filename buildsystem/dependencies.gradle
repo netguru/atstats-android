@@ -2,27 +2,14 @@ ext {
     // Versions
     supportLibraryVersion = '26.0.1'
     roomVersion = "1.0.0-alpha5"
-    multiDexVersion = '1.0.1'
-    constraintLayoutVersion = '1.0.2'
     daggerVersion = '2.10'
-    butterKnifeVersion = '8.6.0'
     okHttpVersion = '3.8.0'
     retrofitVersion = '2.3.0'
-    rxBindingVersion = '1.0.1'
-    rxLifeCycleVersion = '1.0'
-    safelyAndroidVersion = '1.2.4'
-    autoBundleVersion = '4.1.0'
-    onActivityResultVersion = '0.6.0'
     stethoVersion = '1.5.0'
-    jacocoBuild = '0.7.7.201606060606'
-    dexmakerVersion = '1.2'
-    jsonAssertVersion = '1.3.0'
-    espressoVersion = '2.2.2'
     runnerVersion = '0.5'
-    greenDaoVersion = '3.2.2'
     mosbyVersion = '3.0.4'
-    powerMockVersion = '1.6.2'
     paperParcelVersion = '2.0.1'
+    glideVersion = '4.1.1'
 
     libs = [
             kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion",
@@ -31,102 +18,48 @@ ext {
             recyclerView            : "com.android.support:recyclerview-v7:$supportLibraryVersion",
             cardView                : "com.android.support:cardview-v7:$supportLibraryVersion",
             gridLayout              : "com.android.support:gridlayout-v7:$supportLibraryVersion",
-            mediaRouter             : "com.android.support:mediarouter-v7:$supportLibraryVersion",
-            palette                 : "com.android.support:palette-v7:$supportLibraryVersion",
-            preference              : "com.android.support:preference-v7:$supportLibraryVersion",
             annotations             : "com.android.support:support-annotations:$supportLibraryVersion",
-            multiDex                : "com.android.support:multidex:$multiDexVersion",
-            constraintLayout        : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
             room                    : "android.arch.persistence.room:runtime:$roomVersion",
             roomRxJava2             : "android.arch.persistence.room:rxjava2:$roomVersion",
-            safelyAndroid           : "com.github.piasy:safelyandroid:$safelyAndroidVersion",
-            safelyAndroidLint       : "com.github.piasy:safelyandroid-lint:$safelyAndroidVersion",
             mosby                   : "com.hannesdorfmann.mosby3:mvp:$mosbyVersion",
-            mosbyMvi                : "com.hannesdorfmann.mosby3:mvi:$mosbyVersion",
-            mosbyViewState          : "com.hannesdorfmann.mosby3:viewstate:$mosbyVersion",
-            mosbyLce                : "com.hannesdorfmann.mosby3:mvp-lce:$mosbyVersion",
             mosbyNullObject         : "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$mosbyVersion",
-            rxJava                  : "io.reactivex:rxjava:1.3.0",
-            rxAndroid               : "io.reactivex:rxandroid:1.2.1",
             rxJava2                 : "io.reactivex.rxjava2:rxjava:2.1.2",
             rxKotlin2               : "io.reactivex.rxjava2:rxkotlin:2.1.0",
             rxAndroid2              : "io.reactivex.rxjava2:rxandroid:2.0.1",
-            rxBinding               : "com.jakewharton.rxbinding:rxbinding:$rxBindingVersion",
-            rxBindingAppCompat      : "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rxBindingVersion",
-            rxLifeCycle             : "com.trello:rxlifecycle:$rxLifeCycleVersion",
-            rxLifeCycleComponent    : "com.trello:rxlifecycle-components:$rxLifeCycleVersion",
-            rxJavaProGuardRules     : "com.artemzin.rxjava:proguard-rules:1.3.0.0",
-            eventBus                : "org.greenrobot:eventbus:3.0.0",
             dagger                  : "com.google.dagger:dagger:$daggerVersion",
-            butterKnife             : "com.jakewharton:butterknife:$butterKnifeVersion",
             gson                    : "com.google.code.gson:gson:2.8.0",
             okHttp                  : "com.squareup.okhttp3:okhttp:$okHttpVersion",
             okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
             retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion",
-            retrofitRxJava2Adapter   : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
-            threetenabp             : "com.jakewharton.threetenabp:threetenabp:1.0.5",
-            onActivityResult        : "com.vanniktech:onactivityresult:$onActivityResultVersion",
-            icepick                 : "frankiesardo:icepick:3.2.0",
-            dexter                  : "com.karumi:dexter:4.1.0",
+            retrofitRxJava2Adapter  : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             timber                  : "com.jakewharton.timber:timber:4.5.1",
             stetho                  : "com.facebook.stetho:stetho:$stethoVersion",
-            stethoOkhttp            : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
-            once                    : "com.jonathanfinerty.once:once:1.2.2",
-            glide                   : "com.github.bumptech.glide:glide:4.0.0",
+            glide                   : "com.github.bumptech.glide:glide:$glideVersion",
             glideTransformations    : "jp.wasabeef:glide-transformations:2.0.2",
             strictmodeNotifier      : "com.nshmura:strictmode-notifier:0.9.3",
             blockCanary             : "com.github.markzhai:blockcanary-android:1.5.0",
             leakCanary              : "com.squareup.leakcanary:leakcanary-android:1.5.1",
             hockeyApp               : "net.hockeyapp.android:HockeySDK:4.1.4",
-            autoBundle              : "com.github.yatatsu:autobundle:$autoBundleVersion",
-            greenDao                : "org.greenrobot:greendao:$greenDaoVersion",
-            greenDaoGenerator       : "org.greenrobot:greendao-generator:$greenDaoVersion",
             paperParcel             : "nz.bradcampbell:paperparcel:$paperParcelVersion",
             fabric                  : "com.crashlytics.sdk.android:crashlytics:2.6.8@aar",
             verticalViewPager       : "com.github.castorflex.verticalviewpager:library:19.0.1"
     ]
 
     proc = [
-            retrolambda     : "net.orfjackal.retrolambda:retrolambda:2.5.1",
-            errorprone      : "com.google.errorprone:error_prone_core:2.0.9",
-            autoValue       : "com.google.auto.value:auto-value:1.4.1",
-            autoParcel      : "com.ryanharter.auto.value:auto-value-parcel:0.2.5",
-            autoGson        : "com.ryanharter.auto.value:auto-value-gson:0.4.6",
-            autoBundle      : "com.github.yatatsu:autobundle-processor:$autoBundleVersion",
-            icepick         : "frankiesardo:icepick-processor:3.2.0", // apt (provided)
-            onActivityResult: "com.vanniktech:onactivityresult-compiler:$onActivityResultVersion", // apt
-            butterKnife     : "com.jakewharton:butterknife-compiler:$butterKnifeVersion", // apt
             dagger          : "com.google.dagger:dagger-compiler:$daggerVersion", // apt
             paperParcel     : "nz.bradcampbell:paperparcel-compiler:$paperParcelVersion", //apt
             javaxAnnotation : "org.glassfish:javax.annotation:10.0-b28", // apt (provided)
-            room            : "android.arch.persistence.room:compiler:$roomVersion"
+            room            : "android.arch.persistence.room:compiler:$roomVersion",
+            glide           : "com.github.bumptech.glide:compiler:$glideVersion"
     ]
 
     test = [
-            rxJavaDebug            : "io.reactivex:rxjava-debug:1.0.3",
             mockito                : "org.mockito:mockito-core:2.8.9",
             mockitoKotlin          : "com.nhaarman:mockito-kotlin:1.5.0",
-            dexmaker               : "com.google.dexmaker:dexmaker:$dexmakerVersion",
-            dexmakerMockito        : "com.google.dexmaker:dexmaker-mockito:$dexmakerVersion",
-            espresso               : "com.android.support.test.espresso:espresso-core:$espressoVersion",
-            espressoIntents        : "com.android.support.test.espresso:espresso-intents:$espressoVersion",
-            espressoContrib        : "com.android.support.test.espresso:espresso-contrib:$espressoVersion",
-            espressoWeb            : "com.android.support.test.espresso:espresso-web:$espressoVersion",
-            espressoIdlingResource : "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion",
             junit                  : "junit:junit:4.12",
             androidJUnitRunner     : "com.android.support.test:runner:$runnerVersion",
             androidJUnit4Rules     : "com.android.support.test:rules:$runnerVersion",
-            multidexInstrumentation: "com.android.support:multidex-instrumentation:$multiDexVersion",
-            hamcrest               : "org.hamcrest:hamcrest-library:1.3",
-            jsonAssert             : "org.skyscreamer:jsonassert:$jsonAssertVersion",
-            restMockAndroid        : "com.github.andrzejchm.RESTMock:android:0.0.5",
-            jsr305                 : "com.google.code.findbugs:jsr305:3.0.1",
-            powerMockJunit         : "org.powermock:powermock-module-junit4:$powerMockVersion",
-            powerMockRule          : "org.powermock:powermock-module-junit4-rule:$powerMockVersion",
-            powerMockMockito       : "org.powermock:powermock-api-mockito:$powerMockVersion",
-            powerMockClassLoading  : "org.powermock:powermock-classloading-xstream:$powerMockVersion",
             room                   : "android.arch.persistence.room:testing:$roomVersion"
     ]
 }

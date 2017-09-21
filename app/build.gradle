@@ -201,6 +201,7 @@ dependencies {
 
     // Glide
     implementation libs.glide
+    kapt proc.glide
 
     //PaperParcel
     implementation libs.paperParcel
