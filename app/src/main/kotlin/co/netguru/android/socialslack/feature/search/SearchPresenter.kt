@@ -48,6 +48,7 @@ class SearchPresenter @Inject constructor(private val channelsDao: ChannelsDao, 
     private fun getUsersList() {
         view.showProgressBar()
         compositeDisposable += usersController.getUsersList()
+                .map { it.filter { !it.isDeleted } }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .doAfterTerminate { view.hideProgressBar() }
                 .subscribeBy(
