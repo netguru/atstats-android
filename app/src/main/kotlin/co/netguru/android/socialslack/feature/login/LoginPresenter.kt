@@ -5,6 +5,7 @@ import co.netguru.android.socialslack.app.scope.FragmentScope
 import co.netguru.android.socialslack.common.util.RxTransformers
 import co.netguru.android.socialslack.data.session.SessionController
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -17,6 +18,7 @@ class LoginPresenter @Inject constructor(private val sessionController: SessionC
 
     companion object {
         private const val SLACK_API_CODE = "code"
+        private const val SLACK_API_ERROR = "error"
     }
 
     private val compositeDisposable = CompositeDisposable()
@@ -39,7 +41,9 @@ class LoginPresenter @Inject constructor(private val sessionController: SessionC
 
     override fun onAppAuthorizeCodeReceived(uri: Uri) {
         view.disableLoginButton()
-        compositeDisposable += sessionController.requestNewToken(getCodeFromUri(uri))
+        compositeDisposable += Single.just(uri)
+                .flatMap(this::checkUriContainsError)
+                .flatMap { sessionController.requestNewToken(getCodeFromUri(uri)) }
                 .flatMapCompletable(sessionController::saveToken)
                 .concatWith(sessionController.checkToken().toCompletable())
                 .compose(RxTransformers.applyCompletableIoSchedulers())
@@ -49,7 +53,12 @@ class LoginPresenter @Inject constructor(private val sessionController: SessionC
                 )
     }
 
-    private fun getCodeFromUri(uri: Uri): String = uri.getQueryParameter(SLACK_API_CODE)
+    private fun getCodeFromUri(uri: Uri) = uri.getQueryParameter(SLACK_API_CODE)
+
+    private fun checkUriContainsError(uri: Uri) = when (uri.query.contains(SLACK_API_ERROR)) {
+        true -> Single.error(Throwable("Error while getting api code from Uri: ${uri.getQueryParameter(SLACK_API_ERROR)}"))
+        false -> Single.just(uri)
+    }
 
     private fun handleError(throwable: Throwable, message: String) {
         Timber.e(throwable, message)

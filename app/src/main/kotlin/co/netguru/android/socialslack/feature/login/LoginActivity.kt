@@ -20,10 +20,10 @@ class LoginActivity : CustomThemeActivity(), CustomThemeContract.View {
                 .commit()
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val loginFragment = supportFragmentManager
                 .findFragmentById(R.id.login_fragment_container) as LoginFragment
-        loginFragment.onAppAuthorizeCodeReceived(intent!!.data)
+        loginFragment.onAppAuthorizeCodeReceived(intent.data)
     }
 }
