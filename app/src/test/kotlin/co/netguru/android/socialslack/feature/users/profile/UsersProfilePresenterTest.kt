@@ -19,10 +19,10 @@ import org.mockito.Mockito.*
 class UsersProfilePresenterTest {
 
     companion object {
-        private val USER1 = UserStatistic("1", "", "", "", "", 1, 1, 2, 1, null, 1)
-        private val USER2 = UserStatistic("2", "", "", "", "", 2, 2, 4, 1, null, 2)
-        private val USER3 = UserStatistic("3", "", "", "", "", 3, 3, 6, 1, null, 3)
-        private val USER33 = UserStatistic("4", "", "", "", "", 3, 3, 6, 1, null, 3)
+        private val USER1 = UserStatistic("1", "", "", "", "", 1, 1, 2, 1, null, false, 1)
+        private val USER2 = UserStatistic("2", "", "", "", "", 2, 2, 4, 1, null, false, 2)
+        private val USER3 = UserStatistic("3", "", "", "", "", 3, 3, 6, 1, null, false, 3)
+        private val USER33 = UserStatistic("4", "", "", "", "", 3, 3, 6, 1, null, false, 3)
         private val MOCKED_FILTER_OPTION = UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST
     }
 

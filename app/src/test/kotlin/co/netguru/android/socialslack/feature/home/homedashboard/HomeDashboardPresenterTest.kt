@@ -42,9 +42,9 @@ class HomeDashboardPresenterTest {
                 EMPTY_STRING, EMPTY_STRING, EMPTY_STRING)
         private val USER = User(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, false, USER_PROFILE)
 
-        private val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics(EMPTY_STRING, EMPTY_STRING, 1, 1, 0)
-        private val DIRECT_CHANNEL_STATISTICS_2 = DirectChannelStatistics(EMPTY_STRING, EMPTY_STRING, 2, 2, 0)
-        private val DIRECT_CHANNEL_STATISTICS_3 = DirectChannelStatistics(EMPTY_STRING, EMPTY_STRING, 3, 3, 0)
+        private val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics(EMPTY_STRING, EMPTY_STRING, 1, 1, 0, false)
+        private val DIRECT_CHANNEL_STATISTICS_2 = DirectChannelStatistics(EMPTY_STRING, EMPTY_STRING, 2, 2, 0, false)
+        private val DIRECT_CHANNEL_STATISTICS_3 = DirectChannelStatistics(EMPTY_STRING, EMPTY_STRING, 3, 3, 0, false)
 
         private val CHANNEL_STATISTICS_1 = ChannelStatistics(EMPTY_STRING, EMPTY_STRING, 3, 1, 1, 1)
         private val CHANNEL_STATISTICS_2 = ChannelStatistics(EMPTY_STRING, EMPTY_STRING, 4, 1, 1, 1)

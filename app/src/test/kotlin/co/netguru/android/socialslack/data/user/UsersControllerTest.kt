@@ -28,9 +28,9 @@ class UsersControllerTest {
         val USER_3 = User("3", "User3", "User3", "User", "User", false, USER_PROFILE_3)
         val USER_RESPONSE_3 = UserResponse(true, USER_3)
 
-        val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics("ch1", "1", 1, 1, 0)
-        val DIRECT_CHANNEL_STATISTICS_2 = DirectChannelStatistics("ch2", "2", 2, 2, 0)
-        val DIRECT_CHANNEL_STATISTICS_3 = DirectChannelStatistics("ch3", "3", 3, 3, 0)
+        val DIRECT_CHANNEL_STATISTICS_1 = DirectChannelStatistics("ch1", "1", 1, 1, 0, false)
+        val DIRECT_CHANNEL_STATISTICS_2 = DirectChannelStatistics("ch2", "2", 2, 2, 0, false)
+        val DIRECT_CHANNEL_STATISTICS_3 = DirectChannelStatistics("ch3", "3", 3, 3, 0, false)
         private val USER_LIST = UserList(true, listOf(USER))
     }
 

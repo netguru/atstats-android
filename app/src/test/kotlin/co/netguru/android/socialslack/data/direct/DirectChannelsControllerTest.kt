@@ -87,10 +87,10 @@ class DirectChannelsControllerTest {
         whenever(directChannelsApi.getDirectMessagesWithUser(anyString(), anyInt(), anyString(), anyString()))
                 .thenReturn(Single.just(DirectChannelsHistory(true, LATEST, LIST_MESSAGES_USER_WE_TALK_MORE, false)))
         // when
-        val testObserver = directChannelsController.countDirectChannelStatistics(CHANNEL, USER_WE_TALK_THE_MOST).test()
+        val testObserver = directChannelsController.countDirectChannelStatistics(CHANNEL, USER_WE_TALK_THE_MOST, false).test()
         // then
-        var arg: ArgumentCaptor<DirectChannelStatistics> = ArgumentCaptor.forClass(DirectChannelStatistics::class.java)
-        arg?.apply {
+        val arg: ArgumentCaptor<DirectChannelStatistics> = ArgumentCaptor.forClass(DirectChannelStatistics::class.java)
+        arg.apply {
             verify(directChannelsDao).insertDirectChannel(com.nhaarman.mockito_kotlin.capture(arg))
             assertEquals(value.messagesFromOtherUser, 3)
             assertEquals(value.messagesFromUs, 2)

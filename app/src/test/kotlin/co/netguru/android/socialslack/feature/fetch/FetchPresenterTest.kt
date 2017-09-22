@@ -52,7 +52,7 @@ class FetchPresenterTest {
         private val DIRECT_CHANNEL_DELETED = DirectChannel("4", USER_ID, CREATED, true)
 
         private val CHANNEL_STATISTICS1 = ChannelStatistics("1", "", 10, 5, 5, 5)
-        private val DIRECT_CHANNEL_STATISTICS = DirectChannelStatistics(CHANNEL_ID, USER_ID, 1, 1, 0)
+        private val DIRECT_CHANNEL_STATISTICS = DirectChannelStatistics(CHANNEL_ID, USER_ID, 1, 1, 0, false)
     }
 
     @Rule
@@ -84,7 +84,7 @@ class FetchPresenterTest {
         whenever(channelsController.getChannelsList()).thenReturn(Single.just(listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4, CHANNEL_ARCHIVED)))
         whenever(channelsController.countChannelStatistics(anyString(), anyString(), anyString())).thenReturn(Single.just(CHANNEL_STATISTICS1))
         whenever(directChannelsController.getDirectChannelsList()).thenReturn(Single.just(listOf(DIRECT_CHANNEL_1, DIRECT_CHANNEL_2, DIRECT_CHANNEL_3, DIRECT_CHANNEL_DELETED)))
-        whenever(directChannelsController.countDirectChannelStatistics(anyString(), anyString())).thenReturn(Single.just(DIRECT_CHANNEL_STATISTICS))
+        whenever(directChannelsController.countDirectChannelStatistics(anyString(), anyString(), anyBoolean())).thenReturn(Single.just(DIRECT_CHANNEL_STATISTICS))
     }
 
     @Test
@@ -159,7 +159,7 @@ class FetchPresenterTest {
     @Test
     fun `should show error when count direct channel statistics returns error`() {
         // given
-        whenever(directChannelsController.countDirectChannelStatistics(anyString(), anyString())).thenReturn(Single.error(Throwable()))
+        whenever(directChannelsController.countDirectChannelStatistics(anyString(), anyString(), anyBoolean())).thenReturn(Single.error(Throwable()))
 
         // when
         fetchPresenter.attachView(view)
@@ -198,7 +198,7 @@ class FetchPresenterTest {
         fetchPresenter.attachView(view)
         //then
         //times 2, because list contains 3 direct channels, but one in one user is deleted
-        verify(directChannelsController, times(2)).countDirectChannelStatistics(anyObject(), anyObject())
+        verify(directChannelsController, times(2)).countDirectChannelStatistics(anyObject(), anyObject(), anyBoolean())
     }
 
     @After
