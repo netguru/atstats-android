@@ -17,7 +17,6 @@ data class UserStatistic(val id: String,
                          val totalMessages: Int,
                          val currentDayStreak: Int,
                          val avatarUrl: String?,
-                         val isCurrentUser: Boolean = false,
                          var currentPositionInList: Int = 1,
                          var presence: Presence = Presence.AWAY) : Parcelable, Sharable {
 
@@ -29,12 +28,11 @@ data class UserStatistic(val id: String,
                     this.firstName ?: "",
                     this.lastName ?: "",
                     this.realName ?: "",
-                    sentMessages,
-                    receivedMessages,
+                    if (isCurrentUser) sentMessages + receivedMessages else sentMessages,
+                    if (isCurrentUser) sentMessages + receivedMessages else receivedMessages,
                     sentMessages + receivedMessages,
                     currentDayStreak,
-                    this.profile.image512,
-                    isCurrentUser)
+                    this.profile.image512)
         }
 
         @JvmField

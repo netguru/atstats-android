@@ -110,7 +110,7 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
 
     fun sortData() {
-        presenter.sortRequestReceived(adapter.channelsList)
+        presenter.sortRequestReceived()
     }
 
     private fun initRecyclerView() {

@@ -7,6 +7,7 @@ import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.channels.ChannelsComparator
 import co.netguru.android.socialslack.data.filter.FilterController
 import co.netguru.android.socialslack.data.filter.channels.ChannelsPositionUpdater
+import co.netguru.android.socialslack.data.filter.channels.ChannelsStatisticsNumberChecker
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.share.SharableListProvider
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter
@@ -50,7 +51,7 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
         compositeDisposable += channelsDao.getAllChannels()
                 .zipWith(filterController.getChannelsFilterOption())
                 { channelsList, filterOption -> Pair(channelsList, filterOption) }
-                .flatMap { sortChannelsList(it.first, it.second) }
+                .flatMap { filterAndSortChannelsList(it.first, it.second) }
                 .compose(RxTransformers.applySingleComputationSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
@@ -71,12 +72,12 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
         view.showSearchView()
     }
 
-    override fun sortRequestReceived(channelList: List<ChannelStatistics>) {
+    override fun sortRequestReceived() {
         view.showLoadingView()
-        compositeDisposable += Single.just(channelList)
+        compositeDisposable += channelsDao.getAllChannels()
                 .zipWith(filterController.getChannelsFilterOption())
                 { channelsList, filterOption -> Pair(channelsList, filterOption) }
-                .flatMap { sortChannelsList(it.first, it.second) }
+                .flatMap { filterAndSortChannelsList(it.first, it.second) }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .doAfterTerminate { view.hideLoadingView() }
                 .subscribeBy(
@@ -106,8 +107,9 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
                         })
     }
 
-    private fun sortChannelsList(channelList: List<ChannelStatistics>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<ChannelStatistics>, ChannelsFilterOption>> {
+    private fun filterAndSortChannelsList(channelList: List<ChannelStatistics>, channelsFilterOption: ChannelsFilterOption): Single<Pair<List<ChannelStatistics>, ChannelsFilterOption>> {
         return Observable.fromIterable(channelList)
+                .filter { ChannelsStatisticsNumberChecker.checkStatisticsNumberForFilterOption(channelsFilterOption, it) }
                 .toSortedList(ChannelsComparator.getChannelsComparatorForFilterOption(channelsFilterOption))
                 .doOnSuccess { ChannelsPositionUpdater.updateChannelsPositionInList(it, channelsFilterOption) }
                 .map { Pair(it, channelsFilterOption) }

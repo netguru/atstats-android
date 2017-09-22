@@ -52,14 +52,14 @@ class ChannelsPresenterTest {
         CHANNEL4.currentPositionInList = 4
 
         view = mock(ChannelsContract.View::class.java)
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
+
         channelsPresenter = ChannelsPresenter(channelsDao, filterController)
         channelsPresenter.attachView(view)
     }
 
     @Test
     fun `should show channels list for user when getting channels successful`() {
-        //given
-        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -78,8 +78,6 @@ class ChannelsPresenterTest {
 
     @Test
     fun `should show loading view when getting channels from server`() {
-        //given
-        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
         //when
         channelsPresenter.getChannels()
         //then
@@ -143,7 +141,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should get filter option from from filter controller when sort request received`() {
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(filterController).getChannelsFilterOption()
     }
@@ -151,7 +149,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show sorted channels list when sort request successful`() {
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(view).showChannels(anyObject())
     }
@@ -159,7 +157,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show updated filter option when sort request successful`() {
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(view).setCurrentFilterOption(anyObject())
     }
@@ -169,7 +167,7 @@ class ChannelsPresenterTest {
         //given
         whenever(filterController.getChannelsFilterOption()).thenReturn(Single.error(Throwable()))
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(view).showFilterOptionError()
     }
@@ -177,7 +175,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should show loading view when sort request received`() {
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(view).showLoadingView()
     }
@@ -185,7 +183,7 @@ class ChannelsPresenterTest {
     @Test
     fun `should hide loading view when sort request received successful`() {
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(view).hideLoadingView()
     }
@@ -195,7 +193,7 @@ class ChannelsPresenterTest {
         //given
         whenever(filterController.getChannelsFilterOption()).thenReturn(Single.error(Throwable()))
         //when
-        channelsPresenter.sortRequestReceived(listOf())
+        channelsPresenter.sortRequestReceived()
         //then
         verify(view).hideLoadingView()
     }

@@ -112,7 +112,7 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     override fun createPresenter() = component.getPresenter()
 
     fun sortData() {
-        presenter.sortRequestReceived(adapter.usersList)
+        presenter.sortRequestReceived()
     }
 
     private fun initRecyclerView() {
