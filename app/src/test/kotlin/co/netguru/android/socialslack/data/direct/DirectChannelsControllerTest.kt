@@ -100,7 +100,7 @@ class DirectChannelsControllerTest {
         val testObserver = directChannelsController.countDirectChannelStatistics(CHANNEL, USER_WE_TALK_THE_MOST, false).test()
         // then
         val arg: ArgumentCaptor<DirectChannelStatistics> = ArgumentCaptor.forClass(DirectChannelStatistics::class.java)
-        arg.apply {
+        arg.run {
             verify(directChannelsDao).insertDirectChannel(com.nhaarman.mockito_kotlin.capture(arg))
             assertEquals(5, value.messagesFromOtherUser)
             assertEquals(2, value.messagesFromUs)
@@ -117,7 +117,7 @@ class DirectChannelsControllerTest {
         val testObserver = directChannelsController.countDirectChannelStatistics(CHANNEL, USER_WE_TALK_THE_MOST, false).test()
         // then
         val arg: ArgumentCaptor<DirectChannelStatistics> = ArgumentCaptor.forClass(DirectChannelStatistics::class.java)
-        arg.apply {
+        arg.run {
             verify(directChannelsDao).insertDirectChannel(com.nhaarman.mockito_kotlin.capture(arg))
             assertEquals(4, value.streakDays)
         }

@@ -58,7 +58,7 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
 
     private fun getProperTextAccordingToUser(item: UserStatistic): String {
         return with(item) {
-            if (item.isCurrentUser) {
+            if (isCurrentUser) {
                 (totalMessages.toString() + SENT_RECVD_MSG_DIVIDER + totalMessages.toString())
             } else {
                 (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
