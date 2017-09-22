@@ -35,7 +35,7 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
             directChannelsApi.getDirectMessagesList()
                     .map { it.channels }
 
-    fun countDirectChannelStatistics(channelId: String, userId: String): Single<DirectChannelStatistics> {
+    fun countDirectChannelStatistics(channelId: String, userId: String, isCurrentUser: Boolean): Single<DirectChannelStatistics> {
         var streakDaysMidnightPair = Pair(0, getMidnightTimestampInSeconds())
 
         return getAllMessagesFromApi(channelId)
@@ -45,7 +45,8 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                 .collect({ DirectChannelStatisticsCount(userId) },
                         { t1: DirectChannelStatisticsCount?, t2: DirectMessage? -> t1?.accept(t2) })
                 .map {
-                    DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser, streakDaysMidnightPair.first)
+                    DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser,
+                            streakDaysMidnightPair.first, isCurrentUser)
                 }
                 .observeOn(Schedulers.io())
                 .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }

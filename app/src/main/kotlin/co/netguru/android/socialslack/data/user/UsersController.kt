@@ -29,12 +29,13 @@ class UsersController @Inject constructor(private val usersApi: UsersApi,
 
     fun getAllUsersInfo(statisticsList: List<DirectChannelStatistics>): Single<List<UserStatistic>> =
             Flowable.fromIterable(statisticsList)
-                    .flatMap { (_, userId, messagesFromUs, messagesFromOtherUser, streakDays) ->
+                    .flatMap { (_, userId, messagesFromUs, messagesFromOtherUser, streakDays, isCurrentUser) ->
                         getUserInfo(userId).toFlowable()
                                 .map {
                                     it.toStatisticsView(
                                             messagesFromUs,
                                             messagesFromOtherUser,
+                                            isCurrentUser,
                                             streakDays
                                     )
                                 }

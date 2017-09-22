@@ -9,4 +9,5 @@ data class DirectChannelStatistics(@PrimaryKey @ColumnInfo(name = "channel_id") 
                                    @ColumnInfo(name = "user_id") var userId: String,
                                    var messagesFromUs: Int,
                                    var messagesFromOtherUser: Int,
-                                   var streakDays: Int)
+                                   var streakDays: Int,
+                                   var isCurrentUser: Boolean)

@@ -99,5 +99,5 @@ class HomeUsersPresenter @Inject constructor(
                     .subList(0, USERS_SHOWN_IN_STATISTICS)
 
     private fun toUserStatistics(channelStatistics: DirectChannelStatistics, user: User)
-            = user.toStatisticsView(channelStatistics.messagesFromUs, channelStatistics.messagesFromOtherUser)
+            = user.toStatisticsView(channelStatistics.messagesFromUs, channelStatistics.messagesFromOtherUser, channelStatistics.isCurrentUser)
 }
