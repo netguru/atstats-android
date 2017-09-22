@@ -210,6 +210,9 @@ dependencies {
     // Timber
     implementation libs.timber
 
+    // ThreeTenAbp
+    implementation libs.threeTenAbp
+
     // Crashlytics
     releaseImplementation(libs.fabric) {
         transitive = true

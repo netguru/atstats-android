@@ -9,7 +9,8 @@ import co.netguru.android.socialslack.data.direct.model.DirectMessage
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import java.util.*
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZoneOffset
 import javax.inject.Inject
 
 @UserScope
@@ -17,18 +18,7 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                                                    private val directChannelsDao: DirectChannelsDao) {
 
     companion object {
-        private const val HOURS_24_IN_SECONDS = 60 * 60 * 24
-
-        private fun getMidnightTimestampInSeconds(): Long {
-            val date = GregorianCalendar()
-            with(date) {
-                set(Calendar.HOUR_OF_DAY, 0)
-                set(Calendar.MINUTE, 0)
-                set(Calendar.SECOND, 0)
-                set(Calendar.MILLISECOND, 0)
-            }
-            return date.timeInMillis / 1000
-        }
+        private const val ONE_DAY_DIFF = 1
     }
 
     fun getDirectChannelsList(): Single<List<DirectChannel>> =
@@ -36,39 +26,41 @@ class DirectChannelsController @Inject constructor(private val directChannelsApi
                     .map { it.channels }
 
     fun countDirectChannelStatistics(channelId: String, userId: String, isCurrentUser: Boolean): Single<DirectChannelStatistics> {
-        var streakDaysMidnightPair = Pair(0, getMidnightTimestampInSeconds())
+        // MaxStreakDays, CurrentStreakDays, LastMessageDayOfMonth
+        var streakDaysMidnightTriple = Triple(1, 1, 0)
 
         return getAllMessagesFromApi(channelId)
                 .observeOn(Schedulers.computation())
                 .flattenAsObservable { it }
-                .doOnNext { streakDaysMidnightPair = countStreakDays(it, streakDaysMidnightPair) }
+                .doOnNext { streakDaysMidnightTriple = countStreakDays(it, streakDaysMidnightTriple) }
                 .collect({ DirectChannelStatisticsCount(userId) },
                         { t1: DirectChannelStatisticsCount?, t2: DirectMessage? -> t1?.accept(t2) })
                 .map {
                     DirectChannelStatistics(channelId, userId, it.messagesFromUs, it.messagesFromOtherUser,
-                            streakDaysMidnightPair.first, isCurrentUser)
+                            streakDaysMidnightTriple.first, isCurrentUser)
                 }
                 .observeOn(Schedulers.io())
                 .doAfterSuccess { directChannelsDao.insertDirectChannel(it) }
     }
 
-    private fun countStreakDays(directMessage: DirectMessage, streakDaysMidnightPair: Pair<Int, Long>): Pair<Int, Long> {
-        val messageTimestamp = directMessage.timeStamp.toFloat()
-        var streakDays = streakDaysMidnightPair.first
-        var lastMidnight = streakDaysMidnightPair.second
-        // if there is a message from today and streak day wasn't count
-        if (streakDays < 1 && messageTimestamp > lastMidnight) {
-            // count as streak day
-            streakDays++
+    private fun countStreakDays(directMessage: DirectMessage, streakDaysMidnightTriple: Triple<Int, Int, Int>): Triple<Int, Int, Int> {
+        val messageDay = getMessageDayFromTimeStamp(directMessage.timeStamp.toFloat().toLong())
+        val currentMaxStreakDays = streakDaysMidnightTriple.first
+        val lastMessageDay = if (streakDaysMidnightTriple.third == 0) messageDay else streakDaysMidnightTriple.third
+        var currentStreakDays = streakDaysMidnightTriple.second
+
+        if (lastMessageDay - messageDay == ONE_DAY_DIFF) {
+            currentStreakDays++
+        } else if (lastMessageDay - messageDay > ONE_DAY_DIFF) {
+            currentStreakDays = 1
         }
-        // if there is a message from 00:00:00 to 23:59:59 yesterday
-        if (messageTimestamp in (lastMidnight - HOURS_24_IN_SECONDS) until lastMidnight) {
-            // Add a streak day and check if there is a message in the previous day
-            streakDays++
-            lastMidnight -= HOURS_24_IN_SECONDS
-        }
-        return Pair(streakDays, lastMidnight)
+
+        val maxStreakDays = if (currentStreakDays > currentMaxStreakDays) currentStreakDays else currentMaxStreakDays
+
+        return Triple(maxStreakDays, currentStreakDays, messageDay)
     }
+
+    private fun getMessageDayFromTimeStamp(timeStamp: Long) = LocalDateTime.ofEpochSecond(timeStamp, 0, ZoneOffset.UTC).dayOfYear
 
     private fun getAllMessagesFromApi(channelId: String) =
             getMessagesFromApi(channelId, (TimeAndCountUtil.currentTimeInSeconds() - TimeAndCountUtil.SINCE_TIME).toString())

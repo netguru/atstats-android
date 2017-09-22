@@ -43,7 +43,8 @@ ext {
             hockeyApp               : "net.hockeyapp.android:HockeySDK:4.1.4",
             paperParcel             : "nz.bradcampbell:paperparcel:$paperParcelVersion",
             fabric                  : "com.crashlytics.sdk.android:crashlytics:2.6.8@aar",
-            verticalViewPager       : "com.github.castorflex.verticalviewpager:library:19.0.1"
+            verticalViewPager       : "com.github.castorflex.verticalviewpager:library:19.0.1",
+            threeTenAbp             : "com.jakewharton.threetenabp:threetenabp:1.0.5"
     ]
 
     proc = [
