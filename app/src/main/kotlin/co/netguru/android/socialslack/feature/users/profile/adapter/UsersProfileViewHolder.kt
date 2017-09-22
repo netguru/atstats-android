@@ -47,12 +47,22 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
             userFirstLastNameTextView.text = name
             usernameTextView.text = (itemView.context.getString(R.string.username, username))
             totalMsgTextView.text = totalMessages.toString()
-            sentRecvdTextView.text = (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
+            sentRecvdTextView.text = getProperTextAccordingToUser(item)
             msgStreakTextView.text = currentDayStreak.toString()
             rankTextView.text = currentPositionInList.toString()
             userFirstLastNameTextView.isActivated = presence == Presence.ACTIVE
 
             Glide.with(itemView).load(avatarUrl).into(userAvatar)
+        }
+    }
+
+    private fun getProperTextAccordingToUser(item: UserStatistic): String {
+        return with(item) {
+            if (isCurrentUser) {
+                (totalMessages.toString() + SENT_RECVD_MSG_DIVIDER + totalMessages.toString())
+            } else {
+                (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
+            }
         }
     }
 

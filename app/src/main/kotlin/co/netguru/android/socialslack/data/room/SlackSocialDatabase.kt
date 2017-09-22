@@ -13,7 +13,7 @@ import co.netguru.android.socialslack.data.user.model.UserDB
 
 @Database(
         entities = arrayOf(ChannelStatistics::class, DirectChannelStatistics::class, Team::class, UserDB::class),
-        version = 4)
+        version = 5)
 abstract class SlackSocialDatabase : RoomDatabase() {
 
     companion object {

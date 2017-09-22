@@ -17,11 +17,12 @@ data class UserStatistic(val id: String,
                          val totalMessages: Int,
                          val currentDayStreak: Int,
                          val avatarUrl: String?,
+                         val isCurrentUser: Boolean = false,
                          var currentPositionInList: Int = 1,
                          var presence: Presence = Presence.AWAY) : Parcelable, Sharable {
 
     companion object {
-        fun User.toStatisticsView(sentMessages: Int, receivedMessages: Int,
+        fun User.toStatisticsView(sentMessages: Int, receivedMessages: Int, isCurrentUser: Boolean,
                                   currentDayStreak: Int = 0): UserStatistic {
             return UserStatistic(this.id,
                     this.username ?: "",
@@ -32,7 +33,8 @@ data class UserStatistic(val id: String,
                     receivedMessages,
                     sentMessages + receivedMessages,
                     currentDayStreak,
-                    this.profile.image512)
+                    this.profile.image512,
+                    isCurrentUser)
         }
 
         @JvmField

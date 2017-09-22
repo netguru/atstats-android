@@ -78,10 +78,12 @@ class FetchPresenter @Inject constructor(private val sessionController: SessionC
     private fun fetchAndStoreDirectChannelsStatistics() = directChannelsController.getDirectChannelsList()
             .flattenAsFlowable { it }
             .filter { !it.isUserDeleted }
-            .flatMapCompletable {
-                directChannelsController.countDirectChannelStatistics(it.id, it.userId)
-                        .toCompletable()
-                        .subscribeOn(Schedulers.io())
+            .flatMapCompletable { (id, userId) ->
+                sessionController.getUserSession().flatMapCompletable {
+                    directChannelsController.countDirectChannelStatistics(id, userId, it.userId == userId)
+                            .toCompletable()
+                            .subscribeOn(Schedulers.io())
+                }
             }
             .compose(RxTransformers.applyCompletableIoSchedulers())
 
