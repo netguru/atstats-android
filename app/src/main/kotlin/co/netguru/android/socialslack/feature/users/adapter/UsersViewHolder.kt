@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.GlideApp
 import co.netguru.android.socialslack.common.extensions.getAttributeColor
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_users.view.*
 
 class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
@@ -42,7 +43,7 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
             loadUserPhoto(avatarUrl)
             placeNrTextView.text = (currentPositionInList.toString() + '.')
             userRealNameTextView.text = name
-            usernameTextView.text = (itemView.context.getString(R.string.username,username))
+            usernameTextView.text = (itemView.context.getString(R.string.username, username))
             changeMessagesNrTextColor(currentPositionInList)
             changeMedalVisibility(currentPositionInList)
         }
@@ -60,10 +61,11 @@ class UsersViewHolder(parent: ViewGroup, @LayoutRes private val layoutRes: Int,
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {
-        Glide.with(itemView)
-                .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
-                .apply(RequestOptions.centerCropTransform()
-                        .transform(RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+        GlideApp.with(itemView)
+                .load(avatarUrl)
+                .placeholder(itemView.context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .error(itemView.context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .transforms(arrayOf(CenterCrop(), RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(userAvatarImageView)
     }
 }

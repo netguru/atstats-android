@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.app.GlideApp
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.channels.ChannelsMessagesNumberProvider
@@ -22,9 +24,8 @@ import co.netguru.android.socialslack.feature.share.adapter.ShareUserAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpDialogFragment
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.android.synthetic.main.item_channels.view.*
 import kotlinx.android.synthetic.main.item_users.view.*
@@ -172,10 +173,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {
-        Glide.with(this)
-                .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
-                .apply(RequestOptions.centerCropTransform()
-                        .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+        GlideApp.with(this)
+                .load(avatarUrl)
+                .placeholder(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .error(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .transforms(arrayOf(CenterInside(), RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(shareLastUser.userAvatarImageView)
     }
 

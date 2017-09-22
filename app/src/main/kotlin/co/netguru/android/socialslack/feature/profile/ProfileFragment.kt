@@ -18,13 +18,13 @@ import co.netguru.android.socialslack.data.user.profile.model.Presence
 import co.netguru.android.socialslack.data.user.profile.model.UserWithPresence
 import co.netguru.android.socialslack.feature.login.LoginActivity
 import co.netguru.android.socialslack.feature.main.MainActivity
-import com.bumptech.glide.Glide
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 import android.content.Intent
 import android.net.Uri
+import co.netguru.android.socialslack.app.GlideApp
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import timber.log.Timber
-
 
 class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presenter>(), ProfileContract.View {
 
@@ -71,7 +71,12 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
         teamNameTextView.text = team.name
         teamPageTextView.text = getString(R.string.slack_domain, team.domain)
 
-        Glide.with(this).load(user.avatarUrl).into(profilePictureImageView)
+        GlideApp.with(this)
+                .load(user.avatarUrl)
+                .placeholder(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .error(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .centerCrop()
+                .into(profilePictureImageView)
     }
 
     override fun changeTheme() {

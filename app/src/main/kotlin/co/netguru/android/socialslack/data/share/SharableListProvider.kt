@@ -40,5 +40,7 @@ object SharableListProvider {
                 break
             }
         }
+        // if we still didn't add it, it means that it should be added as a last item
+        sharableList.add(sharable)
     }
 }
