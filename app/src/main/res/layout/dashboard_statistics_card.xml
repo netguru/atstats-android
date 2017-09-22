@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/dashboardStatisticIcon"
-            android:layout_width="@dimen/channel_icon_size"
-            android:layout_height="@dimen/channel_icon_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             tools:src="?attr/profileReadMsgDrawable" />
 
         <TextView

@@ -28,6 +28,8 @@
     <attr name="profileReadMsgDrawable" format="reference" />
     <attr name="profileReceivedPrivMsgsDrawable" format="reference" />
     <attr name="profileSentPrivsDrawable" format="reference" />
+    <attr name="userProfileSentPrivsDrawable" format="reference" />
+    <attr name="userProfileReceivedPrivsDrawable" format="reference" />
     <attr name="rankProfileDrawable" format="reference" />
     <attr name="slackIconDrawable" format="reference" />
     <attr name="splashScreenBackgroundDrawable" format="reference" />

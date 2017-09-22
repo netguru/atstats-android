@@ -21,8 +21,8 @@ class MainActivity : CustomThemeActivity() {
     companion object {
         const val REQUEST_SORT_CHANNELS = 101
         const val REQUEST_SORT_USERS = 102
+        const val REQUEST_SHOW_PROFILE_VIEW = 201
         const val REQUEST_EXTRA = "requestExtra"
-        const val SHOW_PROFILE_KEY = "key:showProfile"
 
         private const val REQUEST_DEFAULT = 0
 
@@ -30,12 +30,6 @@ class MainActivity : CustomThemeActivity() {
             val intent = Intent(context, MainActivity::class.java)
             intent.putExtra(MainActivity.REQUEST_EXTRA, requestCode)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            context.startActivity(intent)
-        }
-
-        fun startActivityOnProfile(context: Context) {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.putExtra(SHOW_PROFILE_KEY, true)
             context.startActivity(intent)
         }
     }
@@ -46,7 +40,7 @@ class MainActivity : CustomThemeActivity() {
 
         initializeToolbar()
         initializeBottomNavigationView()
-        if (intent.getBooleanExtra(SHOW_PROFILE_KEY, false)) showProfile()
+        if (intent.getIntExtra(REQUEST_EXTRA, REQUEST_DEFAULT) == REQUEST_SHOW_PROFILE_VIEW) showProfile()
             else replaceFragmentInMainContainer(HomeFragment.newInstance())
     }
 
@@ -56,6 +50,7 @@ class MainActivity : CustomThemeActivity() {
         when (intent.getIntExtra(REQUEST_EXTRA, REQUEST_DEFAULT)) {
             REQUEST_SORT_CHANNELS -> refreshDataOnChannelsFragment()
             REQUEST_SORT_USERS -> refreshDataOnUsersFragment()
+            REQUEST_SHOW_PROFILE_VIEW -> showProfile()
             else -> throw IllegalStateException("Intent should contains REQUEST_EXTRA")
         }
     }

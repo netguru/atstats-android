@@ -14,6 +14,10 @@ interface ProfileContract {
 
         fun changeTheme()
 
+        fun hideChangeThemeButton()
+
+        fun showChangeThemeButton()
+
         fun logOut()
 
         fun showInfoError()

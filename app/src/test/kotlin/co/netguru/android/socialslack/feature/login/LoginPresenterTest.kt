@@ -20,9 +20,11 @@ import org.mockito.Mockito.*
 class LoginPresenterTest {
 
     companion object {
-        const val EMPTY_STRING = ""
-        val URI = mock<Uri>()
-        val TOKEN = mock<Token>()
+        private const val EMPTY_STRING = ""
+        private const val SLACK_API_CODE = "code"
+        private const val SLACK_API_ERROR = "error"
+        private val URI = mock<Uri>()
+        private val TOKEN = mock<Token>()
     }
 
     @Rule
@@ -37,6 +39,7 @@ class LoginPresenterTest {
     @Before
     fun setUp() {
         whenever(sessionController.checkToken()).thenReturn(Single.just(TokenCheck(true, EMPTY_STRING, EMPTY_STRING)))
+        whenever(URI.query).thenReturn(SLACK_API_CODE)
         loginPresenter = LoginPresenter(sessionController)
         loginPresenter.attachView(view)
     }
@@ -142,7 +145,7 @@ class LoginPresenterTest {
 
     @Test
     fun `should show error message when app authorize new code received and error occurs on check user session`() {
-        //given//given
+        //given
         whenever(URI.getQueryParameter(anyString())).thenReturn("")
         whenever(sessionController.requestNewToken(anyString())).thenReturn(Single.just(TOKEN))
         whenever(sessionController.checkToken()).thenReturn(Single.error(Throwable()))
@@ -150,6 +153,26 @@ class LoginPresenterTest {
         loginPresenter.onAppAuthorizeCodeReceived(URI)
         //then
         verify(view).showErrorMessage()
+    }
+
+    @Test
+    fun `should show error message when oauth uri contains error`() {
+        //given
+        whenever(URI.query).thenReturn(SLACK_API_ERROR)
+        //when
+        loginPresenter.onAppAuthorizeCodeReceived(URI)
+        //then
+        verify(view).showErrorMessage()
+    }
+
+    @Test
+    fun `should enable login button when oauth uri contains error`() {
+        //given
+        whenever(URI.query).thenReturn(SLACK_API_ERROR)
+        //when
+        loginPresenter.onAppAuthorizeCodeReceived(URI)
+        //then
+        verify(view).enableLoginButton()
     }
 
     @After
