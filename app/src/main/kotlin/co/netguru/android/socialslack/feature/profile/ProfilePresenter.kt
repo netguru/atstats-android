@@ -64,10 +64,14 @@ class ProfilePresenter @Inject constructor(private val themeController: ThemeCon
                 }
                 .compose(RxTransformers.applyCompletableIoSchedulers())
                 .subscribeBy(
-                        onComplete = view::changeTheme,
+                        onComplete = {
+                            view.changeTheme()
+                            view.hideChangeThemeButton()
+                        },
                         onError = {
                             Timber.e(it)
                             view.showChangeThemeError()
+                            view.showChangeThemeButton()
                         }
                 )
     }

@@ -76,7 +76,17 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
 
     override fun changeTheme() {
         activity.finish()
-        MainActivity.startActivityOnProfile(activity)
+        MainActivity.startActivityWithRequest(activity, MainActivity.REQUEST_SHOW_PROFILE_VIEW)
+    }
+
+    override fun hideChangeThemeButton() {
+        colourSchemeTextView.visibility = View.GONE
+        themeToggleSwitch.visibility = View.GONE
+    }
+
+    override fun showChangeThemeButton() {
+        colourSchemeTextView.visibility = View.VISIBLE
+        themeToggleSwitch.visibility = View.VISIBLE
     }
 
     override fun logOut() {

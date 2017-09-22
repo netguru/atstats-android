@@ -105,6 +105,7 @@
                         android:layout_marginTop="@dimen/margin_small" />
 
                     <TextView
+                        android:id="@+id/colourSchemeTextView"
                         style="FontSmall.ColorTextSecondary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

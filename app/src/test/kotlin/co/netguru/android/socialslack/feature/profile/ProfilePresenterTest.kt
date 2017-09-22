@@ -99,6 +99,27 @@ class ProfilePresenterTest {
     }
 
     @Test
+    fun `should hide change theme button when theme is changed`() {
+        //given
+        whenever(themeController.getThemeOption()).thenReturn(Single.just(ThemeOption.COLOURFUL))
+        whenever(themeController.saveThemeOption(anyObject())).thenReturn(Completable.complete())
+        //when
+        profilePresenter.changeTheme()
+        //then
+        verify(view).hideChangeThemeButton()
+    }
+
+    @Test
+    fun `should show change theme button when theme fails`() {
+        //given
+        whenever(themeController.getThemeOption()).thenReturn(Single.error(Throwable()))
+        //when
+        profilePresenter.changeTheme()
+        //then
+        verify(view).showChangeThemeButton()
+    }
+
+    @Test
     fun `should log out when log out controller completes`() {
         //given
         whenever(logoutController.logout()).thenReturn(Completable.complete())
