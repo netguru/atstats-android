@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/profile_background"
-    tools:context="co.netguru.android.socialslack.feature.main.MainActivity">
+    tools:context="co.netguru.android.atstats.feature.main.MainActivity">
 
     <include
         android:id="@+id/head"

@@ -21,7 +21,7 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        applicationId "co.netguru.android.socialslack"
+        applicationId "co.netguru.android.atStats"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode globalVersionCode
