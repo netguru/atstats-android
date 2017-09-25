@@ -12,6 +12,7 @@ import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.feature.search.SearchActivity
 import co.netguru.android.socialslack.feature.share.ShareDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpFragmentWithMenu
@@ -86,7 +87,8 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
     }
 
     override fun showError() {
-        Snackbar.make(channelCardView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(channelCardView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showSearchView() {

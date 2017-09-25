@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.app.GlideApp
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.util.ScreenShotUtils
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.channels.ChannelsMessagesNumberProvider
@@ -16,15 +18,15 @@ import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.share.Sharable
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
 import co.netguru.android.socialslack.feature.share.adapter.ShareUserAdapter
 import co.netguru.android.socialslack.feature.share.confirmation.ShareConfirmationDialogFragment
 import co.netguru.android.socialslack.feature.shared.base.BaseMvpDialogFragment
 import co.netguru.android.socialslack.feature.shared.view.DividerItemDecorator
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.android.synthetic.main.item_channels.view.*
 import kotlinx.android.synthetic.main.item_users.view.*
@@ -92,11 +94,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun showSelectedChannelMostActiveText() {
-        shareStatusTextView.text = resources.getString(R.string.share_most_talkative_channel)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareFirstChannelMessages))
     }
 
     override fun showSelectedChannelTalkMoreText() {
-        shareStatusTextView.text = resources.getString(R.string.share_talk_more)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareOtherChannelMessages))
     }
 
     override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
@@ -114,11 +116,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun showSelectedUserMostActiveText() {
-        shareStatusTextView.text = resources.getString(R.string.share_most_talkative_user)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareFirstUserMessages))
     }
 
     override fun showSelectedUserTalkMoreText() {
-        shareStatusTextView.text = resources.getString(R.string.share_talk_more)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareOtherUserMessages))
     }
 
     override fun showSelectedUserOnLastPosition(user: UserStatistic, filterOption: UsersFilterOption) {
@@ -148,7 +150,8 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun showError() {
-        Snackbar.make(shareRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(shareRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showLastChannelData(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
@@ -172,10 +175,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {
-        Glide.with(this)
-                .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
-                .apply(RequestOptions.centerCropTransform()
-                        .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+        GlideApp.with(this)
+                .load(avatarUrl)
+                .placeholder(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .error(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .transforms(arrayOf(CenterInside(), RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(shareLastUser.userAvatarImageView)
     }
 

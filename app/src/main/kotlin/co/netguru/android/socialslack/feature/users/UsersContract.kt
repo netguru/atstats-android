@@ -37,7 +37,7 @@ interface UsersContract {
 
         fun filterButtonClicked()
 
-        fun sortRequestReceived(usersList: List<UserStatistic>)
+        fun sortRequestReceived()
 
         fun searchButtonClicked()
     }

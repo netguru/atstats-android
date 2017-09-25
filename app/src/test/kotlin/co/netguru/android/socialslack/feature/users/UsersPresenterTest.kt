@@ -97,7 +97,7 @@ class UsersPresenterTest {
     @Test
     fun `should get users filter option from from filter controller when sort request received`() {
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(filterController).getUsersFilterOption()
     }
@@ -105,7 +105,7 @@ class UsersPresenterTest {
     @Test
     fun `should show sorted users list when sort request successful`() {
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(view).showUsersList(anyObject())
     }
@@ -113,7 +113,7 @@ class UsersPresenterTest {
     @Test
     fun `should show updated filter option when sort request successful`() {
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(view).changeSelectedFilterOption(anyObject())
     }
@@ -123,7 +123,7 @@ class UsersPresenterTest {
         //given
         whenever(filterController.getUsersFilterOption()).thenReturn(Single.error(Throwable()))
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(view).showFilterOptionError()
     }
@@ -131,7 +131,7 @@ class UsersPresenterTest {
     @Test
     fun `should show loading view when sort request received`() {
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(view).showLoadingView()
     }
@@ -139,7 +139,7 @@ class UsersPresenterTest {
     @Test
     fun `should hide loading view when sort request received successful`() {
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(view).hideLoadingView()
     }
@@ -149,7 +149,7 @@ class UsersPresenterTest {
         //given
         whenever(filterController.getUsersFilterOption()).thenReturn(Single.error(Throwable()))
         //when
-        usersPresenter.sortRequestReceived(listOf())
+        usersPresenter.sortRequestReceived()
         //then
         verify(view).hideLoadingView()
     }

@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.GlideApp
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.data.user.model.User
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_users_search.view.*
 
 class SearchUsersViewHolder(parent: ViewGroup)
@@ -38,10 +39,11 @@ class SearchUsersViewHolder(parent: ViewGroup)
     }
 
     private fun loadUserPhoto(avatarUrl: String?) {
-        Glide.with(itemView)
-                .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
-                .apply(RequestOptions.centerCropTransform()
-                        .transform(RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+        GlideApp.with(itemView)
+                .load(avatarUrl)
+                .placeholder(itemView.context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .error(itemView.context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .transforms(arrayOf(CenterInside(), RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(userAvatarImageView)
     }
 }

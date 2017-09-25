@@ -23,7 +23,7 @@ ext {
             roomRxJava2             : "android.arch.persistence.room:rxjava2:$roomVersion",
             mosby                   : "com.hannesdorfmann.mosby3:mvp:$mosbyVersion",
             mosbyNullObject         : "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$mosbyVersion",
-            rxJava2                 : "io.reactivex.rxjava2:rxjava:2.1.2",
+            rxJava2                 : "io.reactivex.rxjava2:rxjava:2.1.4",
             rxKotlin2               : "io.reactivex.rxjava2:rxkotlin:2.1.0",
             rxAndroid2              : "io.reactivex.rxjava2:rxandroid:2.0.1",
             dagger                  : "com.google.dagger:dagger:$daggerVersion",

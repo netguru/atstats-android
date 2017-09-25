@@ -13,6 +13,7 @@ import android.net.Uri
 import android.support.design.widget.Snackbar
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.extensions.startActivity
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.feature.fetch.FetchActivity
 
 class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
@@ -50,7 +51,8 @@ class LoginFragment : MvpFragment<LoginContract.View, LoginContract.Presenter>()
     }
 
     override fun showErrorMessage() {
-        Snackbar.make(loginSignInBtn, R.string.login_error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(loginSignInBtn, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showMainActivity() {

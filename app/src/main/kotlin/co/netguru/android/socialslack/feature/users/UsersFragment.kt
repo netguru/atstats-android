@@ -9,6 +9,7 @@ import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.filter.FilterActivity
 import co.netguru.android.socialslack.feature.search.SearchActivity
@@ -69,7 +70,8 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     }
 
     override fun showError() {
-        Snackbar.make(usersRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(usersRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showLoadingView() {
@@ -101,7 +103,8 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     }
 
     override fun showFilterOptionError() {
-        Snackbar.make(usersRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(usersRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun changeSelectedFilterOption(selectedFilterOption: UsersFilterOption) {
@@ -112,7 +115,7 @@ class UsersFragment : BaseMvpFragmentWithMenu<UsersContract.View, UsersContract.
     override fun createPresenter() = component.getPresenter()
 
     fun sortData() {
-        presenter.sortRequestReceived(adapter.usersList)
+        presenter.sortRequestReceived()
     }
 
     private fun initRecyclerView() {

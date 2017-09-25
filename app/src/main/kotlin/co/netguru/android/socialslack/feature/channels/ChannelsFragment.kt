@@ -11,6 +11,7 @@ import co.netguru.android.socialslack.common.extensions.startActivity
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
 import co.netguru.android.socialslack.data.filter.model.FilterObjectType
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.feature.channels.adapter.ChannelsAdapter
 import co.netguru.android.socialslack.feature.channels.profile.ChannelProfileFragment
 import co.netguru.android.socialslack.feature.filter.FilterActivity
@@ -63,11 +64,13 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
     }
 
     override fun showError() {
-        Snackbar.make(channelsRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(channelsRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showFilterOptionError() {
-        Snackbar.make(channelsRecyclerView, R.string.error_filter_option, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(channelsRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun setCurrentFilterOption(filterOption: ChannelsFilterOption) {
@@ -110,7 +113,7 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
 
     fun sortData() {
-        presenter.sortRequestReceived(adapter.channelsList)
+        presenter.sortRequestReceived()
     }
 
     private fun initRecyclerView() {

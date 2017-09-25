@@ -4,13 +4,16 @@ import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
+import co.netguru.android.socialslack.app.GlideApp
+import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.data.user.profile.model.Presence
 import co.netguru.android.socialslack.feature.shared.base.BaseViewHolder
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kotlinx.android.synthetic.main.item_users_profile.view.*
 import kotlinx.android.synthetic.main.profile_header_layout.view.*
 
@@ -47,22 +50,18 @@ internal class UsersProfileViewHolder(parent: ViewGroup,
             userFirstLastNameTextView.text = name
             usernameTextView.text = (itemView.context.getString(R.string.username, username))
             totalMsgTextView.text = totalMessages.toString()
-            sentRecvdTextView.text = getProperTextAccordingToUser(item)
+            sentRecvdTextView.text = (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
             msgStreakTextView.text = currentDayStreak.toString()
             rankTextView.text = currentPositionInList.toString()
             userFirstLastNameTextView.isActivated = presence == Presence.ACTIVE
 
-            Glide.with(itemView).load(avatarUrl).into(userAvatar)
-        }
-    }
 
-    private fun getProperTextAccordingToUser(item: UserStatistic): String {
-        return with(item) {
-            if (isCurrentUser) {
-                (totalMessages.toString() + SENT_RECVD_MSG_DIVIDER + totalMessages.toString())
-            } else {
-                (sentMessages.toString() + SENT_RECVD_MSG_DIVIDER + receivedMessages.toString())
-            }
+            GlideApp.with(itemView)
+                    .load(avatarUrl)
+                    .placeholder(itemView.context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                    .error(itemView.context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                    .transforms(arrayOf(CenterCrop(), RoundedCorners(itemView.resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+                    .into(userAvatar)
         }
     }
 

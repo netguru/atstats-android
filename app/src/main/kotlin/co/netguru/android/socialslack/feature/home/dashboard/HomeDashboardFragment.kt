@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
+import co.netguru.android.socialslack.app.GlideApp
 import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.feature.home.dashboard.model.ChannelsCount
 import co.netguru.android.socialslack.feature.home.dashboard.model.DirectChannelsCount
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.dashboard_statistics_card.view.*
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
@@ -42,10 +43,11 @@ class HomeDashboardFragment :
 
     override fun showProfile(username: String?, avatarUrl: String?) {
         userNameTextView.text = getString(R.string.username, username)
-        Glide.with(this)
-                .load(avatarUrl ?: R.attr.userPlaceholderDrawable)
-                .apply(RequestOptions.centerInsideTransform()
-                        .transform(RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
+        GlideApp.with(this)
+                .load(avatarUrl)
+                .placeholder(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .error(context.getAttributeDrawable(R.attr.userPlaceholderDrawable))
+                .transforms(arrayOf(CenterInside(), RoundedCorners(resources.getDimension(R.dimen.item_user_avatar_radius).toInt())))
                 .into(userAvatar)
     }
 
@@ -60,11 +62,13 @@ class HomeDashboardFragment :
     }
 
     override fun showProfileError() {
-        Snackbar.make(userAvatar, R.string.error_profile_picture, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(userAvatar, errorMsg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showCountError() {
-        Snackbar.make(userAvatar, R.string.error_counting_statistics, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(userAvatar, errorMsg, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun initStatistics() {

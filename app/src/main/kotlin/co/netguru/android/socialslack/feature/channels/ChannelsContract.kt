@@ -38,6 +38,6 @@ interface ChannelsContract {
 
         fun onChannelClick(selectedItemPosition: Int, channelList: List<ChannelStatistics>)
 
-        fun sortRequestReceived(channelList: List<ChannelStatistics>)
+        fun sortRequestReceived()
     }
 }
