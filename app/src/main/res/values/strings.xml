@@ -8,8 +8,7 @@
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
     <string name="colourful">Colourful</string>
-    <!-- TODO 24.08.2017 replace for the correct email -->
-    <string name="feedback_email">someemail@netguru.co</string>
+    <string name="feedback_email">atstats-team@netguru.co</string>
     <string name="feedback_email_subject">Feedback about Slack Social</string>
 
     <string name="action_search">Search</string>
