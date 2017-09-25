@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <co.netguru.android.socialslack.feature.shared.view.AutoItemScrollRecyclerView
+    <co.netguru.android.atstats.feature.shared.view.AutoItemScrollRecyclerView
         android:id="@+id/usersProfileRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

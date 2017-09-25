@@ -85,13 +85,13 @@ def execute():
     print "Authorize app"
     time.sleep(60)
 
-    # Select Slack Social APP to open
+    # Select atStats APP to open
     device.touch(250, 650, MonkeyDevice.DOWN_AND_UP)
     time.sleep(60)
 
     # Click on Always
     device.touch(430, 760, MonkeyDevice.DOWN_AND_UP)
-    print "Select Slack Social and open app"
+    print "Select atStats and open app"
 
     time.sleep(60)
 

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Social Slack</string>
-    <string name="block_canary_display_activity_label" translatable="false">Social Slack block canary</string>
-    <string name="leak_canary_display_activity_label" translatable="false">Social Slack leak canary</string>
+    <string name="app_name">atStats</string>
+    <string name="block_canary_display_activity_label" translatable="false">atStats block canary</string>
+    <string name="leak_canary_display_activity_label" translatable="false">atStats leak canary</string>
 
     <string name="welcome_to">Welcome to</string>
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
     <string name="colourful">Colourful</string>
-    <!-- TODO 24.08.2017 replace for the correct email -->
-    <string name="feedback_email">someemail@netguru.co</string>
-    <string name="feedback_email_subject">Feedback about Slack Social</string>
+    <string name="feedback_email">atstats-team@netguru.co</string>
+    <string name="feedback_email_subject">Feedback about atStats</string>
 
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
@@ -89,7 +88,7 @@
     <string name="search_hint">Search users &amp; channels</string>
     <string name="search_title">Search users &amp; channels</string>
 
-    <string name="fragment_login_description">Hiya! This is Slack Social. \n Keeping track of your social life on Slack, \n but not in a creepy way!</string>
+    <string name="fragment_login_description">Hiya! This is atStats. \n Keeping track of your social life on Slack, \n but not in a creepy way!</string>
     <string name="fragment_fetch_error">Status: unwell. Please refresh.</string>
     <string name="refresh">Refresh</string>
 </resources>

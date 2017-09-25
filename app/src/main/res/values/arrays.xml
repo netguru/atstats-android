@@ -28,26 +28,36 @@
     <array name="shareFirstChannelMessages">
         <item>Hey, look! Here’s how much we’ve been chatting!</item>
         <item>Wow, are we good friends or what?</item>
+        <item>Hey, wow, we’re not thinking about restraining orders yet, right?</item>
+        <item>Psst! Wanna talk some more?</item>
+        <item>This data proves we’re friends. You’re stuck with me! Ha!</item>
+        <item>You are the best digital friend!</item>
+        <item>This is proof we’re having a blast here!</item>
     </array>
 
     <array name="shareOtherChannelMessages">
         <item>I think we need to work on communication.</item>
-        <item>Hey, I miss you! Do you miss me?</item>
+        <item>Hey, talk to me! We’re falling behind!</item>
         <item>We need to talk.</item>
+        <item>Hey, I miss you! Do you miss me?</item>
+        <item>TALK TO ME.</item>
         <item>Tell me all your secrets.</item>
-        <item>Are we bad at small talk or what?</item>
+        <item>Let’s talk about the meaning of life.</item>
     </array>
 
     <array name="shareFirstUserMessages">
         <item>Hey, look! Here’s how much we’ve been chatting!</item>
         <item>Wow, are we good friends or what?</item>
         <item>One of us must be a really good conversationalist!</item>
+        <item>Hey, wow, you’re not thinking about a restraining order yet, right?</item>
+        <item>I’m not sure I spend this much time talking to people in real life!</item>
+        <item>Psst! Wanna talk some more?</item>
+        <item>This data proves we’re friends. You’re stuck with me! Ha!</item>
     </array>
 
     <array name="shareOtherUserMessages">
         <item>I think we need to work on communication.</item>
         <item>Hey, talk to me! We’re falling behind!</item>
-        <item>Hey, wow, you’re not thinking about a restraining order yet, right?</item>
         <item>We need to talk.</item>
         <item>Hey, I miss you! Do you miss me?</item>
         <item>TALK TO ME.</item>

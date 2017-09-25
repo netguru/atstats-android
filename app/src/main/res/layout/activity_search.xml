@@ -25,7 +25,7 @@
         android:layout_height="@dimen/search_shadow_height"
         android:background="@drawable/shadow"/>
 
-    <co.netguru.android.socialslack.feature.shared.view.NonSwipeableViewPager
+    <co.netguru.android.atstats.feature.shared.view.NonSwipeableViewPager
         android:id="@+id/searchViewPager"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/search_activity_view_pager_margin_top"
