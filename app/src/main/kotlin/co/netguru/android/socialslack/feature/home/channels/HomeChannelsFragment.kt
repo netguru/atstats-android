@@ -11,6 +11,7 @@ import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
 import co.netguru.android.socialslack.data.filter.model.ChannelsFilterOption
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_home_channels.*
 
@@ -44,7 +45,8 @@ class HomeChannelsFragment : MvpFragment<HomeChannelsContract.View, HomeChannels
     }
 
     override fun showErrorSortingChannels() {
-        Snackbar.make(mainLayout, R.string.error_sorting_channels, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(mainLayout, errorMsg, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun initRecyclerView(recyclerView: RecyclerView,

@@ -49,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/share_talk_more"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="talk with me more" />
 
 
         <RelativeLayout

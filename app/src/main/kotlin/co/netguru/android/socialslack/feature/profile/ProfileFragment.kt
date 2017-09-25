@@ -24,6 +24,7 @@ import android.content.Intent
 import android.net.Uri
 import co.netguru.android.socialslack.app.GlideApp
 import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import timber.log.Timber
 
 class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presenter>(), ProfileContract.View {
@@ -100,15 +101,18 @@ class ProfileFragment : MvpFragment<ProfileContract.View, ProfileContract.Presen
     }
 
     override fun showChangeThemeError() {
-        Snackbar.make(sendUsFeedBackButton, R.string.error_changing_theme, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(sendUsFeedBackButton, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun showInfoError() {
-        Snackbar.make(sendUsFeedBackButton, R.string.error_getting_team_info, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(sendUsFeedBackButton, errorMsg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showLogoutError() {
-        Snackbar.make(sendUsFeedBackButton, R.string.error_login_out, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(sendUsFeedBackButton, errorMsg, Snackbar.LENGTH_SHORT).show()
         logOut()
     }
 

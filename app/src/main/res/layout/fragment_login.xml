@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/loginAppNameText"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:layout_marginTop="@dimen/margin_small"
         android:text="@string/fragment_login_description" />
 

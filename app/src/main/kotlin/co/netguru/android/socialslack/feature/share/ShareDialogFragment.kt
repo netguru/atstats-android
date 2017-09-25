@@ -18,6 +18,7 @@ import co.netguru.android.socialslack.data.filter.model.Filter
 import co.netguru.android.socialslack.data.filter.model.UsersFilterOption
 import co.netguru.android.socialslack.data.filter.users.UsersMessagesNumberProvider
 import co.netguru.android.socialslack.data.share.Sharable
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.data.user.model.UserStatistic
 import co.netguru.android.socialslack.feature.share.adapter.ShareChannelAdapter
 import co.netguru.android.socialslack.feature.share.adapter.ShareUserAdapter
@@ -93,11 +94,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun showSelectedChannelMostActiveText() {
-        shareStatusTextView.text = resources.getString(R.string.share_most_talkative_channel)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareFirstChannelMessages))
     }
 
     override fun showSelectedChannelTalkMoreText() {
-        shareStatusTextView.text = resources.getString(R.string.share_talk_more)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareOtherChannelMessages))
     }
 
     override fun showSelectedChannelOnLastPosition(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {
@@ -115,11 +116,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun showSelectedUserMostActiveText() {
-        shareStatusTextView.text = resources.getString(R.string.share_most_talkative_user)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareFirstUserMessages))
     }
 
     override fun showSelectedUserTalkMoreText() {
-        shareStatusTextView.text = resources.getString(R.string.share_talk_more)
+        shareStatusTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.shareOtherUserMessages))
     }
 
     override fun showSelectedUserOnLastPosition(user: UserStatistic, filterOption: UsersFilterOption) {
@@ -149,7 +150,8 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     }
 
     override fun showError() {
-        Snackbar.make(shareRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(shareRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showLastChannelData(channelStatistics: ChannelStatistics, filterOption: ChannelsFilterOption) {

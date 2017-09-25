@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/loginAppNameText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/fetch_activity_margin_top"
-        android:text="@string/fragment_fetch_description" />
+        android:layout_marginTop="@dimen/fetch_activity_margin_top" />
 
     <FrameLayout
         android:id="@+id/emptyView"

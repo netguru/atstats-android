@@ -6,6 +6,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.customTheme.MvpCustomThemeActivity
 import co.netguru.android.socialslack.common.extensions.startActivity
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.feature.main.MainActivity
 import kotlinx.android.synthetic.main.activity_fetch.*
 
@@ -17,6 +18,7 @@ class FetchActivity : MvpCustomThemeActivity<FetchContract.View, FetchContract.P
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fetch)
+        fetchDescriptionTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.loadingMessages))
         fetchRefreshButton.setOnClickListener { presenter.onRefreshButtonClick() }
     }
 
@@ -30,7 +32,7 @@ class FetchActivity : MvpCustomThemeActivity<FetchContract.View, FetchContract.P
     override fun showLoadingView() {
         progressBar.visibility = View.VISIBLE
         fetchRefreshButton.visibility = View.GONE
-        fetchDescriptionTextView.setText(R.string.fragment_fetch_description)
+        fetchDescriptionTextView.text = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.loadingMessages))
     }
 
     override fun showError() {

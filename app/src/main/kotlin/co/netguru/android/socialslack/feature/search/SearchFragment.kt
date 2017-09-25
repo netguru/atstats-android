@@ -9,6 +9,7 @@ import co.netguru.android.socialslack.R
 import co.netguru.android.socialslack.app.App
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.data.channels.model.ChannelStatistics
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.data.user.model.User
 import co.netguru.android.socialslack.feature.search.adapter.SearchItemType
 import co.netguru.android.socialslack.feature.search.channels.SearchChannelsAdapter
@@ -79,7 +80,8 @@ class SearchFragment : MvpFragment<SearchContract.View, SearchContract.Presenter
     }
 
     override fun showError() {
-        Snackbar.make(searchRecyclerView, R.string.error_msg, Snackbar.LENGTH_LONG).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(searchRecyclerView, errorMsg, Snackbar.LENGTH_LONG).show()
     }
 
     fun refreshData(query: String) {

@@ -11,6 +11,7 @@ import co.netguru.android.socialslack.app.GlideApp
 import co.netguru.android.socialslack.common.extensions.getAttributeDrawable
 import co.netguru.android.socialslack.common.extensions.inflate
 import co.netguru.android.socialslack.common.util.ViewUtils.roundImageView
+import co.netguru.android.socialslack.data.shared.RandomMessageProvider
 import co.netguru.android.socialslack.feature.home.dashboard.model.ChannelsCount
 import co.netguru.android.socialslack.feature.home.dashboard.model.DirectChannelsCount
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -61,11 +62,13 @@ class HomeDashboardFragment :
     }
 
     override fun showProfileError() {
-        Snackbar.make(userAvatar, R.string.error_profile_picture, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(userAvatar, errorMsg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showCountError() {
-        Snackbar.make(userAvatar, R.string.error_counting_statistics, Snackbar.LENGTH_SHORT).show()
+        val errorMsg = RandomMessageProvider.getRandomMessageFromArray(resources.getStringArray(R.array.errorMessages))
+        Snackbar.make(userAvatar, errorMsg, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun initStatistics() {
