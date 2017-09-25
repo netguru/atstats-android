@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <array name="errorMessages">
+        <item>Oops, something went wrong!</item>
+        <item>Error. Notification avalanche. Stand by.</item>
+        <item>Channel overload. Performing emergency procedures.</item>
+        <item>The neutrinos have mutated. Refreshing suspension of disbelief.</item>
+    </array>
+    
+    <array name="loadingMessages">
+        <item>Categorising memes.</item>
+        <item>Inspecting cat videos.</item>
+        <item>Quarantining inappropriate emojis.</item>
+        <item>Feeding trolls.</item>
+        <item>Ignoring food porn.</item>
+        <item>Making a collage out of funny mentions.</item>
+        <item>Counting all the sad pandas.</item>
+        <item>42.</item>
+        <item>Entering deleted message land.</item>
+        <item>Judging you.</item>
+        <item>Wiping call quality data.</item>
+        <item>Exploring abandoned channels.</item>
+        <item>\@here’ing like mad.</item>
+        <item>\@channeling for absolutely no reason.</item>
+    </array>
+
+    <array name="shareFirstChannelMessages">
+        <item>Hey, look! Here’s how much we’ve been chatting!</item>
+        <item>Wow, are we good friends or what?</item>
+    </array>
+
+    <array name="shareOtherChannelMessages">
+        <item>I think we need to work on communication.</item>
+        <item>Hey, I miss you! Do you miss me?</item>
+        <item>We need to talk.</item>
+        <item>Tell me all your secrets.</item>
+        <item>Are we bad at small talk or what?</item>
+    </array>
+
+    <array name="shareFirstUserMessages">
+        <item>Hey, look! Here’s how much we’ve been chatting!</item>
+        <item>Wow, are we good friends or what?</item>
+        <item>One of us must be a really good conversationalist!</item>
+    </array>
+
+    <array name="shareOtherUserMessages">
+        <item>I think we need to work on communication.</item>
+        <item>Hey, talk to me! We’re falling behind!</item>
+        <item>Hey, wow, you’re not thinking about a restraining order yet, right?</item>
+        <item>We need to talk.</item>
+        <item>Hey, I miss you! Do you miss me?</item>
+        <item>TALK TO ME.</item>
+        <item>Say something.</item>
+        <item>Tell me all your secrets.</item>
+        <item>Are we bad at small talk or what?</item>
+        <item>Let’s talk about the meaning of life.</item>
+    </array>
+</resources>

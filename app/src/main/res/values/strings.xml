@@ -104,9 +104,8 @@
     <string name="search_hint">Search users &amp; channels</string>
     <string name="search_title">Search users &amp; channels</string>
 
-    <!--TODO 13.09.2017 Change to proper descriptions -->
-    <string name="fragment_login_description">Lorem ipsum dolor sit amet \n consectetur adipiscing elit</string>
+    <string name="fragment_login_description">Hiya! This is Slack Social. \n Keeping track of your social life on Slack, but not in a creepy way!</string>
     <string name="fragment_fetch_description">The App is loading</string>
-    <string name="fragment_fetch_error">Please refresh</string>
+    <string name="fragment_fetch_error">Status: unwell. Please refresh.</string>
     <string name="refresh">Refresh</string>
 </resources>
