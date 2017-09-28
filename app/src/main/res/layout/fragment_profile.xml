@@ -21,7 +21,7 @@
             android:layout_marginEnd="@dimen/margin_small"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_default"
-            app:cardCornerRadius="@dimen/card_corner_radius_big"
+            app:cardCornerRadius="@dimen/card_corner_radius_small"
             app:cardElevation="@dimen/profile_card_elevation">
 
             <LinearLayout
@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|top"
-                    app:cardCornerRadius="@dimen/card_corner_radius_big"
+                    app:cardCornerRadius="@dimen/card_corner_radius_small"
                     app:cardElevation="@dimen/profile_card_elevation">
 
                     <ImageView
