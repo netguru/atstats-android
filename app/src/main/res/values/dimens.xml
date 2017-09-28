@@ -8,7 +8,7 @@
     <dimen name="margin_tiny">1dp</dimen>
     <dimen name="margin_minus_big">-30dp</dimen>
 
-    <dimen name="line_spacing_welcome_text">2dp</dimen>
+    <dimen name="line_spacing">2dp</dimen>
     <dimen name="fragment_login_logo_padding">12dp</dimen>
     <dimen name="fragment_login_text_logo_margin_bottom">32dp</dimen>
 
