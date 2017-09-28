@@ -4,7 +4,7 @@
     <string name="block_canary_display_activity_label" translatable="false">atStats block canary</string>
     <string name="leak_canary_display_activity_label" translatable="false">atStats leak canary</string>
 
-    <string name="welcome_to">Welcome to</string>
+    <string name="welcome_to_at_stats">Welcome to atStats</string>
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
     <string name="colourful">Colourful</string>
