@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_small"
         android:gravity="center"
-        android:lineSpacingExtra="@dimen/line_spacing_small"
+        android:lineSpacingExtra="@dimen/line_spacing_welcome_text"
         android:text="@string/fragment_login_description" />
 
     <ImageButton
