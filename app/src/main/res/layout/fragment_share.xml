@@ -33,15 +33,17 @@
                 android:layout_margin="@dimen/margin_default"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/close" />
-        </FrameLayout>
 
-        <TextView
-            android:id="@+id/shareNameTextView"
-            style="@style/FontMedium.PrimaryDark.RobotoMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            tools:text="Hey #ng-team, recon this" />
+            <TextView
+                android:id="@+id/shareNameTextView"
+                style="@style/FontMedium.PrimaryDark.RobotoMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_small"
+                tools:text="Hey #ng-team, recon this" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/shareStatusTextView"

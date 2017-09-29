@@ -10,6 +10,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="grey_light">#F2F4F7</color>
     <color name="transparentWhite">#00000000</color>
     <color name="shadowBlack">#40000000</color>
     <color name="blackWithAlpha">#B3000000</color>

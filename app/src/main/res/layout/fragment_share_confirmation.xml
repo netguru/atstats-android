@@ -46,6 +46,7 @@
         android:layout_marginTop="@dimen/margin_default"
         android:gravity="center"
         android:lines="2"
+        android:lineSpacingExtra="@dimen/line_spacing"
         tools:text="@string/thanks_for_sending_statistics" />
 
     <Button
