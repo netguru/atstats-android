@@ -43,7 +43,6 @@
                 android:gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/margin_small"
                 tools:text="Hey #ng-team, recon this" />
-
         </FrameLayout>
 
         <TextView
