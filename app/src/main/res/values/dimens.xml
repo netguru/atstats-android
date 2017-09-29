@@ -20,7 +20,7 @@
 
     // Channel profile
     <dimen name="channel_card_view_elevation">13dp</dimen>
-    <dimen name="channel_card_view_title_elevation">8dp</dimen>
+    <dimen name="channel_card_view_title_elevation">4dp</dimen>
     <dimen name="channel_card_view_title_bottom_padding">14dp</dimen>
     <dimen name="channel_card_view_card_corner_radius">8dp</dimen>
     <dimen name="channel_card_view_separation_line_width">1dp</dimen>
