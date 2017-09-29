@@ -10,6 +10,7 @@
         <item name="colorMain">@color/violet</item>
         <item name="colorTextPrimary">@color/violet</item>
         <item name="colorTextSecondary">@color/violet2</item>
+        <item name="colorTextTertiary">@color/primaryColorful</item>
         <item name="colorTextHighlight">@color/violet</item>
         <item name="colorButton">@color/lightPink</item>
         <item name="colorTabIndicator">@color/accentColourful</item>
@@ -58,6 +59,7 @@
         <item name="colorMain">@color/green</item>
         <item name="colorTextPrimary">@color/black</item>
         <item name="colorTextSecondary">@color/green2</item>
+        <item name="colorTextTertiary">@color/black</item>
         <item name="colorTextHighlight">@color/green</item>
         <item name="colorButton">@color/green</item>
         <item name="colorTabIndicator">@color/white</item>
@@ -264,6 +266,10 @@
 
     <style name="FontSmall.PrimaryDark.RobotoMedium" parent="FontSmall.PrimaryDark">
         <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FontSmall.TertiaryTextColor.RobotoMedium" parent="FontSmall.PrimaryDark">
+        <item name="android:textColor">?attr/colorTextTertiary</item>
     </style>
 
     <style name="FontMedium.PrimaryDark.RobotoMedium" parent="FontMedium.PrimaryDark">
