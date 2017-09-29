@@ -8,8 +8,8 @@
 
             <gradient
                 android:angle="0"
-                android:endColor="@color/orange"
-                android:startColor="@color/violetGrey"
+                android:endColor="?attr/colorButtonEnd"
+                android:startColor="?attr/colorButtonStart"
                 android:type="linear" />
         </shape>
     </item>
@@ -19,7 +19,7 @@
 
             <corners android:radius="@dimen/gradient_button_corner_radius" />
 
-            <solid android:color="@color/violetGreyWithAlpha" />
+            <solid android:color="?attr/colorButtonSolid" />
         </shape>
     </item>
 </layer-list>

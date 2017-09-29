@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/itemChannelsNameTextView"
-        style="@style/FontMedium.PrimaryDark.RobotoMedium"
+        style="@style/FontMedium.ColorTextQuaternary.RobotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/itemChannelsMessagesNrTextView"
-        style="@style/FontMedium.PrimaryDark"
+        style="@style/FontMedium.ColorTextQuaternary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

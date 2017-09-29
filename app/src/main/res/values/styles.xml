@@ -10,9 +10,14 @@
         <item name="colorMain">@color/violet</item>
         <item name="colorTextPrimary">@color/violet</item>
         <item name="colorTextSecondary">@color/violet2</item>
+        <item name="colorTextTertiary">@color/primaryColorful</item>
+        <item name="colorTextQuaternary">@color/violet</item>
         <item name="colorTextHighlight">@color/violet</item>
         <item name="colorButton">@color/lightPink</item>
         <item name="colorTabIndicator">@color/accentColourful</item>
+        <item name="colorButtonStart">@color/violetGrey</item>
+        <item name="colorButtonEnd">@color/orange</item>
+        <item name="colorButtonSolid">@color/violetGreyWithAlpha</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
 
@@ -58,9 +63,14 @@
         <item name="colorMain">@color/green</item>
         <item name="colorTextPrimary">@color/black</item>
         <item name="colorTextSecondary">@color/green2</item>
+        <item name="colorTextTertiary">@color/black</item>
+        <item name="colorTextQuaternary">@color/black2</item>
         <item name="colorTextHighlight">@color/green</item>
         <item name="colorButton">@color/green</item>
         <item name="colorTabIndicator">@color/white</item>
+        <item name="colorButtonStart">@color/green3</item>
+        <item name="colorButtonEnd">@color/grey_green</item>
+        <item name="colorButtonSolid">@color/grey_green</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
 
@@ -178,6 +188,14 @@
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
+    <style name="FontMedium.ColorTextQuaternary" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/colorTextQuaternary</item>
+    </style>
+
+    <style name="FontMedium.ColorTextTertiary" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/colorTextTertiary</item>
+    </style>
+
     <style name="FontLarge.PrimaryDark" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
@@ -202,8 +220,9 @@
         <item name="android:textSize">28sp</item>
     </style>
 
-    <style name="Font32.PrimaryDark" parent="FontLarge.PrimaryDark">
+    <style name="Font32.ColorTextQuaternary" parent="FontLarge.PrimaryDark">
         <item name="android:textSize">32sp</item>
+        <item name="android:textColor">?attr/colorTextQuaternary</item>
     </style>
 
     <style name="FontMedium.Accent" parent="TextAppearance.AppCompat.Medium">
@@ -266,8 +285,22 @@
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
+    <style name="FontSmall.ColorTextQuaternary.RobotoMedium" parent="FontSmall.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorTextQuaternary</item>
+    </style>
+
+    <style name="FontSmall.TertiaryTextColor.RobotoMedium" parent="FontSmall.PrimaryDark">
+        <item name="android:textColor">?attr/colorTextTertiary</item>
+    </style>
+
     <style name="FontMedium.PrimaryDark.RobotoMedium" parent="FontMedium.PrimaryDark">
         <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FontMedium.ColorTextQuaternary.RobotoMedium" parent="FontMedium.PrimaryDark">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorTextQuaternary</item>
     </style>
 
     <style name="Font20.PrimaryDark.RobotoMedium" parent="Font20.PrimaryDark">
