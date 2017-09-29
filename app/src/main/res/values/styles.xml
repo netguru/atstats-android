@@ -14,6 +14,9 @@
         <item name="colorTextHighlight">@color/violet</item>
         <item name="colorButton">@color/lightPink</item>
         <item name="colorTabIndicator">@color/accentColourful</item>
+        <item name="colorButtonStart">@color/violetGrey</item>
+        <item name="colorButtonEnd">@color/orange</item>
+        <item name="colorButtonSolid">@color/violetGreyWithAlpha</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
 
@@ -63,6 +66,9 @@
         <item name="colorTextHighlight">@color/green</item>
         <item name="colorButton">@color/green</item>
         <item name="colorTabIndicator">@color/white</item>
+        <item name="colorButtonStart">@color/green3</item>
+        <item name="colorButtonEnd">@color/grey_green</item>
+        <item name="colorButtonSolid">@color/grey_green</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
 

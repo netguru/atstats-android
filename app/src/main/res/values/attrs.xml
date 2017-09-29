@@ -9,6 +9,9 @@
     <attr name="colorTextHighlight" format="reference" />
     <attr name="colorButton" format="reference" />
     <attr name="colorTabIndicator" format="reference" />
+    <attr name="colorButtonStart" format="reference" />
+    <attr name="colorButtonEnd" format="reference" />
+    <attr name="colorButtonSolid" format="reference" />
 
     <!-- Drawables -->
     <attr name="buttonSignInSlackDrawable" format="reference" />
