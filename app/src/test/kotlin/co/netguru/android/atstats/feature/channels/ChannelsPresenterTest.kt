@@ -215,11 +215,11 @@ class ChannelsPresenterTest {
     }
 
     @Test
-    fun `should show selected channel details with 3 top channels from list when current filter option is most active`() {
+    fun `should show selected channel details with 2 top channels from list when current filter option is most active`() {
         //when
         channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
         //then
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3), MOCKED_FILTER_OPTION)
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2), MOCKED_FILTER_OPTION)
     }
 
     @Test
@@ -227,7 +227,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.onChannelClick(1, listOf(CHANNEL1, CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
         //verify
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL1, CHANNEL2), MOCKED_FILTER_OPTION)
+        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL1), MOCKED_FILTER_OPTION)
     }
 
     @Test
@@ -235,7 +235,7 @@ class ChannelsPresenterTest {
         //when
         channelsPresenter.onChannelClick(4, listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4, CHANNEL33))
         //verify
-        verify(view).showChannelDetails(CHANNEL33, listOf(CHANNEL1, CHANNEL2, CHANNEL33), MOCKED_FILTER_OPTION)
+        verify(view).showChannelDetails(CHANNEL33, listOf(CHANNEL1, CHANNEL2), MOCKED_FILTER_OPTION)
     }
 
     @After

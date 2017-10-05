@@ -96,11 +96,11 @@ class UsersProfilePresenterTest {
     }
 
     @Test
-    fun `should show selected user with 3 users that we talk the most whe on share button clicked`() {
+    fun `should show selected user with 2 users that we talk the most whe on share button clicked`() {
         //when
         usersProfilePresenter.onShareButtonClicked(0, listOf(USER1, USER2, USER3, USER33))
         //then
-        verify(view).showShareView(USER1, listOf(USER1, USER2, USER3))
+        verify(view).showShareView(USER1, listOf(USER1, USER2))
     }
 
     @Test
@@ -108,7 +108,7 @@ class UsersProfilePresenterTest {
         //when
         usersProfilePresenter.onShareButtonClicked(2, listOf(USER1, USER3, USER33))
         //then
-        verify(view).showShareView(USER33, listOf(USER1, USER33, USER3))
+        verify(view).showShareView(USER33, listOf(USER1, USER33))
     }
 
     @Test
@@ -116,7 +116,7 @@ class UsersProfilePresenterTest {
         //when
         usersProfilePresenter.onShareButtonClicked(3, listOf(USER1, USER2, USER3, USER33))
         //then
-        verify(view).showShareView(USER33, listOf(USER1, USER2, USER33))
+        verify(view).showShareView(USER33, listOf(USER1, USER2))
     }
 
     @Test
