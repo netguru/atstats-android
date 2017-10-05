@@ -2,7 +2,7 @@ package co.netguru.android.atstats.data.share
 
 object SharableListProvider {
 
-    private const val SHARABLE_ITEM_COUNT = 3
+    private const val SHARABLE_ITEM_COUNT = 2
 
     fun getSharableList(selectedItemPosition: Int, itemList: List<Sharable>): List<Sharable> {
         val selectedItem = itemList[selectedItemPosition]
