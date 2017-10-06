@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/common_zero"
             android:layout_weight="1.2"
-            android:paddingBottom="@dimen/channel_card_view_title_bottom_padding"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/channel_card_view_title_bottom_padding">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,26 +61,26 @@
                 android:gravity="center_horizontal">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/totalHereIcon"
+                    android:id="@+id/messagesIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:src="?attr/messagesIconDrawable" />
 
                 <TextView
+                    android:id="@+id/sendMessagesTextView"
                     style="@style/Font11.Grey.RobotoMedium"
-                    android:id="@+id/totalHereTitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_small"
-                    android:layout_toEndOf="@+id/totalHereIcon"
-                    android:text="@string/channel_statistics_total_of_here"
+                    android:layout_toEndOf="@+id/messagesIcon"
+                    android:text="@string/channel_statistics_send_messages"
                     android:textAllCaps="true" />
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/totalOfHereTextView"
+                android:id="@+id/totalSendMessagesTextView"
                 style="@style/Font32.ColorTextQuaternary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,8 +122,8 @@
                             android:src="?attr/mentionsIconDrawable" />
 
                         <TextView
-                            style="@style/Font11.Grey.RobotoMedium"
                             android:id="@+id/yourMentionsTitleTextView"
+                            style="@style/Font11.Grey.RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -157,7 +157,7 @@
                     android:gravity="center_horizontal">
 
                     <RelativeLayout
-                        android:id="@+id/secondHereTitleRelativeLayout"
+                        android:id="@+id/hereTitleRelativeLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -165,37 +165,34 @@
                         android:gravity="center_horizontal">
 
                         <ImageView
-                            android:id="@+id/secondTotalHereIcon"
+                            android:id="@+id/totalHereIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:src="?attr/hereIconDrawable" />
 
                         <TextView
+                            android:id="@+id/totalHereTitleTextView"
                             style="@style/Font11.Grey.RobotoMedium"
-                            android:id="@+id/secondTotalHereTitleTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/margin_small"
-                            android:layout_toEndOf="@+id/secondTotalHereIcon"
+                            android:layout_toEndOf="@+id/totalHereIcon"
                             android:text="@string/channel_statistics_total_of_here"
                             android:textAllCaps="true" />
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/secondTotalHereTextView"
+                        android:id="@+id/totalHereTextView"
                         style="@style/Font32.ColorTextQuaternary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/secondHereTitleRelativeLayout"
+                        android:layout_below="@+id/hereTitleRelativeLayout"
                         android:layout_centerHorizontal="true"
                         tool:text="17" />
-
                 </RelativeLayout>
-
             </LinearLayout>
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -208,10 +205,10 @@
                 style="@style/ActionButtonTheme"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/action_button_height"
-                android:layout_marginTop="@dimen/margin_big"
-                android:layout_marginStart="@dimen/margin_default"
-                android:layout_marginEnd="@dimen/margin_default"
                 android:layout_marginBottom="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/channel_statistics_share_with_channel" />
         </RelativeLayout>
     </LinearLayout>

@@ -24,7 +24,7 @@ interface ChannelsContract {
 
         fun hideLoadingView()
 
-        fun showChannelDetails(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>, filterOption: ChannelsFilterOption)
+        fun showChannelDetails(clickedChannelPosition: Int, filterOption: ChannelsFilterOption)
     }
 
     interface Presenter : MvpPresenter<View> {
@@ -36,7 +36,7 @@ interface ChannelsContract {
 
         fun searchButtonClicked()
 
-        fun onChannelClick(selectedItemPosition: Int, channelList: List<ChannelStatistics>)
+        fun onChannelClick(selectedItemPosition: Int)
 
         fun sortRequestReceived()
     }

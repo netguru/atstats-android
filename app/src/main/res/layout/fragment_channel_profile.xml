@@ -1,39 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/profile_background"
-    tools:context="co.netguru.android.atstats.feature.main.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include
-        android:id="@+id/head"
-        layout="@layout/profile_header_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <RelativeLayout
+    <co.netguru.android.atstats.feature.shared.view.AutoItemScrollRecyclerView
+        android:id="@+id/channelsProfileRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/head"
-        android:background="@drawable/map">
+        android:clipToPadding="false"
+        android:paddingEnd="@dimen/margin_default"
+        android:paddingStart="@dimen/margin_default"
+        android:orientation="horizontal"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
-        <RelativeLayout
-            android:id="@+id/channelCardView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_default">
-
-            <include layout="@layout/channel_statistics_cardview" />
-
-        </RelativeLayout>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:indeterminate="true" />
-
-    </RelativeLayout>
-</RelativeLayout>
+    <ProgressBar
+        android:id="@+id/channelsProfileProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+</FrameLayout>

@@ -21,13 +21,9 @@ import org.mockito.Mockito.verify
 class ChannelsPresenterTest {
 
     companion object {
-        private val CHANNEL_MOST_ACTIVE = ChannelStatistics("1", "", 10, 1, 3, 1)
-        private val CHANNEL1 = ChannelStatistics("11", "", 10, 5, 5, 5)
-        private val CHANNEL2 = ChannelStatistics("2", "", 6, 5, 5, 5)
-        private val CHANNEL3 = ChannelStatistics("3", "", 4, 5, 5, 5)
-        private val CHANNEL33 = ChannelStatistics("33", "", 4, 5, 5, 5)
-        private val CHANNEL4 = ChannelStatistics("4", "", 2, 5, 5, 5)
+        private const val POSITION = 0
         private val MOCKED_FILTER_OPTION = ChannelsFilterOption.MOST_ACTIVE_CHANNEL
+        private val CHANNEL_STAT = ChannelStatistics("", "", 2, 1,1, 1)
     }
 
     @Rule
@@ -43,16 +39,9 @@ class ChannelsPresenterTest {
     @Before
     fun setUp() {
         whenever(filterController.getChannelsFilterOption()).thenReturn(Single.just(MOCKED_FILTER_OPTION))
-
-        CHANNEL_MOST_ACTIVE.currentPositionInList = 1
-        CHANNEL1.currentPositionInList = 1
-        CHANNEL2.currentPositionInList = 2
-        CHANNEL3.currentPositionInList = 3
-        CHANNEL33.currentPositionInList = 3
-        CHANNEL4.currentPositionInList = 4
+        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf(CHANNEL_STAT)))
 
         view = mock(ChannelsContract.View::class.java)
-        whenever(channelsDao.getAllChannels()).thenReturn(Single.just(listOf()))
 
         channelsPresenter = ChannelsPresenter(channelsDao, filterController)
         channelsPresenter.attachView(view)
@@ -199,43 +188,11 @@ class ChannelsPresenterTest {
     }
 
     @Test
-    fun `should get channels filter option when on channel click`() {
-        //when
-        channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
-        //then
-        verify(filterController).getChannelsFilterOption()
-    }
-
-    @Test
     fun `should show channel details when getting most active channels successful`() {
         //when
-        channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
+        channelsPresenter.onChannelClick(POSITION)
         //then
-        verify(view).showChannelDetails(anyObject(), anyObject(), anyObject())
-    }
-
-    @Test
-    fun `should show selected channel details with 2 top channels from list when current filter option is most active`() {
-        //when
-        channelsPresenter.onChannelClick(0, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
-        //then
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL2), MOCKED_FILTER_OPTION)
-    }
-
-    @Test
-    fun `should change selected channel position in most active list when other channel has the same messages number and it's position is higher`() {
-        //when
-        channelsPresenter.onChannelClick(1, listOf(CHANNEL1, CHANNEL_MOST_ACTIVE, CHANNEL2, CHANNEL3, CHANNEL4))
-        //verify
-        verify(view).showChannelDetails(CHANNEL_MOST_ACTIVE, listOf(CHANNEL_MOST_ACTIVE, CHANNEL1), MOCKED_FILTER_OPTION)
-    }
-
-    @Test
-    fun `should add selected channel to most active list when missing and last item from list has the same current position number`() {
-        //when
-        channelsPresenter.onChannelClick(4, listOf(CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4, CHANNEL33))
-        //verify
-        verify(view).showChannelDetails(CHANNEL33, listOf(CHANNEL1, CHANNEL2), MOCKED_FILTER_OPTION)
+        verify(view).showChannelDetails(POSITION, MOCKED_FILTER_OPTION)
     }
 
     @After

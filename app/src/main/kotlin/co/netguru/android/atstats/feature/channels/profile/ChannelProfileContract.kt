@@ -1,5 +1,7 @@
 package co.netguru.android.atstats.feature.channels.profile
 
+import co.netguru.android.atstats.data.channels.model.ChannelStatistics
+import co.netguru.android.atstats.data.filter.model.ChannelsFilterOption
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
@@ -8,11 +10,13 @@ interface ChannelProfileContract {
 
     interface View : MvpView {
 
-        fun showChannelInfo(totalMessages: Int, totalHere: Int, totalMentions: Int)
+        fun initView(channelStatisticsList: List<ChannelStatistics>, filterOption: ChannelsFilterOption)
+
+        fun scrollToChannelPosition(position: Int)
 
         fun showError()
 
-        fun showShareDialogFragment()
+        fun showShareDialogFragment(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>)
 
         fun showLoadingView()
 
@@ -23,9 +27,9 @@ interface ChannelProfileContract {
 
     interface Presenter : MvpPresenter<View> {
 
-        fun getChannelInfo(ChannelId: String)
+        fun prepareView(channelStatisticsList: List<ChannelStatistics>, channelPosition: Int, channelsFilter: ChannelsFilterOption)
 
-        fun onShareButtonClick()
+        fun onShareButtonClick(clickedItemPosition: Int, channelList: List<ChannelStatistics>)
 
         fun searchButtonClicked()
     }
