@@ -4,8 +4,8 @@ import co.netguru.android.atstats.app.scope.FragmentScope
 import co.netguru.android.atstats.common.util.RxTransformers
 import co.netguru.android.atstats.data.channels.ChannelsDao
 import co.netguru.android.atstats.data.channels.model.ChannelStatistics
-import co.netguru.android.atstats.data.filter.channels.ChannelsComparator
 import co.netguru.android.atstats.data.filter.FilterController
+import co.netguru.android.atstats.data.filter.channels.ChannelsComparator
 import co.netguru.android.atstats.data.filter.channels.ChannelsPositionUpdater
 import co.netguru.android.atstats.data.filter.channels.ChannelsStatisticsNumberChecker
 import co.netguru.android.atstats.data.filter.model.ChannelsFilterOption
@@ -91,16 +91,12 @@ class ChannelsPresenter @Inject constructor(private val channelsDao: ChannelsDao
                         })
     }
 
-    override fun onChannelClick(selectedItemPosition: Int, channelList: List<ChannelStatistics>) {
-        compositeDisposable += Single.just(channelList)
-                .map { SharableListProvider.getSharableList(selectedItemPosition, channelList) }
-                .map { it.filterIsInstance(ChannelStatistics::class.java) }
-                .zipWith(filterController.getChannelsFilterOption())
-                { channelsList, filterOption -> Pair(channelsList, filterOption) }
+    override fun onChannelClick(selectedItemPosition: Int) {
+        compositeDisposable += filterController.getChannelsFilterOption()
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
-                        onSuccess = { (channelsList, filterOption) ->
-                            view.showChannelDetails(channelList[selectedItemPosition], channelsList, filterOption)
+                        onSuccess = {
+                            view.showChannelDetails(selectedItemPosition, it)
                         },
                         onError = {
                             Timber.e(it, "Error while getting sharable channels list")

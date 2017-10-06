@@ -49,7 +49,7 @@ class ChannelProfilePresenterTest {
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
                 .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
-        presenter.getChannelInfo(CHANNEL)
+        presenter.prepareView(CHANNEL)
         // then
         verify(view).showChannelInfo(4, 2, 2)
     }
@@ -60,7 +60,7 @@ class ChannelProfilePresenterTest {
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
                 .thenReturn(Single.error(Throwable()))
         // when
-        presenter.getChannelInfo(CHANNEL)
+        presenter.prepareView(CHANNEL)
         // then
         verify(view).showError()
     }
@@ -71,7 +71,7 @@ class ChannelProfilePresenterTest {
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
                 .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
-        presenter.getChannelInfo(CHANNEL)
+        presenter.prepareView(CHANNEL)
         // then
         verify(view).showLoadingView()
     }
@@ -82,7 +82,7 @@ class ChannelProfilePresenterTest {
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
                 .thenReturn(Single.just(CHANNEL_STATISTICS))
         // when
-        presenter.getChannelInfo(CHANNEL)
+        presenter.prepareView(CHANNEL)
         // then
         verify(view).hideLoadingView()
     }
@@ -93,7 +93,7 @@ class ChannelProfilePresenterTest {
         whenever(channelsDao.getChannelById(ArgumentMatchers.anyString()))
                 .thenReturn(Single.error(Throwable()))
         // when
-        presenter.getChannelInfo(CHANNEL)
+        presenter.prepareView(CHANNEL)
         // then
         verify(view).hideLoadingView()
     }

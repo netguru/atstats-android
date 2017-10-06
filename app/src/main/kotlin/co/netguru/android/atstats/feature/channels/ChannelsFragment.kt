@@ -2,7 +2,10 @@ package co.netguru.android.atstats.feature.channels
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import co.netguru.android.atstats.R
 import co.netguru.android.atstats.app.App
 import co.netguru.android.atstats.common.extensions.getAttributeDrawable
@@ -96,18 +99,18 @@ class ChannelsFragment : BaseMvpFragmentWithMenu<ChannelsContract.View, Channels
         channelLoadingView.visibility = View.GONE
     }
 
-    override fun showChannelDetails(channelStatistics: ChannelStatistics, channelList: List<ChannelStatistics>, filterOption: ChannelsFilterOption) {
+    override fun showChannelDetails(clickedChannelPosition: Int, filterOption: ChannelsFilterOption) {
         if (parentFragment is BaseFragmentWithNestedFragment) {
             val fragmentWithNestedFragment = parentFragment as BaseFragmentWithNestedFragment
             fragmentWithNestedFragment.replaceNestedFragmentAndAddToBackStack(R.id.fragmentChannelRootContainer,
-                    ChannelProfileFragment.newInstance(channelStatistics, channelList.toTypedArray(), filterOption))
+                    ChannelProfileFragment.newInstance(adapter.channelsList.toTypedArray(), clickedChannelPosition, filterOption))
         } else {
             throw IllegalStateException("Parent fragment should be instance of BaseFragmentWithNestedFragment")
         }
     }
 
     override fun onChannelClick(clickedItemPosition: Int) {
-        presenter.onChannelClick(clickedItemPosition, adapter.channelsList)
+        presenter.onChannelClick(clickedItemPosition)
     }
 
     override fun createPresenter(): ChannelsPresenter = component.getPresenter()
