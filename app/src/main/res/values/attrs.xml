@@ -5,9 +5,14 @@
     <attr name="colorMain" format="reference" />
     <attr name="colorTextPrimary" format="reference" />
     <attr name="colorTextSecondary" format="reference" />
+    <attr name="colorTextTertiary" format="reference" />
+    <attr name="colorTextQuaternary" format="reference" />
     <attr name="colorTextHighlight" format="reference" />
     <attr name="colorButton" format="reference" />
     <attr name="colorTabIndicator" format="reference" />
+    <attr name="colorButtonStart" format="reference" />
+    <attr name="colorButtonEnd" format="reference" />
+    <attr name="colorButtonSolid" format="reference" />
 
     <!-- Drawables -->
     <attr name="buttonSignInSlackDrawable" format="reference" />

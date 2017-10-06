@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/common_zero"
             android:layout_weight="1.2"
-            android:paddingBottom="@dimen/channel_card_view_title_bottom_padding"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/channel_card_view_title_bottom_padding">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -68,8 +68,8 @@
                     android:src="?attr/messagesIconDrawable" />
 
                 <TextView
-                    style="@style/Font11.Grey.RobotoMedium"
                     android:id="@+id/sendMessagesTextView"
+                    style="@style/Font11.Grey.RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -81,7 +81,7 @@
 
             <TextView
                 android:id="@+id/totalSendMessagesTextView"
-                style="@style/Font32.PrimaryDark"
+                style="@style/Font32.ColorTextQuaternary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/channelStatisticsRelativeLayout"
@@ -122,8 +122,8 @@
                             android:src="?attr/mentionsIconDrawable" />
 
                         <TextView
-                            style="@style/Font11.Grey.RobotoMedium"
                             android:id="@+id/yourMentionsTitleTextView"
+                            style="@style/Font11.Grey.RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -135,7 +135,7 @@
 
                     <TextView
                         android:id="@+id/yourMentionsTextView"
-                        style="@style/Font32.PrimaryDark"
+                        style="@style/Font32.ColorTextQuaternary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mentionsTitleRelativeLayout"
@@ -172,8 +172,8 @@
                             android:src="?attr/hereIconDrawable" />
 
                         <TextView
-                            style="@style/Font11.Grey.RobotoMedium"
                             android:id="@+id/totalHereTitleTextView"
+                            style="@style/Font11.Grey.RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -185,17 +185,14 @@
 
                     <TextView
                         android:id="@+id/totalHereTextView"
-                        style="@style/Font32.PrimaryDark"
+                        style="@style/Font32.ColorTextQuaternary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/hereTitleRelativeLayout"
                         android:layout_centerHorizontal="true"
                         tool:text="17" />
-
                 </RelativeLayout>
-
             </LinearLayout>
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -208,10 +205,10 @@
                 style="@style/ActionButtonTheme"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/action_button_height"
-                android:layout_marginTop="@dimen/margin_big"
-                android:layout_marginStart="@dimen/margin_default"
-                android:layout_marginEnd="@dimen/margin_default"
                 android:layout_marginBottom="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/channel_statistics_share_with_channel" />
         </RelativeLayout>
     </LinearLayout>
