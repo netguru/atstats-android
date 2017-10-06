@@ -24,7 +24,7 @@ interface ChannelsContract {
 
         fun hideLoadingView()
 
-        fun showChannelDetails(clickedChannelPosition: Int,filterOption: ChannelsFilterOption)
+        fun showChannelDetails(clickedChannelPosition: Int, filterOption: ChannelsFilterOption)
     }
 
     interface Presenter : MvpPresenter<View> {
