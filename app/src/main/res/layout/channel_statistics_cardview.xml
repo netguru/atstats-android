@@ -75,7 +75,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_toEndOf="@+id/messagesIcon"
-                    android:text="@string/channel_statistics_send_messages"
+                    android:text="@string/channel_statistics_sent_messages"
                     android:textAllCaps="true" />
             </RelativeLayout>
 
