@@ -12,7 +12,7 @@ interface ChannelProfileContract {
 
         fun initView(channelStatisticsList: List<ChannelStatistics>, filterOption: ChannelsFilterOption)
 
-        fun scrollToUserPosition(position: Int)
+        fun scrollToChannelPosition(position: Int)
 
         fun showError()
 

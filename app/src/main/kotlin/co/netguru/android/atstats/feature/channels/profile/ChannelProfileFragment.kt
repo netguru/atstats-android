@@ -85,7 +85,7 @@ class ChannelProfileFragment : BaseMvpFragmentWithMenu<ChannelProfileContract.Vi
         adapter.addChannelsStatistics(channelStatisticsList, filterOption)
     }
 
-    override fun scrollToUserPosition(position: Int) {
+    override fun scrollToChannelPosition(position: Int) {
         channelsProfileRecyclerView.scrollToPosition(position)
     }
 

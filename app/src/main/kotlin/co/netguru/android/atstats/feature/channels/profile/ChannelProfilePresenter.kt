@@ -27,11 +27,12 @@ class ChannelProfilePresenter @Inject constructor() :
                 .subscribeBy(
                         onSuccess = {
                             view.initView(it, channelsFilter)
-                            view.scrollToUserPosition(channelPosition)
+                            view.scrollToChannelPosition(channelPosition)
                             view.hideLoadingView()
                         },
                         onError = {
                             Timber.e(it, "Couldn't show the channel")
+                            view.hideLoadingView()
                             view.showError()
                         }
                 )
