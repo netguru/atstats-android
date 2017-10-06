@@ -49,7 +49,7 @@
     <string name="statistic_received_private_messages">received\nprivate messages</string>
 
     // Channel statistics
-    <string name="channel_statistics_send_messages">Send messages</string>
+    <string name="channel_statistics_sent_messages">Sent messages</string>
     <string name="channel_statistics_total_of_here">Total of @here</string>
     <string name="channel_statistics_your_mentions">Your mentions</string>
     <string name="channel_statistics_share_with_channel">Share with channel</string>
