@@ -1,9 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/item_users_profile_width"
     android:layout_height="match_parent"
-    android:background="@color/profile_background"
-    tools:context="co.netguru.android.atstats.feature.main.MainActivity">
+    android:layout_gravity="center"
+    android:background="@color/profile_background">
 
     <include
         android:id="@+id/head"
@@ -11,20 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/head"
         android:background="@drawable/map">
 
-        <RelativeLayout
-            android:id="@+id/channelCardView"
+        <include
+            layout="@layout/channel_statistics_cardview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_default">
+            android:layout_marginEnd="@dimen/margin_very_small"
+            android:layout_marginStart="@dimen/margin_very_small" />
 
-            <include layout="@layout/channel_statistics_cardview" />
-
-        </RelativeLayout>
-    </RelativeLayout>
+    </FrameLayout>
 </RelativeLayout>
