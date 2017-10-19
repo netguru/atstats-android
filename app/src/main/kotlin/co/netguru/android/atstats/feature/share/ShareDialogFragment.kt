@@ -88,9 +88,10 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
         shareRecyclerView.adapter = adapter
     }
 
-    override fun showChannelName(channelName: String) {
-        shareNameTextView.text = resources.getString(R.string.share_recon_this, channelName)
-        shareAboutSendStatisticsTextView.text = resources.getString(R.string.share_send_statistics_to, channelName)
+    override fun showName(name: String, isChannel: Boolean) {
+        val recon = if (isChannel) R.string.share_recon_this_channel else R.string.share_recon_this_user
+        shareNameTextView.text = resources.getString(recon, name)
+        shareAboutSendStatisticsTextView.text = resources.getString(R.string.share_send_statistics_to, name)
     }
 
     override fun showSelectedChannelMostActiveText() {

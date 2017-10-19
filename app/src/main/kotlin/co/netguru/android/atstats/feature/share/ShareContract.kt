@@ -15,7 +15,7 @@ interface ShareContract {
 
         fun initShareUsersView(userList: List<UserStatistic>, filterOption: UsersFilterOption)
 
-        fun showChannelName(channelName: String)
+        fun showName(channelName: String, isChannel: Boolean)
 
         fun showShareConfirmationDialog(itemName: String)
 
