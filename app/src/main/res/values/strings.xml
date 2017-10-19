@@ -22,7 +22,7 @@
     <string name="menu_users">Users</string>
     <string name="menu_profile">Profile</string>
 
-    <string name="place">place</string>
+    <string name="place">ranking</string>
     <string name="number_of_messages">No. of messages</string>
     <string name="number_of_mentions">No. of mentions</string>
 
@@ -30,23 +30,24 @@
     <string name="rank">Rank</string>
 
     // Filter view
-    <string name="filter_by">Filter by</string>
-    <string name="channel_we_are_mentioned_the_most">Channel we are mentioned the most</string>
-    <string name="channel_we_are_most_active">Channel we are most active</string>
-    <string name="most_active_channel_filter">Most active channel</string>
+    <string name="filter_users_by_subtitle">Filter users by</string>
+    <string name="filter_channels_by_subtitle">Filter channels by</string>
+    <string name="channel_we_are_mentioned_the_most">My channel mentions</string>
+    <string name="channel_we_are_most_active">My channel activity</string>
+    <string name="most_active_channel_filter">Most popular channels</string>
     <string name="categories">Categories</string>
-    <string name="person_we_write_most">Person who we write the most</string>
-    <string name="person_writes_to_us_most">Person who writes to us the most</string>
-    <string name="person_we_talk_most">Person who we talk the most</string>
+    <string name="messages_received">Messages received</string>
+    <string name="messages_sent">Messages sent</string>
+    <string name="conversations">Conversations</string>
 
     <string name="messages">messages</string>
     <string name="mentions">mentions</string>
-    <string name="statistic_messages_sent">messages sent\nby you on channels</string>
-    <string name="statistic_mentions">mentions\non channels</string>
-    <string name="statistic_private_messages">total number\nof private messages</string>
-    <string name="statistic_sent_private_messages">sent\nprivate messages</string>
-    <string name="statistic_total_read_messages">total number\nof read messages</string>
-    <string name="statistic_received_private_messages">received\nprivate messages</string>
+    <string name="statistic_messages_sent">channel messages\nyou sent</string>
+    <string name="statistic_mentions">mentions\nyou received</string>
+    <string name="statistic_private_messages">total private conversation\nmessage count</string>
+    <string name="statistic_sent_private_messages">private messages\nyou sent</string>
+    <string name="statistic_total_read_messages">messages\nyou read</string>
+    <string name="statistic_received_private_messages">private messages\nyou received</string>
 
     // Channel statistics
     <string name="channel_statistics_sent_messages">Sent messages</string>
@@ -55,8 +56,8 @@
     <string name="channel_statistics_share_with_channel">Share with channel</string>
 
     <string name="channels">Channels</string>
-    <string name="welcome_back_mock">Welcome back</string>
-    <string name="statistics">Statistics</string>
+    <string name="hello_there">Hello there</string>
+    <string name="statistics">Your statistics</string>
     <string name="users">Users</string>
     <string name="channel_hashtag">#%s</string>
 
@@ -65,10 +66,10 @@
 
     // Share
     <string name="share_love">Share the love!</string>
-    <string name="share_recon_this">Hey %s, recon this:</string>
-    <string name="share_send_statistics_to">You are about to send this statistics to\n%s</string>
-    <string name="thanks_for_sending_statistics">Thank you for sending statistics to\n%s</string>
-    <string name="thank_you">Thank you!</string>
+    <string name="share_recon_this">Hey %s</string>
+    <string name="share_send_statistics_to">You are about to send this to\n%s</string>
+    <string name="thanks_for_sending_statistics">Thank you for sending stats to\n%s</string>
+    <string name="cool">Cool!</string>
     <string name="ta_da">Ta-da!</string>
     <string name="private_messages">Private messages</string>
     <string name="received_messages">Received messages</string>
