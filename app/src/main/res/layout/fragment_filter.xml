@@ -12,13 +12,13 @@
         android:weightSum="1">
 
         <TextView
+            android:id="@+id/filterByTitle"
             style="@style/FontSmall.ColorTextPrimary"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:padding="@dimen/margin_default"
-            android:text="@string/filter_by"
             android:textStyle="bold" />
 
         <ImageView

@@ -23,7 +23,7 @@
         android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="0.4"
         android:gravity="center"
-        android:text="@string/person_we_write_most"
+        android:text="@string/messages_received"
         android:textAllCaps="true" />
 
     <android.support.v7.widget.RecyclerView
@@ -45,7 +45,7 @@
         android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="0.4"
         android:gravity="center"
-        android:text="@string/person_writes_to_us_most"
+        android:text="@string/messages_sent"
         android:textAllCaps="true" />
 
     <android.support.v7.widget.RecyclerView
@@ -67,7 +67,7 @@
         android:layout_marginStart="@dimen/margin_default"
         android:layout_weight="0.4"
         android:gravity="center"
-        android:text="@string/person_we_talk_most"
+        android:text="@string/conversations"
         android:textAllCaps="true" />
 
     <android.support.v7.widget.RecyclerView
