@@ -59,6 +59,7 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
         filterOption1RadioBtn.setText(ChannelsFilterOption.MOST_ACTIVE_CHANNEL.textResId)
         filterOption2RadioBtn.setText(ChannelsFilterOption.CHANNEL_WE_ARE_MENTIONED_THE_MOST.textResId)
         filterOption3RadioBtn.setText(ChannelsFilterOption.CHANNEL_WE_ARE_MOST_ACTIVE.textResId)
+        filterByTitle.setText(R.string.filter_channels_by_subtitle)
     }
 
     override fun selectCurrentChannelFilter(currentChannelsFilterOption: ChannelsFilterOption) {
@@ -73,6 +74,7 @@ class FilterFragment : MvpFragment<FilterContract.View, FilterContract.Presenter
         filterOption1RadioBtn.setText(UsersFilterOption.PERSON_WHO_WE_WRITE_THE_MOST.textResId)
         filterOption2RadioBtn.setText(UsersFilterOption.PERSON_WHO_WRITES_TO_US_THE_MOST.textResId)
         filterOption3RadioBtn.setText(UsersFilterOption.PERSON_WHO_WE_TALK_THE_MOST.textResId)
+        filterByTitle.setText(R.string.filter_users_by_subtitle)
     }
 
     override fun selectCurrentUsersFilter(currentUsersFilterOption: UsersFilterOption) {
