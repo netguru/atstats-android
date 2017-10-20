@@ -7,7 +7,7 @@
     <string name="welcome_to_at_stats">Welcome to atStats</string>
     <string name="designed_with_love_by">Designed with love by</string>
     <string name="netguru">Netguru</string>
-    <string name="colourful">Colourful</string>
+    <string name="colourful">Colours!</string>
     <string name="feedback_email">atstats-team@netguru.co</string>
     <string name="feedback_email_subject">Feedback about atStats</string>
 
@@ -32,13 +32,13 @@
     // Filter view
     <string name="filter_users_by_subtitle">Filter users by</string>
     <string name="filter_channels_by_subtitle">Filter channels by</string>
-    <string name="channel_we_are_mentioned_the_most">My channel mentions</string>
-    <string name="channel_we_are_most_active">My channel activity</string>
+    <string name="channel_we_are_mentioned_the_most">Your channel mentions</string>
+    <string name="channel_we_are_most_active">Your channel activity</string>
     <string name="most_active_channel_filter">Most popular channels</string>
     <string name="categories">Categories</string>
-    <string name="messages_received">Messages received</string>
-    <string name="messages_sent">Messages sent</string>
-    <string name="conversations">Conversations</string>
+    <string name="messages_received">Top addressee</string>
+    <string name="messages_sent">Top sender</string>
+    <string name="conversations">Top chatter</string>
 
     <string name="messages">messages</string>
     <string name="mentions">mentions</string>

@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/dashboardStatisticText"
-            style="@style/Font12.Grey"
+            style="@style/Font12.Grey.MinusTextScale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
