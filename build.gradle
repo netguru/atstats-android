@@ -5,7 +5,7 @@ apply from: 'buildsystem/secrets.gradle'
 
 ext {
     globalVersionCode = isBitrise ? Integer.parseInt(bitrise.io.buildNumber) : 1
-    globalVersionName = '0.1.1'
+    globalVersionName = '1.0.0'
 }
 
 buildscript {
