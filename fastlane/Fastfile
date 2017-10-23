@@ -9,7 +9,7 @@ platform :android do
   desc "Deploy app to playstore"
   lane :production do
     supply(json_key: '/bitrise/src/fastlane/google_play.json',
-    package_name: ENV["APP_PACKAGE_ID"],
+    package_name: ENV["APP_PACKAGE"],
     track: ENV["FASTLANE_TRACK"],
     apk: ENV["$BITRISE_SIGNED_APK_PATH"],
     skip_upload_metadata: true,
