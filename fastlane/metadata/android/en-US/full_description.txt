@@ -1,0 +1,12 @@
+atStats is a mobile app for Slack users that helps you track and understand interactions, making them more enjoyable and rewarding. It helps you identify the best Slack buddies and brace the relationships. It also lets you detect channels that decrease your productivity through frequent mentions and, in effect, bring the “Slack-life balance” back.
+
+You get the statistics on:
+*the most active channel,
+*the channel on which you have been mentioned the most,
+*the channel on which you have been the most active,
+*your top addressee (the one you reach out to most of the time),
+*your top sender (the one who sends you more messages than anyone else),
+*your top chatter (the one you exchange messages with most of the time).
+
+100% secure. We don't stash any of your personal data. Only the stats. Period.
+atStats is a free app available for your mobile.
