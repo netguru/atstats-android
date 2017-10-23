@@ -11,7 +11,7 @@ platform :android do
     supply(json_key: '/bitrise/src/fastlane/google_play.json',
     package_name: ENV["APP_PACKAGE"],
     track: ENV["FASTLANE_TRACK"],
-    apk: ENV["$BITRISE_SIGNED_APK_PATH"],
+    apk: ENV["BITRISE_SIGNED_APK_PATH"],
     skip_upload_metadata: true,
     skip_upload_images: true,
     skip_upload_screenshots: true)
