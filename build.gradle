@@ -21,7 +21,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta6'
+        classpath 'com.android.tools.build:gradle:3.0.0-rc1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.frogermcs.androiddevmetrics:androiddevmetrics-plugin:0.5"
         classpath 'com.vanniktech:gradle-android-junit-jacoco-plugin:0.8.0'
