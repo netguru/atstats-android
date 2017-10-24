@@ -1,5 +1,6 @@
 package co.netguru.android.atstats.feature.share
 
+import android.app.DialogFragment
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.design.widget.Snackbar
@@ -58,6 +59,11 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
     private val component by lazy {
         App.getUserComponent(context)
                 .plusChannelShareComponent()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NO_TITLE, 0)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
