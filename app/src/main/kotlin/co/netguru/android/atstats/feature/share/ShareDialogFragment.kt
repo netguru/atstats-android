@@ -11,6 +11,7 @@ import co.netguru.android.atstats.R
 import co.netguru.android.atstats.app.App
 import co.netguru.android.atstats.app.GlideApp
 import co.netguru.android.atstats.common.extensions.getAttributeDrawable
+import co.netguru.android.atstats.common.extensions.setStyle
 import co.netguru.android.atstats.common.util.ScreenShotUtils
 import co.netguru.android.atstats.data.channels.model.ChannelStatistics
 import co.netguru.android.atstats.data.filter.channels.ChannelsMessagesNumberProvider
@@ -63,7 +64,7 @@ class ShareDialogFragment : BaseMvpDialogFragment<ShareContract.View, ShareContr
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_TITLE, 0)
+        setStyle(DialogFragment.STYLE_NO_TITLE)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
