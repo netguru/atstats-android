@@ -32,7 +32,7 @@ data class UserStatistic(val id: String,
                     if (isCurrentUser) sentMessages + receivedMessages else receivedMessages,
                     sentMessages + receivedMessages,
                     currentDayStreak,
-                    this.profile.image512)
+                    this.profile?.image512)
         }
 
         @JvmField

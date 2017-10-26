@@ -15,9 +15,9 @@ data class UserDB(@PrimaryKey val id: String,
         fun createUserDB(user: User): UserDB =
                 UserDB(user.id,
                         user.username,
-                        user.profile.firstName,
-                        user.profile.lastName,
+                        user.profile?.firstName,
+                        user.profile?.lastName,
                         user.realName,
-                        user.profile.image512)
+                        user.profile?.image512)
     }
 }

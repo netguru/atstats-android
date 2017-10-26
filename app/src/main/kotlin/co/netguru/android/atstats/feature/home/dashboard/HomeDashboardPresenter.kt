@@ -46,7 +46,7 @@ class HomeDashboardPresenter @Inject constructor(private val sessionController: 
                 }
                 .compose(RxTransformers.applySingleIoSchedulers())
                 .subscribeBy(
-                        onSuccess = { view.showProfile(it.username, it.profile.image512) },
+                        onSuccess = { view.showProfile(it.username, it.profile?.image512) },
                         onError = {
                             Timber.e(it, "Error while getting the profile details")
                             view.showProfileError()

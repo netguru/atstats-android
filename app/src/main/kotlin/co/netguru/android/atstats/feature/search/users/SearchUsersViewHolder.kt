@@ -26,7 +26,7 @@ class SearchUsersViewHolder(parent: ViewGroup)
 
     fun bind(user: User) {
         with(user) {
-            loadUserPhoto(profile.image512)
+            loadUserPhoto(profile?.image512)
             userRealNameTextView.text = realName
             usernameTextView.text = (itemView.context.getString(R.string.username, username))
             changeMedalVisibility()
