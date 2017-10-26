@@ -9,7 +9,7 @@ data class UserDB(@PrimaryKey val id: String,
                   val firstName: String?,
                   val lastName: String?,
                   val realName: String?,
-                  val avatarUrl: String) {
+                  val avatarUrl: String?) {
 
     companion object {
         fun createUserDB(user: User): UserDB =
