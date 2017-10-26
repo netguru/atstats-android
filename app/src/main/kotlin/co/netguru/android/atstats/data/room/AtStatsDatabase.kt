@@ -13,7 +13,7 @@ import co.netguru.android.atstats.data.user.model.UserDB
 
 @Database(
         entities = arrayOf(ChannelStatistics::class, DirectChannelStatistics::class, Team::class, UserDB::class),
-        version = 5)
+        version = 6)
 abstract class AtStatsDatabase : RoomDatabase() {
 
     companion object {

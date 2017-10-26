@@ -8,4 +8,4 @@ data class User(val id: String,
                 @SerializedName("last_name") val lastName: String?,
                 @SerializedName("real_name") val realName: String?,
                 @SerializedName("deleted") val isDeleted: Boolean,
-                val profile: UserProfile)
+                val profile: UserProfile?)
