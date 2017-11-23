@@ -47,12 +47,14 @@ You're more than welcome to contribute or report an issue in case of any problem
 ## Authors
 
 * [Designers Team](https://dribbble.com/netguru)
+    * [Maciej Kotula](https://dribbble.com/maciej_kotula)
 
 * [Developers Team](https://github.com/netguru/slack-social-android/graphs/contributors)
 
     * [Gonzalo Acosta](https://github.com/GNZ)
     * [Rafał Adasiewicz](https://github.com/adasiewiczr)
     * [Filip Zych](https://github.com/navarionek)
+    * [Samuel Urbanowicz](https://github.com/samiuelson)
 
 Copyright © 2017 [Netguru](http://netguru.co).
 
