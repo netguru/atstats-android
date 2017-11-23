@@ -22,9 +22,9 @@ We at Netguru strongly believe in open-source software. atStats isn’t our only
 
 ### Instructions
 
-1. Clone repo at `https://github.com/netguru/slack-social-android.git`
+1. Clone repo at `https://github.com/netguru/atstats-android.git`
 2. Register your app for slack api [here](https://api.slack.com/apps)
-3. Create secret.properties file in main folder (social-slack-android) and paste contents from table:
+3. Create secret.properties file in main folder (atstats-android) and paste contents from table:
 
 | Property         
 |---------------------------|
