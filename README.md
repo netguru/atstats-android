@@ -51,7 +51,6 @@ You're more than welcome to contribute or report an issue in case of any problem
 
 * [Developers Team](https://github.com/netguru/slack-social-android/graphs/contributors)
 
-    * [Gonzalo Acosta](https://github.com/GNZ)
     * [Rafał Adasiewicz](https://github.com/adasiewiczr)
     * [Filip Zych](https://github.com/navarionek)
     * [Samuel Urbanowicz](https://github.com/samiuelson)
